@@ -5,6 +5,7 @@ scipy~=1.18.0
 pandas~=3.0.0
 pyarrow
 pyyaml
+openpyxl
 pydantic>=2,<3
 pydantic-settings>=2
 

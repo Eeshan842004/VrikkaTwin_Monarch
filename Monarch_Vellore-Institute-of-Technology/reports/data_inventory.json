@@ -1,0 +1,122 @@
+{
+  "weather": {
+    "source": "Open-Meteo archive (ERA5)",
+    "licence": "CC BY 4.0",
+    "period": [
+      "2024-03-01",
+      "2024-06-30"
+    ],
+    "cities": {
+      "Delhi": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 46.0,
+        "tmax_date": "2024-05-26",
+        "days_tmax_ge_40": 42,
+        "rh_mean": 35.2
+      },
+      "Nagpur": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 45.5,
+        "tmax_date": "2024-05-27",
+        "days_tmax_ge_40": 44,
+        "rh_mean": 44.7
+      },
+      "Ahmedabad": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 46.5,
+        "tmax_date": "2024-05-23",
+        "days_tmax_ge_40": 69,
+        "rh_mean": 37.6
+      },
+      "Hyderabad": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 41.4,
+        "tmax_date": "2024-05-04",
+        "days_tmax_ge_40": 7,
+        "rh_mean": 53.9
+      },
+      "Palasa": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 42.5,
+        "tmax_date": "2024-04-25",
+        "days_tmax_ge_40": 13,
+        "rh_mean": 68.4
+      },
+      "Chennai": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 41.0,
+        "tmax_date": "2024-05-28",
+        "days_tmax_ge_40": 4,
+        "rh_mean": 73.6
+      },
+      "Bengaluru": {
+        "rows": 2928,
+        "missing_values": 0,
+        "tmax_c": 39.5,
+        "tmax_date": "2024-05-01",
+        "days_tmax_ge_40": 0,
+        "rh_mean": 58.1
+      }
+    }
+  },
+  "datasets": {
+    "mimic_iv_demo": {
+      "status": "ok",
+      "files": 9,
+      "bytes": 7724204,
+      "licence": "Open Data Commons ODbL v1.0 (open access, no credentialing)",
+      "check": "R1a, R1b",
+      "source": "https://physionet.org/files/mimic-iv-demo/2.2/"
+    },
+    "eicu_crd_demo": {
+      "status": "ok",
+      "files": 3,
+      "bytes": 5892576,
+      "licence": "Open Data Commons ODbL v1.0 (open access, no credentialing)",
+      "check": "R1b",
+      "source": "https://physionet.org/files/eicu-crd-demo/2.0.1/"
+    },
+    "uci_ckd": {
+      "status": "ok",
+      "files": 1,
+      "bytes": 45268,
+      "licence": "CC BY 4.0",
+      "check": "R2",
+      "source": "https://archive.ics.uci.edu/static/public/336/data.csv"
+    },
+    "tawam": {
+      "status": "ok",
+      "files": 1,
+      "bytes": 79375,
+      "licence": "CC BY 4.0 (PLOS ONE supporting information)",
+      "check": "R3",
+      "source": "https://journals.plos.org/plosone/article/file?type=supplementary&id=10.1371/journal.pone.0199920.s002"
+    },
+    "firefighter_heat": {
+      "status": "ok",
+      "files": 1,
+      "bytes": 194727,
+      "licence": "CC BY 4.0",
+      "check": "R5 (exploratory)",
+      "source": "https://data.mendeley.com/public-api/datasets/7ghxcsd9sz"
+    },
+    "pmdata": {
+      "status": "ok",
+      "files": 125,
+      "bytes": 1051539,
+      "licence": "CC BY 4.0",
+      "check": "R4",
+      "source": "https://api.osf.io/v2/nodes/vx4bk/files/osfstorage/"
+    }
+  },
+  "refused": {
+    "mimic_iv_full": "needs PhysioNet credentialing (1-2 weeks per member); master plan \u00a724 says do not use",
+    "eicu_crd_full": "needs PhysioNet credentialing; master plan \u00a724 says do not use"
+  }
+}
