@@ -1,0 +1,31 @@
+# Synthetic cohort definition (master plan §11.2). Values are ASSUMPTIONS unless cited in the plan.
+n_patients: 3000            # use 1000 if compute is tight
+season: {start: 2024-03-01, end: 2024-06-30}   # 122 days; 2024 heat season (NCDC 48,156 suspected cases [S])
+cities:                     # lat, lon (Open-Meteo); share of cohort
+  Delhi:     [28.61, 77.21, 0.18]
+  Nagpur:    [21.15, 79.09, 0.15]
+  Ahmedabad: [23.02, 72.57, 0.14]
+  Hyderabad: [17.39, 78.49, 0.14]
+  Palasa:    [18.77, 84.41, 0.12]   # Uddanam CKDu region, Srikakulam district, AP
+  Chennai:   [13.08, 80.27, 0.12]
+  Bengaluru: [12.97, 77.59, 0.15]   # milder control city (sponsor's home)
+age: {dist: truncnorm, mean: 58, sd: 13, min: 30, max: 90}
+female: 0.48
+conditions:
+  htn: 0.70
+  dm: 0.30
+  ckd_g3: 0.15              # eGFR 30-59
+  albuminuria_g1g2: 0.10    # UACR >= 30 mg/g with eGFR >= 60
+  heart_failure: 0.05
+egfr_baseline: {no_ckd: [85, 15], ckd_g3: [45, 8]}   # mean, sd (mL/min/1.73m2)
+occupation: {home: 0.45, office: 0.20, vendor: 0.08, delivery: 0.07, construction_farm: 0.20}   # outdoor 35%
+meds_given_htn: {acei_arb: 0.65, thiazide: 0.30, loop: 0.06, ccb: 0.50, beta_blocker: 0.20, mra: 0.04}
+fixed_dose_combo_share: 0.35   # of ARB+thiazide users, e.g. Telma-H [A]
+meds_given_dm: {metformin: 0.85, sglt2i: 0.25, sulfonylurea: 0.35}
+nsaid_episode_rate_per_month: {base: 0.4, chronic_pain: 1.5, gout: 1.0}
+nsaid_given_pain_or_fever: 0.5          # India self-medication 57-61% [S]
+nsaid_mix: {diclofenac: 0.40, ibuprofen_combiflam: 0.30, aceclofenac: 0.15, nimesulide: 0.10, other: 0.05}
+illness_rates_per_100_patient_months: {fever: 6, gastroenteritis_summer: 4, sepsis_like_background: 0.3}
+cyp2c9_allele_freq: {"*2": 0.03, "*3": 0.11}   # Hardy-Weinberg [S]
+lab_schedule_days: {routine_mean: 75, symptom_triggered_prob: 0.4}
+wearable_tier_share: {T0: 0.35, T1: 0.45, T2: 0.20}

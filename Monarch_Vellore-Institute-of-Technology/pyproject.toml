@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vrikkatwin"
+version = "0.1.0"
+description = "VrikkaTwin: a kidney digital twin that warns of heat-related acute kidney injury 72 hours ahead."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11,<3.13"
+authors = [{ name = "Team Monarch, Vellore Institute of Technology" }]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["notebooks", "data", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741"]   # physiology uses short symbol names (e.g. l, I) that match the equations
+
+[tool.ruff.lint.per-file-ignores]
+"app/pages/*" = ["N999"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "slow: long-running test (cohort-scale)",
+    "data: needs downloaded datasets in data/raw",
+    "net: needs internet access",
+]

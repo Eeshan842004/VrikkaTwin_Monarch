@@ -1,0 +1,36 @@
+# Private planning documents: never published
+VRIKKATWIN_MASTER_PLAN.md
+BUILD_PARTS.md
+BUILD_PLAN_DETAILED.md
+
+# Python
+**/.venv/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.ipynb_checkpoints/
+
+# Secrets
+**/.env
+
+# Data that must not be committed (ODbL / large / restricted); download scripts recreate it
+**/data/raw/*
+!**/data/raw/.gitkeep
+**/data/cache/*
+!**/data/cache/.gitkeep
+*.duckdb
+*.duckdb.wal
+
+# Runtime artefacts
+**/data/app.db
+**/data/audit_checkpoints.jsonl
+**/app/assets/audio/**/*.tmp
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,944 @@
+# VrikkaTwin Parameter Provenance Registry (master plan §8).
+#
+# Every model constant lives here. Code reads it through vrikka.config and never hard-codes numbers.
+# Fields: value, unit, range [low, high] (used by the tornado sensitivity analysis), provenance, source, notes.
+# provenance: CITED (published / textbook), VERIFY (must be checked before quoting), ASSUMPTION (our choice).
+# Every ASSUMPTION must carry a range. A new constant enters as ASSUMPTION with a range.
+
+# ---------------------------------------------------------------- body water and volume (§8, §9.4)
+ecv_frac:
+  value: 0.20
+  unit: fraction of body weight
+  range: [0.18, 0.22]
+  provenance: CITED
+  source: textbook physiology
+  notes: extracellular volume = ecv_frac x weight
+tbw_frac_female:
+  value: 0.45
+  unit: fraction of body weight
+  range: [0.40, 0.50]
+  provenance: CITED
+  source: textbook physiology
+  notes: +tbw_frac_young_bonus if age < 60; creatinine volume of distribution ~ TBW
+tbw_frac_male:
+  value: 0.50
+  unit: fraction of body weight
+  range: [0.45, 0.55]
+  provenance: CITED
+  source: textbook physiology
+  notes: +tbw_frac_young_bonus if age < 60
+tbw_frac_young_bonus:
+  value: 0.05
+  unit: fraction of body weight
+  range: [0.0, 0.05]
+  provenance: CITED
+  source: textbook physiology
+  notes: applied when age < 60
+ecf_frac_sweat:
+  value: 0.5
+  unit: fraction
+  range: [0.3, 0.7]
+  provenance: ASSUMPTION
+  source: physiology (sweat is hypotonic, part of the water comes from cells)
+  notes: share of unreplaced sweat water that leaves the ECF
+ecf_frac_gi:
+  value: 1.0
+  unit: fraction
+  range: [0.8, 1.0]
+  provenance: ASSUMPTION
+  source: near-isotonic GI losses
+  notes: vomiting / diarrhoea
+ecf_frac_drug:
+  value: 1.0
+  unit: fraction
+  range: [0.8, 1.0]
+  provenance: ASSUMPTION
+  source: near-isotonic natriuresis
+  notes: diuretic / SGLT2i losses
+
+# ---------------------------------------------------------------- autoregulation and GFR (§8, §9.1)
+d50:
+  value: 0.065
+  unit: fraction of ECV lost
+  range: [0.04, 0.10]
+  provenance: ASSUMPTION
+  source: prototype sweep (master plan §9.1)
+  notes: ECF-loss fraction at half-max unprotected GFR drop; no drugs + 3 hot days gives ~+0.02 mg/dL, triple + fever crosses +0.3
+hill_n:
+  value: 3.0
+  unit: dimensionless
+  range: [2.0, 4.0]
+  provenance: ASSUMPTION
+  source: threshold-like autoregulation failure
+  notes: Hill exponent of h(d)
+a_tot_young:
+  value: 0.80
+  unit: fraction
+  range: [0.6, 0.9]
+  provenance: ASSUMPTION
+  source: kidney reserve falls with age/CKD
+  notes: autoregulatory protection for age < 60 and eGFR >= 60
+a_tot_old:
+  value: 0.60
+  unit: fraction
+  range: [0.5, 0.75]
+  provenance: ASSUMPTION
+  source: kidney reserve falls with age/CKD
+  notes: protection for age >= 75 or eGFR < 45; linear between a_tot_young and a_tot_old otherwise
+aff_share:
+  value: 0.5
+  unit: fraction
+  range: [0.3, 0.7]
+  provenance: ASSUMPTION
+  source: afferent (prostaglandin) vs efferent (angiotensin II) arms
+  notes: prostaglandin share of protection
+i_ras:
+  value: 0.80
+  unit: fraction
+  range: [0.6, 0.95]
+  provenance: ASSUMPTION
+  source: ACEi/ARB pharmacology
+  notes: efferent protection blocked by ACEi/ARB at full effect
+nsaid_e50:
+  value: 1.0
+  unit: normalised NSAID units
+  range: [0.5, 2.0]
+  provenance: ASSUMPTION
+  source: 1 unit = standard daily dose
+  notes: dose for half-max prostaglandin inhibition
+
+# ---------------------------------------------------------------- intake and renal water conservation
+phi_drink_young:
+  value: 0.75
+  unit: fraction of sweat replaced by drinking
+  range: [0.5, 0.9]
+  provenance: ASSUMPTION
+  source: voluntary dehydration concept
+  notes: age < 60
+phi_drink_old:
+  value: 0.60
+  unit: fraction of sweat replaced by drinking
+  range: [0.4, 0.8]
+  provenance: ASSUMPTION
+  source: weaker thirst with age
+  notes: age >= 60
+phi_drink_no_water_at_work_mult:
+  value: 0.8
+  unit: multiplier
+  range: [0.6, 1.0]
+  provenance: ASSUMPTION
+  source: limited water access (Uddanam pattern)
+  notes: applied to phi_drink when water_access_at_work is false
+poor_intake_mult:
+  value: 0.6
+  unit: multiplier
+  range: [0.4, 0.8]
+  provenance: ASSUMPTION
+  source: master plan §7.6
+  notes: drinking fraction multiplier on poor-oral-intake days
+tau_recover_h:
+  value: 12.0
+  unit: h
+  range: [6.0, 24.0]
+  provenance: ASSUMPTION
+  source: prototype sweep (master plan §9.1)
+  notes: renal water conservation time constant
+sickle_trait_tau_mult:
+  value: 1.3
+  unit: multiplier
+  range: [1.0, 1.5]
+  provenance: VERIFY
+  source: reduced urine-concentrating ability in HbAS
+  notes: optional; multiplies tau_recover_h
+
+# ---------------------------------------------------------------- drug effect half-lives (§8, §7.3; per drug, see BUILD plan D-4)
+half_life_nsaid_h:
+  value: 6.0
+  unit: h
+  range: [3.0, 9.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: effect on/off lag, not plasma half-life
+half_life_ras_h:
+  value: 24.0
+  unit: h
+  range: [12.0, 36.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: ACEi / ARB
+half_life_hctz_h:
+  value: 12.0
+  unit: h
+  range: [6.0, 18.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: hydrochlorothiazide
+half_life_chlorthalidone_h:
+  value: 48.0
+  unit: h
+  range: [24.0, 72.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: chlorthalidone
+half_life_indapamide_h:
+  value: 24.0
+  unit: h
+  range: [12.0, 36.0]
+  provenance: ASSUMPTION
+  source: not in master plan; added as assumption between HCTZ and chlorthalidone
+  notes: indapamide
+half_life_loop_h:
+  value: 6.0
+  unit: h
+  range: [3.0, 9.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: furosemide / torsemide
+half_life_sglt2_h:
+  value: 12.0
+  unit: h
+  range: [6.0, 18.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: empagliflozin / dapagliflozin
+
+# ---------------------------------------------------------------- drug-induced and illness losses (§7.3, §7.6, §8)
+diuretic_loss_thiazide_l_day:
+  value: 0.20
+  unit: L/day
+  range: [0.1, 0.6]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: settles to a steady ECF offset (~loss x tau/24)
+diuretic_loss_loop_l_day:
+  value: 0.40
+  unit: L/day
+  range: [0.1, 0.6]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: loop diuretics
+sglt2_loss_l_day:
+  value: 0.15
+  unit: L/day
+  range: [0.05, 0.3]
+  provenance: ASSUMPTION
+  source: early osmotic diuresis
+  notes: SGLT2 inhibitors
+fever_loss_l_day_per_c:
+  value: 0.20
+  unit: L/day per degC above 37
+  range: [0.1, 0.3]
+  provenance: ASSUMPTION
+  source: master plan §7.6
+  notes: fever is always expressed as degC ABOVE 37 (BUILD plan D-7)
+vomit_loss_l:
+  value: 0.30
+  unit: L per episode
+  range: [0.1, 0.8]
+  provenance: ASSUMPTION
+  source: master plan §7.6
+  notes: ''
+diarrhoea_loss_l:
+  value: 0.40
+  unit: L per episode
+  range: [0.1, 0.8]
+  provenance: ASSUMPTION
+  source: master plan §7.6
+  notes: ''
+water_glass_l:
+  value: 0.25
+  unit: L per glass
+  range: [0.2, 0.3]
+  provenance: ASSUMPTION
+  source: master plan §7.6
+  notes: patient-reported water glasses
+
+# ---------------------------------------------------------------- measurement models (§7.4, §8, §10.1)
+k_hr:
+  value: 8.0
+  unit: bpm per L of ECF deficit
+  range: [4.0, 12.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: resting HR rise with volume deficit
+k_hr_beta_blocker_mult:
+  value: 0.4
+  unit: multiplier
+  range: [0.2, 0.6]
+  provenance: ASSUMPTION
+  source: beta-blockers blunt HR response
+  notes: applied to k_hr
+hr_fever_bpm_per_c:
+  value: 10.0
+  unit: bpm per degC above 37
+  range: [7.0, 13.0]
+  provenance: ASSUMPTION
+  source: master plan §7.4 / §10.1
+  notes: fever term inside the HR measurement model so fever is not read as dehydration
+k_bp:
+  value: 5.0
+  unit: mmHg per L of ECF deficit
+  range: [2.0, 10.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: home SBP fall with deficit
+sigma_weight_kg:
+  value: 0.4
+  unit: kg
+  range: [0.2, 0.6]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: morning weight measurement noise
+sigma_hr_bpm:
+  value: 4.0
+  unit: bpm
+  range: [2.0, 6.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: resting HR noise
+sigma_hr_beta_blocker_bpm:
+  value: 6.0
+  unit: bpm
+  range: [4.0, 9.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: resting HR noise on a beta-blocker
+sigma_sbp_mmhg:
+  value: 8.0
+  unit: mmHg
+  range: [5.0, 12.0]
+  provenance: ASSUMPTION
+  source: not in master plan; typical home-cuff variability
+  notes: home SBP noise (optional T2 channel)
+cr_lab_cv:
+  value: 0.05
+  unit: coefficient of variation
+  range: [0.03, 0.08]
+  provenance: CITED
+  source: laboratory creatinine analytical variation
+  notes: lab creatinine Kalman update
+
+# ---------------------------------------------------------------- UKF settings (§10.1)
+ukf_q_v_tot:
+  value: 0.3
+  unit: L (SD per day)
+  range: [0.15, 0.5]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: process noise
+ukf_q_v_ecf:
+  value: 0.15
+  unit: L (SD per day)
+  range: [0.08, 0.3]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: process noise
+ukf_q_cr:
+  value: 0.05
+  unit: mg/dL (SD per day)
+  range: [0.02, 0.1]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: process noise
+ukf_q_log_theta:
+  value: 0.03
+  unit: log units (SD per day)
+  range: [0.01, 0.06]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: process noise on log sweat multiplier
+ukf_q_w_dry:
+  value: 0.05
+  unit: kg (SD per day)
+  range: [0.02, 0.1]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: process noise on dry weight
+ukf_p0_v_tot:
+  value: 0.5
+  unit: L (SD)
+  range: [0.3, 1.0]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: initial uncertainty
+ukf_p0_v_ecf:
+  value: 0.3
+  unit: L (SD)
+  range: [0.15, 0.6]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: initial uncertainty
+ukf_p0_cr_frac:
+  value: 0.1
+  unit: fraction of baseline creatinine (SD)
+  range: [0.05, 0.2]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: initial uncertainty
+ukf_p0_log_theta:
+  value: 0.3
+  unit: log units (SD)
+  range: [0.15, 0.5]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: initial uncertainty
+ukf_p0_w_dry:
+  value: 1.0
+  unit: kg (SD)
+  range: [0.5, 2.0]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: initial uncertainty
+ukf_alpha:
+  value: 0.3
+  unit: dimensionless
+  range: [0.1, 1.0]
+  provenance: ASSUMPTION
+  source: master plan §10.1 (Merwe scaled sigma points)
+  notes: ''
+ukf_beta:
+  value: 2.0
+  unit: dimensionless
+  range: [2.0, 2.0]
+  provenance: CITED
+  source: optimal for Gaussian priors
+  notes: ''
+ukf_kappa:
+  value: 0.0
+  unit: dimensionless
+  range: [0.0, 0.0]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: ''
+missing_channel_r:
+  value: 1000000.0
+  unit: variance
+  range: [1000000.0, 1000000.0]
+  provenance: ASSUMPTION
+  source: master plan §10.1
+  notes: R inflation for a missing measurement channel
+mc_draws_training:
+  value: 50
+  unit: draws
+  range: [30, 100]
+  provenance: ASSUMPTION
+  source: master plan §10.2
+  notes: Monte Carlo draws for training features
+mc_draws_ui:
+  value: 200
+  unit: draws
+  range: [100, 500]
+  provenance: ASSUMPTION
+  source: master plan §10.2
+  notes: Monte Carlo draws for the live UI and what-ifs
+
+# ---------------------------------------------------------------- heat model (§7.5, §8, §9.2)
+tr_offset_sun_c:
+  value: 13.0
+  unit: degC at 800 W/m2
+  range: [5.0, 20.0]
+  provenance: ASSUMPTION
+  source: master plan §7.5
+  notes: outdoor mean radiant temperature tr = tdb + tr_offset_sun_c x SW/800
+air_speed_min_ms:
+  value: 0.1
+  unit: m/s
+  range: [0.1, 0.1]
+  provenance: CITED
+  source: ISO 7933 PHS input range
+  notes: wind clipped to [air_speed_min_ms, air_speed_max_ms]
+air_speed_max_ms:
+  value: 3.0
+  unit: m/s
+  range: [3.0, 3.0]
+  provenance: CITED
+  source: ISO 7933:2023 valid air speed 0-3 m/s
+  notes: ''
+met_home:
+  value: 1.2
+  unit: met
+  range: [0.7, 1.7]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: ISO 7933-2023 valid range 0.96-4.3 met
+met_office:
+  value: 1.3
+  unit: met
+  range: [0.8, 1.8]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: ''
+met_vendor:
+  value: 2.0
+  unit: met
+  range: [1.5, 2.5]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: outdoor light work (street vending)
+met_delivery:
+  value: 2.5
+  unit: met
+  range: [2.0, 3.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: delivery rider
+met_construction_farm:
+  value: 3.0
+  unit: met
+  range: [2.5, 3.5]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: outdoor heavy work
+clo_light_cotton:
+  value: 0.5
+  unit: clo
+  range: [0.3, 0.8]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: PHS limit 0.1-1
+clo_sari_salwar:
+  value: 0.6
+  unit: clo
+  range: [0.3, 0.8]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: ''
+indoor_offset_concrete_c:
+  value: -3.0
+  unit: degC vs outdoor
+  range: [-5.0, -1.0]
+  provenance: ASSUMPTION
+  source: master plan §7.5
+  notes: indoor temperature = outdoor + offset, 2 h lag
+indoor_offset_tin_roof_c:
+  value: -1.0
+  unit: degC vs outdoor
+  range: [-3.0, 1.0]
+  provenance: ASSUMPTION
+  source: master plan §7.5 (tin roof +2 degC vs concrete, §7.1)
+  notes: ''
+indoor_offset_thatch_c:
+  value: -2.0
+  unit: degC vs outdoor
+  range: [-4.0, 0.0]
+  provenance: ASSUMPTION
+  source: not in master plan; between concrete and tin roof
+  notes: ''
+indoor_offset_ac_c:
+  value: -6.0
+  unit: degC vs outdoor
+  range: [-10.0, -4.0]
+  provenance: ASSUMPTION
+  source: master plan §7.5
+  notes: overrides roof offset
+indoor_offset_cooler_c:
+  value: -4.0
+  unit: degC vs outdoor
+  range: [-6.0, -2.0]
+  provenance: ASSUMPTION
+  source: not in master plan; between concrete and AC
+  notes: overrides roof offset (desert cooler)
+indoor_lag_h:
+  value: 2
+  unit: h
+  range: [1, 4]
+  provenance: ASSUMPTION
+  source: master plan §7.5
+  notes: indoor temperature lag behind outdoor
+hot_day_tmax_c:
+  value: 40.0
+  unit: degC
+  range: [38.0, 42.0]
+  provenance: ASSUMPTION
+  source: master plan §7.5
+  notes: consecutive_hot_days counts days with tmax >= this
+hot_night_tmin_c:
+  value: 30.0
+  unit: degC
+  range: [28.0, 32.0]
+  provenance: ASSUMPTION
+  source: master plan §7.5
+  notes: hot-night feature threshold
+forecast_sd_day1_c:
+  value: 1.0
+  unit: degC
+  range: [0.5, 1.5]
+  provenance: ASSUMPTION
+  source: master plan §8 / §12.2
+  notes: day-1 max temperature forecast error; features never use the archived truth
+forecast_sd_day2_c:
+  value: 1.5
+  unit: degC
+  range: [0.75, 2.25]
+  provenance: ASSUMPTION
+  source: master plan §8 / §12.2
+  notes: ''
+forecast_sd_day3_c:
+  value: 2.0
+  unit: degC
+  range: [1.0, 3.0]
+  provenance: ASSUMPTION
+  source: master plan §8 / §12.2
+  notes: ''
+forecast_rh_rel_sd:
+  value: 0.10
+  unit: relative SD of humidity
+  range: [0.05, 0.15]
+  provenance: ASSUMPTION
+  source: master plan §12.2
+  notes: ''
+
+# ---------------------------------------------------------------- genetics (§7.2, §8)
+cyp2c9_mult_as_2_0:
+  value: 1.0
+  unit: NSAID exposure multiplier
+  range: [1.0, 1.0]
+  provenance: ASSUMPTION
+  source: informed by CPIC 2020 NSAID guideline
+  notes: activity score 2.0 (normal metaboliser)
+cyp2c9_mult_as_1_5:
+  value: 1.3
+  unit: NSAID exposure multiplier
+  range: [0.91, 1.69]
+  provenance: ASSUMPTION
+  source: informed by CPIC 2020 NSAID guideline
+  notes: AS 1.5 intermediate; range +-30 %
+cyp2c9_mult_as_1_0:
+  value: 1.6
+  unit: NSAID exposure multiplier
+  range: [1.12, 2.08]
+  provenance: ASSUMPTION
+  source: informed by CPIC 2020 NSAID guideline
+  notes: AS 1.0 intermediate
+cyp2c9_mult_as_0_5:
+  value: 2.0
+  unit: NSAID exposure multiplier
+  range: [1.4, 2.6]
+  provenance: ASSUMPTION
+  source: informed by CPIC 2020 NSAID guideline
+  notes: AS 0.5 poor
+cyp2c9_mult_as_0_0:
+  value: 2.5
+  unit: NSAID exposure multiplier
+  range: [1.75, 3.25]
+  provenance: ASSUMPTION
+  source: informed by CPIC 2020 NSAID guideline
+  notes: AS 0.0 poor; only CYP2C9-dependent NSAIDs (ibuprofen, celecoxib, flurbiprofen, meloxicam, piroxicam)
+
+# ---------------------------------------------------------------- NSAID normalisation (§7.3, Appendix B)
+nsaid_unit_ibuprofen_mg_day:
+  value: 1200
+  unit: mg/day per normalised unit
+  range: [1200, 1200]
+  provenance: ASSUMPTION
+  source: master plan §7.3
+  notes: 1 unit = ibuprofen 1,200 mg/day
+nsaid_unit_diclofenac_mg_day:
+  value: 100
+  unit: mg/day per normalised unit
+  range: [100, 100]
+  provenance: ASSUMPTION
+  source: master plan §7.3
+  notes: ''
+nsaid_unit_aceclofenac_mg_day:
+  value: 200
+  unit: mg/day per normalised unit
+  range: [200, 200]
+  provenance: ASSUMPTION
+  source: master plan §7.3
+  notes: ''
+nsaid_unit_nimesulide_mg_day:
+  value: 200
+  unit: mg/day per normalised unit
+  range: [200, 200]
+  provenance: ASSUMPTION
+  source: master plan §7.3
+  notes: ''
+
+# ---------------------------------------------------------------- guardrails (§14.2, §38)
+paracetamol_ceiling_g_day:
+  value: 4.0
+  unit: g/day
+  range: [4.0, 4.0]
+  provenance: VERIFY
+  source: label guidance
+  notes: adults
+paracetamol_ceiling_high_risk_g_day:
+  value: 3.0
+  unit: g/day
+  range: [3.0, 3.0]
+  provenance: VERIFY
+  source: label guidance
+  notes: age >= 65, weight < 50 kg, liver disease or alcohol use
+potassium_caution_mmol_l:
+  value: 5.5
+  unit: mmol/L
+  range: [5.5, 5.5]
+  provenance: CITED
+  source: master plan §14.2
+  notes: caution on every lever
+potassium_alert_mmol_l:
+  value: 6.0
+  unit: mmol/L
+  range: [6.0, 6.0]
+  provenance: CITED
+  source: master plan §14.2
+  notes: same-day repeat + clinician alert, always
+creatinine_umol_detect_threshold:
+  value: 20.0
+  unit: value above which creatinine is treated as umol/L
+  range: [20.0, 20.0]
+  provenance: ASSUMPTION
+  source: master plan §7.7
+  notes: convert umol/L / 88.4 to mg/dL
+creatinine_umol_per_mg_dl:
+  value: 88.4
+  unit: umol/L per mg/dL
+  range: [88.4, 88.4]
+  provenance: CITED
+  source: unit conversion
+  notes: ''
+uacr_mg_g_per_mg_mmol:
+  value: 8.84
+  unit: (mg/g) per (mg/mmol)
+  range: [8.84, 8.84]
+  provenance: CITED
+  source: unit conversion
+  notes: ''
+baseline_egfr_fallback:
+  value: 75.0
+  unit: mL/min/1.73m2
+  range: [60.0, 90.0]
+  provenance: ASSUMPTION
+  source: master plan §9.3
+  notes: back-calculate baseline creatinine when no lab exists (flagged)
+
+# ---------------------------------------------------------------- slow clock (§8, §13)
+aki_step_stage1:
+  value: 3.0
+  unit: mL/min/1.73m2
+  range: [1.5, 4.5]
+  provenance: ASSUMPTION
+  source: incomplete recovery
+  notes: one-off eGFR step per AKI episode
+aki_step_stage2:
+  value: 6.0
+  unit: mL/min/1.73m2
+  range: [3.0, 9.0]
+  provenance: ASSUMPTION
+  source: incomplete recovery
+  notes: ''
+aki_step_stage3:
+  value: 10.0
+  unit: mL/min/1.73m2
+  range: [5.0, 15.0]
+  provenance: ASSUMPTION
+  source: incomplete recovery
+  notes: ''
+aki_slope_penalty:
+  value: -1.83
+  unit: mL/min/1.73m2 per year per episode
+  range: [-3.0, -0.5]
+  provenance: CITED
+  source: Trichy diabetic kidney disease cohort (n = 274) [S]
+  notes: label "from a diabetic cohort" for non-diabetics
+slope_prior_htn_no_dm:
+  value: -1.5
+  unit: mL/min/1.73m2 per year
+  range: [-2.5, -0.5]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: prior SD = slope_prior_sd
+slope_prior_dm_htn:
+  value: -3.0
+  unit: mL/min/1.73m2 per year
+  range: [-4.5, -1.5]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: ''
+slope_prior_dkd_albuminuria:
+  value: -6.43
+  unit: mL/min/1.73m2 per year
+  range: [-8.0, -3.0]
+  provenance: CITED
+  source: Trichy cohort [S] (tertiary centre, likely high)
+  notes: ''
+slope_prior_sd:
+  value: 2.5
+  unit: mL/min/1.73m2 per year
+  range: [1.5, 3.5]
+  provenance: ASSUMPTION
+  source: master plan §8 / §13
+  notes: ''
+slope_intercept_sd:
+  value: 15.0
+  unit: mL/min/1.73m2
+  range: [10.0, 20.0]
+  provenance: ASSUMPTION
+  source: master plan §13
+  notes: intercept prior SD
+egfr_obs_sd:
+  value: 5.0
+  unit: mL/min/1.73m2
+  range: [3.0, 8.0]
+  provenance: ASSUMPTION
+  source: master plan §13
+  notes: eGFR observation noise
+sglt2i_slope_effect:
+  value: 1.4
+  unit: mL/min/1.73m2 per year
+  range: [0.8, 2.0]
+  provenance: VERIFY
+  source: EMPA-KIDNEY / DAPA-CKD / 2022 meta-analysis
+  notes: works with and without diabetes [VERIFY]
+sglt2i_hazard_ratio:
+  value: 0.63
+  unit: hazard ratio
+  range: [0.55, 0.75]
+  provenance: VERIFY
+  source: 2022 meta-analysis
+  notes: ''
+finerenone_hazard_ratio:
+  value: 0.82
+  unit: hazard ratio
+  range: [0.73, 0.93]
+  provenance: CITED
+  source: FIDELIO-DKD [S]
+  notes: diabetics with albuminuria only
+sbp_control_slope_effect_per_10mmhg:
+  value: 0.5
+  unit: mL/min/1.73m2 per year per 10 mmHg toward target
+  range: [0.2, 1.0]
+  provenance: ASSUMPTION
+  source: master plan §8
+  notes: ''
+stop_chronic_nsaid_slope_effect:
+  value: 0.5
+  unit: mL/min/1.73m2 per year
+  range: [0.2, 1.0]
+  provenance: ASSUMPTION
+  source: master plan §13
+  notes: ''
+projection_years:
+  value: 10
+  unit: years
+  range: [10, 15]
+  provenance: ASSUMPTION
+  source: master plan §13
+  notes: display horizon; years-to-threshold searched over projection_search_years
+projection_search_years:
+  value: 15
+  unit: years
+  range: [10, 20]
+  provenance: ASSUMPTION
+  source: master plan §13
+  notes: beyond this shows as ">15 years"
+
+# ---------------------------------------------------------------- KFRE (§8, §9.3)
+kfre_s0_2y_non_na:
+  value: 0.9832
+  unit: baseline survival
+  range: [0.9832, 0.9832]
+  provenance: CITED
+  source: Tangri 2016; matches kfre 0.1.18
+  notes: non-North-American, 4-variable
+kfre_s0_5y_non_na:
+  value: 0.9365
+  unit: baseline survival
+  range: [0.9365, 0.9365]
+  provenance: CITED
+  source: Tangri 2016; matches kfre 0.1.18
+  notes: ''
+kfre_s0_2y_na:
+  value: 0.9750
+  unit: baseline survival
+  range: [0.9750, 0.9750]
+  provenance: CITED
+  source: Tangri 2016
+  notes: North American
+kfre_s0_5y_na:
+  value: 0.9240
+  unit: baseline survival
+  range: [0.9240, 0.9240]
+  provenance: CITED
+  source: Tangri 2016
+  notes: ''
+kfre_valid_egfr_min:
+  value: 10.0
+  unit: mL/min/1.73m2
+  range: [10.0, 10.0]
+  provenance: CITED
+  source: KFRE validity
+  notes: ''
+kfre_valid_egfr_max:
+  value: 59.0
+  unit: mL/min/1.73m2
+  range: [59.0, 59.0]
+  provenance: CITED
+  source: KFRE validity
+  notes: ''
+kfre_referral_5y:
+  value: 0.05
+  unit: probability
+  range: [0.03, 0.05]
+  provenance: VERIFY
+  source: NICE NG203
+  notes: referral prompt above this 5-year risk
+
+# ---------------------------------------------------------------- potassium stretch model (§9.6, COULD)
+k_beta_gfr:
+  value: 1.5
+  unit: mmol/L per unit GFR loss fraction
+  range: [1.0, 2.0]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_beta_ras:
+  value: 0.2
+  unit: mmol/L
+  range: [0.1, 0.4]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_beta_mra:
+  value: 0.3
+  unit: mmol/L
+  range: [0.1, 0.5]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_beta_nsaid:
+  value: 0.1
+  unit: mmol/L
+  range: [0.0, 0.2]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_beta_diet:
+  value: 0.1
+  unit: mmol/L per g extra K
+  range: [0.05, 0.2]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_beta_thiazide:
+  value: 0.2
+  unit: mmol/L
+  range: [0.1, 0.3]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_beta_loop:
+  value: 0.3
+  unit: mmol/L
+  range: [0.2, 0.4]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''
+k_tau_h:
+  value: 24.0
+  unit: h
+  range: [12.0, 36.0]
+  provenance: ASSUMPTION
+  source: master plan §9.6
+  notes: ''

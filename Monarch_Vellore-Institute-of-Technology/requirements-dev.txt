@@ -1,0 +1,8 @@
+# Development and deliverable-building tools
+pytest
+hypothesis
+ruff
+ipykernel
+nbconvert
+python-pptx
+pypdf

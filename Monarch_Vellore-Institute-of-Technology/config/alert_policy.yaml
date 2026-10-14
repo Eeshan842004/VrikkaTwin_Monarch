@@ -1,0 +1,14 @@
+# Alert policy (master plan §12.5). Starting thresholds are [A]; final thresholds are tuned on the
+# calibration split so that total alerts stay within the budget, and written to models/thresholds.json.
+levels:
+  green:  {max_prob: 0.05, icon: "✅", word_key: "level.green",  action_key: "action.green"}
+  amber:  {max_prob: 0.15, icon: "⚠️", word_key: "level.amber",  action_key: "action.amber"}
+  red:    {max_prob: 1.00, icon: "⛔", word_key: "level.red",    action_key: "action.red"}
+  purple: {lab_confirmed: true, icon: "🟣", word_key: "level.purple", action_key: "action.purple"}
+hysteresis:
+  red_clear_below: 0.10        # a red alert clears only when risk stays below this ...
+  red_clear_hours: 24          # ... for this long
+dedup_hours: 72                # one alert per 72 h unless the level rises
+alert_budget_per_100_patient_days: 3
+prediction_time_local: "09:00" # daily, after the morning weight (§12.1)
+never_colour_alone: true       # every level has an icon + a word + a colour (§12.5, §23.1)

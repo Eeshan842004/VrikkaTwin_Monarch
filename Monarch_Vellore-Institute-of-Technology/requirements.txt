@@ -1,0 +1,43 @@
+# VrikkaTwin runtime dependencies (master plan §17). Exact resolved versions live in requirements.lock.
+# Numerics
+numpy~=2.2.0
+scipy~=1.18.0
+pandas~=3.0.0
+pyarrow
+pyyaml
+pydantic>=2,<3
+pydantic-settings>=2
+
+# Physiology, filtering, ML
+pythermalcomfort==4.6.1
+filterpy==1.4.5
+lightgbm==4.7.0
+scikit-learn==1.9.1
+shap==0.53.0
+lifelines
+kfre==0.1.18
+duckdb
+joblib
+
+# Backend
+fastapi
+uvicorn[standard]
+sqlmodel
+httpx
+requests
+python-dotenv
+
+# Frontend and charts
+streamlit==1.65.0
+plotly
+matplotlib
+
+# Security
+cryptography==50.0.2
+PyJWT==2.15.1
+bcrypt
+
+# Voice and language
+faster-whisper==1.2.1
+gTTS
+rapidfuzz==3.14.6

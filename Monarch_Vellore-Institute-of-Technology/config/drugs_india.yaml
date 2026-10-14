@@ -1,0 +1,78 @@
+# Indian drug lexicon (master plan Appendix B, §7.3). [VERIFY] every brand -> generic mapping with a pharmacist.
+# Normalised NSAID units: ibuprofen 1200 mg/day = 1.0; diclofenac 100 = 1.0; aceclofenac 200 = 1.0;
+# nimesulide 200 = 1.0 (registry keys nsaid_unit_*_mg_day).
+# class values: nsaid_cyp2c9 (genotype-adjusted), nsaid_other (no genotype effect), analgesic_safe, arb, acei,
+# thiazide, loop, mra, metformin, sglt2i, ccb, beta_blocker, sulfonylurea, creatinine_secretion_inhibitor.
+brands:
+  combiflam:   {generics: [ibuprofen, paracetamol], class: [nsaid_cyp2c9, analgesic_safe], ibuprofen_mg: 400, paracetamol_mg: 325}
+  brufen:      {generics: [ibuprofen], class: nsaid_cyp2c9, ibuprofen_mg: 400}
+  ibugesic:    {generics: [ibuprofen], class: nsaid_cyp2c9, ibuprofen_mg: 400}
+  voveran:     {generics: [diclofenac], class: nsaid_other, diclofenac_mg: 50}
+  voltaren:    {generics: [diclofenac], class: nsaid_other, diclofenac_mg: 50}
+  zerodol:     {generics: [aceclofenac], class: nsaid_other, aceclofenac_mg: 100}
+  nimulid:     {generics: [nimesulide], class: nsaid_other, nimesulide_mg: 100}
+  dolo:        {generics: [paracetamol], class: analgesic_safe, paracetamol_mg: 650}
+  crocin:      {generics: [paracetamol], class: analgesic_safe, paracetamol_mg: 500}
+  calpol:      {generics: [paracetamol], class: analgesic_safe, paracetamol_mg: 500}
+  telma:       {generics: [telmisartan], class: arb}
+  losar:       {generics: [losartan], class: arb}
+  cardace:     {generics: [ramipril], class: acei}
+  aquazide:    {generics: [hydrochlorothiazide], class: thiazide}
+  lasix:       {generics: [furosemide], class: loop}
+  dytor:       {generics: [torsemide], class: loop}
+  aldactone:   {generics: [spironolactone], class: mra}
+  glycomet:    {generics: [metformin], class: metformin}
+  jardiance:   {generics: [empagliflozin], class: sglt2i}
+  forxiga:     {generics: [dapagliflozin], class: sglt2i}
+  amlong:      {generics: [amlodipine], class: ccb}
+  amlokind:    {generics: [amlodipine], class: ccb}
+  septran:     {generics: [trimethoprim, sulfamethoxazole], class: creatinine_secretion_inhibitor, note: "can also cause real AKI and hyperkalaemia; never suppress AKI label"}
+  telma_h:     {generics: [telmisartan, hydrochlorothiazide], class: [arb, thiazide], note: fixed-dose combination}
+  telma_am:    {generics: [telmisartan, amlodipine], class: [arb, ccb], note: fixed-dose combination}
+  losar_h:     {generics: [losartan, hydrochlorothiazide], class: [arb, thiazide], note: fixed-dose combination}
+
+# Generic -> class, for EHR medicine lists that use generic names (§7.3).
+generics:
+  ibuprofen: nsaid_cyp2c9
+  celecoxib: nsaid_cyp2c9
+  flurbiprofen: nsaid_cyp2c9
+  meloxicam: nsaid_cyp2c9
+  piroxicam: nsaid_cyp2c9
+  diclofenac: nsaid_other
+  aceclofenac: nsaid_other
+  nimesulide: nsaid_other
+  paracetamol: analgesic_safe
+  ramipril: acei
+  enalapril: acei
+  telmisartan: arb
+  losartan: arb
+  olmesartan: arb
+  hydrochlorothiazide: thiazide
+  chlorthalidone: thiazide
+  indapamide: thiazide
+  furosemide: loop
+  torsemide: loop
+  spironolactone: mra
+  eplerenone: mra
+  empagliflozin: sglt2i
+  dapagliflozin: sglt2i
+  metformin: metformin
+  glimepiride: sulfonylurea
+  gliclazide: sulfonylurea
+  amlodipine: ccb
+  metoprolol: beta_blocker
+  atenolol: beta_blocker
+  bisoprolol: beta_blocker
+  trimethoprim: creatinine_secretion_inhibitor
+  cimetidine: creatinine_secretion_inhibitor
+
+# Thiazide-type diuretic -> effect half-life registry key (BUILD plan D-4).
+diuretic_half_life_key:
+  hydrochlorothiazide: half_life_hctz_h
+  chlorthalidone: half_life_chlorthalidone_h
+  indapamide: half_life_indapamide_h
+  furosemide: half_life_loop_h
+  torsemide: half_life_loop_h
+
+# Drugs that must never be offered as what-if pause levers (§14.2, §38).
+never_levers: [beta_blocker, antiplatelet, anticoagulant, insulin, antiepileptic]

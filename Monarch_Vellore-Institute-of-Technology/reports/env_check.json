@@ -1,0 +1,71 @@
+{
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.18.1",
+    "pandas": "3.0.6",
+    "pyarrow": "25.0.1",
+    "yaml": "6.0.3",
+    "pydantic": "2.14.1",
+    "pythermalcomfort": "4.6.1",
+    "filterpy": "1.4.5",
+    "lightgbm": "4.7.0",
+    "sklearn": "1.9.1",
+    "shap": "0.53.0",
+    "lifelines": "0.30.0",
+    "kfre": "0.1.18",
+    "duckdb": "1.5.6",
+    "fastapi": "0.143.1",
+    "uvicorn": "0.54.0",
+    "sqlmodel": "0.0.48",
+    "httpx": "0.28.1",
+    "streamlit": "1.65.0",
+    "plotly": "7.1.0",
+    "matplotlib": "3.11.2",
+    "cryptography": "50.0.2",
+    "jwt": "2.15.1",
+    "bcrypt": "5.0.0",
+    "faster_whisper": "1.2.1",
+    "gtts": "2.5.4",
+    "rapidfuzz": "3.14.6",
+    "joblib": "1.6.0"
+  },
+  "checks": {
+    "phs_met_units": {
+      "pass": true,
+      "sweat_l_per_h": 0.608,
+      "plan_value": 0.61
+    },
+    "filterpy_ukf_numpy2": {
+      "pass": true,
+      "x": [
+        2.999,
+        0.984
+      ],
+      "numpy": "2.2.6"
+    },
+    "lightgbm_native_train": {
+      "pass": true,
+      "pred_contrib_shape": [
+        2,
+        4
+      ]
+    },
+    "kfre_golden": {
+      "pass": true,
+      "kfre_2y": 0.0305,
+      "kfre_5y": 0.1132
+    },
+    "streamlit_audio_input": {
+      "pass": true,
+      "has_audio_input": true
+    },
+    "faster_whisper_import": {
+      "pass": true,
+      "import": "ok"
+    }
+  },
+  "all_pass": true,
+  "failed": []
+}

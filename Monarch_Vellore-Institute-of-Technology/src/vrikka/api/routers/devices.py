@@ -1,0 +1,1 @@
+"""/devices routes (§19)."""

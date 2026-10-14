@@ -1,0 +1,7 @@
+# Multilingual symptom keywords (master plan Appendix B, §23.5). Romanised + native script.
+# [VERIFY] with native speakers before the demo; extend after review.
+fever:      {en: [fever, temperature], hi: [bukhar, बुखार], kn: [jvara, ಜ್ವರ], te: [jvaram, జ్వరం], ta: [kaaichal, காய்ச்சல்], mr: [taap, ताप], bn: [jwor, জ্বর]}
+vomiting:   {en: [vomiting, vomit, throwing up], hi: [ulti, उल्टी], kn: [vaanti, ವಾಂತಿ], te: [vaanthi, వాంతి], ta: [vaanthi, வாந்தி], mr: [ulti, उलटी], bn: [bomi, বমি]}
+diarrhoea:  {en: [diarrhoea, diarrhea, loose motion, loose motions], hi: [dast, दस्त, loose motion], kn: [bedhi, ಭೇದಿ], te: [virechanalu, విరేచనాలు], ta: [vayitrupokku, வயிற்றுப்போக்கு], mr: [julab, जुलाब], bn: [patla paikhana, ডায়রিয়া]}
+dizziness:  {en: [dizzy, dizziness, giddy], hi: [chakkar, चक्कर], kn: [tale suttu, ತಲೆ ಸುತ್ತು], te: [kallu tirugu, కళ్ళు తిరుగు], ta: [thalai suttral, தலைசுற்றல்], mr: [chakkar, चक्कर], bn: [matha ghora, মাথা ঘোরা]}
+less_urine: {en: [less urine, dark urine, passing less urine], hi: [peshab kam, पेशाब कम], kn: [moothra kadime, ಮೂತ್ರ ಕಡಿಮೆ], te: [moothram takkuva, మూత్రం తక్కువ], ta: [siruneer kuraivu, சிறுநீர் குறைவு], mr: [laghavi kami, लघवी कमी], bn: [prosrab kom, প্রস্রাব কম]}
