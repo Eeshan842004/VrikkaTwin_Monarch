@@ -129,6 +129,34 @@ phi_drink_no_water_at_work_mult:
   provenance: ASSUMPTION
   source: limited water access (Uddanam pattern)
   notes: applied to phi_drink when water_access_at_work is false
+phi_drink_sd:
+  value: 0.10
+  unit: SD of the per-patient drinking fraction
+  range: [0.05, 0.15]
+  provenance: ASSUMPTION
+  source: Decisions v2 A-5b
+  notes: cohort draws phi_drink per patient from a Beta distribution with the age-based mean (x0.8 without water at work) and this SD, clipped to [phi_drink_min, phi_drink_max]. TOP-3 TORNADO PARAMETER (with phi_drink_young/old). The twin learns theta_sweat from daily weight and theta multiplies (1 - phi_drink), so it effectively learns each person's NET unreplaced loss; personalisation absorbs this population uncertainty
+phi_drink_min:
+  value: 0.30
+  unit: fraction
+  range: [0.30, 0.30]
+  provenance: ASSUMPTION
+  source: Decisions v2 A-5b
+  notes: lower clip for per-patient phi_drink
+phi_drink_max:
+  value: 0.95
+  unit: fraction
+  range: [0.95, 0.95]
+  provenance: ASSUMPTION
+  source: Decisions v2 A-5b
+  notes: upper clip for per-patient phi_drink
+ors_ecf_frac:
+  value: 0.9
+  unit: fraction of ORS volume that refills the ECF
+  range: [0.7, 1.0]
+  provenance: ASSUMPTION
+  source: Decisions v2 B2 (ORS is near-isotonic)
+  notes: plain water refills the ECF in proportion to v_ecf/v_tot; ORS / electrolyte drink refills this fraction. Evidence badge - electrolyte intake linked to lower AKI odds in heat-exposed workers (Butler-Dawson 2019, observational)
 poor_intake_mult:
   value: 0.6
   unit: multiplier
@@ -297,19 +325,19 @@ sigma_weight_kg:
   source: master plan §8; PMData checked (Decisions v1 item 12)
   notes: morning weight measurement noise. PMData weight is self-reported and mostly whole kilograms (11/15 people >=85 % integers, 3-6 distinct values in ~3 months), so its day-to-day SD (median 0.36 kg) reflects rounding, not scale noise; value and range kept
 sigma_hr_bpm:
-  value: 4.0
+  value: 4.04
   unit: bpm
-  range: [2.0, 6.0]
+  range: [3.0, 6.0]
+  provenance: CITED
+  source: derived from PMData raw Fitbit heart-rate stream (Thambawita et al. 2020, CC BY 4.0); scripts/pmdata_noise.py -> reports/pmdata_noise.json (Decisions v2 A-5a)
+  notes: our own nightly resting HR = lowest 30-min rolling mean 00:00-06:00 (nights with >= 4 h data); per-person SD of (daily value - rolling 7-day median); median across 15 people with >= 30 nights = 4.04 bpm (person range 1.7-6.3); floor 3 bpm not needed. Fitbit's smoothed resting_heart_rate (day-to-day SD 1.24 bpm) deliberately not used. Includes true day-to-day physiological variation, so it is an upper bound on pure sensor noise
+sigma_hr_beta_blocker_mult:
+  value: 1.5
+  unit: multiplier on sigma_hr_bpm
+  range: [1.25, 2.0]
   provenance: ASSUMPTION
-  source: master plan §8
-  notes: resting HR noise. PMData Fitbit daily resting HR day-to-day SD median 1.24 bpm (14 people), but Fitbit resting HR is an algorithmically smoothed value; not applied pending team decision (see PROGRESS.md, Decisions v1 item 12)
-sigma_hr_beta_blocker_bpm:
-  value: 6.0
-  unit: bpm
-  range: [4.0, 9.0]
-  provenance: ASSUMPTION
-  source: master plan §8
-  notes: resting HR noise on a beta-blocker
+  source: Decisions v2 A-5a (master plan §8 used 6 bpm = 4 x 1.5)
+  notes: resting HR noise multiplier for beta-blocker users
 sigma_sbp_mmhg:
   value: 8.0
   unit: mmHg

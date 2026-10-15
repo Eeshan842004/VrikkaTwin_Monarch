@@ -1,0 +1,107 @@
+{
+  "method": "lowest 30-min rolling mean HR 00:00-06:00 (>= 4 h data); SD vs rolling 7-day median; median across people with >= 30 nights; floor 3 bpm (Decisions v2 A-5a)",
+  "people_downloaded": 16,
+  "people_qualifying": 15,
+  "median_sd_bpm": 4.045,
+  "sigma_hr_bpm": 4.04,
+  "provenance": "CITED",
+  "floor_applied": false,
+  "people": {
+    "p01": {
+      "valid_nights": 150,
+      "median_rhr": 49.5,
+      "sd_vs_7day_median": 1.85,
+      "qualifies": true
+    },
+    "p02": {
+      "valid_nights": 140,
+      "median_rhr": 42.4,
+      "sd_vs_7day_median": 3.551,
+      "qualifies": true
+    },
+    "p03": {
+      "valid_nights": 94,
+      "median_rhr": 50.4,
+      "sd_vs_7day_median": 2.344,
+      "qualifies": true
+    },
+    "p04": {
+      "valid_nights": 141,
+      "median_rhr": 61.1,
+      "sd_vs_7day_median": 5.266,
+      "qualifies": true
+    },
+    "p05": {
+      "valid_nights": 138,
+      "median_rhr": 54.3,
+      "sd_vs_7day_median": 3.295,
+      "qualifies": true
+    },
+    "p06": {
+      "valid_nights": 150,
+      "median_rhr": 46.5,
+      "sd_vs_7day_median": 1.743,
+      "qualifies": true
+    },
+    "p07": {
+      "valid_nights": 142,
+      "median_rhr": 48.9,
+      "sd_vs_7day_median": 5.141,
+      "qualifies": true
+    },
+    "p08": {
+      "valid_nights": 133,
+      "median_rhr": 50.5,
+      "sd_vs_7day_median": 5.147,
+      "qualifies": true
+    },
+    "p09": {
+      "valid_nights": 131,
+      "median_rhr": 52.6,
+      "sd_vs_7day_median": 6.302,
+      "qualifies": true
+    },
+    "p10": {
+      "valid_nights": 100,
+      "median_rhr": 61.8,
+      "sd_vs_7day_median": 5.407,
+      "qualifies": true
+    },
+    "p11": {
+      "valid_nights": 119,
+      "median_rhr": 60.9,
+      "sd_vs_7day_median": 5.074,
+      "qualifies": true
+    },
+    "p12": {
+      "valid_nights": 22,
+      "median_rhr": 94.4,
+      "sd_vs_7day_median": 0.45,
+      "qualifies": false
+    },
+    "p13": {
+      "valid_nights": 64,
+      "median_rhr": 52.4,
+      "sd_vs_7day_median": 5.661,
+      "qualifies": true
+    },
+    "p14": {
+      "valid_nights": 103,
+      "median_rhr": 58.9,
+      "sd_vs_7day_median": 2.427,
+      "qualifies": true
+    },
+    "p15": {
+      "valid_nights": 143,
+      "median_rhr": 48.2,
+      "sd_vs_7day_median": 2.086,
+      "qualifies": true
+    },
+    "p16": {
+      "valid_nights": 131,
+      "median_rhr": 64.4,
+      "sd_vs_7day_median": 4.045,
+      "qualifies": true
+    }
+  }
+}

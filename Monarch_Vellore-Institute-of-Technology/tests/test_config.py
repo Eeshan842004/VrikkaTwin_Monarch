@@ -12,7 +12,7 @@ SECTION_8_KEYS = [
     "tau_recover_h", "forecast_sd_day1_c", "forecast_sd_day2_c", "forecast_sd_day3_c",
     "paracetamol_ceiling_g_day", "paracetamol_ceiling_high_risk_g_day", "diuretic_loss_thiazide_l_day",
     "diuretic_loss_loop_l_day", "sglt2_loss_l_day", "fever_loss_l_day_per_c", "vomit_loss_l", "diarrhoea_loss_l",
-    "k_hr", "k_hr_beta_blocker_mult", "k_bp", "sigma_weight_kg", "sigma_hr_bpm", "sigma_hr_beta_blocker_bpm",
+    "k_hr", "k_hr_beta_blocker_mult", "k_bp", "sigma_weight_kg", "sigma_hr_bpm", "sigma_hr_beta_blocker_mult",
     "cr_lab_cv", "tr_offset_sun_c", "met_home", "met_office", "met_vendor", "met_delivery", "met_construction_farm",
     "clo_light_cotton", "clo_sari_salwar", "cyp2c9_mult_as_2_0", "cyp2c9_mult_as_1_5", "cyp2c9_mult_as_1_0",
     "cyp2c9_mult_as_0_5", "cyp2c9_mult_as_0_0", "aki_step_stage1", "aki_step_stage2", "aki_step_stage3",
@@ -37,7 +37,8 @@ def test_every_parameter_has_provenance_source_and_range():
 def test_assumptions_have_a_real_sensitivity_range():
     """Fixed-width ranges are allowed only for normalisation/unit constants, never for tunable physiology."""
     fixed_ok = {"ukf_kappa", "missing_channel_r", "cyp2c9_mult_as_2_0", "creatinine_umol_detect_threshold",
-                "sweat_sensitivity_low", "sweat_sensitivity_high", "creatinine_sample_hour"}
+                "sweat_sensitivity_low", "sweat_sensitivity_high", "creatinine_sample_hour",
+                "phi_drink_min", "phi_drink_max"}
     fixed_ok |= {k for k in registry() if k.startswith("nsaid_unit_")}
     for name, p in registry().items():
         if p.provenance == "ASSUMPTION" and name not in fixed_ok:

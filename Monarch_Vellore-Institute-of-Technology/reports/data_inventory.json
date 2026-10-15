@@ -248,6 +248,14 @@
       "licence": "CC BY 4.0",
       "check": "R4",
       "source": "https://api.osf.io/v2/nodes/vx4bk/files/osfstorage/"
+    },
+    "pmdata_heart_rate": {
+      "status": "ok",
+      "files": 17,
+      "bytes": 1597529280,
+      "licence": "CC BY 4.0",
+      "check": "R4 noise (sigma_hr, Decisions v2 A-5a)",
+      "source": "https://api.osf.io/v2/nodes/vx4bk/files/osfstorage/"
     }
   },
   "refused": {

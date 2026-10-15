@@ -144,9 +144,20 @@ def test_batch_matches_scalar_to_4_decimals(rng):
     T = 5 * 24
     X = {"sweat_l_h": rng.uniform(0, 0.8, (T, 12)), "nsaid": (rng.uniform(0, 1, (T, 12)) > 0.5) * 1.3,
          "ras": np.ones((T, 12)), "diuretic": np.ones((T, 12)), "fever_excess_c": rng.uniform(0, 2, (T, 12)),
-         "gi_loss_l_h": rng.uniform(0, 0.05, (T, 12)), "intake_l_h": rng.uniform(0, 0.05, (T, 12))}
+         "gi_loss_l_h": rng.uniform(0, 0.05, (T, 12)), "intake_l_h": rng.uniform(0, 0.05, (T, 12)),
+         "ors_l_h": rng.uniform(0, 0.05, (T, 12))}
     vec = simulate_vec(stack_params(people), X)
     for j, p in enumerate(people):
         sc = simulate(p, {k: v[:, j] for k, v in X.items()})
         for k in ("v_tot", "v_ecf", "cr", "gfr"):
             np.testing.assert_allclose(vec[k][:, j], sc[k], atol=1e-4, err_msg=k)
+
+
+def test_ors_refills_the_ecf_more_than_plain_water():
+    """Decisions v2 B2: 1 L/day of ORS lowers the ECF deficit (and creatinine rise) more than 1 L/day of water."""
+    p = kamala()
+    base = hot_days(ras=1, diuretic=1, fever_excess_c=1.5)
+    water = simulate(p, {**base, "intake_l_h": np.full(len(base["sweat_l_h"]), 1 / 24)})
+    ors = simulate(p, {**base, "ors_l_h": np.full(len(base["sweat_l_h"]), 1 / 24)})
+    assert ors["v_ecf"].max() < water["v_ecf"].max()
+    assert ors["cr"].max() < water["cr"].max()

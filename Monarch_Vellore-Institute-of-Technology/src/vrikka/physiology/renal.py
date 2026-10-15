@@ -11,6 +11,8 @@ GFR = GFR_base x [1 - h(d) x (1 - protection)] -> creatinine kinetics.
   (Decisions v1 item 4). There is no shared "diuretic" constant.
 - Fever is always degrees **above 37 degC**.
 - SGLT2 inhibitors have no AKI-raising volume effect by default (``sglt2_loss_l_day`` = 0; Decisions v1 item 3).
+- Intake is split (Decisions v2 B2): plain water refills the ECF in proportion to v_ecf/v_tot; ORS / electrolyte
+  drink refills ``ors_ecf_frac`` (0.9) of its volume into the ECF.
 
 Every constant comes from config/parameters.yaml. Units: G in mg/min, GFR in mL/min, Cr in mg/dL, Vd in dL.
 """
@@ -79,6 +81,7 @@ class Params:
     i_ras: float = field(default_factory=lambda: param("i_ras"))
     nsaid_e50: float = field(default_factory=lambda: param("nsaid_e50"))
     fever_loss_l_day_per_c: float = field(default_factory=lambda: param("fever_loss_l_day_per_c"))
+    ors_ecf_frac: float = field(default_factory=lambda: param("ors_ecf_frac"))
     half_life_h: dict = field(default_factory=dict)
 
     @classmethod
@@ -149,23 +152,28 @@ def creatinine_step(cr: float, gen_mg_min: float, gfr_ml_min: float, vd_dl: floa
 
 
 def step_hour(p: Params, s: dict, sweat_l_h: float, gi_loss_l_h: float, intake_l_h: float, eff: dict,
-              fever_excess_c: float = 0.0, phi_mult: float = 1.0) -> dict:
-    """Advance one hour. ``s`` = {'v_tot','v_ecf','cr'}; ``eff`` = lagged drug effect levels by channel."""
+              fever_excess_c: float = 0.0, phi_mult: float = 1.0, ors_l_h: float = 0.0) -> dict:
+    """Advance one hour. ``s`` = {'v_tot','v_ecf','cr'}; ``eff`` = lagged drug effect levels by channel.
+
+    ``intake_l_h`` is extra plain water (beyond the habitual drinking already in ``phi_drink``); ``ors_l_h`` is
+    ORS / electrolyte drink.
+    """
     sweat_net = (sweat_l_h * p.theta_sweat * (1.0 - p.phi_drink * phi_mult)
                  + p.fever_loss_l_day_per_c * max(fever_excess_c, 0.0) / 24.0)
     drug = (p.diuretic_loss_l_day * eff["diuretic"] + p.sglt2_loss_l_day * eff["sglt2"]) / 24.0
     tot_loss = sweat_net + gi_loss_l_h + drug
     ecf_loss = sweat_net * p.ecf_frac_sweat + gi_loss_l_h * p.ecf_frac_gi + drug * p.ecf_frac_drug
     v_tot, v_ecf = s["v_tot"], s["v_ecf"]
-    intake_ecf = intake_l_h * (v_ecf / v_tot if v_tot > 1e-6 else 1.0)
-    v_tot_n = max(v_tot + tot_loss - intake_l_h - v_tot / p.tau_recover_h, 0.0)
+    intake_ecf = intake_l_h * (v_ecf / v_tot if v_tot > 1e-6 else 1.0) + ors_l_h * p.ors_ecf_frac
+    v_tot_n = max(v_tot + tot_loss - intake_l_h - ors_l_h - v_tot / p.tau_recover_h, 0.0)
     v_ecf_n = min(max(v_ecf + ecf_loss - intake_ecf - v_ecf / p.tau_recover_h, 0.0), v_tot_n)
     gfr = gfr_now(p, v_ecf_n, eff["nsaid"], eff["ras"])
     cr = creatinine_step(s["cr"], p.cr_generation_mg_min, gfr, p.tbw_l * 10.0)
     return {"v_tot": v_tot_n, "v_ecf": v_ecf_n, "cr": cr, "gfr": gfr}
 
 
-INPUT_DEFAULTS = {"sweat_l_h": 0.0, "gi_loss_l_h": 0.0, "intake_l_h": 0.0, "fever_excess_c": 0.0, "phi_mult": 1.0,
+INPUT_DEFAULTS = {"sweat_l_h": 0.0, "gi_loss_l_h": 0.0, "intake_l_h": 0.0, "ors_l_h": 0.0, "fever_excess_c": 0.0,
+                  "phi_mult": 1.0,
                   "nsaid": 0.0, "ras": 0.0, "diuretic": 0.0, "mra": 0.0, "sglt2": 0.0}
 
 
@@ -184,7 +192,7 @@ def simulate(p: Params, inputs: dict, s0: dict | None = None, eff0: dict | None 
         for ch in CHANNELS:
             eff[ch] = drug_effect(eff[ch], float(x[ch][t]), p.half_life_h[ch])
         s = step_hour(p, s, float(x["sweat_l_h"][t]), float(x["gi_loss_l_h"][t]), float(x["intake_l_h"][t]), eff,
-                      float(x["fever_excess_c"][t]), float(x["phi_mult"][t]))
+                      float(x["fever_excess_c"][t]), float(x["phi_mult"][t]), float(x["ors_l_h"][t]))
         for k in ("v_tot", "v_ecf", "cr", "gfr"):
             out[k][t] = s[k]
         for ch in CHANNELS:

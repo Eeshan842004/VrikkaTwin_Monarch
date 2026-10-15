@@ -13,7 +13,7 @@ from vrikka.physiology.renal import CHANNELS, INPUT_DEFAULTS, Params
 
 PARAM_FIELDS = ("weight_kg", "gfr_base", "cr_base", "a_tot", "phi_drink", "tau_recover_h", "diuretic_loss_l_day",
                 "sglt2_loss_l_day", "theta_sweat", "ecv_frac", "ecf_frac_sweat", "ecf_frac_gi", "ecf_frac_drug",
-                "d50", "hill_n", "aff_share", "i_ras", "nsaid_e50", "fever_loss_l_day_per_c")
+                "d50", "hill_n", "aff_share", "i_ras", "nsaid_e50", "fever_loss_l_day_per_c", "ors_ecf_frac")
 
 
 def stack_params(params: list[Params]) -> dict[str, np.ndarray]:
@@ -25,15 +25,15 @@ def stack_params(params: list[Params]) -> dict[str, np.ndarray]:
     return P
 
 
-def step_hour_vec(P: dict, v_tot, v_ecf, cr, eff: dict, sweat, gi_loss, intake, fever_excess, phi_mult):
+def step_hour_vec(P: dict, v_tot, v_ecf, cr, eff: dict, sweat, gi_loss, intake, fever_excess, phi_mult, ors=0.0):
     """One hour for all rows. Returns (v_tot, v_ecf, cr, gfr)."""
     sweat_net = sweat * P["theta_sweat"] * (1 - P["phi_drink"] * phi_mult) \
         + P["fever_loss_l_day_per_c"] * np.maximum(fever_excess, 0.0) / 24.0
     drug = (P["diuretic_loss_l_day"] * eff["diuretic"] + P["sglt2_loss_l_day"] * eff["sglt2"]) / 24.0
     tot_loss = sweat_net + gi_loss + drug
     ecf_loss = sweat_net * P["ecf_frac_sweat"] + gi_loss * P["ecf_frac_gi"] + drug * P["ecf_frac_drug"]
-    intake_ecf = intake * np.where(v_tot > 1e-6, v_ecf / np.maximum(v_tot, 1e-6), 1.0)
-    v_tot_n = np.maximum(v_tot + tot_loss - intake - v_tot / P["tau_recover_h"], 0.0)
+    intake_ecf = intake * np.where(v_tot > 1e-6, v_ecf / np.maximum(v_tot, 1e-6), 1.0) + ors * P["ors_ecf_frac"]
+    v_tot_n = np.maximum(v_tot + tot_loss - intake - ors - v_tot / P["tau_recover_h"], 0.0)
     v_ecf_n = np.minimum(np.maximum(v_ecf + ecf_loss - intake_ecf - v_ecf / P["tau_recover_h"], 0.0), v_tot_n)
     d = v_ecf_n / (P["ecv_frac"] * P["weight_kg"])
     h = np.where(d > 0, d ** P["hill_n"] / (d ** P["hill_n"] + P["d50"] ** P["hill_n"]), 0.0)
@@ -66,7 +66,8 @@ def simulate_vec(P: dict, inputs: dict, s0: dict | None = None, eff0: dict | Non
         for ch in CHANNELS:
             eff[ch] = eff[ch] * lag[ch] + (1 - lag[ch]) * x[ch][t]
         v_tot, v_ecf, cr, gfr = step_hour_vec(P, v_tot, v_ecf, cr, eff, x["sweat_l_h"][t], x["gi_loss_l_h"][t],
-                                              x["intake_l_h"][t], x["fever_excess_c"][t], x["phi_mult"][t])
+                                              x["intake_l_h"][t], x["fever_excess_c"][t], x["phi_mult"][t],
+                                              x["ors_l_h"][t])
         cur = {"v_tot": v_tot, "v_ecf": v_ecf, "cr": cr, "gfr": gfr}
         for k in record:
             out[k][t] = cur[k]

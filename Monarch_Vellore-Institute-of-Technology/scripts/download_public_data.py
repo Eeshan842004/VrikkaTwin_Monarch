@@ -55,6 +55,7 @@ DATASETS = {
         "check": "R5 (exploratory)", "licence": "CC BY 4.0",
         "url": "https://data.mendeley.com/public-api/datasets/7ghxcsd9sz", "kind": "mendeley",
         "cite": "Circadian Timing and Heat Stress in Firefighters. Mendeley Data 7ghxcsd9sz.",
+        "note": "R5 dropped (Decisions v1 item 14); kept only so the README statement can be checked.",
     },
     "pmdata": {
         "check": "R4", "licence": "CC BY 4.0",
@@ -67,6 +68,19 @@ DATASETS = {
             "pmsys": ["wellness.csv"],
         },
     },
+}
+DATASETS["pmdata_heart_rate"] = {
+    "check": "R4 noise (sigma_hr, Decisions v2 A-5a)", "licence": "CC BY 4.0", "dest": "pmdata",
+    "url": "https://api.osf.io/v2/nodes/vx4bk/files/osfstorage/", "kind": "osf_subset",
+    "cite": "Thambawita V. et al. PMData: a sports logging dataset. MMSys 2020.",
+    "subset": {"fitbit": ["heart_rate.json"]},   # raw Fitbit HR stream, ~100 MB per person (not committed)
+}
+DATASETS["bd_kdd"] = {
+    "check": "R2 candidate - NOT USED (values look synthetic, see docs/DATA_SEARCH.md)",
+    "licence": "CC BY 4.0 (Zenodo record); source permission letter restricts use to the approved academic purpose",
+    "url": "https://zenodo.org/api/records/18971931/files/BD-KDD%20Dataset.csv/content", "kind": "file",
+    "filename": "BD-KDD Dataset.csv",
+    "cite": "BD-KDD: A Clinical Dataset of Kidney Disease Diagnosis. Zenodo 18971931 (2026).",
 }
 REFUSED = {
     "mimic_iv_full": "needs PhysioNet credentialing (1-2 weeks per member); master plan §24 says do not use",
@@ -155,7 +169,7 @@ def osf_list(url: str) -> list[dict]:
 
 
 def download(name: str, spec: dict) -> dict:
-    out = RAW / name
+    out = RAW / spec.get("dest", name)
     out.mkdir(parents=True, exist_ok=True)
     files: list[str] = []
     if spec["kind"] == "zip":
@@ -205,9 +219,10 @@ def download(name: str, spec: dict) -> dict:
                             save_stream(f["links"]["download"], dest)
                         files.append(f"{pid}/{fname}/{f['attributes']['name']}")
             print(f"    {pid}: done", flush=True)
-    (out / "LICENCE.txt").write_text(f"{spec['licence']}\n\nCite: {spec['cite']}\nSource: {spec['url']}\n",
+    lic = out / ("LICENCE.txt" if "dest" not in spec else f"LICENCE_{name}.txt")
+    lic.write_text(f"{spec['licence']}\n\nCite: {spec['cite']}\nSource: {spec['url']}\n",
                                      encoding="utf-8")
-    size = sum(p.stat().st_size for p in out.rglob("*") if p.is_file())
+    size = sum((out / f).stat().st_size for f in files if (out / f).is_file()) if files else 0
     return {"status": "ok", "files": len(files), "bytes": size, "licence": spec["licence"],
             "check": spec["check"], "source": spec["url"]}
 
@@ -215,7 +230,7 @@ def download(name: str, spec: dict) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*", choices=sorted(DATASETS))
-    names = ap.parse_args().only or list(DATASETS)
+    names = ap.parse_args().only or [n for n in DATASETS if n not in ("bd_kdd", "pmdata_heart_rate")]
     print("Refused (credentialed):", "; ".join(f"{k}: {v}" for k, v in REFUSED.items()), "\n")
     inv_path = REPORTS_DIR / "data_inventory.json"
     inv = json.loads(inv_path.read_text()) if inv_path.exists() else {}
