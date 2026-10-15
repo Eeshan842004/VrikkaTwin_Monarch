@@ -5,7 +5,7 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 | Part | Phases | Gate | Status |
 |---|---|---|---|
 | 1 Foundation | P0 + P1 | G0, G1 | **done** (G0 `ef100fe`, G1 see below) |
-| 2 Physiology engine | P2 | G2 | in progress |
+| 2 Physiology engine | P2 | G2 | **done** (G2, see below) |
 | 3 Twin + synthetic world | P3 ‖ P4 | exit checks | not started |
 | 4 Fast clock | P5 | G3 | not started |
 | 5 Slow clock + what-if | P6 + P7 | exit checks | not started |
@@ -103,3 +103,51 @@ _Started Wed 14 Oct 2026, 19:30 IST._
 - UCI CKD label cleaning (Part 3, R2).
 - Tawam creatinine is µmol/L, so it goes through the unit converter (Part 5, R3).
 - §10.1 snippet fixes (per-drug half-lives, fever above 37 °C, daily KDIGO grid, §9.3 baseline) are applied in Parts 2–3.
+
+---
+
+## Part 2: Physiology engine (P2)
+
+_Built Thu 15 Oct 2026 night, after Decisions v1._
+
+### Files
+- `src/vrikka/physiology/equations.py`: CKD-EPI 2021 (+ its inverse), KFRE 4-variable, KDIGO staging, the shared **08:00 daily-sampling helper** (`daily_samples`, `kdigo_daily_stages`), creatinine/UACR unit handling, and the §9.3 baseline rule.
+- `src/vrikka/physiology/heat.py`: ISO 7933 PHS lookup table (met units, `limit_inputs=False` + validity mask, sweat cap, cached per body-size band), radiant offset, indoor temperature, wet bulb, heat index.
+- `src/vrikka/physiology/renal.py`: registry-driven `Params.from_patient`, two-deficit volume model, **per-drug** lagged effects, autoregulation, and `creatinine_step`, the single creatinine-kinetics function that R1b and the twin will import.
+- `src/vrikka/physiology/batch.py`: the vectorised engine (same equations, arrays of patients or draws).
+- `src/vrikka/physiology/pk_nsaid.py`: tablets → genotype-adjusted NSAID units (CPIC 2020 classes), paracetamol tally.
+- `src/vrikka/physiology/potassium.py`: stub only.
+- `scripts/physiology_scenarios.py` → `reports/physiology_scenarios.json`.
+
+### Gate G2: passed
+- Tests: **61/61 pass** (`test_equations` 10, `test_heat` 6, `test_renal` 14, plus config/data). Ruff clean.
+- Golden values: CKD-EPI 64.5 / 73.7; KFRE 0.0305 / 0.1132, matching the `kfre` package to 1e-6.
+- The vectorised engine matches the scalar engine to 1e-4 over 12 random patients × 5 days.
+- A test fails if any kidney drug lacks a registered half-life or if a hard-coded half-life table appears in the source.
+- **Scenario ordering holds** (none < NSAID < ARB+diuretic < triple < triple+fever) in both runs.
+- Benchmark: 33,000 trajectories × 2,928 hourly steps in **13.0 s** (plan estimate ~6 s; fine).
+
+### Scenario table (`reports/physiology_scenarios.json`)
+Kamala-like patient (68 F, 62 kg, eGFR 58, a_tot 0.693, phi_drink 0.60). Real Nagpur weather 26–28 May 2024 (peak 45.5 °C, RH 29.5 %). 9 h outdoors. KDIGO uses daily 08:00 creatinine.
+
+| Scenario | Water deficit (L) | ECF deficit (L) | Peak ΔCr (hourly) | ΔCr at 08:00 | Min GFR | KDIGO | Same with air capped at 35 °C |
+|---|---|---|---|---|---|---|---|
+| No drugs | 1.69 | 0.85 | +0.146 | +0.098 | 83.5 % | 0 | +0.056, 0 |
+| NSAID only | 1.69 | 0.85 | +0.247 | +0.160 | 74.2 % | 0 | +0.091, 0 |
+| ARB + diuretic | 1.79 | 0.95 | +0.395 | +0.288 | 63.9 % | 0 | +0.169, 0 |
+| Triple whammy | 1.79 | 0.95 | +0.578 | +0.412 | 53.1 % | **1** | +0.237, 0 |
+| ARB + diuretic + fever | 1.94 | 1.02 | +0.466 | +0.349 | 60.9 % | **1** | +0.230, 0 |
+| Triple + fever | 1.94 | 1.02 | +0.693 | +0.508 | 49.3 % | **1** | +0.325, 0 |
+| Triple + fever, CYP2C9 *3/*3 | 1.94 | 1.02 | +0.810 | +0.597 | 44.3 % | **1** | +0.369, 0 |
+
+### Surprises (for the team)
+1. **With phi_drink 0.60, three scenarios reach KDIGO stage 1, not one.** The plan's §9.1 prototype used phi_drink 0.75; with 0.75 the ordering is the same and only triple + fever crosses +0.3 on the hourly peak (+0.303), while no scenario crosses at 08:00. `phi_drink` is the most influential setting seen so far.
+2. **Daily 08:00 sampling reads about 30 % lower than the hourly peak** (creatinine peaks around midnight after the hot day and recovers overnight).
+3. **Engine-level heat contribution is large for this exposure.** Capping air temperature at 35 °C removes every AKI and cuts the creatinine rise by about half (e.g. triple + fever +0.693 → +0.325). This is a worst case: a 68-year-old 9 h outdoors in 45.5 °C sun.
+4. **ISO validity:** 0 % of outdoor hours outside ISO 7933 in dry Nagpur heat. The validity problem is in humid heat (Chennai, Palasa) and will show in Part 3.
+5. **The sweat cap never binds** for this body size (maximum on the whole grid 1.02 L/h < 1.5).
+6. A chronic chlorthalidone + ARB patient settles at creatinine about 2 % above `cr_base` (1.048 → 1.069) before any heat: the plan's "steady ECF offset", now visible.
+
+### Deviations from the plan
+- `creatinine_step` uses the **exact** solution of the kinetics ODE over each step instead of the plan's Euler step (same equation; stable for the long gaps between labs in R1b).
+- The CYP2C9 multiplier is applied to the NSAID dose for CPIC-covered drugs only, not inside `gfr_now` as in the plan's snippet, so a patient on diclofenac gets no genotype effect even if they are a poor metaboliser.
