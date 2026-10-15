@@ -34,3 +34,6 @@ BUILD_PLAN_DETAILED.md
 Thumbs.db
 .vscode/
 .idea/
+
+# Team decision log (private)
+.github/workflows/VrikkaTwin_Decisions_v1.md

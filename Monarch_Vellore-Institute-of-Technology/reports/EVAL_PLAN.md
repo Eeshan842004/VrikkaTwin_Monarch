@@ -58,3 +58,52 @@ If **M** does not beat **B3**, we say so and argue from robustness and the what-
 - **Fast clock leads** if: R1a passes, R1b beats carry-forward, and M beats B0/B1/B2 on mismatched AUPRC with median lead time ≥24 h.
 - **Otherwise the slow clock leads.** The fast clock becomes the physics risk plus rules, and the pitch emphasises the R3 C-index and kidney-years.
 
+
+---
+
+## Amendment 1 (15 Oct 2026, before any model was trained)
+
+These changes were decided on 15 Oct 2026 after an internal review of the plan. **No model had been trained when they were made** (only the configuration, data downloads and the physiology engine existed). The original text above is unchanged; where it conflicts with this amendment, this amendment applies.
+
+### A1.1 Cohort naming
+- The training/evaluation population is called the **"enriched high-risk heat-season cohort"** everywhere. Its AKI event rate is deliberately higher than in real community populations.
+
+### A1.2 Labels and twin risk use identical sampling
+- The label and the twin's Monte-Carlo risk both use **one creatinine value per day, sampled at 08:00** (fasting morning value), the **same `kdigo_stage()` function** and the **same baseline-creatinine rule** (§9.3). Simulators may integrate hourly internally; only the daily 08:00 values feed KDIGO.
+- The label means "true (simulated) AKI by daily creatinine". In real life AKI is only detected when a test is done.
+
+### A1.3 Lead time (replaces the ≥36 h target in §15.5)
+- **Primary lead-time metric:** median hours from the first red alert to AKI onset, among detected events; plus the % of events alerted ≥24 h ahead.
+- Events are reported **split by trigger-to-onset gap**: trigger (fever, vomiting, diarrhoea or a new NSAID) began ≥24 h before onset vs <24 h before onset.
+- **Target:** median lead time ≥24 h on the ≥24 h-gap subset. All other subsets are reported as they come out.
+- The headline lead time uses the **noisy weather forecast**.
+
+### A1.4 Gate G3 rule (replaces §15.6)
+- The **fast clock always leads the pitch.** If the hybrid model M does not beat B0/B1/B2 on mismatched-simulator AUPRC, the lead becomes **B4 (twin physics risk) plus transparent rules**, with honest lead time and the what-if.
+- The slow clock is a supporting panel in every case and is never the G3 fallback. G3 moves to Fri 16 Oct, 18:00 IST.
+
+### A1.5 Prevalence-shift table (new)
+- PPV, sensitivity at the alert budget, and alerts per 100 patient-days are re-computed at **1/10 and 1/50 of the synthetic event rate**, using prior-shift correction of the calibrated probabilities and PPV from sensitivity/specificity.
+
+### A1.6 Calibration targets (L1–L3 are no longer called "validation")
+- **L1:** computed **only within antihypertensive users**, triple (ACEi/ARB + diuretic + NSAID) vs double (ACEi/ARB + diuretic). Target RR ≈1.3 overall, ≈1.8 in the first 30 days of the combination. **Pass band 1.1–2.5.**
+- **L2:** loose sanity check only (more kidney events on hotter days; direction and rough size), labelled as hospital-admission evidence compared with mild AKI.
+- **L3:** unchanged, labelled "from a diabetic cohort (n = 274)".
+
+### A1.7 Real-data checks: wording and scope
+- **R1a:** "Labelling verified against the official mimic-code KDIGO SQL", compared with the **creatinine-only stage column** (`aki_stage_creat`). This is a correctness check, not validation of predictions.
+- **R1b:** "Our creatinine equation tracks real patients". It must import the **same creatinine-kinetics function the twin uses**. Stays with dialysis/CRRT are excluded. Reported against last-value carry-forward and linear trend, whichever wins.
+- **R2:** plausibility overlay of our CKD subgroup vs UCI CKD's CKD patients only. **No pass/fail KS claim.**
+- **R3:** Tawam C-index reported **next to "baseline eGFR alone"** (and KFRE where valid).
+- **R4 (new job):** measure real day-to-day variability of weight and resting HR in PMData and use it to inform the measurement noise parameters. "False red alerts on PMData" stays as a secondary sanity line only.
+- **R5 (firefighter): dropped** (outside ISO 7933 validity: protective equipment, >50 °C).
+
+### A1.8 New analyses
+- **Heat-attributable fraction (HAF):** the same patients re-run with hourly temperature capped at 35 °C (`heat_cf_cap_c`), everything else identical. HAF = 1 − AKI episodes (counterfactual) / AKI episodes (actual). Reported overall and by subgroup: outdoor workers vs home, age ≥60 vs <60, on diuretic vs not. Reported whatever it turns out to be.
+- **Heat-model sensitivity:** sweat ×0.7 and ×1.3 (AKI rate and HAF change); % of person-hours outside ISO 7933 validity per city.
+- **Wearable ablation:** twin with vs without wearable signals; Tier 0 vs Tier 1.
+- **Temporal held-out test:** trained on the 2024 season; the **2025 and 2026 seasons** (same synthetic patients' baselines, new weather) are held-out temporal test sets.
+- **Tornado plot:** top 10 parameters only.
+
+### A1.9 Slow clock outputs
+- Shown as **ranges only** (10–90 % band). A single "kidney-years" number is never a headline. The AKI slope penalty fades over time (`aki_penalty_tau_years`) and is stage-dependent.
