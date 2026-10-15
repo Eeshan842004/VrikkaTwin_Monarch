@@ -1,0 +1,107 @@
+{
+  "worker": {
+    "age": 30,
+    "female": false,
+    "weight_kg": 70.0,
+    "height_m": 1.7,
+    "egfr": 105.0,
+    "phi_drink": 0.85,
+    "met_work": 3.5,
+    "a_tot": 0.8
+  },
+  "L4": {
+    "reference": "Butler-Dawson 2019: cross-shift AKI ~51-54 % per month in heavy cane cutters",
+    "target_band_pct": [
+      20,
+      60
+    ],
+    "default": {
+      "workdays": 146,
+      "share_end_of_shift_aki_pct": 0.0,
+      "share_next_0800_still_raised_pct": 0.0,
+      "mean_end_of_shift_rise_mg_dl": 0.003,
+      "max_end_of_shift_rise_mg_dl": 0.006,
+      "mean_next_0800_residual_mg_dl": 0.001
+    },
+    "cities": {
+      "Hyderabad": "48",
+      "Bengaluru": "34",
+      "Nagpur": "21",
+      "Ahmedabad": "17",
+      "Delhi": "14",
+      "Palasa": "6",
+      "Chennai": "6"
+    },
+    "sensitivity": {
+      "tau_recover_h=6.0": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.001,
+        "max_end_of_shift_rise_mg_dl": 0.002,
+        "mean_next_0800_residual_mg_dl": 0.0
+      },
+      "tau_recover_h=24.0": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.009,
+        "max_end_of_shift_rise_mg_dl": 0.016,
+        "mean_next_0800_residual_mg_dl": 0.007
+      },
+      "ecf_frac_sweat=0.3": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.001,
+        "max_end_of_shift_rise_mg_dl": 0.001,
+        "mean_next_0800_residual_mg_dl": 0.0
+      },
+      "ecf_frac_sweat=0.7": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.008,
+        "max_end_of_shift_rise_mg_dl": 0.014,
+        "mean_next_0800_residual_mg_dl": 0.002
+      },
+      "d50=0.04": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.012,
+        "max_end_of_shift_rise_mg_dl": 0.02,
+        "mean_next_0800_residual_mg_dl": 0.002
+      },
+      "d50=0.1": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.001,
+        "max_end_of_shift_rise_mg_dl": 0.002,
+        "mean_next_0800_residual_mg_dl": 0.0
+      }
+    }
+  },
+  "L5": {
+    "reference": "Belli 2018: GFR fall ~25-27 % at ~3.7 % loss; 27.1-44.4 % at 5.2-10.4 % loss",
+    "engine_gfr_fall_pct": {
+      "3% body-mass loss": {
+        "ecf_share_0.3": 5.0,
+        "ecf_share_0.5": 12.1,
+        "ecf_share_0.7": 16.2
+      },
+      "5% body-mass loss": {
+        "ecf_share_0.3": 12.1,
+        "ecf_share_0.5": 17.5,
+        "ecf_share_0.7": 19.0
+      },
+      "8% body-mass loss": {
+        "ecf_share_0.3": 17.3,
+        "ecf_share_0.5": 19.3,
+        "ecf_share_0.7": 19.8
+      }
+    },
+    "ceiling_note": "healthy young kidney: maximum unprotected fall = 1 - a_tot = 20.0 %"
+  }
+}

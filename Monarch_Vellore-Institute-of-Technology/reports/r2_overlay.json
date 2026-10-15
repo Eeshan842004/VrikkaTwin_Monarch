@@ -1,0 +1,178 @@
+{
+  "uci_origin": "not stated on the UCI page (no hospital/city/country); CC BY 4.0; donated 2015",
+  "claim": "plausibility overlay only, no pass/fail",
+  "groups": {
+    "CKD": {
+      "creatinine (mg/dL)": {
+        "synthetic": {
+          "n": 440,
+          "median": 1.54,
+          "p25": 1.32,
+          "p75": 1.8
+        },
+        "uci": {
+          "n": 236,
+          "median": 2.2,
+          "p25": 1.4,
+          "p75": 4.4
+        }
+      },
+      "blood urea (mg/dL)": {
+        "synthetic": {
+          "n": 440,
+          "median": 46.0,
+          "p25": 37.0,
+          "p75": 57.0
+        },
+        "uci": {
+          "n": 235,
+          "median": 53.0,
+          "p25": 31.5,
+          "p75": 91.0
+        }
+      },
+      "haemoglobin (g/dL)": {
+        "synthetic": {
+          "n": 440,
+          "median": 11.7,
+          "p25": 10.7,
+          "p75": 12.8
+        },
+        "uci": {
+          "n": 203,
+          "median": 10.9,
+          "p25": 9.5,
+          "p75": 12.05
+        }
+      },
+      "sodium (mmol/L)": {
+        "synthetic": {
+          "n": 440,
+          "median": 139.0,
+          "p25": 137.0,
+          "p75": 141.0
+        },
+        "uci": {
+          "n": 166,
+          "median": 136.0,
+          "p25": 132.0,
+          "p75": 139.0
+        }
+      },
+      "potassium (mmol/L)": {
+        "synthetic": {
+          "n": 440,
+          "median": 4.7,
+          "p25": 4.4,
+          "p75": 5.0
+        },
+        "uci": {
+          "n": 165,
+          "median": 4.3,
+          "p25": 3.8,
+          "p75": 4.9
+        }
+      },
+      "age (years)": {
+        "synthetic": {
+          "n": 440,
+          "median": 59.0,
+          "p25": 50.0,
+          "p75": 68.0
+        },
+        "uci": {
+          "n": 240,
+          "median": 59.0,
+          "p25": 47.0,
+          "p75": 66.0
+        }
+      }
+    },
+    "non-CKD": {
+      "creatinine (mg/dL)": {
+        "synthetic": {
+          "n": 2560,
+          "median": 0.92,
+          "p25": 0.78,
+          "p75": 1.05
+        },
+        "uci": {
+          "n": 145,
+          "median": 0.9,
+          "p25": 0.6,
+          "p75": 1.1
+        }
+      },
+      "blood urea (mg/dL)": {
+        "synthetic": {
+          "n": 2560,
+          "median": 28.0,
+          "p25": 23.0,
+          "p75": 33.0
+        },
+        "uci": {
+          "n": 144,
+          "median": 33.0,
+          "p25": 23.75,
+          "p75": 44.0
+        }
+      },
+      "haemoglobin (g/dL)": {
+        "synthetic": {
+          "n": 2560,
+          "median": 12.95,
+          "p25": 11.9,
+          "p75": 14.1
+        },
+        "uci": {
+          "n": 144,
+          "median": 15.0,
+          "p25": 14.1,
+          "p75": 16.2
+        }
+      },
+      "sodium (mmol/L)": {
+        "synthetic": {
+          "n": 2560,
+          "median": 139.0,
+          "p25": 137.0,
+          "p75": 141.0
+        },
+        "uci": {
+          "n": 145,
+          "median": 141.0,
+          "p25": 138.0,
+          "p75": 146.0
+        }
+      },
+      "potassium (mmol/L)": {
+        "synthetic": {
+          "n": 2560,
+          "median": 4.4,
+          "p25": 4.1,
+          "p75": 4.7
+        },
+        "uci": {
+          "n": 145,
+          "median": 4.5,
+          "p25": 3.7,
+          "p75": 4.9
+        }
+      },
+      "age (years)": {
+        "synthetic": {
+          "n": 2560,
+          "median": 58.0,
+          "p25": 49.0,
+          "p75": 67.0
+        },
+        "uci": {
+          "n": 149,
+          "median": 46.0,
+          "p25": 34.0,
+          "p75": 58.0
+        }
+      }
+    }
+  }
+}

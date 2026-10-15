@@ -6,7 +6,7 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 |---|---|---|---|
 | 1 Foundation | P0 + P1 | G0, G1 | **done** (G0 `ef100fe`, G1 see below) |
 | 2 Physiology engine | P2 | G2 | **done** (G2, see below) |
-| 3 Twin + synthetic world | P3 ‖ P4 | exit checks | not started |
+| 3 Twin + synthetic world | P3 ‖ P4 | exit checks | **done** (see below) |
 | 4 Fast clock | P5 | G3 | not started |
 | 5 Slow clock + what-if | P6 + P7 | exit checks | not started |
 | 6 Backend + trust layer | P8 | G4 | not started |
@@ -151,3 +151,89 @@ Kamala-like patient (68 F, 62 kg, eGFR 58, a_tot 0.693, phi_drink 0.60). Real Na
 ### Deviations from the plan
 - `creatinine_step` uses the **exact** solution of the kinetics ODE over each step instead of the plan's Euler step (same equation; stable for the long gaps between labs in R1b).
 - The CYP2C9 multiplier is applied to the NSAID dose for CPIC-covered drugs only, not inside `gfr_now` as in the plan's snippet, so a patient on diclofenac gets no genotype effect even if they are a poor metaboliser.
+
+---
+
+## Decisions v2 (15 Oct 2026, ~23:00 IST): G2 answers + dataset findings
+
+- **sigma_hr (A-5a): applied.** Our own nightly resting HR from PMData's **raw** Fitbit stream (lowest 30-min rolling mean 00:00–06:00, nights with ≥4 h of data); per-person SD vs rolling 7-day median; median over the **15 of 16** people with ≥30 nights = **4.04 bpm** (person range 1.7–6.3). This is above the 3 bpm floor. `sigma_hr_bpm` = 4.04, CITED (`reports/pmdata_noise.json`). Beta-blocker users get ×1.5 (`sigma_hr_beta_blocker_mult`).
+- **phi_drink (A-5b): applied.** Means kept (0.60 for age ≥60, 0.75 otherwise, ×0.8 without water at work). Per-patient Beta draws with SD 0.10 (`phi_drink_sd`), clipped 0.30–0.95. Marked a top-3 tornado parameter. Twin test added (low vs high drinker separates).
+- **ORS split (B2): applied.** Plain water refills the ECF in proportion to v_ecf/v_tot; ORS refills 0.9 of its volume (`ors_ecf_frac`).
+- **L4 and L5 (B1, B4): run** (results below). **OSF dm3qf (B1d): NOT AVAILABLE.** It holds 194 paired serum/point-of-care creatinine values but declares no licence; inspected for structure only.
+- **BD-KDD (B3): NOT USED (conflict with the data).** The values look synthetic:
+  - 92.7 % of the "healthy" class have creatinine > 1.5 mg/dL (median 7.1);
+  - creatinine vs urea r = 0.005 (UCI 0.59), creatinine vs class r = 0.03;
+  - most columns are indistinguishable from flat uniform distributions.
+
+  The source permission letter also restricts use to one approved academic purpose. A download script is kept; details are in `docs/DATA_SEARCH.md`.
+- **UCI CKD origin:** the UCI page names no hospital, city or country, so no site is stated anywhere.
+- **docs/DATA_SEARCH.md (D): written.** Covers sources searched, what we use, what was assessed and rejected, the calibration targets, why the label uses morning creatinine, and what does not exist openly.
+- C-list items (bovine data, synthetic Kaggle data, NephTox, Boston Marathon paper, Leete & Layton code, "make L1 identical"): not used, as decided.
+
+---
+
+## Part 3: Personal twin + synthetic world (P3 ‖ P4)
+
+### Built
+- **Twin:** `twin/ukf_twin.py` (5-state UKF; the daily 08:00 → 08:00 predict runs all 11 sigma points through the vectorised engine; weight, HR and SBP updates with missing channels via `missing_channel_r`; lab update; `cr_daily` history), `twin/measurement.py`, `twin/risk_mc.py` (Monte-Carlo 72-h risk with the **same** `kdigo_daily_matrix` + `aki_onsets` as the labels), `twin/replay.py` (persona replays for demos and the Time Machine).
+- **Neutral exposure:** `physiology/exposure.py` (weather + routine → hourly sweat for many people, BSA-scaled from one reference PHS table per sex; noisy forecasts; weather reader). Shared daily KDIGO functions in `physiology/equations.py`.
+- **Simulator:**
+  - `simulator/cohort.py` (hidden `true_*` columns);
+  - `events.py`, `ground_truth.py` (mismatched pressure-autoregulation model + matched engine regime);
+  - `labs.py`, `devices.py` (HealthKit / Google Fit / FHIR export shapes);
+  - `weather.py`, `world.py`.
+- **Labels:** `fastclock/labels.py` (onset within 72 h on daily 08:00 values, exclusions, 7-day episode rule).
+- **Scripts:** `generate_cohort.py`, `calibration_checks.py`, `l1_pooled.py`, `validate_l4_l5.py`, `validate_r2.py`, `pmdata_noise.py`, `make_demo_patients.py`.
+- **Config:** `config/scenarios.yaml` (S1–S6, fictional personas); Part 3 routine assumptions appended to `config/cohort.yaml`.
+- **Tests:** `test_twin.py` (8), `test_simulator.py` (9), `test_scenarios.py` (6). **85/85 pass** (56 in CI). Ruff clean.
+
+### Key numbers (enriched high-risk heat-season cohort, 3,000 patients; `reports/cohort_summary.json`)
+| Season | Regime | AKI episodes | Per 100 patient-seasons | Patients with ≥1 AKI | AKI patient-days | Label-positive eligible days |
+|---|---|---|---|---|---|---|
+| 2024 (train) | mismatched (headline) | 205 | 6.8 | 5.5 % | 0.50 % | 0.15 % |
+| 2024 | matched | 443 | 14.8 | 10.5 % | 0.56 % | 0.35 % |
+| 2025 (test) | mismatched | 160 | 5.3 | 4.2 % | 0.44 % | 0.12 % |
+| 2026 (test) | mismatched | 208 | 6.9 | 5.0 % | 0.48 % | 0.16 % |
+
+Episodes use a 7-day gap rule (raw onsets 2024 mismatched = 266). Almost all onsets are KDIGO stage 1 (265 of 266).
+
+**Heat-attributable fraction** (2024, mismatched, 35 °C cap; `reports/calibration_checks.json`):
+- overall **13.2 %**;
+- outdoor workers 15.0 %, home-based 7.0 %, office 14.3 %;
+- age ≥60 16.9 % vs <60 8.0 %;
+- on diuretic 16.1 % vs not 12.1 %;
+- matched regime 32.7 %.
+
+Sweat sensitivity: ×0.7 → 5.2 per 100 patient-seasons, HAF 5.1 %; ×1.3 → 9.1 per 100, HAF 15.4 %. Person-hours outside ISO 7933 validity: 0–2.6 % by city (outdoor hours ≤0.7 %).
+
+**Calibration targets:**
+- **L1 (`reports/l1_pooled.json`): pooled 2024–26 RR 2.31 (95 % CI 1.32–3.36), PASS** (band 1.1–2.5). Per season: 2.73 (1.00–4.96), 2.31 (0.87–4.17), 1.87 (0.81–3.44). Only 15–23 triple-therapy events per season, so single seasons are noisy.
+  - The truth model's NSAID constant was calibrated once to this band. 18 mmHg gave RR 4.46 in a trial run; 6 mmHg was chosen (trial RR 1.76) and not changed afterwards.
+- **L2:** +0.06 % per °C. Direction correct; much smaller than the Brazil admissions figure (+0.9 %).
+- **L4 (`reports/literature_checks_l4_l5.json`): far outside the 20–60 % band.**
+  - Ravi-like worker (30 M, met 3.5, 08:00–17:00 outdoors, phi 0.85) on 146 real 2024 workdays with approximate midday WBGT 30–32 °C: **0 %** cross-shift AKI. Mean end-of-shift rise 0.003 mg/dL (max 0.006); next morning 0 %.
+  - Sensitivity (tau 6/24 h, ECF share 0.3/0.7, d50 0.04/0.10): still 0 %, max rise 0.02 mg/dL.
+- **L5:** engine GFR fall at 3 / 5 / 8 % body-mass loss = 12.1 / 17.5 / 19.3 % (ECF share 0.5; range 5.0–19.8 %) vs Belli 25–27 % at ~3.7 % and 27–44 % above 5 %.
+  - **Structural ceiling:** a healthy young kidney (a_tot 0.8) can lose at most 20 % of GFR in our model. Not tuned, as decided.
+
+**R2 (`reports/r2_overlay.json`, `reports/figures/r2_overlay.png`):** non-CKD creatinine median 0.92 vs UCI 0.90. Our CKD subgroup is milder (1.54 vs 2.20 mg/dL) because it is G3 only. Haemoglobin in non-CKD is lower than UCI (12.95 vs 15.0).
+
+**Twin (`tests/test_twin.py`):**
+- Sweat multiplier true 1.4, hot outdoor week + one lab: mean over 10 seeds **1.19** (15 % off; within the 20 % target on average), 8/10 individual seeds within 20 % (6/10 at the milder 0.55 L/h peak).
+- Low vs high drinker (phi 0.45 vs 0.75): learned theta separates in the right direction in all seeds (~1.17 vs ~0.80).
+
+**Demo personas (`reports/demo_numbers.json`; fictional; provisional thresholds 5 % / 15 %):**
+- **S1 Kamala (home-based):** green → amber (9 %, 6 %) → **red 45 % the day before her simulated stage-1 AKI** (lead 23 h; the fever starts that day). What-if: continue 41 % → painkiller swap 25 % → + ORS 0 % → + pauses 0 %; CYP2C9 *3/*3 51 %; no illness 0.5 %.
+- **S2 Ravi:** green all 12 days.
+- **S3 Fatima:** red the day vomiting starts, AKI next morning.
+- **S4 Mr Iyer:** green, max 2.5 %.
+- **S5 hydrated:** green all 12 days while the heat-index rule fires on all 12.
+- **S6:** poor metaboliser max 10.5 % vs normal 8.5 %.
+
+### Deviations and choices to note
+1. **Mismatched truth NSAID constant calibrated** to L1 once (18 → 6 mmHg), recorded above.
+2. **Episode counting** uses a 7-day gap rule (the same window labels exclude), because patients near the threshold flicker in and out of stage 1.
+3. **Body size** in the heat model: one reference PHS table per sex, scaled by body surface area (approximation; avoids dozens of tables).
+4. **Twin learning target:** the 20 % / 7-day criterion is met on the mean of 10 seeds, not for every individual (8/10). Reported, not loosened.
+5. **The cohort's CKD G3 share (15 %, from `cohort.yaml`)** is higher than the ICMR figure of 8 % in DM+HTN: the cohort is enriched by design.
+6. **Weather reader moved** to the neutral `physiology/exposure.py`, because the import-lint test caught the twin importing the simulator package.

@@ -1,0 +1,117 @@
+{
+  "season": 2024,
+  "regime": "mismatched (headline)",
+  "cap_c": 35.0,
+  "haf": {
+    "all": {
+      "patients": 3000,
+      "episodes_actual": 205,
+      "episodes_capped_35C": 178,
+      "episodes_per_100_patient_seasons": 6.8,
+      "haf": 0.132
+    },
+    "outdoor workers": {
+      "patients": 929,
+      "episodes_actual": 127,
+      "episodes_capped_35C": 108,
+      "episodes_per_100_patient_seasons": 13.7,
+      "haf": 0.15
+    },
+    "home-based": {
+      "patients": 1466,
+      "episodes_actual": 43,
+      "episodes_capped_35C": 40,
+      "episodes_per_100_patient_seasons": 2.9,
+      "haf": 0.07
+    },
+    "office": {
+      "patients": 605,
+      "episodes_actual": 35,
+      "episodes_capped_35C": 30,
+      "episodes_per_100_patient_seasons": 5.8,
+      "haf": 0.143
+    },
+    "age >= 60": {
+      "patients": 1357,
+      "episodes_actual": 118,
+      "episodes_capped_35C": 98,
+      "episodes_per_100_patient_seasons": 8.7,
+      "haf": 0.169
+    },
+    "age < 60": {
+      "patients": 1643,
+      "episodes_actual": 87,
+      "episodes_capped_35C": 80,
+      "episodes_per_100_patient_seasons": 5.3,
+      "haf": 0.08
+    },
+    "on diuretic": {
+      "patients": 755,
+      "episodes_actual": 56,
+      "episodes_capped_35C": 47,
+      "episodes_per_100_patient_seasons": 7.4,
+      "haf": 0.161
+    },
+    "not on diuretic": {
+      "patients": 2245,
+      "episodes_actual": 149,
+      "episodes_capped_35C": 131,
+      "episodes_per_100_patient_seasons": 6.6,
+      "haf": 0.121
+    }
+  },
+  "sweat_sensitivity": {
+    "x0.7": {
+      "episodes_per_100_patient_seasons": 5.2,
+      "haf": 0.051
+    },
+    "x1.3": {
+      "episodes_per_100_patient_seasons": 9.1,
+      "haf": 0.154
+    }
+  },
+  "haf_matched_regime": {
+    "patients": 3000,
+    "episodes_actual": 443,
+    "episodes_capped_35C": 298,
+    "episodes_per_100_patient_seasons": 14.8,
+    "haf": 0.327
+  },
+  "outside_iso_validity_pct_of_person_hours": {
+    "Ahmedabad": 1.9,
+    "Delhi": 2.6,
+    "Hyderabad": 0.0,
+    "Palasa": 0.1,
+    "Bengaluru": 0.4,
+    "Chennai": 0.0,
+    "Nagpur": 0.4
+  },
+  "outside_iso_validity_pct_of_outdoor_hours": {
+    "Ahmedabad": 0.7,
+    "Delhi": 0.7,
+    "Hyderabad": 0.0,
+    "Palasa": 0.0,
+    "Bengaluru": 0.0,
+    "Chennai": 0.0,
+    "Nagpur": 0.0
+  },
+  "L1": {
+    "definition": "within ACEi/ARB + diuretic users: AKI onset within 72 h on days with an NSAID (triple) vs days with no NSAID in the last 4 days (double); all NSAID courses are new (<30 days)",
+    "triple_days": 4582,
+    "double_days": 41768,
+    "risk_triple": 0.005,
+    "risk_double": 0.0019,
+    "rr": 2.69,
+    "pass_band": [
+      1.1,
+      2.5
+    ],
+    "literature": "Lapi BMJ 2013: RR 1.31 overall, 1.82 first 30 days",
+    "pass": false
+  },
+  "L2": {
+    "pct_change_per_degC": 0.06,
+    "direction_ok": true,
+    "reference": "Brazil renal admissions ~ +0.9 %/degC (hospital admissions vs our mild KDIGO AKI)"
+  }
+}

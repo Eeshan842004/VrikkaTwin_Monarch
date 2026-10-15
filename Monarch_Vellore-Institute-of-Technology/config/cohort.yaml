@@ -29,3 +29,30 @@ illness_rates_per_100_patient_months: {fever: 6, gastroenteritis_summer: 4, seps
 cyp2c9_allele_freq: {"*2": 0.03, "*3": 0.11}   # Hardy-Weinberg [S]
 lab_schedule_days: {routine_mean: 75, symptom_triggered_prob: 0.4}
 wearable_tier_share: {T0: 0.35, T1: 0.45, T2: 0.20}
+
+# ---- added in Part 3 (all [A] unless stated; documented in PROGRESS.md) ----
+occupation_routine:          # typical outdoor exposure per occupation (start hour, hours/day, works Sunday share)
+  home:              {outdoor_start: 10, outdoor_hours: 1, works_sunday: 1.0}
+  office:            {outdoor_start: 9,  outdoor_hours: 1, works_sunday: 0.0}
+  vendor:            {outdoor_start: 10, outdoor_hours: 8, works_sunday: 0.5}
+  delivery:          {outdoor_start: 11, outdoor_hours: 8, works_sunday: 0.5}
+  construction_farm: {outdoor_start: 8,  outdoor_hours: 9, works_sunday: 0.3}
+water_access_at_work_outdoor: 0.6
+housing_roof: {concrete: 0.70, tin_asbestos: 0.20, thatch: 0.10}
+cooling_at_home: {none: 0.25, fan: 0.45, cooler: 0.20, ac: 0.10}
+chronic_pain: 0.25           # knee OA / back pain (more NSAID episodes)
+gout: 0.05
+diuretic_generic: {thiazide: {chlorthalidone: 0.40, hydrochlorothiazide: 0.45, indapamide: 0.15},
+                   loop: {furosemide: 0.70, torsemide: 0.30}}
+ras_split: {arb: 0.60, acei: 0.40}
+nsaid_daily_mg: {diclofenac: 100, ibuprofen: 1200, aceclofenac: 200, nimesulide: 200}   # typical self-medication dose
+nsaid_episode_days: [2, 5]
+illness_days: {fever: [2, 4], gastroenteritis_summer: [1, 3], sepsis_like_background: [3, 7]}
+ors_use_when_ill: 0.30       # share of illness days on which ORS is drunk (0.5-1.0 L/day)
+symptom_report_prob: 0.85    # patient/ASHA reports a symptom that day
+tablet_report_prob: 0.80     # patient/ASHA reports painkiller tablets that day
+adherence: [0.70, 1.00]      # per-patient chronic-medicine adherence (uniform)
+wear_time: [0.60, 0.95]      # T1/T2 band wear probability per day (uniform per patient)
+scale_use: 0.80              # T1/T2 morning weight on a given day
+asha_visit_weekday: 2        # T0 weekly ASHA visit (0 = Monday)
+pre_season_labs_days: [-200, -60]

@@ -112,6 +112,47 @@ def kdigo_daily_stages(times_h: np.ndarray, cr: np.ndarray, baseline: float | No
     return td, stages
 
 
+def kdigo_daily_matrix(cr_daily: np.ndarray, baseline: np.ndarray | float | None = None) -> np.ndarray:
+    """Vectorised KDIGO stages on a one-value-per-day grid: ``cr_daily`` (N, D) -> stages (N, D).
+
+    Identical rules to :func:`kdigo_stage` with 24 h spacing: the 48 h window is the previous 2 daily values and the
+    7-day window the previous 7. Used by BOTH the training labels and the twin's Monte-Carlo risk.
+    """
+    cr = np.atleast_2d(np.asarray(cr_daily, dtype=float))
+    n, d_total = cr.shape
+    base_given = baseline is not None
+    base_arr = np.broadcast_to(np.asarray(baseline, dtype=float), (n,)) if base_given else None
+    stages = np.zeros((n, d_total), dtype=int)
+    for d in range(d_total):
+        c = cr[:, d]
+        if base_given:
+            base = base_arr
+        else:
+            base = cr[:, max(0, d - 7):d].min(axis=1) if d > 0 else c
+        ratio = np.where(base > 0, c / np.where(base > 0, base, 1.0), 1.0)
+        rise = c - cr[:, max(0, d - 2):d].min(axis=1) if d > 0 else np.zeros(n)
+        aki = (ratio >= 1.5) | (rise >= 0.3)
+        stages[:, d] = np.where(~aki, 0, np.where((ratio >= 3.0) | (c >= 4.0), 3, np.where(ratio >= 2.0, 2, 1)))
+    return stages
+
+
+def aki_onsets(stages: np.ndarray) -> np.ndarray:
+    """True where an AKI episode starts: stage >= 1 today after stage 0 the previous day."""
+    s = np.atleast_2d(stages)
+    prev = np.concatenate([np.zeros((s.shape[0], 1), dtype=int), s[:, :-1]], axis=1)
+    return (s > 0) & (prev == 0)
+
+
+def aki_onset_within(stages: np.ndarray, horizon_days: int = 3) -> np.ndarray:
+    """y[n, d] = an AKI onset occurs on day d+1 .. d+horizon (the next three 08:00 values = within 72 h of 09:00)."""
+    on = aki_onsets(stages).astype(int)
+    n, d_total = on.shape
+    csum = np.concatenate([np.zeros((n, 1), dtype=int), np.cumsum(on, axis=1)], axis=1)
+    idx = np.arange(d_total)
+    hi = np.minimum(idx + horizon_days, d_total - 1)
+    return (csum[:, hi + 1] - csum[:, idx + 1]) > 0
+
+
 def baseline_creatinine(labs: Sequence[tuple[float, float]], now_day: float, age: float, female: bool,
                         stable: Sequence[bool] | None = None) -> tuple[float, str]:
     """Outpatient baseline creatinine (master plan §9.3).
