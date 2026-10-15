@@ -5,7 +5,7 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 | Part | Phases | Gate | Status |
 |---|---|---|---|
 | 1 Foundation | P0 + P1 | G0, G1 | **done** (G0 `ef100fe`, G1 see below) |
-| 2 Physiology engine | P2 | G2 | not started |
+| 2 Physiology engine | P2 | G2 | in progress |
 | 3 Twin + synthetic world | P3 ‖ P4 | exit checks | not started |
 | 4 Fast clock | P5 | G3 | not started |
 | 5 Slow clock + what-if | P6 + P7 | exit checks | not started |
@@ -15,7 +15,30 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 
 ---
 
-## Part 1: Foundation (P0 + P1)
+## Decisions v1 (15 Oct 2026, 21:30 IST)
+
+The team reviewed the plan before training any model and recorded 20 decisions (private decision log). Metric changes are in `reports/EVAL_PLAN.md`, "Amendment 1" (own commit `48e1546`).
+
+**Applied on 15 Oct (before Part 2):**
+- **Framing:** a kidney twin for heatwaves **and sick days**; "sick-day rules" renamed "sick-day guidance" in all plan files.
+- **Registry (`config/parameters.yaml`):**
+  - `sglt2_loss_l_day` set to 0 (range 0–0.15, sensitivity only);
+  - new `half_life_mra_h` 24 h;
+  - new `heat_cf_cap_c` 35 °C, `sweat_cap_l_h` 1.5, `sweat_sensitivity_low/high` 0.7/1.3, `creatinine_sample_hour` 8;
+  - new `aki_penalty_tau_years` 2 and stage multipliers 0.5/1.0/1.5, plus `sglt2i_initial_dip` 3;
+  - CPIC 2020 wording on the CYP2C9 multipliers.
+- **Drug lexicon:**
+  - CPIC classes (lornoxicam and tenoxicam genotype-adjusted; naproxen and indomethacin not);
+  - `half_life_key` for every drug class that changes the kidney model;
+  - sick-day pause reasons (SGLT2i = ketoacidosis risk, metformin = lactic acidosis risk).
+- **Languages:** EN, HI, KN, TE only. City defaults are Nagpur → hi and Chennai → en.
+- **Weather:** 2025 and 2026 seasons downloaded as held-out test seasons. Files moved to `data/weather/<year>/`. Both later seasons were milder than 2024 (Delhi peak 43.7 °C and 44.4 °C vs 46.0 °C).
+- Plan files (master plan, `BUILD_PARTS.md`, `BUILD_PLAN_DETAILED.md`) carry a "Decisions v1" banner that overrides conflicting text, and the new schedule.
+
+**Not applied: conflict found with the data (item 12, `sigma_hr`), waiting for a team decision.**
+- PMData **weight** is self-reported and mostly whole kilograms: 11 of 15 people report integers ≥85 % of the time, with 3–6 distinct values in ~3 months. Its day-to-day SD (median 0.36 kg) is rounding, not scale noise. As item 12 allows, `sigma_weight_kg` stays at 0.4 with its range.
+- PMData **resting HR** day-to-day SD has a median of 1.24 bpm (14 people). But Fitbit's resting HR is an algorithmically smoothed daily value, so it understates real measurement noise. Setting `sigma_hr_bpm` from it (4 → ~1.2, or ~0.9 after dividing by √2) would make the twin over-trust heart rate and inflate the apparent value of wearables. `sigma_hr_bpm` stays at 4.0 until the team decides. It is not used until Part 3.
+
 
 _Started Wed 14 Oct 2026, 19:30 IST._
 

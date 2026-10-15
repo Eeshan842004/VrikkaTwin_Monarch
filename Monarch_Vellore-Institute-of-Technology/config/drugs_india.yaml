@@ -1,6 +1,10 @@
 # Indian drug lexicon (master plan Appendix B, §7.3). [VERIFY] every brand -> generic mapping with a pharmacist.
 # Normalised NSAID units: ibuprofen 1200 mg/day = 1.0; diclofenac 100 = 1.0; aceclofenac 200 = 1.0;
 # nimesulide 200 = 1.0 (registry keys nsaid_unit_*_mg_day).
+# CYP2C9 (CPIC 2020, Decisions v1 item 13): recommendations exist for celecoxib, flurbiprofen, lornoxicam,
+# ibuprofen, meloxicam, piroxicam, tenoxicam -> nsaid_cyp2c9. "No recommendation" for aceclofenac, diclofenac,
+# naproxen, aspirin, indomethacin, lumiracoxib, metamizole, nabumetone -> nsaid_other. Nimesulide is not
+# addressed by CPIC -> nsaid_other.
 # class values: nsaid_cyp2c9 (genotype-adjusted), nsaid_other (no genotype effect), analgesic_safe, arb, acei,
 # thiazide, loop, mra, metformin, sglt2i, ccb, beta_blocker, sulfonylurea, creatinine_secretion_inhibitor.
 brands:
@@ -38,7 +42,11 @@ generics:
   flurbiprofen: nsaid_cyp2c9
   meloxicam: nsaid_cyp2c9
   piroxicam: nsaid_cyp2c9
+  lornoxicam: nsaid_cyp2c9
+  tenoxicam: nsaid_cyp2c9
   diclofenac: nsaid_other
+  naproxen: nsaid_other
+  indomethacin: nsaid_other
   aceclofenac: nsaid_other
   nimesulide: nsaid_other
   paracetamol: analgesic_safe
@@ -66,13 +74,31 @@ generics:
   trimethoprim: creatinine_secretion_inhibitor
   cimetidine: creatinine_secretion_inhibitor
 
-# Thiazide-type diuretic -> effect half-life registry key (BUILD plan D-4).
-diuretic_half_life_key:
+# Every drug that changes the kidney model has its own effect half-life in the registry
+# (Decisions v1 item 4; a test fails if one is missing). No shared "diuretic" constant.
+half_life_key:
+  nsaid_cyp2c9: half_life_nsaid_h
+  nsaid_other: half_life_nsaid_h
+  acei: half_life_ras_h
+  arb: half_life_ras_h
   hydrochlorothiazide: half_life_hctz_h
   chlorthalidone: half_life_chlorthalidone_h
   indapamide: half_life_indapamide_h
   furosemide: half_life_loop_h
   torsemide: half_life_loop_h
+  mra: half_life_mra_h
+  sglt2i: half_life_sglt2_h
+
+# Sick-day guidance pause reasons shown in the UI (Decisions v1 item 3). Individualised; clinician decides.
+pause_reason:
+  sglt2i: "risk of (euglycaemic) ketoacidosis when not eating or vomiting, not kidney injury"
+  metformin: "risk of lactic acidosis if kidney injury develops"
+  acei: "reduces kidney self-protection during dehydration"
+  arb: "reduces kidney self-protection during dehydration"
+  thiazide: "adds fluid loss during dehydration"
+  loop: "adds fluid loss during dehydration"
+  nsaid_cyp2c9: "blocks kidney self-protection; paracetamol is usually the safer painkiller"
+  nsaid_other: "blocks kidney self-protection; paracetamol is usually the safer painkiller"
 
 # Drugs that must never be offered as what-if pause levers (§14.2, §38).
 never_levers: [beta_blocker, antiplatelet, anticoagulant, insulin, antiepileptic]

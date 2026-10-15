@@ -194,6 +194,13 @@ half_life_loop_h:
   provenance: ASSUMPTION
   source: master plan §8
   notes: furosemide / torsemide
+half_life_mra_h:
+  value: 24.0
+  unit: h
+  range: [12.0, 36.0]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 4
+  notes: spironolactone / eplerenone (potassium model only; no volume effect)
 half_life_sglt2_h:
   value: 12.0
   unit: h
@@ -218,12 +225,12 @@ diuretic_loss_loop_l_day:
   source: master plan §8
   notes: loop diuretics
 sglt2_loss_l_day:
-  value: 0.15
+  value: 0.0
   unit: L/day
-  range: [0.05, 0.3]
+  range: [0.0, 0.15]
   provenance: ASSUMPTION
-  source: early osmotic diuresis
-  notes: SGLT2 inhibitors
+  source: Decisions v1 item 3; SGLT2i vs placebo AKI RR 0.78 (95% CI 0.71-0.84), 18 RCTs, n = 98,989 (PMC11231204)
+  notes: default 0 = no AKI-raising volume effect in the 72-h model (and no protective effect either); kept only for sensitivity analysis
 fever_loss_l_day_per_c:
   value: 0.20
   unit: L/day per degC above 37
@@ -287,15 +294,15 @@ sigma_weight_kg:
   unit: kg
   range: [0.2, 0.6]
   provenance: ASSUMPTION
-  source: master plan §8
-  notes: morning weight measurement noise
+  source: master plan §8; PMData checked (Decisions v1 item 12)
+  notes: morning weight measurement noise. PMData weight is self-reported and mostly whole kilograms (11/15 people >=85 % integers, 3-6 distinct values in ~3 months), so its day-to-day SD (median 0.36 kg) reflects rounding, not scale noise; value and range kept
 sigma_hr_bpm:
   value: 4.0
   unit: bpm
   range: [2.0, 6.0]
   provenance: ASSUMPTION
   source: master plan §8
-  notes: resting HR noise
+  notes: resting HR noise. PMData Fitbit daily resting HR day-to-day SD median 1.24 bpm (14 people), but Fitbit resting HR is an algorithmically smoothed value; not applied pending team decision (see PROGRESS.md, Decisions v1 item 12)
 sigma_hr_beta_blocker_bpm:
   value: 6.0
   unit: bpm
@@ -588,6 +595,42 @@ forecast_rh_rel_sd:
   source: master plan §12.2
   notes: ''
 
+heat_cf_cap_c:
+  value: 35.0
+  unit: degC
+  range: [33.0, 37.0]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 2
+  notes: counterfactual weather for the heat-attributable fraction; hourly air temperature capped at this value, all else identical
+sweat_cap_l_h:
+  value: 1.5
+  unit: L/h
+  range: [1.0, 2.0]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 11
+  notes: cap on PHS sweat rate, mainly for hours extrapolated outside ISO 7933 validity
+sweat_sensitivity_low:
+  value: 0.7
+  unit: multiplier on sweat
+  range: [0.7, 0.7]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 11
+  notes: heat-model sensitivity analysis (low arm)
+sweat_sensitivity_high:
+  value: 1.3
+  unit: multiplier on sweat
+  range: [1.3, 1.3]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 11
+  notes: heat-model sensitivity analysis (high arm)
+creatinine_sample_hour:
+  value: 8
+  unit: hour of day (local)
+  range: [8, 8]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 5 (EVAL_PLAN Amendment 1, A1.2)
+  notes: the label and the twin's Monte-Carlo risk both read one fasting creatinine per day at this hour
+
 # ---------------------------------------------------------------- genetics (§7.2, §8)
 cyp2c9_mult_as_2_0:
   value: 1.0
@@ -623,7 +666,7 @@ cyp2c9_mult_as_0_0:
   range: [1.75, 3.25]
   provenance: ASSUMPTION
   source: informed by CPIC 2020 NSAID guideline
-  notes: AS 0.0 poor; only CYP2C9-dependent NSAIDs (ibuprofen, celecoxib, flurbiprofen, meloxicam, piroxicam)
+  notes: AS 0.0 poor. CPIC 2020 gives CYP2C9 recommendations for celecoxib, flurbiprofen, lornoxicam, ibuprofen, meloxicam, piroxicam, tenoxicam; aceclofenac, diclofenac, naproxen, aspirin, indomethacin, lumiracoxib, metamizole, nabumetone = "no recommendation"; nimesulide is not addressed by CPIC. For ibuprofen poor metabolisers CPIC recommends starting at 25-50 % of the lowest dose, which makes a 2.0-2.5x exposure multiplier plausible (still an assumption)
 
 # ---------------------------------------------------------------- NSAID normalisation (§7.3, Appendix B)
 nsaid_unit_ibuprofen_mg_day:
@@ -741,7 +784,42 @@ aki_slope_penalty:
   range: [-3.0, -0.5]
   provenance: CITED
   source: Trichy diabetic kidney disease cohort (n = 274) [S]
-  notes: label "from a diabetic cohort" for non-diabetics
+  notes: label "estimated from a diabetic cohort (n=274)" for non-diabetics; fades with aki_penalty_tau_years and scales by stage (Decisions v1 item 9)
+aki_penalty_tau_years:
+  value: 2.0
+  unit: years
+  range: [1.0, 5.0]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 9
+  notes: the AKI slope penalty fades as penalty(t) = aki_slope_penalty x stage_mult x exp(-t / tau)
+aki_penalty_stage1_mult:
+  value: 0.5
+  unit: multiplier
+  range: [0.25, 0.75]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 9
+  notes: ''
+aki_penalty_stage2_mult:
+  value: 1.0
+  unit: multiplier
+  range: [0.75, 1.25]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 9
+  notes: ''
+aki_penalty_stage3_mult:
+  value: 1.5
+  unit: multiplier
+  range: [1.0, 2.0]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 9
+  notes: ''
+sglt2i_initial_dip:
+  value: 3.0
+  unit: mL/min/1.73m2
+  range: [2.0, 5.0]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 3
+  notes: expected haemodynamic dip on starting an SGLT2 inhibitor, not injury; followed by the slower slope
 slope_prior_htn_no_dm:
   value: -1.5
   unit: mL/min/1.73m2 per year

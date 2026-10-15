@@ -1,9 +1,10 @@
 # Cities used for weather replay and the synthetic cohort (master plan §7.1, §11.2).
-# default_language is the most likely patient language; patients can override it.
+# default_language is the most likely patient language among the supported ones (EN, HI, KN, TE;
+# Decisions v1 item 16); patients can override it.
 Delhi:     {lat: 28.61, lon: 77.21, share: 0.18, default_language: hi}
-Nagpur:    {lat: 21.15, lon: 79.09, share: 0.15, default_language: mr}
-Ahmedabad: {lat: 23.02, lon: 72.57, share: 0.14, default_language: hi}   # Gujarati is a COULD language
+Nagpur:    {lat: 21.15, lon: 79.09, share: 0.15, default_language: hi}   # Marathi dropped from scope
+Ahmedabad: {lat: 23.02, lon: 72.57, share: 0.14, default_language: hi}
 Hyderabad: {lat: 17.39, lon: 78.49, share: 0.14, default_language: te}
 Palasa:    {lat: 18.77, lon: 84.41, share: 0.12, default_language: te, note: "Uddanam CKDu region, Srikakulam district, AP"}
-Chennai:   {lat: 13.08, lon: 80.27, share: 0.12, default_language: ta}
+Chennai:   {lat: 13.08, lon: 80.27, share: 0.12, default_language: en}   # Tamil dropped from scope
 Bengaluru: {lat: 12.97, lon: 77.59, share: 0.15, default_language: kn, note: "milder control city; sponsor's home"}

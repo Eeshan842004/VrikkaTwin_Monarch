@@ -36,7 +36,8 @@ def test_every_parameter_has_provenance_source_and_range():
 
 def test_assumptions_have_a_real_sensitivity_range():
     """Fixed-width ranges are allowed only for normalisation/unit constants, never for tunable physiology."""
-    fixed_ok = {"ukf_kappa", "missing_channel_r", "cyp2c9_mult_as_2_0", "creatinine_umol_detect_threshold"}
+    fixed_ok = {"ukf_kappa", "missing_channel_r", "cyp2c9_mult_as_2_0", "creatinine_umol_detect_threshold",
+                "sweat_sensitivity_low", "sweat_sensitivity_high", "creatinine_sample_hour"}
     fixed_ok |= {k for k in registry() if k.startswith("nsaid_unit_")}
     for name, p in registry().items():
         if p.provenance == "ASSUMPTION" and name not in fixed_ok:
@@ -77,7 +78,24 @@ def test_drug_lexicon_has_key_brands_and_combinations():
     assert d["dolo"]["class"] == "analgesic_safe"
 
 
-def test_symptom_lexicon_covers_seven_languages():
+def test_symptom_lexicon_covers_supported_languages():
+    """Supported languages are EN, HI, KN, TE (Decisions v1 item 16); extra seed entries are harmless."""
     s = load_yaml("symptoms_lexicon")
     for symptom in ("fever", "vomiting", "diarrhoea", "dizziness", "less_urine"):
-        assert {"en", "hi", "kn", "te", "ta", "mr", "bn"} <= set(s[symptom]), symptom
+        assert {"en", "hi", "kn", "te"} <= set(s[symptom]), symptom
+
+
+def test_cities_use_supported_languages():
+    assert {c["default_language"] for c in load_yaml("cities").values()} <= {"en", "hi", "kn", "te"}
+
+
+def test_cpic_classification_of_nsaids():
+    g = load_yaml("drugs_india")["generics"]
+    for drug in ("ibuprofen", "celecoxib", "flurbiprofen", "lornoxicam", "meloxicam", "piroxicam", "tenoxicam"):
+        assert g[drug] == "nsaid_cyp2c9", drug
+    for drug in ("diclofenac", "aceclofenac", "naproxen", "indomethacin", "nimesulide"):
+        assert g[drug] == "nsaid_other", drug
+
+
+def test_sglt2_has_no_aki_raising_volume_effect_by_default():
+    assert param("sglt2_loss_l_day") == 0.0

@@ -6,12 +6,19 @@ from vrikka.config import DATA_DIR, load_yaml
 
 pytestmark = pytest.mark.data
 CITIES = list(load_yaml("cities"))
+SEASONS = [2024, 2025, 2026]   # 2024 = training season; 2025 and 2026 = held-out test seasons (Decisions v1)
 
 
+def weather(year, city):
+    return pd.read_parquet(DATA_DIR / "weather" / str(year) / f"{city}.parquet")
+
+
+@pytest.mark.parametrize("year", SEASONS)
 @pytest.mark.parametrize("city", CITIES)
-def test_weather_parquet_complete(city):
-    df = pd.read_parquet(DATA_DIR / "weather" / f"{city}.parquet")
-    assert len(df) == 122 * 24, "one row per hour, 1 Mar - 30 Jun 2024"
+def test_weather_parquet_complete(year, city):
+    df = weather(year, city)
+    assert len(df) == 122 * 24, "one row per hour, 1 Mar - 30 Jun"
+    assert df["time"].min().year == year
     cols = ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "wind_speed_10m", "shortwave_radiation"]
     assert df[cols].notna().all().all()
     assert df["temperature_2m"].between(5, 52).all()
@@ -20,7 +27,7 @@ def test_weather_parquet_complete(city):
 
 
 def test_heat_season_is_hot_where_expected():
-    tmax = {c: pd.read_parquet(DATA_DIR / "weather" / f"{c}.parquet")["temperature_2m"].max() for c in CITIES}
+    tmax = {c: weather(2024, c)["temperature_2m"].max() for c in CITIES}
     assert tmax["Delhi"] >= 44 and tmax["Nagpur"] >= 44, "2024 north/central India heatwave"
     assert tmax["Bengaluru"] < tmax["Delhi"], "Bengaluru is the milder control city"
 
