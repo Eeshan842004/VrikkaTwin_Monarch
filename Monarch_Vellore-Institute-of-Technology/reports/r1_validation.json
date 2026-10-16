@@ -1,0 +1,190 @@
+{
+  "status": "held-out real-data checks (Amendment 2 A2.2)",
+  "R1a": {
+    "label": "labelling verified against the official mimic-code KDIGO SQL (creatinine-only stage)",
+    "values_compared": 1272,
+    "stays": 140,
+    "agreement_pct": 99.29,
+    "pass_threshold_pct": 99.0,
+    "pass": true,
+    "confusion_rows_ours_cols_mimic_code": {
+      "0": {
+        "0": 990,
+        "1": 9,
+        "2": 0,
+        "3": 0
+      },
+      "1": {
+        "0": 0,
+        "1": 146,
+        "2": 0,
+        "3": 0
+      },
+      "2": {
+        "0": 0,
+        "1": 0,
+        "2": 65,
+        "3": 0
+      },
+      "3": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 62
+      }
+    },
+    "disagreements_first_10": [
+      {
+        "stay_id": "30057454",
+        "charttime": "2171-11-08 15:40:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "32359580",
+        "charttime": "2146-06-17 04:35:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "32359580",
+        "charttime": "2146-06-20 04:35:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "32359580",
+        "charttime": "2146-06-23 14:40:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "33281088",
+        "charttime": "2140-01-28 19:35:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "33281088",
+        "charttime": "2140-01-29 13:55:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "38554095",
+        "charttime": "2175-03-21 14:43:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "38554095",
+        "charttime": "2175-03-21 22:22:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      },
+      {
+        "stay_id": "39544395",
+        "charttime": "2176-11-17 19:25:00",
+        "ours": "0",
+        "aki_stage_creat": "1"
+      }
+    ]
+  },
+  "R1b": {
+    "label": "our creatinine equation tracks real patients (24 h-ahead creatinine forecast)",
+    "excluded": {
+      "mimic_stays_with_crrt": 5,
+      "eicu_stays_dialysis_or_esrd_diagnosis": 1
+    },
+    "settings": {
+      "log_gfr_prior_sd": 0.5,
+      "log_gfr_drift_sd_per_day": 0.2,
+      "lab_cv": 0.05
+    },
+    "mimic_iv_demo": {
+      "stays": 135,
+      "stays_with_pairs": 96,
+      "pairs": 673,
+      "rmse_mg_dl": {
+        "kinetic_filter": 0.3908,
+        "carry_forward": 0.413,
+        "linear_trend": 1.0384
+      },
+      "rmse_ci95": {
+        "kinetic_filter": [
+          0.2886,
+          0.4843
+        ],
+        "carry_forward": [
+          0.2915,
+          0.5329
+        ],
+        "linear_trend": [
+          0.5026,
+          1.6896
+        ]
+      },
+      "kinetic_minus_best_simple_ci95": [
+        -0.0619,
+        0.0247
+      ]
+    },
+    "eicu_demo": {
+      "stays": 2372,
+      "stays_with_pairs": 1534,
+      "pairs": 8139,
+      "rmse_mg_dl": {
+        "kinetic_filter": 0.568,
+        "carry_forward": 0.5412,
+        "linear_trend": 2.0417
+      },
+      "rmse_ci95": {
+        "kinetic_filter": [
+          0.5065,
+          0.6375
+        ],
+        "carry_forward": [
+          0.4816,
+          0.6064
+        ],
+        "linear_trend": [
+          1.1014,
+          3.089
+        ]
+      },
+      "kinetic_minus_best_simple_ci95": [
+        0.0134,
+        0.0399
+      ]
+    },
+    "pooled": {
+      "pairs": 8812,
+      "stays": 1630,
+      "rmse_mg_dl": {
+        "kinetic_filter": 0.5564,
+        "carry_forward": 0.5325,
+        "linear_trend": 1.983
+      },
+      "rmse_ci95": {
+        "kinetic_filter": [
+          0.491,
+          0.6135
+        ],
+        "carry_forward": [
+          0.4716,
+          0.5876
+        ],
+        "linear_trend": [
+          1.0813,
+          2.9371
+        ]
+      },
+      "kinetic_minus_best_simple_ci95": [
+        0.0105,
+        0.0381
+      ],
+      "winner": "carry_forward",
+      "kinetic_beats_carry_forward": false
+    }
+  }
+}

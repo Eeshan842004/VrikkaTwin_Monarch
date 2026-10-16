@@ -1102,3 +1102,20 @@ k_tau_h:
   provenance: ASSUMPTION
   source: master plan §9.6
   notes: ''
+
+# ---------------------------------------------------------------- R1b kinetic creatinine filter (real-data check, Part 4)
+# Fixed BEFORE R1b was run on MIMIC / eICU and not tuned to its result (Amendment 2 A2.2: R1b is held-out).
+r1b_log_gfr_prior_sd:
+  value: 0.5
+  unit: SD of log GFR at the first creatinine
+  range: [0.3, 0.8]
+  provenance: ASSUMPTION
+  source: Part 4 (R1b method)
+  notes: prior around the CKD-EPI 2021 eGFR of the first creatinine (steady state assumed at the first value)
+r1b_log_gfr_drift_sd_per_day:
+  value: 0.2
+  unit: SD of the daily change in log GFR
+  range: [0.1, 0.4]
+  provenance: ASSUMPTION
+  source: Part 4 (R1b method)
+  notes: random-walk drift of the filtration state between creatinine measurements (about 20 % per day)
