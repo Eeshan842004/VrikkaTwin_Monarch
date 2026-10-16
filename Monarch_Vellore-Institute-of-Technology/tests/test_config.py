@@ -54,7 +54,8 @@ def test_param_lookup_and_unknown_name():
 
 def test_cohort_yaml_matches_plan():
     c = load_yaml("cohort")
-    assert c["n_patients"] == 3000
+    assert c["n_train_patients"] == 10000 and c["n_test_patients"] == 5000      # Amendment 2 A2.3
+    assert c["test_pool_seed_offset"] != 0, "test patients must be drawn with a different seed"
     assert abs(sum(v[2] for v in c["cities"].values()) - 1.0) < 1e-9
     assert abs(sum(c["occupation"].values()) - 1.0) < 1e-9
     assert abs(sum(c["nsaid_mix"].values()) - 1.0) < 1e-9

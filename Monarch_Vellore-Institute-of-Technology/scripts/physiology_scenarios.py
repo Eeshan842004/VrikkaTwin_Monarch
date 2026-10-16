@@ -10,6 +10,10 @@ fever 38.5 degC (1.5 degC above 37) on hot days 2-3.
 Heat check (Decisions v1 item 2): identical run with outdoor air temperature capped at heat_cf_cap_c (35 degC).
 KDIGO uses one creatinine per day at 08:00 and the §9.3 baseline rule, exactly like the labels will.
 
+Engine revision of 16 Oct 2026 (Decisions v4 / v5 C1, C2): creatinine is now mass-conserving (haemoconcentration) and
+GFR carries the exertion term. The outdoor met here is met_vendor (2.0), which is at the exertion threshold, so these
+scenarios feel only the haemoconcentration; the v1 table is archived in reports/v1_engine/.
+
 Writes reports/physiology_scenarios.json. Every number in the G2 report comes from this file.
 """
 from __future__ import annotations
@@ -58,7 +62,9 @@ def exposure(hot: pd.DataFrame, cap_c: float | None, table) -> dict:
     sweat_quiet, ok_quiet = table.rate(QUIET["tdb"], QUIET["rh"], met_for_occupation("home"), 0.0)
     q = np.full(24 * BURN_IN, float(sweat_quiet))
     r = np.full(24 * RECOVER, float(sweat_quiet))
+    met_home = met_for_occupation("home")
     return {"sweat": np.r_[q, sweat_hot, r], "valid_hot": ok_hot, "tdb_hot": tdb,
+            "met": np.r_[np.full(24 * BURN_IN, met_home), met, np.full(24 * RECOVER, met_home)],
             "outdoor_hours_outside_iso": float((~ok_hot[outdoors]).mean())}
 
 
@@ -72,9 +78,9 @@ def drug_inputs(T: int, ras_diu: bool, nsaid_units: float, fever: bool) -> dict:
     return x
 
 
-def run(p: Params, sweat: np.ndarray, drugs: dict) -> dict:
+def run(p: Params, sweat: np.ndarray, drugs: dict, met: np.ndarray | None = None) -> dict:
     T = len(sweat)
-    out = simulate(p, {"sweat_l_h": sweat, **drugs})
+    out = simulate(p, {"sweat_l_h": sweat, **({} if met is None else {"met": met}), **drugs})
     t = np.arange(T, dtype=float) + 1.0           # state after hour h is at time h+1 (hours since midnight)
     td, cd = daily_samples(t, out["cr"])
     burn_days = [(float(d) / 24, float(c)) for d, c in zip(td, cd, strict=True) if d < BURN_IN * 24]
@@ -114,7 +120,7 @@ def scenario_table(table, hot, phi_override: float | None = None) -> dict:
     for cap_name, cap in (("actual", None), ("capped_35C", param("heat_cf_cap_c"))):
         ex = exposure(hot, cap, table)
         for name, p, rd, nsaid, fever in rows:
-            out[cap_name][name] = run(p, ex["sweat"], drug_inputs(len(ex["sweat"]), rd, nsaid, fever))
+            out[cap_name][name] = run(p, ex["sweat"], drug_inputs(len(ex["sweat"]), rd, nsaid, fever), ex["met"])
         out[cap_name]["_hot_day_sweat_l"] = round(float(ex["sweat"][BURN_IN * 24:(BURN_IN + HOT) * 24].sum()), 2)
         out[cap_name]["_outdoor_hours_outside_iso_validity"] = round(ex["outdoor_hours_outside_iso"], 3)
         out[cap_name]["_max_air_temp_c"] = round(float(ex["tdb_hot"].max()), 1)

@@ -34,6 +34,13 @@ tbw_frac_young_bonus:
   provenance: CITED
   source: textbook physiology
   notes: applied when age < 60
+vd_floor_frac:
+  value: 0.8
+  unit: fraction of baseline total body water
+  range: [0.7, 0.9]
+  provenance: ASSUMPTION
+  source: Decisions v4 2a / v5 C1
+  notes: floor of the creatinine distribution volume, Vd(t) = max(TBW - v_tot, vd_floor_frac x TBW) x 10 dL; creatinine mass is conserved when Vd changes (haemoconcentration)
 ecf_frac_sweat:
   value: 0.5
   unit: fraction
@@ -106,6 +113,39 @@ nsaid_e50:
   provenance: ASSUMPTION
   source: 1 unit = standard daily dose
   notes: dose for half-max prostaglandin inhibition
+
+# ---------------------------------------------------------------- exertion-related renal vasoconstriction (Decisions v4 2b, v5 C2)
+# ex_drop(t) = k_ex x clip((met(t) - ex_met_threshold) / ex_met_span, 0, 1), smoothed with a first-order lag tau_ex_h;
+# GFR is multiplied by (1 - ex_drop). All four are ASSUMPTIONS fixed in Amendment 2 BEFORE the L4 / L5 re-runs and never
+# fitted to them. GFR falls less than renal plasma flow because the filtration fraction rises.
+k_ex:
+  value: 0.25
+  unit: fraction of GFR lost at full exertion
+  range: [0.10, 0.40]
+  provenance: ASSUMPTION
+  source: Decisions v4 2b; Chapman 2020 (Temperature 8:108) reports a 15-30 % fall in renal PLASMA FLOW with passive heat; no exercise-specific GFR figure was verified
+  notes: Amendment 2 A2.4. Not fitted to L4 or L5. Applies only when met exceeds ex_met_threshold, so home-based people are unaffected
+tau_ex_h:
+  value: 1.0
+  unit: h
+  range: [0.5, 3.0]
+  provenance: ASSUMPTION
+  source: Decisions v4 2b
+  notes: on/off lag of the exertional GFR fall
+ex_met_threshold:
+  value: 2.0
+  unit: met
+  range: [1.5, 2.5]
+  provenance: ASSUMPTION
+  source: Decisions v4 2b
+  notes: below this metabolic rate there is no exertional GFR fall (rest, light housework)
+ex_met_span:
+  value: 2.0
+  unit: met
+  range: [1.5, 3.0]
+  provenance: ASSUMPTION
+  source: Decisions v4 2b
+  notes: met range over which the exertion fraction rises from 0 to 1 (full effect at threshold + span)
 
 # ---------------------------------------------------------------- intake and renal water conservation
 phi_drink_young:

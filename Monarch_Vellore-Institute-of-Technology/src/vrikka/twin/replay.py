@@ -109,19 +109,20 @@ def replay(name: str, cfg: dict, year: int = 2024, lead_in: int = 7, after: int 
     w = w.reset_index(drop=True)
     T = len(w)
     people = person_frame(person)
-    sweat = cohort_hourly_sweat({person["city"]: w}, people)["sweat_l_h"][:, 0]
+    expo = cohort_hourly_sweat({person["city"]: w}, people)
+    sweat, met = expo["sweat_l_h"][:, 0].astype(float), expo["met"][:, 0].astype(float)
     score = activity_score(person.get("cyp2c9", "*1/*1"))
     ev = _events_hourly(cfg, T, lead_in, score)
     diu = cfg.get("chronic", {}).get("diuretic")
     p_true = Params.from_patient(age=person["age"], female=person["female"], weight_kg=person["weight_kg"],
                                  egfr=person["egfr"], height_m=person["height_m"], diuretic=diu)
     p_true.theta_sweat = theta_true
-    truth = simulate(p_true, {"sweat_l_h": sweat, **ev})
+    truth = simulate(p_true, {"sweat_l_h": sweat, "met": met, **ev})
     p_twin = Params.from_patient(age=person["age"], female=person["female"], weight_kg=person["weight_kg"],
                                  egfr=person["egfr"], height_m=person["height_m"], diuretic=diu)
     twin = KidneyTwin(p_twin, person["hr_base"], person["sbp_base"], person["beta_blocker"])
     rng = np.random.default_rng(seed)
-    hours = lambda a, b: {k: v[a:b] for k, v in {"sweat_l_h": sweat, **ev}.items()}   # noqa: E731
+    hours = lambda a, b: {k: v[a:b] for k, v in {"sweat_l_h": sweat, "met": met, **ev}.items()}   # noqa: E731
     n_days = T // 24 - 4
     rep = Replay(name, [str((start + pd.Timedelta(days=d + 1)).date()) for d in range(n_days)])
     hi = heat_index_noaa(w["temperature_2m"].to_numpy(), w["relative_humidity_2m"].to_numpy())
@@ -137,9 +138,10 @@ def replay(name: str, cfg: dict, year: int = 2024, lead_in: int = 7, after: int 
                     fever_excess_c=float(ev["fever_excess_c"][i]))
         f_issue = i + 1
         fw = forecast_weather(w, f_issue, 72, rng)
-        f_sweat = cohort_hourly_sweat({person["city"]: fw}, people, start_hour=8)["sweat_l_h"][:, 0]
+        f_expo = cohort_hourly_sweat({person["city"]: fw}, people, start_hour=8)
+        f_sweat, f_met = f_expo["sweat_l_h"][:, 0].astype(float), f_expo["met"][:, 0].astype(float)
         today = {k: float(v[i]) for k, v in ev.items()}         # "continue as is"
-        future = {"sweat_l_h": f_sweat, **{k: today[k] for k in today}}
+        future = {"sweat_l_h": f_sweat, "met": f_met, **{k: today[k] for k in today}}
         rep.risk.append(aki_risk_72h(twin, future, p_twin.cr_base, n_draws, seed=seed + d))
         rep.levels.append(level(rep.risk[-1]))
         rep.truth_cr.append(float(truth["cr"][i]))

@@ -35,8 +35,8 @@
       "1 no drugs": {
         "peak_v_tot_l": 1.694,
         "peak_v_ecf_l": 0.847,
-        "peak_delta_cr_hourly_mg_dl": 0.146,
-        "peak_delta_cr_0800_mg_dl": 0.098,
+        "peak_delta_cr_hourly_mg_dl": 0.151,
+        "peak_delta_cr_0800_mg_dl": 0.082,
         "min_gfr_pct": 83.5,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -46,8 +46,8 @@
       "2 NSAID only (Combiflam x3)": {
         "peak_v_tot_l": 1.694,
         "peak_v_ecf_l": 0.847,
-        "peak_delta_cr_hourly_mg_dl": 0.247,
-        "peak_delta_cr_0800_mg_dl": 0.16,
+        "peak_delta_cr_hourly_mg_dl": 0.253,
+        "peak_delta_cr_0800_mg_dl": 0.146,
         "min_gfr_pct": 74.2,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -57,8 +57,8 @@
       "3 ARB + diuretic": {
         "peak_v_tot_l": 1.794,
         "peak_v_ecf_l": 0.947,
-        "peak_delta_cr_hourly_mg_dl": 0.395,
-        "peak_delta_cr_0800_mg_dl": 0.288,
+        "peak_delta_cr_hourly_mg_dl": 0.403,
+        "peak_delta_cr_0800_mg_dl": 0.268,
         "min_gfr_pct": 63.9,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -68,8 +68,8 @@
       "4 triple whammy": {
         "peak_v_tot_l": 1.794,
         "peak_v_ecf_l": 0.947,
-        "peak_delta_cr_hourly_mg_dl": 0.578,
-        "peak_delta_cr_0800_mg_dl": 0.412,
+        "peak_delta_cr_hourly_mg_dl": 0.588,
+        "peak_delta_cr_0800_mg_dl": 0.39,
         "min_gfr_pct": 53.1,
         "kdigo_max_stage_0800": 1,
         "aki": true,
@@ -79,8 +79,8 @@
       "5 ARB + diuretic + fever": {
         "peak_v_tot_l": 1.94,
         "peak_v_ecf_l": 1.02,
-        "peak_delta_cr_hourly_mg_dl": 0.466,
-        "peak_delta_cr_0800_mg_dl": 0.349,
+        "peak_delta_cr_hourly_mg_dl": 0.475,
+        "peak_delta_cr_0800_mg_dl": 0.326,
         "min_gfr_pct": 60.9,
         "kdigo_max_stage_0800": 1,
         "aki": true,
@@ -90,8 +90,8 @@
       "6 triple whammy + fever": {
         "peak_v_tot_l": 1.94,
         "peak_v_ecf_l": 1.02,
-        "peak_delta_cr_hourly_mg_dl": 0.693,
-        "peak_delta_cr_0800_mg_dl": 0.508,
+        "peak_delta_cr_hourly_mg_dl": 0.707,
+        "peak_delta_cr_0800_mg_dl": 0.481,
         "min_gfr_pct": 49.3,
         "kdigo_max_stage_0800": 1,
         "aki": true,
@@ -101,8 +101,8 @@
       "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
         "peak_v_tot_l": 1.94,
         "peak_v_ecf_l": 1.02,
-        "peak_delta_cr_hourly_mg_dl": 0.81,
-        "peak_delta_cr_0800_mg_dl": 0.597,
+        "peak_delta_cr_hourly_mg_dl": 0.826,
+        "peak_delta_cr_0800_mg_dl": 0.569,
         "min_gfr_pct": 44.3,
         "kdigo_max_stage_0800": 1,
         "aki": true,
@@ -117,8 +117,8 @@
       "1 no drugs": {
         "peak_v_tot_l": 1.112,
         "peak_v_ecf_l": 0.556,
-        "peak_delta_cr_hourly_mg_dl": 0.056,
-        "peak_delta_cr_0800_mg_dl": 0.033,
+        "peak_delta_cr_hourly_mg_dl": 0.06,
+        "peak_delta_cr_0800_mg_dl": 0.027,
         "min_gfr_pct": 92.4,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -128,8 +128,8 @@
       "2 NSAID only (Combiflam x3)": {
         "peak_v_tot_l": 1.112,
         "peak_v_ecf_l": 0.556,
-        "peak_delta_cr_hourly_mg_dl": 0.091,
-        "peak_delta_cr_0800_mg_dl": 0.055,
+        "peak_delta_cr_hourly_mg_dl": 0.095,
+        "peak_delta_cr_0800_mg_dl": 0.049,
         "min_gfr_pct": 88.1,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -139,8 +139,8 @@
       "3 ARB + diuretic": {
         "peak_v_tot_l": 1.212,
         "peak_v_ecf_l": 0.656,
-        "peak_delta_cr_hourly_mg_dl": 0.169,
-        "peak_delta_cr_0800_mg_dl": 0.111,
+        "peak_delta_cr_hourly_mg_dl": 0.172,
+        "peak_delta_cr_0800_mg_dl": 0.104,
         "min_gfr_pct": 79.5,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -150,8 +150,8 @@
       "4 triple whammy": {
         "peak_v_tot_l": 1.212,
         "peak_v_ecf_l": 0.656,
-        "peak_delta_cr_hourly_mg_dl": 0.237,
-        "peak_delta_cr_0800_mg_dl": 0.157,
+        "peak_delta_cr_hourly_mg_dl": 0.241,
+        "peak_delta_cr_0800_mg_dl": 0.149,
         "min_gfr_pct": 73.5,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -161,8 +161,8 @@
       "5 ARB + diuretic + fever": {
         "peak_v_tot_l": 1.358,
         "peak_v_ecf_l": 0.729,
-        "peak_delta_cr_hourly_mg_dl": 0.23,
-        "peak_delta_cr_0800_mg_dl": 0.157,
+        "peak_delta_cr_hourly_mg_dl": 0.234,
+        "peak_delta_cr_0800_mg_dl": 0.151,
         "min_gfr_pct": 75.2,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -172,8 +172,8 @@
       "6 triple whammy + fever": {
         "peak_v_tot_l": 1.358,
         "peak_v_ecf_l": 0.729,
-        "peak_delta_cr_hourly_mg_dl": 0.325,
-        "peak_delta_cr_0800_mg_dl": 0.223,
+        "peak_delta_cr_hourly_mg_dl": 0.329,
+        "peak_delta_cr_0800_mg_dl": 0.216,
         "min_gfr_pct": 67.8,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -183,8 +183,8 @@
       "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
         "peak_v_tot_l": 1.358,
         "peak_v_ecf_l": 0.729,
-        "peak_delta_cr_hourly_mg_dl": 0.369,
-        "peak_delta_cr_0800_mg_dl": 0.253,
+        "peak_delta_cr_hourly_mg_dl": 0.374,
+        "peak_delta_cr_0800_mg_dl": 0.247,
         "min_gfr_pct": 64.6,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -197,51 +197,51 @@
     },
     "heat_attribution": {
       "1 no drugs": {
-        "delta_cr_actual": 0.146,
-        "delta_cr_capped": 0.056,
-        "heat_share_of_rise": 0.62,
+        "delta_cr_actual": 0.151,
+        "delta_cr_capped": 0.06,
+        "heat_share_of_rise": 0.6,
         "aki_actual": false,
         "aki_capped": false
       },
       "2 NSAID only (Combiflam x3)": {
-        "delta_cr_actual": 0.247,
-        "delta_cr_capped": 0.091,
-        "heat_share_of_rise": 0.63,
+        "delta_cr_actual": 0.253,
+        "delta_cr_capped": 0.095,
+        "heat_share_of_rise": 0.62,
         "aki_actual": false,
         "aki_capped": false
       },
       "3 ARB + diuretic": {
-        "delta_cr_actual": 0.395,
-        "delta_cr_capped": 0.169,
+        "delta_cr_actual": 0.403,
+        "delta_cr_capped": 0.172,
         "heat_share_of_rise": 0.57,
         "aki_actual": false,
         "aki_capped": false
       },
       "4 triple whammy": {
-        "delta_cr_actual": 0.578,
-        "delta_cr_capped": 0.237,
+        "delta_cr_actual": 0.588,
+        "delta_cr_capped": 0.241,
         "heat_share_of_rise": 0.59,
         "aki_actual": true,
         "aki_capped": false
       },
       "5 ARB + diuretic + fever": {
-        "delta_cr_actual": 0.466,
-        "delta_cr_capped": 0.23,
+        "delta_cr_actual": 0.475,
+        "delta_cr_capped": 0.234,
         "heat_share_of_rise": 0.51,
         "aki_actual": true,
         "aki_capped": false
       },
       "6 triple whammy + fever": {
-        "delta_cr_actual": 0.693,
-        "delta_cr_capped": 0.325,
+        "delta_cr_actual": 0.707,
+        "delta_cr_capped": 0.329,
         "heat_share_of_rise": 0.53,
         "aki_actual": true,
         "aki_capped": false
       },
       "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
-        "delta_cr_actual": 0.81,
-        "delta_cr_capped": 0.369,
-        "heat_share_of_rise": 0.54,
+        "delta_cr_actual": 0.826,
+        "delta_cr_capped": 0.374,
+        "heat_share_of_rise": 0.55,
         "aki_actual": true,
         "aki_capped": false
       }
@@ -252,8 +252,8 @@
       "1 no drugs": {
         "peak_v_tot_l": 1.059,
         "peak_v_ecf_l": 0.529,
-        "peak_delta_cr_hourly_mg_dl": 0.051,
-        "peak_delta_cr_0800_mg_dl": 0.03,
+        "peak_delta_cr_hourly_mg_dl": 0.054,
+        "peak_delta_cr_0800_mg_dl": 0.022,
         "min_gfr_pct": 93.2,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -263,8 +263,8 @@
       "2 NSAID only (Combiflam x3)": {
         "peak_v_tot_l": 1.059,
         "peak_v_ecf_l": 0.529,
-        "peak_delta_cr_hourly_mg_dl": 0.081,
-        "peak_delta_cr_0800_mg_dl": 0.048,
+        "peak_delta_cr_hourly_mg_dl": 0.085,
+        "peak_delta_cr_0800_mg_dl": 0.039,
         "min_gfr_pct": 89.4,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -274,8 +274,8 @@
       "3 ARB + diuretic": {
         "peak_v_tot_l": 1.159,
         "peak_v_ecf_l": 0.629,
-        "peak_delta_cr_hourly_mg_dl": 0.16,
-        "peak_delta_cr_0800_mg_dl": 0.107,
+        "peak_delta_cr_hourly_mg_dl": 0.163,
+        "peak_delta_cr_0800_mg_dl": 0.097,
         "min_gfr_pct": 81.2,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -285,8 +285,8 @@
       "4 triple whammy": {
         "peak_v_tot_l": 1.159,
         "peak_v_ecf_l": 0.629,
-        "peak_delta_cr_hourly_mg_dl": 0.219,
-        "peak_delta_cr_0800_mg_dl": 0.144,
+        "peak_delta_cr_hourly_mg_dl": 0.223,
+        "peak_delta_cr_0800_mg_dl": 0.133,
         "min_gfr_pct": 75.6,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -296,8 +296,8 @@
       "5 ARB + diuretic + fever": {
         "peak_v_tot_l": 1.305,
         "peak_v_ecf_l": 0.702,
-        "peak_delta_cr_hourly_mg_dl": 0.219,
-        "peak_delta_cr_0800_mg_dl": 0.15,
+        "peak_delta_cr_hourly_mg_dl": 0.222,
+        "peak_delta_cr_0800_mg_dl": 0.138,
         "min_gfr_pct": 76.7,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -307,8 +307,8 @@
       "6 triple whammy + fever": {
         "peak_v_tot_l": 1.305,
         "peak_v_ecf_l": 0.702,
-        "peak_delta_cr_hourly_mg_dl": 0.303,
-        "peak_delta_cr_0800_mg_dl": 0.203,
+        "peak_delta_cr_hourly_mg_dl": 0.308,
+        "peak_delta_cr_0800_mg_dl": 0.194,
         "min_gfr_pct": 69.8,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -318,8 +318,8 @@
       "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
         "peak_v_tot_l": 1.305,
         "peak_v_ecf_l": 0.702,
-        "peak_delta_cr_hourly_mg_dl": 0.343,
-        "peak_delta_cr_0800_mg_dl": 0.231,
+        "peak_delta_cr_hourly_mg_dl": 0.348,
+        "peak_delta_cr_0800_mg_dl": 0.22,
         "min_gfr_pct": 66.9,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -334,8 +334,8 @@
       "1 no drugs": {
         "peak_v_tot_l": 0.695,
         "peak_v_ecf_l": 0.348,
-        "peak_delta_cr_hourly_mg_dl": 0.016,
-        "peak_delta_cr_0800_mg_dl": 0.009,
+        "peak_delta_cr_hourly_mg_dl": 0.019,
+        "peak_delta_cr_0800_mg_dl": 0.005,
         "min_gfr_pct": 97.7,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -345,8 +345,8 @@
       "2 NSAID only (Combiflam x3)": {
         "peak_v_tot_l": 0.695,
         "peak_v_ecf_l": 0.348,
-        "peak_delta_cr_hourly_mg_dl": 0.025,
-        "peak_delta_cr_0800_mg_dl": 0.014,
+        "peak_delta_cr_hourly_mg_dl": 0.028,
+        "peak_delta_cr_0800_mg_dl": 0.011,
         "min_gfr_pct": 96.4,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -356,8 +356,8 @@
       "3 ARB + diuretic": {
         "peak_v_tot_l": 0.795,
         "peak_v_ecf_l": 0.448,
-        "peak_delta_cr_hourly_mg_dl": 0.061,
-        "peak_delta_cr_0800_mg_dl": 0.039,
+        "peak_delta_cr_hourly_mg_dl": 0.063,
+        "peak_delta_cr_0800_mg_dl": 0.035,
         "min_gfr_pct": 91.5,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -367,8 +367,8 @@
       "4 triple whammy": {
         "peak_v_tot_l": 0.795,
         "peak_v_ecf_l": 0.448,
-        "peak_delta_cr_hourly_mg_dl": 0.083,
-        "peak_delta_cr_0800_mg_dl": 0.054,
+        "peak_delta_cr_hourly_mg_dl": 0.085,
+        "peak_delta_cr_0800_mg_dl": 0.05,
         "min_gfr_pct": 88.9,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -378,8 +378,8 @@
       "5 ARB + diuretic + fever": {
         "peak_v_tot_l": 0.941,
         "peak_v_ecf_l": 0.52,
-        "peak_delta_cr_hourly_mg_dl": 0.1,
-        "peak_delta_cr_0800_mg_dl": 0.067,
+        "peak_delta_cr_hourly_mg_dl": 0.103,
+        "peak_delta_cr_0800_mg_dl": 0.064,
         "min_gfr_pct": 87.6,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -389,8 +389,8 @@
       "6 triple whammy + fever": {
         "peak_v_tot_l": 0.941,
         "peak_v_ecf_l": 0.52,
-        "peak_delta_cr_hourly_mg_dl": 0.137,
-        "peak_delta_cr_0800_mg_dl": 0.092,
+        "peak_delta_cr_hourly_mg_dl": 0.139,
+        "peak_delta_cr_0800_mg_dl": 0.089,
         "min_gfr_pct": 83.9,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -400,8 +400,8 @@
       "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
         "peak_v_tot_l": 0.941,
         "peak_v_ecf_l": 0.52,
-        "peak_delta_cr_hourly_mg_dl": 0.153,
-        "peak_delta_cr_0800_mg_dl": 0.103,
+        "peak_delta_cr_hourly_mg_dl": 0.155,
+        "peak_delta_cr_0800_mg_dl": 0.1,
         "min_gfr_pct": 82.4,
         "kdigo_max_stage_0800": 0,
         "aki": false,
@@ -414,50 +414,50 @@
     },
     "heat_attribution": {
       "1 no drugs": {
-        "delta_cr_actual": 0.051,
-        "delta_cr_capped": 0.016,
-        "heat_share_of_rise": 0.69,
+        "delta_cr_actual": 0.054,
+        "delta_cr_capped": 0.019,
+        "heat_share_of_rise": 0.65,
         "aki_actual": false,
         "aki_capped": false
       },
       "2 NSAID only (Combiflam x3)": {
-        "delta_cr_actual": 0.081,
-        "delta_cr_capped": 0.025,
-        "heat_share_of_rise": 0.69,
+        "delta_cr_actual": 0.085,
+        "delta_cr_capped": 0.028,
+        "heat_share_of_rise": 0.67,
         "aki_actual": false,
         "aki_capped": false
       },
       "3 ARB + diuretic": {
-        "delta_cr_actual": 0.16,
-        "delta_cr_capped": 0.061,
-        "heat_share_of_rise": 0.62,
+        "delta_cr_actual": 0.163,
+        "delta_cr_capped": 0.063,
+        "heat_share_of_rise": 0.61,
         "aki_actual": false,
         "aki_capped": false
       },
       "4 triple whammy": {
-        "delta_cr_actual": 0.219,
-        "delta_cr_capped": 0.083,
+        "delta_cr_actual": 0.223,
+        "delta_cr_capped": 0.085,
         "heat_share_of_rise": 0.62,
         "aki_actual": false,
         "aki_capped": false
       },
       "5 ARB + diuretic + fever": {
-        "delta_cr_actual": 0.219,
-        "delta_cr_capped": 0.1,
+        "delta_cr_actual": 0.222,
+        "delta_cr_capped": 0.103,
         "heat_share_of_rise": 0.54,
         "aki_actual": false,
         "aki_capped": false
       },
       "6 triple whammy + fever": {
-        "delta_cr_actual": 0.303,
-        "delta_cr_capped": 0.137,
+        "delta_cr_actual": 0.308,
+        "delta_cr_capped": 0.139,
         "heat_share_of_rise": 0.55,
         "aki_actual": false,
         "aki_capped": false
       },
       "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
-        "delta_cr_actual": 0.343,
-        "delta_cr_capped": 0.153,
+        "delta_cr_actual": 0.348,
+        "delta_cr_capped": 0.155,
         "heat_share_of_rise": 0.55,
         "aki_actual": false,
         "aki_capped": false
@@ -467,6 +467,6 @@
   "benchmark": {
     "trajectories": 33000,
     "hourly_steps": 2928,
-    "seconds": 13.0
+    "seconds": 15.1
   }
 }

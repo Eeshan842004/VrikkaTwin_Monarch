@@ -13,6 +13,12 @@ GFR = GFR_base x [1 - h(d) x (1 - protection)] -> creatinine kinetics.
 - SGLT2 inhibitors have no AKI-raising volume effect by default (``sglt2_loss_l_day`` = 0; Decisions v1 item 3).
 - Intake is split (Decisions v2 B2): plain water refills the ECF in proportion to v_ecf/v_tot; ORS / electrolyte
   drink refills ``ors_ecf_frac`` (0.9) of its volume into the ECF.
+- Haemoconcentration (Decisions v5 C1): creatinine MASS is conserved when body water falls, Vd(t) = max(TBW - v_tot,
+  vd_floor_frac x TBW) x 10 dL, so the concentration rises as water is lost. (Shrinking Vd inside the old ODE has no
+  concentration effect at all; the mass-conserving form does.) With v_tot = 0 the result equals the old engine exactly.
+- Exertion (Decisions v4 2b, v5 C2): GFR is multiplied by (1 - k_ex x ex), where ex is the lagged exertion fraction
+  clip((met - ex_met_threshold) / ex_met_span, 0, 1). Only when met exceeds the threshold, so home-based people are
+  unaffected.
 
 Every constant comes from config/parameters.yaml. Units: G in mg/min, GFR in mL/min, Cr in mg/dL, Vd in dL.
 """
@@ -82,6 +88,11 @@ class Params:
     nsaid_e50: float = field(default_factory=lambda: param("nsaid_e50"))
     fever_loss_l_day_per_c: float = field(default_factory=lambda: param("fever_loss_l_day_per_c"))
     ors_ecf_frac: float = field(default_factory=lambda: param("ors_ecf_frac"))
+    k_ex: float = field(default_factory=lambda: param("k_ex"))
+    tau_ex_h: float = field(default_factory=lambda: param("tau_ex_h"))
+    ex_met_threshold: float = field(default_factory=lambda: param("ex_met_threshold"))
+    ex_met_span: float = field(default_factory=lambda: param("ex_met_span"))
+    vd_floor_frac: float = field(default_factory=lambda: param("vd_floor_frac"))
     half_life_h: dict = field(default_factory=dict)
 
     @classmethod
@@ -138,25 +149,56 @@ def gfr_now(p: Params, v_ecf_l: float, nsaid_eff: float, ras_eff: float) -> floa
     return p.gfr_base * (1.0 - h * (1.0 - prot))
 
 
-def creatinine_step(cr: float, gen_mg_min: float, gfr_ml_min: float, vd_dl: float, dt_h: float = 1.0) -> float:
+def distribution_volume_dl(tbw_l, v_tot_l, floor_frac: float | None = None):
+    """Creatinine distribution volume (dL) = current total body water x 10, floored at ``floor_frac`` x baseline TBW
+    (Decisions v5 C1). Works on scalars and numpy arrays."""
+    f = param("vd_floor_frac") if floor_frac is None else floor_frac
+    return np.maximum(tbw_l - v_tot_l, f * tbw_l) * 10.0
+
+
+def exertion_target(met, threshold: float | None = None, span: float | None = None):
+    """Exertion fraction in [0, 1] for a metabolic rate: 0 at or below ``threshold``, 1 at threshold + span."""
+    thr = param("ex_met_threshold") if threshold is None else threshold
+    spn = param("ex_met_span") if span is None else span
+    return np.clip((np.asarray(met, dtype=float) - thr) / spn, 0.0, 1.0)
+
+
+def exertion_update(ex_prev: float, met: float, p: Params, dt_h: float = 1.0) -> float:
+    """First-order on/off lag of the exertion fraction over ``dt_h`` hours (``tau_ex_h``)."""
+    k = math.exp(-dt_h / p.tau_ex_h)
+    return ex_prev * k + (1.0 - k) * float(exertion_target(met, p.ex_met_threshold, p.ex_met_span))
+
+
+def creatinine_step(cr: float, gen_mg_min: float, gfr_ml_min: float, vd_dl: float, dt_h: float = 1.0,
+                    vd_end_dl: float | None = None) -> float:
     """Creatinine kinetics Vd x dCr/dt = G - GFR x Cr / 100, solved exactly for constant G and GFR over dt.
 
     This is the single creatinine-kinetics function: the twin, the simulators and the real-data check R1b all
     import it (Decisions v1 item 14).
+
+    Mass-conserving haemoconcentration (Decisions v5 C1): if the distribution volume changes from ``vd_dl`` to
+    ``vd_end_dl`` over the step, creatinine MASS is conserved, i.e. dCr/dt = (G - GFR x Cr/100)/Vd - Cr x (dVd/dt)/Vd.
+    The clearance term uses the mean volume of the step (exact for a constant Vd, second-order otherwise), and the
+    concentration is rescaled by the volume ratios, so a constant volume gives exactly the old result.
     """
-    k = 0.6 * gfr_ml_min / vd_dl                       # 1/h  (60 min/h x GFR / (100 x Vd))
+    vd_end = vd_dl if vd_end_dl is None else vd_end_dl
+    vd_mid = 0.5 * (vd_dl + vd_end)
+    cr = cr * (vd_dl / vd_mid)                          # concentration if the volume were already vd_mid
+    k = 0.6 * gfr_ml_min / vd_mid                       # 1/h  (60 min/h x GFR / (100 x Vd))
     if k < 1e-12:
-        return cr + 60.0 * gen_mg_min / vd_dl * dt_h
-    css = 100.0 * gen_mg_min / gfr_ml_min
-    return css + (cr - css) * math.exp(-k * dt_h)
+        cr_n = cr + 60.0 * gen_mg_min / vd_mid * dt_h
+    else:
+        css = 100.0 * gen_mg_min / gfr_ml_min
+        cr_n = css + (cr - css) * math.exp(-k * dt_h)
+    return cr_n * (vd_mid / vd_end)                     # then the volume moves on to vd_end
 
 
 def step_hour(p: Params, s: dict, sweat_l_h: float, gi_loss_l_h: float, intake_l_h: float, eff: dict,
-              fever_excess_c: float = 0.0, phi_mult: float = 1.0, ors_l_h: float = 0.0) -> dict:
+              fever_excess_c: float = 0.0, phi_mult: float = 1.0, ors_l_h: float = 0.0, ex: float = 0.0) -> dict:
     """Advance one hour. ``s`` = {'v_tot','v_ecf','cr'}; ``eff`` = lagged drug effect levels by channel.
 
     ``intake_l_h`` is extra plain water (beyond the habitual drinking already in ``phi_drink``); ``ors_l_h`` is
-    ORS / electrolyte drink.
+    ORS / electrolyte drink; ``ex`` is the lagged exertion fraction for this hour (0 = rest).
     """
     sweat_net = (sweat_l_h * p.theta_sweat * (1.0 - p.phi_drink * phi_mult)
                  + p.fever_loss_l_day_per_c * max(fever_excess_c, 0.0) / 24.0)
@@ -167,13 +209,15 @@ def step_hour(p: Params, s: dict, sweat_l_h: float, gi_loss_l_h: float, intake_l
     intake_ecf = intake_l_h * (v_ecf / v_tot if v_tot > 1e-6 else 1.0) + ors_l_h * p.ors_ecf_frac
     v_tot_n = max(v_tot + tot_loss - intake_l_h - ors_l_h - v_tot / p.tau_recover_h, 0.0)
     v_ecf_n = min(max(v_ecf + ecf_loss - intake_ecf - v_ecf / p.tau_recover_h, 0.0), v_tot_n)
-    gfr = gfr_now(p, v_ecf_n, eff["nsaid"], eff["ras"])
-    cr = creatinine_step(s["cr"], p.cr_generation_mg_min, gfr, p.tbw_l * 10.0)
+    gfr = gfr_now(p, v_ecf_n, eff["nsaid"], eff["ras"]) * (1.0 - p.k_ex * ex)
+    vd0 = float(distribution_volume_dl(p.tbw_l, v_tot, p.vd_floor_frac))
+    vd1 = float(distribution_volume_dl(p.tbw_l, v_tot_n, p.vd_floor_frac))
+    cr = creatinine_step(s["cr"], p.cr_generation_mg_min, gfr, vd0, 1.0, vd1)
     return {"v_tot": v_tot_n, "v_ecf": v_ecf_n, "cr": cr, "gfr": gfr}
 
 
 INPUT_DEFAULTS = {"sweat_l_h": 0.0, "gi_loss_l_h": 0.0, "intake_l_h": 0.0, "ors_l_h": 0.0, "fever_excess_c": 0.0,
-                  "phi_mult": 1.0,
+                  "phi_mult": 1.0, "met": 0.0,
                   "nsaid": 0.0, "ras": 0.0, "diuretic": 0.0, "mra": 0.0, "sglt2": 0.0}
 
 
@@ -181,18 +225,22 @@ def simulate(p: Params, inputs: dict, s0: dict | None = None, eff0: dict | None 
     """Run hour by hour. ``inputs`` maps names in INPUT_DEFAULTS to length-T arrays (missing -> default).
 
     Drug inputs are target effect levels: NSAID in genotype-adjusted normalised units, other drugs 0/1. Chronic
-    drugs start at steady state (``eff0`` defaults to each drug's first-hour level).
+    drugs start at steady state (``eff0`` defaults to each drug's first-hour level). ``met`` (metabolic rate, met
+    units) drives the exertional GFR fall; the lagged exertion fraction starts at ``eff0['ex']`` (default 0 = rest).
     """
     T = len(next(iter(inputs.values())))
     x = {k: np.broadcast_to(np.asarray(inputs.get(k, v), dtype=float), (T,)) for k, v in INPUT_DEFAULTS.items()}
     s = dict(s0 or {"v_tot": 0.0, "v_ecf": 0.0, "cr": p.cr_base})
     eff = dict(eff0 or {ch: float(x[ch][0]) for ch in CHANNELS})
-    out = {k: np.empty(T) for k in ("v_tot", "v_ecf", "cr", "gfr", *(f"eff_{c}" for c in CHANNELS))}
+    ex = float(eff.pop("ex", 0.0))
+    out = {k: np.empty(T) for k in ("v_tot", "v_ecf", "cr", "gfr", "ex", *(f"eff_{c}" for c in CHANNELS))}
     for t in range(T):
         for ch in CHANNELS:
             eff[ch] = drug_effect(eff[ch], float(x[ch][t]), p.half_life_h[ch])
+        ex = exertion_update(ex, float(x["met"][t]), p)
         s = step_hour(p, s, float(x["sweat_l_h"][t]), float(x["gi_loss_l_h"][t]), float(x["intake_l_h"][t]), eff,
-                      float(x["fever_excess_c"][t]), float(x["phi_mult"][t]), float(x["ors_l_h"][t]))
+                      float(x["fever_excess_c"][t]), float(x["phi_mult"][t]), float(x["ors_l_h"][t]), ex)
+        out["ex"][t] = ex
         for k in ("v_tot", "v_ecf", "cr", "gfr"):
             out[k][t] = s[k]
         for ch in CHANNELS:

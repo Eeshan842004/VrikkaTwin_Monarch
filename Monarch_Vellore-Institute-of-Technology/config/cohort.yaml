@@ -1,6 +1,11 @@
 # Synthetic cohort definition (master plan §11.2). Values are ASSUMPTIONS unless cited in the plan.
-n_patients: 3000            # use 1000 if compute is tight
-season: {start: 2024-03-01, end: 2024-06-30}   # 122 days; 2024 heat season (NCDC 48,156 suspected cases [S])
+# Amendment 2 A2.3 (16 Oct 2026): 10,000 patients for the 2024 training season; the 2025 and 2026 test seasons use the
+# same 5,000 separate test patients (own seed, ids T00000...) so no test patient appears in training. Fallback if
+# runtime does not allow: n_train_patients 3000 / n_test_patients 3000 with bootstrap CIs everywhere (say so).
+n_train_patients: 10000
+n_test_patients: 5000
+test_pool_seed_offset: 1000     # test patients are drawn with seed + this offset
+season: {start: 2024-03-01, end: 2024-06-30}   # 122 days; 2024 heat season (NCDC surveillance: 67,637 suspected heatstroke cases and 374 deaths, 1 Mar-27 Jul 2024; Lok Sabha reply, Aug 2024)
 cities:                     # lat, lon (Open-Meteo); share of cohort
   Delhi:     [28.61, 77.21, 0.18]
   Nagpur:    [21.15, 79.09, 0.15]

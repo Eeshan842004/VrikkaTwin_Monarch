@@ -24,7 +24,7 @@ from filterpy.kalman import MerweScaledSigmaPoints, unscented_transform
 from vrikka.config import param
 from vrikka.physiology.batch import simulate_vec, stack_params
 from vrikka.physiology.renal import CHANNELS as DRUGS
-from vrikka.physiology.renal import INPUT_DEFAULTS, Params, drug_effect
+from vrikka.physiology.renal import INPUT_DEFAULTS, Params, drug_effect, exertion_update
 from vrikka.twin import measurement
 
 
@@ -80,6 +80,7 @@ class KidneyTwin:
     def _start_eff(self, day: dict) -> dict:
         if self.eff is None:
             self.eff = {ch: float(np.asarray(day.get(ch, 0.0)).ravel()[0]) for ch in DRUGS}
+            self.eff["ex"] = 0.0          # lagged exertion fraction: the day starts at rest (08:00)
         return self.eff
 
     def _run(
@@ -96,6 +97,7 @@ class KidneyTwin:
             "cr": np.maximum(states[:, 2], 0.2),
         }
         eff0 = {ch: np.full(n, self.eff[ch]) for ch in DRUGS}
+        eff0["ex"] = np.full(n, self.eff.get("ex", 0.0))
         return simulate_vec(self._engine_params(states[:, 3], overrides), inputs, s0, eff0, record=record)
 
     # ------------------------------------------------------------------ filter steps
@@ -112,6 +114,8 @@ class KidneyTwin:
         for ch in DRUGS:
             for h in range(24):
                 self.eff[ch] = drug_effect(self.eff[ch], float(inputs[ch][h]), self.p.half_life_h[ch])
+        for h in range(24):
+            self.eff["ex"] = exertion_update(self.eff["ex"], float(inputs["met"][h]), self.p)
         self.cr_daily.append(float(self.x[2]))
 
     def update(

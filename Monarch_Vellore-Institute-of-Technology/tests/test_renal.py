@@ -145,7 +145,7 @@ def test_batch_matches_scalar_to_4_decimals(rng):
     X = {"sweat_l_h": rng.uniform(0, 0.8, (T, 12)), "nsaid": (rng.uniform(0, 1, (T, 12)) > 0.5) * 1.3,
          "ras": np.ones((T, 12)), "diuretic": np.ones((T, 12)), "fever_excess_c": rng.uniform(0, 2, (T, 12)),
          "gi_loss_l_h": rng.uniform(0, 0.05, (T, 12)), "intake_l_h": rng.uniform(0, 0.05, (T, 12)),
-         "ors_l_h": rng.uniform(0, 0.05, (T, 12))}
+         "ors_l_h": rng.uniform(0, 0.05, (T, 12)), "met": rng.uniform(1.0, 4.0, (T, 12))}
     vec = simulate_vec(stack_params(people), X)
     for j, p in enumerate(people):
         sc = simulate(p, {k: v[:, j] for k, v in X.items()})

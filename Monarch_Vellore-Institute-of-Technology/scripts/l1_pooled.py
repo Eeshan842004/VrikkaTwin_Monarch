@@ -3,13 +3,18 @@
 
 One season has only ~15-25 AKI events on triple-therapy days, so a single-season RR is very noisy; the pooled
 estimate is the one compared with the pass band 1.1-2.5 (Lapi BMJ 2013: 1.31 overall, 1.82 in the first 30 days;
-all our NSAID courses are new). Reads data/synthetic/<year>/mismatched/ and writes reports/l1_pooled.json.
+all our NSAID courses are new). Reads data/synthetic/<year>/mismatched/ and writes reports/l1_pooled.json
+(``--root`` / ``--out`` override both).
+The CI is a patient-level bootstrap percentile interval (400 resamples); the painkiller constant of the truth
+simulator was calibrated ONCE to this band (18 -> 6 mmHg, Part 3) and is not changed again (Decisions v4 Q2).
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -19,7 +24,7 @@ from vrikka.config import DATA_DIR, REPORTS_DIR, SEED
 SYN = DATA_DIR / "synthetic"
 
 
-def table(years) -> pd.DataFrame:
+def table(years, SYN: Path = SYN) -> pd.DataFrame:  # noqa: N803
     pp = pd.read_parquet(SYN / "patients_public.parquet")
     both = pp["on_ras"] & pp["diuretic"].map(lambda x: isinstance(x, str) and bool(x))
     ids = set(pp.loc[both, "patient_id"])
@@ -57,9 +62,15 @@ def boot(df: pd.DataFrame, n: int, rng) -> tuple[float, float]:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", type=Path, default=SYN)
+    ap.add_argument("--out", type=Path, default=REPORTS_DIR / "l1_pooled.json")
+    a = ap.parse_args()
     rng = np.random.default_rng(SEED)
-    d = table((2024, 2025, 2026))
+    d = table((2024, 2025, 2026), a.root)
     res = {
+        "ci_method": "patient-level bootstrap percentile interval, 400 resamples",
+        "constant_calibrated_once": "truth painkiller LLA shift 18 -> 6 mmHg (Part 3); not changed again",
         "definition": "AKI onset within 72 h; triple = ACEi/ARB + diuretic + NSAID that day; double = ACEi/ARB + "
         "diuretic, no NSAID in the last 4 days; adherent, non-excluded days",
         "pass_band": [1.1, 2.5],
@@ -75,7 +86,7 @@ def main() -> int:
         "triple_events": ev,
         "pass": bool(1.1 <= est <= 2.5),
     }
-    (REPORTS_DIR / "l1_pooled.json").write_text(json.dumps(res, indent=2), encoding="utf-8")
+    a.out.write_text(json.dumps(res, indent=2), encoding="utf-8")
     print(json.dumps(res, indent=1))
     return 0
 

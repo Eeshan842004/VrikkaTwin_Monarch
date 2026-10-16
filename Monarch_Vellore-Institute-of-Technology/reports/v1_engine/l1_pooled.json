@@ -1,0 +1,42 @@
+{
+  "definition": "AKI onset within 72 h; triple = ACEi/ARB + diuretic + NSAID that day; double = ACEi/ARB + diuretic, no NSAID in the last 4 days; adherent, non-excluded days",
+  "pass_band": [
+    1.1,
+    2.5
+  ],
+  "per_season": {
+    "2024": {
+      "rr": 2.73,
+      "ci95": [
+        1.0,
+        4.96
+      ],
+      "triple_events": 23
+    },
+    "2025": {
+      "rr": 2.31,
+      "ci95": [
+        0.87,
+        4.17
+      ],
+      "triple_events": 16
+    },
+    "2026": {
+      "rr": 1.87,
+      "ci95": [
+        0.81,
+        3.44
+      ],
+      "triple_events": 15
+    }
+  },
+  "pooled": {
+    "rr": 2.31,
+    "ci95": [
+      1.32,
+      3.36
+    ],
+    "triple_events": 54,
+    "pass": true
+  }
+}

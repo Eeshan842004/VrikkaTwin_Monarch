@@ -1,6 +1,7 @@
 """Weather replay for the synthetic seasons (master plan §7.5; Decisions v1 item 15).
 
-2024 = training season; 2025 and 2026 = held-out temporal test seasons (same patients, new weather).
+2024 = training season; 2025 and 2026 = held-out temporal test seasons (separate test patients, new weather;
+Amendment 2 A2.3).
 """
 from __future__ import annotations
 

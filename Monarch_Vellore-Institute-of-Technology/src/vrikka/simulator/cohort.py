@@ -36,9 +36,11 @@ def choice(rng, d: dict, size):
     return rng.choice(keys, size=size, p=np.array([d[k] for k in keys], dtype=float) / sum(d.values()))
 
 
-def generate_cohort(n: int | None = None, seed: int = SEED) -> pd.DataFrame:
+def generate_cohort(n: int | None = None, seed: int = SEED, id_prefix: str = "P") -> pd.DataFrame:
+    """``n`` patients (default ``n_train_patients`` of cohort.yaml). The train and test pools use different seeds and
+    id prefixes (P / T) so a test patient can never appear in training (Amendment 2 A2.3)."""
     c = load_yaml("cohort")
-    n = n or c["n_patients"]
+    n = n or c["n_train_patients"]
     rng = np.random.default_rng(seed)
     a = c["age"]
     age = stats.truncnorm.rvs(
@@ -98,7 +100,7 @@ def generate_cohort(n: int | None = None, seed: int = SEED) -> pd.DataFrame:
 
     df = pd.DataFrame(
         {
-            "patient_id": [f"P{i:05d}" for i in range(n)],
+            "patient_id": [f"{id_prefix}{i:05d}" for i in range(n)],
             "age": age.astype(int),
             "female": female,
             "weight_kg": weight,
@@ -165,6 +167,11 @@ def generate_cohort(n: int | None = None, seed: int = SEED) -> pd.DataFrame:
     df["true_diuretic_loss_mult"] = rng.uniform(0.6, 1.4, n)
     df["true_k_hr"] = rng.uniform(5, 11, n) * np.where(beta_blocker, param("k_hr_beta_blocker_mult"), 1.0)
     df["true_k_bp"] = rng.uniform(3, 8, n)
+    # Exertional GFR fall (Decisions v4 2b / v5 C2, pre-registered in Amendment 2 A2.4): the world's own values,
+    # centred on 0.25 / 1 h but independent of the twin's registry so a sensitivity sweep on the twin does not move
+    # the truth. Not fitted to L4 or L5.
+    df["true_k_ex"] = np.clip(0.25 * rng.lognormal(0.0, 0.30, n), 0.10, 0.40)
+    df["true_tau_ex_h"] = rng.uniform(0.5, 2.0, n)
     df["true_adherence"] = rng.uniform(*c["adherence"], n)
     df["true_wear_time"] = rng.uniform(*c["wear_time"], n)
     df["true_sigma_weight_mult"] = rng.uniform(0.75, 1.25, n)

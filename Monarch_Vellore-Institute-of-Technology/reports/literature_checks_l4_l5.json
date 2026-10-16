@@ -1,4 +1,5 @@
 {
+  "status": "revision-informed (Amendment 2 A2.2): shown next to the v1 failure, not clean validation",
   "worker": {
     "age": 30,
     "female": false,
@@ -7,21 +8,44 @@
     "egfr": 105.0,
     "phi_drink": 0.85,
     "met_work": 3.5,
-    "a_tot": 0.8
+    "a_tot": 0.8,
+    "k_ex": 0.25,
+    "tau_ex_h": 1.0,
+    "exertion_fraction_at_met_work": 0.75
   },
   "L4": {
-    "reference": "Butler-Dawson 2019: cross-shift AKI ~51-54 % per month in heavy cane cutters",
+    "reference": "Butler-Dawson 2019: cross-shift AKI ~51-54 % per month in heavy cane cutters; Sorensen 2019: mean cross-shift eGFR fall 21.8 % (SD 13.6 %)",
     "target_band_pct": [
       20,
       60
     ],
-    "default": {
+    "v1_engine_before_revision": {
       "workdays": 146,
       "share_end_of_shift_aki_pct": 0.0,
       "share_next_0800_still_raised_pct": 0.0,
       "mean_end_of_shift_rise_mg_dl": 0.003,
       "max_end_of_shift_rise_mg_dl": 0.006,
       "mean_next_0800_residual_mg_dl": 0.001
+    },
+    "twin_engine": {
+      "workdays": 146,
+      "share_end_of_shift_aki_pct": 0.0,
+      "share_next_0800_still_raised_pct": 0.0,
+      "mean_end_of_shift_rise_mg_dl": 0.16,
+      "p90_end_of_shift_rise_mg_dl": 0.163,
+      "max_end_of_shift_rise_mg_dl": 0.165,
+      "mean_cross_shift_egfr_fall_pct": 16.3,
+      "mean_next_0800_residual_mg_dl": 0.0
+    },
+    "truth_simulator": {
+      "workdays": 146,
+      "share_end_of_shift_aki_pct": 0.0,
+      "share_next_0800_still_raised_pct": 0.0,
+      "mean_end_of_shift_rise_mg_dl": 0.165,
+      "p90_end_of_shift_rise_mg_dl": 0.238,
+      "max_end_of_shift_rise_mg_dl": 0.276,
+      "mean_cross_shift_egfr_fall_pct": 16.4,
+      "mean_next_0800_residual_mg_dl": -0.0
     },
     "cities": {
       "Hyderabad": "48",
@@ -32,60 +56,132 @@
       "Palasa": "6",
       "Chennai": "6"
     },
-    "sensitivity": {
+    "twin_engine_sensitivity": {
       "tau_recover_h=6.0": {
         "workdays": 146,
         "share_end_of_shift_aki_pct": 0.0,
         "share_next_0800_still_raised_pct": 0.0,
-        "mean_end_of_shift_rise_mg_dl": 0.001,
-        "max_end_of_shift_rise_mg_dl": 0.002,
+        "mean_end_of_shift_rise_mg_dl": 0.156,
+        "p90_end_of_shift_rise_mg_dl": 0.157,
+        "max_end_of_shift_rise_mg_dl": 0.158,
+        "mean_cross_shift_egfr_fall_pct": 15.9,
         "mean_next_0800_residual_mg_dl": 0.0
       },
       "tau_recover_h=24.0": {
         "workdays": 146,
         "share_end_of_shift_aki_pct": 0.0,
         "share_next_0800_still_raised_pct": 0.0,
-        "mean_end_of_shift_rise_mg_dl": 0.009,
-        "max_end_of_shift_rise_mg_dl": 0.016,
-        "mean_next_0800_residual_mg_dl": 0.007
+        "mean_end_of_shift_rise_mg_dl": 0.168,
+        "p90_end_of_shift_rise_mg_dl": 0.174,
+        "max_end_of_shift_rise_mg_dl": 0.177,
+        "mean_cross_shift_egfr_fall_pct": 16.9,
+        "mean_next_0800_residual_mg_dl": 0.006
       },
       "ecf_frac_sweat=0.3": {
         "workdays": 146,
         "share_end_of_shift_aki_pct": 0.0,
         "share_next_0800_still_raised_pct": 0.0,
-        "mean_end_of_shift_rise_mg_dl": 0.001,
-        "max_end_of_shift_rise_mg_dl": 0.001,
-        "mean_next_0800_residual_mg_dl": 0.0
+        "mean_end_of_shift_rise_mg_dl": 0.158,
+        "p90_end_of_shift_rise_mg_dl": 0.16,
+        "max_end_of_shift_rise_mg_dl": 0.16,
+        "mean_cross_shift_egfr_fall_pct": 16.1,
+        "mean_next_0800_residual_mg_dl": -0.0
       },
       "ecf_frac_sweat=0.7": {
         "workdays": 146,
         "share_end_of_shift_aki_pct": 0.0,
         "share_next_0800_still_raised_pct": 0.0,
-        "mean_end_of_shift_rise_mg_dl": 0.008,
-        "max_end_of_shift_rise_mg_dl": 0.014,
-        "mean_next_0800_residual_mg_dl": 0.002
+        "mean_end_of_shift_rise_mg_dl": 0.165,
+        "p90_end_of_shift_rise_mg_dl": 0.171,
+        "max_end_of_shift_rise_mg_dl": 0.173,
+        "mean_cross_shift_egfr_fall_pct": 16.7,
+        "mean_next_0800_residual_mg_dl": 0.001
       },
       "d50=0.04": {
         "workdays": 146,
         "share_end_of_shift_aki_pct": 0.0,
         "share_next_0800_still_raised_pct": 0.0,
-        "mean_end_of_shift_rise_mg_dl": 0.012,
-        "max_end_of_shift_rise_mg_dl": 0.02,
+        "mean_end_of_shift_rise_mg_dl": 0.169,
+        "p90_end_of_shift_rise_mg_dl": 0.177,
+        "max_end_of_shift_rise_mg_dl": 0.18,
+        "mean_cross_shift_egfr_fall_pct": 17.0,
         "mean_next_0800_residual_mg_dl": 0.002
       },
       "d50=0.1": {
         "workdays": 146,
         "share_end_of_shift_aki_pct": 0.0,
         "share_next_0800_still_raised_pct": 0.0,
-        "mean_end_of_shift_rise_mg_dl": 0.001,
-        "max_end_of_shift_rise_mg_dl": 0.002,
+        "mean_end_of_shift_rise_mg_dl": 0.158,
+        "p90_end_of_shift_rise_mg_dl": 0.16,
+        "max_end_of_shift_rise_mg_dl": 0.161,
+        "mean_cross_shift_egfr_fall_pct": 16.1,
+        "mean_next_0800_residual_mg_dl": -0.0
+      },
+      "k_ex=0.1": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.066,
+        "p90_end_of_shift_rise_mg_dl": 0.07,
+        "max_end_of_shift_rise_mg_dl": 0.071,
+        "mean_cross_shift_egfr_fall_pct": 7.5,
+        "mean_next_0800_residual_mg_dl": 0.0
+      },
+      "k_ex=0.4": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.268,
+        "p90_end_of_shift_rise_mg_dl": 0.271,
+        "max_end_of_shift_rise_mg_dl": 0.272,
+        "mean_cross_shift_egfr_fall_pct": 24.5,
+        "mean_next_0800_residual_mg_dl": 0.001
+      },
+      "tau_ex_h=0.5": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.166,
+        "p90_end_of_shift_rise_mg_dl": 0.169,
+        "max_end_of_shift_rise_mg_dl": 0.17,
+        "mean_cross_shift_egfr_fall_pct": 16.8,
+        "mean_next_0800_residual_mg_dl": 0.0
+      },
+      "tau_ex_h=3.0": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.126,
+        "p90_end_of_shift_rise_mg_dl": 0.129,
+        "max_end_of_shift_rise_mg_dl": 0.131,
+        "mean_cross_shift_egfr_fall_pct": 13.2,
+        "mean_next_0800_residual_mg_dl": 0.0
+      },
+      "vd_floor_frac=0.7": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.16,
+        "p90_end_of_shift_rise_mg_dl": 0.163,
+        "max_end_of_shift_rise_mg_dl": 0.165,
+        "mean_cross_shift_egfr_fall_pct": 16.3,
+        "mean_next_0800_residual_mg_dl": 0.0
+      },
+      "vd_floor_frac=0.9": {
+        "workdays": 146,
+        "share_end_of_shift_aki_pct": 0.0,
+        "share_next_0800_still_raised_pct": 0.0,
+        "mean_end_of_shift_rise_mg_dl": 0.16,
+        "p90_end_of_shift_rise_mg_dl": 0.163,
+        "max_end_of_shift_rise_mg_dl": 0.165,
+        "mean_cross_shift_egfr_fall_pct": 16.3,
         "mean_next_0800_residual_mg_dl": 0.0
       }
     }
   },
   "L5": {
     "reference": "Belli 2018: GFR fall ~25-27 % at ~3.7 % loss; 27.1-44.4 % at 5.2-10.4 % loss",
-    "engine_gfr_fall_pct": {
+    "v1_engine_gfr_fall_pct": {
       "3% body-mass loss": {
         "ecf_share_0.3": 5.0,
         "ecf_share_0.5": 12.1,
@@ -102,6 +198,75 @@
         "ecf_share_0.7": 19.8
       }
     },
-    "ceiling_note": "healthy young kidney: maximum unprotected fall = 1 - a_tot = 20.0 %"
+    "twin_engine_dehydration_only": {
+      "3% body-mass loss": {
+        "ecf_share_0.3": 5.0,
+        "ecf_share_0.5": 12.1,
+        "ecf_share_0.7": 16.2
+      },
+      "5% body-mass loss": {
+        "ecf_share_0.3": 12.1,
+        "ecf_share_0.5": 17.5,
+        "ecf_share_0.7": 19.0
+      },
+      "8% body-mass loss": {
+        "ecf_share_0.3": 17.3,
+        "ecf_share_0.5": 19.3,
+        "ecf_share_0.7": 19.8
+      }
+    },
+    "twin_engine_with_sustained_exertion": {
+      "3% body-mass loss": {
+        "ecf_share_0.3": 28.7,
+        "ecf_share_0.5": 34.1,
+        "ecf_share_0.7": 37.1
+      },
+      "5% body-mass loss": {
+        "ecf_share_0.3": 34.1,
+        "ecf_share_0.5": 38.2,
+        "ecf_share_0.7": 39.3
+      },
+      "8% body-mass loss": {
+        "ecf_share_0.3": 37.9,
+        "ecf_share_0.5": 39.5,
+        "ecf_share_0.7": 39.8
+      }
+    },
+    "truth_simulator_dehydration_only": {
+      "3% body-mass loss": {
+        "p10": 0.0,
+        "median": 0.0,
+        "p90": 0.0
+      },
+      "5% body-mass loss": {
+        "p10": 0.0,
+        "median": 0.0,
+        "p90": 14.0
+      },
+      "8% body-mass loss": {
+        "p10": 0.0,
+        "median": 9.4,
+        "p90": 57.6
+      }
+    },
+    "truth_simulator_with_sustained_exertion": {
+      "3% body-mass loss": {
+        "p10": 17.3,
+        "median": 25.1,
+        "p90": 37.3
+      },
+      "5% body-mass loss": {
+        "p10": 17.8,
+        "median": 26.6,
+        "p90": 40.0
+      },
+      "8% body-mass loss": {
+        "p10": 20.0,
+        "median": 36.1,
+        "p90": 68.8
+      }
+    },
+    "ceiling_note": "healthy young kidney, dehydration only: maximum unprotected fall = 1 - a_tot = 20.0 %",
+    "caveats": "an ultramarathon adds exercise (lower renal blood flow on its own), muscle damage and a Cockcroft-Gault GFR; n = 6. Chapman 2020: GFR fell ~12 % only in markedly dehydrated subjects, which matches the dehydration-only rows. The 'with sustained exertion' rows use the pre-registered k_ex (not fitted)."
   }
 }
