@@ -237,3 +237,94 @@ Sweat sensitivity: ×0.7 → 5.2 per 100 patient-seasons, HAF 5.1 %; ×1.3 → 9
 4. **Twin learning target:** the 20 % / 7-day criterion is met on the mean of 10 seeds, not for every individual (8/10). Reported, not loosened.
 5. **The cohort's CKD G3 share (15 %, from `cohort.yaml`)** is higher than the ICMR figure of 8 % in DM+HTN: the cohort is enriched by design.
 6. **Weather reader moved** to the neutral `physiology/exposure.py`, because the import-lint test caught the twin importing the simulator package.
+
+
+## Decisions v4 / v5 (16 Oct 2026, 00:15-01:00 IST) and the steps before Part 4
+
+v5 wins wherever it conflicts with v4. Every number below is from the named report file.
+
+### Amendment 2 (commit `09a8617`, before any model was trained)
+`reports/EVAL_PLAN.md` now records:
+- the v1 L4 / L5 misses;
+- the calibration / held-out / revision-informed categories;
+- the cohort size;
+- the pre-registered engine revision with its 11:00 kill time;
+- the red <= 0.5 / amber + red <= 3 alert budgets, with alerts per AKI caught and the PPV ceiling;
+- the <= 25 core-feature rule, 2024-only tuning and the leakage tests;
+- the wording rules.
+
+### Engine revision (commit `9420c78`; implemented and tested at about 01:00, before the 11:00 kill)
+- **C1, haemoconcentration:** creatinine mass is conserved, Vd(t) = max(TBW - v_tot, 0.8 TBW) x 10 dL
+  (`renal.creatinine_step`, `batch.creatinine_step_vec`).
+  - Acceptance test: a 2 L loss over 9 h at constant GFR gives +2.9 % (matches the continuous ODE to 1e-4; v5 quoted
+    "about +2.5 %").
+  - With no water loss the result equals the old engine exactly.
+- **C2, exertion:** GFR x (1 - k_ex x ex).
+  - ex = lagged clip((met - 2) / 2, 0, 1). k_ex 0.25 [A, 0.10-0.40], tau_ex 1 h [A]; in the registry, not fitted.
+  - The truth simulator has hidden per-patient values (lognormal around 0.25, uniform 0.5-2 h). The matched regime
+    uses the registry values.
+  - The existing episodic truth-only muscle-breakdown term is confirmed; no routine muscle term was added.
+- **Effect on identical patients** (`reports/engine_revision_comparison.json`):
+  - 2024 mismatched episodes 205 -> 216; matched 443 -> 449.
+  - G2 morning values are slightly lower (e.g. triple +0.412 -> +0.390 mg/dL; the ordering is unchanged and the
+    triple whammy still crosses first). Concentrated creatinine is also cleared faster, so after overnight
+    rehydration the morning value ends a little lower.
+- **L4 / L5 (revision-informed, `reports/literature_checks_l4_l5.json`):**
+  - Ravi-like heavy shift: mean end-of-shift rise 0.003 (v1) -> 0.160 mg/dL (twin engine) and 0.165 (truth
+    simulator), i.e. a cross-shift eGFR fall of about 16 % (Sorensen 2019: 21.8 %).
+  - Cross-shift AKI share stays **0 %** against about 50 % in cane cutters. This was expected (v5 C2); k_ex was not
+    raised.
+  - The next 08:00 value is back to baseline, which supports the 08:00 rule.
+  - L5 with sustained exertion: 34 / 38 / 40 % at 3 / 5 / 8 % loss vs Belli 25-44 %. Dehydration alone is unchanged
+    (12 / 18 / 19 %, matching Chapman's ~12 %).
+  - **Stated limitation:** the engine under-represents transient cross-shift creatinine rises in heavy outdoor
+    workers.
+
+### Cohort at 10,000 / 5,000 (commit `b61da13`, `reports/cohort_summary.json`)
+- Train pool 10,000 (P...) for 2024; a separate test pool of 5,000 (T..., own seed) for 2025 and 2026. Generated in
+  2,500-patient shards (only about 1 GB of RAM is free on the development machine).
+- Mismatched episodes: 619 (2024), 317 (2025), 345 (2026). Size targets >= 500 / >= 250 are met.
+- Label-positive eligible days: 0.14 % / 0.14 % / 0.16 %.
+- **Heat-attributable fraction** (`reports/calibration_checks.json`, N = 10,000):
+  - 9.9 % (95 % CI 5.8-13.7), ranging 7.4 % (sweat x0.7) to 16.3 % (x1.3) and 26.7 % under matched truth.
+  - On the same 3,000 patients the revision moves it 13.2 % -> 15.3 % (CI 10.5-20.8). The 10,000-patient estimate
+    is lower because of sampling: the CIs overlap.
+  - **Office vs outdoor resolved:** office 0.0 % (CI -5.6 to 5.7), outdoor 12.7 % (CI 7.3-18.0), home 7.0 %. The cap
+    saves office workers 27 L of season sweat vs 52 L for outdoor workers. The v1 office figure rested on about 25
+    episodes.
+- **L1 pooled 2024-26:** RR 2.30 (95 % CI 1.69-3.03), pass (`reports/l1_pooled.json`; patient-level bootstrap,
+  400 resamples; constant calibrated once).
+- **Demo personas** (`reports/demo_numbers.json`):
+  - Kamala goes red at 43.5 % the day before her simulated AKI (23 h lead).
+  - Kamala what-if: continue 48 % -> swap 25.5 % -> + ORS 1.5 % -> pauses 0 % (displayed "<1%").
+  - Ravi stays green with a 0.13 mg/dL transient intra-day rise.
+
+### Safety items, C3, C4 (commit `666bb17`)
+- `config/red_flags.yaml` + `whatif/red_flags.py` run before any risk model:
+  - **Emergency** (confusion, fainting, seizure, unresponsive or >= 40 degC): a 108 / 112 screen, no risk shown.
+  - **Urgent** (no urine 12 h; cola urine + muscle pain after heat or work; vomiting with no fluids kept for 6 h):
+    same-day doctor message, minimum level red.
+  - EN / HI / KN / TE (HI / KN / TE are draft translations). Text check-in parsing via the lexicon.
+  - Every flag is written to a new HMAC-chained audit log (`security/audit.py`; Part 6 adds checkpoints).
+- ORS guardrails (`whatif/guardrails.py`, `config/guardrails.yaml`): with heart failure, eGFR < 30 or K >= 5.5 the
+  advice becomes "Fluid type and amount as advised by your doctor".
+- Display rules (`fastclock/display.py`):
+  - "<1%" instead of 0 %, with a Wilson interval for Monte-Carlo risks;
+  - lab eGFR tagged "not reliable while creatinine is changing";
+  - "modelled filtration".
+- C3: the Trichy penalty is "any AKI (yes/no), associated with", applied once. The extra-episode multiplier is an
+  ASSUMPTION capped at 2.
+- C4: heatstroke figure replaced with 67,637 / 374 (1 Mar-27 Jul 2024).
+- `docs/MATH_CONTEXT.md` v0.2 is published with a changes list. v0.1 said "Euler" and "7-day min baseline"; the code
+  uses the exact exponential and the §9.3 baseline.
+
+### Real-data checks R1a / R1b (commit `c7a236d`, `reports/r1_validation.json`; held-out)
+- **R1a:** 99.29 % agreement with mimic-code `aki_stage_creat` on 1,272 values / 140 stays: **pass**.
+  - All 9 disagreements are creatinine rises of exactly 0.3 mg/dL that floating point reads as 0.2999...
+  - A tolerance fix was tried, then **reverted pending the team's decision**. It makes the rise cases agree, but
+    exposes 16 exact-1.5x cases that mimic-code's own floating-point arithmetic misses (98.58 %).
+  - It changes 0 of 1.22 M synthetic patient-days, so only real lab input is affected.
+- **R1b:** 24-h-ahead creatinine RMSE on 8,812 ICU pairs: kinetic filter 0.556 vs carry-forward 0.533 vs linear trend
+  1.98 mg/dL.
+  - Carry-forward wins (difference CI 0.011-0.038). On MIMIC alone the filter is level (0.391 vs 0.413, CI crosses 0).
+  - Reported as it came out. The filter settings were fixed in the registry first.

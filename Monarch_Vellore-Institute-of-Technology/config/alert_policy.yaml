@@ -1,5 +1,6 @@
-# Alert policy (master plan §12.5). Starting thresholds are [A]; final thresholds are tuned on the
-# calibration split so that total alerts stay within the budget, and written to models/thresholds.json.
+# Alert policy (master plan §12.5; Amendment 2 A2.5). Starting thresholds are [A]; final thresholds are tuned on the
+# 2024 calibration split so that red <= 0.5 and amber + red <= 3 notifications per 100 patient-days, and written to
+# models/thresholds_<regime>.json.
 levels:
   green:  {max_prob: 0.05, icon: "✅", word_key: "level.green",  action_key: "action.green"}
   amber:  {max_prob: 0.15, icon: "⚠️", word_key: "level.amber",  action_key: "action.amber"}
@@ -9,6 +10,7 @@ hysteresis:
   red_clear_below: 0.10        # a red alert clears only when risk stays below this ...
   red_clear_hours: 24          # ... for this long
 dedup_hours: 72                # one alert per 72 h unless the level rises
-alert_budget_per_100_patient_days: 3
+alert_budget_per_100_patient_days: 3   # amber + red notifications together (Amendment 2 A2.5)
+red_budget_per_100_patient_days: 0.5  # red notifications (doctor review + home kidney test; Decisions v5 C5)
 prediction_time_local: "09:00" # daily, after the morning weight (§12.1)
 never_colour_alone: true       # every level has an icon + a word + a colour (§12.5, §23.1)
