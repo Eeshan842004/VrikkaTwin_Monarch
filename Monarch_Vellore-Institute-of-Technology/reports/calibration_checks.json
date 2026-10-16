@@ -2,115 +2,310 @@
   "season": 2024,
   "regime": "mismatched (headline)",
   "cap_c": 35.0,
+  "n_patients": 10000,
+  "shard": 2500,
   "haf": {
     "all": {
-      "patients": 3000,
-      "episodes_actual": 205,
-      "episodes_capped_35C": 178,
-      "episodes_per_100_patient_seasons": 6.8,
-      "haf": 0.132
+      "patients": 10000,
+      "episodes_actual": 619,
+      "episodes_capped_35C": 558,
+      "episodes_per_100_patient_seasons": 6.2,
+      "haf": 0.099,
+      "haf_ci95": [
+        0.058,
+        0.137
+      ],
+      "season_sweat_l_actual": 311.2,
+      "season_sweat_l_saved_by_cap": 36.1,
+      "mean_age": 58.2,
+      "pct_on_diuretic": 26.2,
+      "pct_ckd_g3": 14.6,
+      "pct_diabetes": 29.6,
+      "pct_on_acei_arb": 46.3
     },
     "outdoor workers": {
-      "patients": 929,
-      "episodes_actual": 127,
-      "episodes_capped_35C": 108,
-      "episodes_per_100_patient_seasons": 13.7,
-      "haf": 0.15
+      "patients": 3003,
+      "episodes_actual": 401,
+      "episodes_capped_35C": 350,
+      "episodes_per_100_patient_seasons": 13.4,
+      "haf": 0.127,
+      "haf_ci95": [
+        0.073,
+        0.18
+      ],
+      "season_sweat_l_actual": 516.7,
+      "season_sweat_l_saved_by_cap": 51.7,
+      "mean_age": 55.6,
+      "pct_on_diuretic": 27.0,
+      "pct_ckd_g3": 14.3,
+      "pct_diabetes": 30.2,
+      "pct_on_acei_arb": 45.9
     },
     "home-based": {
-      "patients": 1466,
-      "episodes_actual": 43,
-      "episodes_capped_35C": 40,
+      "patients": 4968,
+      "episodes_actual": 142,
+      "episodes_capped_35C": 132,
       "episodes_per_100_patient_seasons": 2.9,
-      "haf": 0.07
+      "haf": 0.07,
+      "haf_ci95": [
+        0.008,
+        0.135
+      ],
+      "season_sweat_l_actual": 230.1,
+      "season_sweat_l_saved_by_cap": 30.5,
+      "mean_age": 59.7,
+      "pct_on_diuretic": 25.4,
+      "pct_ckd_g3": 15.0,
+      "pct_diabetes": 28.8,
+      "pct_on_acei_arb": 46.2
     },
     "office": {
-      "patients": 605,
-      "episodes_actual": 35,
-      "episodes_capped_35C": 30,
-      "episodes_per_100_patient_seasons": 5.8,
-      "haf": 0.143
+      "patients": 2029,
+      "episodes_actual": 76,
+      "episodes_capped_35C": 76,
+      "episodes_per_100_patient_seasons": 3.7,
+      "haf": 0.0,
+      "haf_ci95": [
+        -0.056,
+        0.057
+      ],
+      "season_sweat_l_actual": 205.6,
+      "season_sweat_l_saved_by_cap": 27.0,
+      "mean_age": 58.2,
+      "pct_on_diuretic": 26.7,
+      "pct_ckd_g3": 14.2,
+      "pct_diabetes": 31.0,
+      "pct_on_acei_arb": 46.9
     },
     "age >= 60": {
-      "patients": 1357,
-      "episodes_actual": 118,
-      "episodes_capped_35C": 98,
-      "episodes_per_100_patient_seasons": 8.7,
-      "haf": 0.169
+      "patients": 4550,
+      "episodes_actual": 328,
+      "episodes_capped_35C": 293,
+      "episodes_per_100_patient_seasons": 7.2,
+      "haf": 0.107,
+      "haf_ci95": [
+        0.044,
+        0.173
+      ],
+      "season_sweat_l_actual": 294.9,
+      "season_sweat_l_saved_by_cap": 35.3,
+      "mean_age": 68.9,
+      "pct_on_diuretic": 26.2,
+      "pct_ckd_g3": 13.8,
+      "pct_diabetes": 29.4,
+      "pct_on_acei_arb": 46.6
     },
     "age < 60": {
-      "patients": 1643,
-      "episodes_actual": 87,
-      "episodes_capped_35C": 80,
+      "patients": 5450,
+      "episodes_actual": 291,
+      "episodes_capped_35C": 265,
       "episodes_per_100_patient_seasons": 5.3,
-      "haf": 0.08
+      "haf": 0.089,
+      "haf_ci95": [
+        0.048,
+        0.135
+      ],
+      "season_sweat_l_actual": 324.8,
+      "season_sweat_l_saved_by_cap": 36.9,
+      "mean_age": 49.2,
+      "pct_on_diuretic": 26.1,
+      "pct_ckd_g3": 15.2,
+      "pct_diabetes": 29.9,
+      "pct_on_acei_arb": 46.0
     },
     "on diuretic": {
-      "patients": 755,
-      "episodes_actual": 56,
-      "episodes_capped_35C": 47,
-      "episodes_per_100_patient_seasons": 7.4,
-      "haf": 0.161
+      "patients": 2615,
+      "episodes_actual": 199,
+      "episodes_capped_35C": 175,
+      "episodes_per_100_patient_seasons": 7.6,
+      "haf": 0.121,
+      "haf_ci95": [
+        0.041,
+        0.2
+      ],
+      "season_sweat_l_actual": 314.2,
+      "season_sweat_l_saved_by_cap": 36.0,
+      "mean_age": 58.1,
+      "pct_on_diuretic": 100.0,
+      "pct_ckd_g3": 14.6,
+      "pct_diabetes": 29.4,
+      "pct_on_acei_arb": 63.3
     },
     "not on diuretic": {
-      "patients": 2245,
-      "episodes_actual": 149,
-      "episodes_capped_35C": 131,
-      "episodes_per_100_patient_seasons": 6.6,
-      "haf": 0.121
+      "patients": 7385,
+      "episodes_actual": 420,
+      "episodes_capped_35C": 383,
+      "episodes_per_100_patient_seasons": 5.7,
+      "haf": 0.088,
+      "haf_ci95": [
+        0.046,
+        0.132
+      ],
+      "season_sweat_l_actual": 310.1,
+      "season_sweat_l_saved_by_cap": 36.2,
+      "mean_age": 58.2,
+      "pct_on_diuretic": 0.0,
+      "pct_ckd_g3": 14.6,
+      "pct_diabetes": 29.7,
+      "pct_on_acei_arb": 40.2
+    }
+  },
+  "haf_by_occupation": {
+    "home": {
+      "patients": 4968,
+      "episodes_actual": 142,
+      "episodes_capped_35C": 132,
+      "episodes_per_100_patient_seasons": 2.9,
+      "haf": 0.07,
+      "haf_ci95": [
+        0.007,
+        0.135
+      ],
+      "season_sweat_l_actual": 230.1,
+      "season_sweat_l_saved_by_cap": 30.5,
+      "mean_age": 59.7,
+      "pct_on_diuretic": 25.4,
+      "pct_ckd_g3": 15.0,
+      "pct_diabetes": 28.8,
+      "pct_on_acei_arb": 46.2
+    },
+    "office": {
+      "patients": 2029,
+      "episodes_actual": 76,
+      "episodes_capped_35C": 76,
+      "episodes_per_100_patient_seasons": 3.7,
+      "haf": 0.0,
+      "haf_ci95": [
+        -0.057,
+        0.058
+      ],
+      "season_sweat_l_actual": 205.6,
+      "season_sweat_l_saved_by_cap": 27.0,
+      "mean_age": 58.2,
+      "pct_on_diuretic": 26.7,
+      "pct_ckd_g3": 14.2,
+      "pct_diabetes": 31.0,
+      "pct_on_acei_arb": 46.9
+    },
+    "vendor": {
+      "patients": 802,
+      "episodes_actual": 42,
+      "episodes_capped_35C": 34,
+      "episodes_per_100_patient_seasons": 5.2,
+      "haf": 0.19,
+      "haf_ci95": [
+        0.021,
+        0.353
+      ],
+      "season_sweat_l_actual": 425.3,
+      "season_sweat_l_saved_by_cap": 49.7,
+      "mean_age": 58.6,
+      "pct_on_diuretic": 25.9,
+      "pct_ckd_g3": 13.7,
+      "pct_diabetes": 29.8,
+      "pct_on_acei_arb": 43.6
+    },
+    "delivery": {
+      "patients": 592,
+      "episodes_actual": 88,
+      "episodes_capped_35C": 80,
+      "episodes_per_100_patient_seasons": 14.9,
+      "haf": 0.091,
+      "haf_ci95": [
+        0.0,
+        0.168
+      ],
+      "season_sweat_l_actual": 464.7,
+      "season_sweat_l_saved_by_cap": 46.6,
+      "mean_age": 54.9,
+      "pct_on_diuretic": 25.0,
+      "pct_ckd_g3": 17.4,
+      "pct_diabetes": 29.1,
+      "pct_on_acei_arb": 47.8
+    },
+    "construction_farm": {
+      "patients": 1609,
+      "episodes_actual": 271,
+      "episodes_capped_35C": 236,
+      "episodes_per_100_patient_seasons": 16.8,
+      "haf": 0.129,
+      "haf_ci95": [
+        0.06,
+        0.191
+      ],
+      "season_sweat_l_actual": 581.4,
+      "season_sweat_l_saved_by_cap": 54.6,
+      "mean_age": 54.4,
+      "pct_on_diuretic": 28.2,
+      "pct_ckd_g3": 13.4,
+      "pct_diabetes": 30.9,
+      "pct_on_acei_arb": 46.3
     }
   },
   "sweat_sensitivity": {
     "x0.7": {
-      "episodes_per_100_patient_seasons": 5.2,
-      "haf": 0.051
+      "episodes_per_100_patient_seasons": 5.0,
+      "haf": 0.074,
+      "haf_ci95": [
+        0.042,
+        0.105
+      ]
     },
     "x1.3": {
-      "episodes_per_100_patient_seasons": 9.1,
-      "haf": 0.154
+      "episodes_per_100_patient_seasons": 8.0,
+      "haf": 0.163,
+      "haf_ci95": [
+        0.125,
+        0.201
+      ]
     }
   },
   "haf_matched_regime": {
-    "patients": 3000,
-    "episodes_actual": 443,
-    "episodes_capped_35C": 298,
-    "episodes_per_100_patient_seasons": 14.8,
-    "haf": 0.327
+    "episodes_actual": 1546,
+    "episodes_capped_35C": 1133,
+    "episodes_per_100_patient_seasons": 15.5,
+    "haf": 0.267,
+    "haf_ci95": [
+      0.236,
+      0.297
+    ]
   },
   "outside_iso_validity_pct_of_person_hours": {
-    "Ahmedabad": 1.9,
-    "Delhi": 2.6,
-    "Hyderabad": 0.0,
-    "Palasa": 0.1,
-    "Bengaluru": 0.4,
     "Chennai": 0.0,
-    "Nagpur": 0.4
+    "Bengaluru": 0.4,
+    "Delhi": 2.6,
+    "Nagpur": 0.4,
+    "Hyderabad": 0.0,
+    "Ahmedabad": 1.9,
+    "Palasa": 0.1
   },
   "outside_iso_validity_pct_of_outdoor_hours": {
-    "Ahmedabad": 0.7,
-    "Delhi": 0.7,
-    "Hyderabad": 0.0,
-    "Palasa": 0.0,
-    "Bengaluru": 0.0,
     "Chennai": 0.0,
-    "Nagpur": 0.0
+    "Bengaluru": 0.0,
+    "Delhi": 0.7,
+    "Nagpur": 0.0,
+    "Hyderabad": 0.0,
+    "Ahmedabad": 0.7,
+    "Palasa": 0.0
   },
   "L1": {
-    "definition": "within ACEi/ARB + diuretic users: AKI onset within 72 h on days with an NSAID (triple) vs days with no NSAID in the last 4 days (double); all NSAID courses are new (<30 days)",
-    "triple_days": 4582,
-    "double_days": 41768,
-    "risk_triple": 0.005,
-    "risk_double": 0.0019,
-    "rr": 2.69,
+    "definition": "within ACEi/ARB + diuretic users: AKI onset within 72 h on days with an NSAID (triple) vs days with no NSAID in the last 4 days (double); all NSAID courses are new (<30 days). Single season; the pooled estimate with its bootstrap CI is in l1_pooled.json",
+    "triple_days": 15686,
+    "double_days": 142312,
+    "triple_events": 62,
+    "double_events": 282,
+    "risk_triple": 0.004,
+    "risk_double": 0.002,
+    "rr": 1.99,
     "pass_band": [
       1.1,
       2.5
     ],
     "literature": "Lapi BMJ 2013: RR 1.31 overall, 1.82 first 30 days",
-    "pass": false
+    "pass": true
   },
   "L2": {
-    "pct_change_per_degC": 0.06,
+    "pct_change_per_degC": 0.04,
     "direction_ok": true,
     "reference": "Brazil renal admissions ~ +0.9 %/degC (hospital admissions vs our mild KDIGO AKI)"
   }

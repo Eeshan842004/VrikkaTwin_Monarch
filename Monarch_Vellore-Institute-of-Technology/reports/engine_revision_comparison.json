@@ -1,0 +1,538 @@
+{
+  "note": "v1 = engine before the revision (3,000 patients). same_patients = new engine, identical 3,000 patients and seeds (the engine effect alone). new = new engine, 10,000 train / 5,000 separate test patients (headline).",
+  "g2_scenarios_kamala_like_nagpur": {
+    "v1": {
+      "1 no drugs": {
+        "dcr_0800": 0.098,
+        "dcr_hourly_peak": 0.146,
+        "kdigo": 0
+      },
+      "2 NSAID only (Combiflam x3)": {
+        "dcr_0800": 0.16,
+        "dcr_hourly_peak": 0.247,
+        "kdigo": 0
+      },
+      "3 ARB + diuretic": {
+        "dcr_0800": 0.288,
+        "dcr_hourly_peak": 0.395,
+        "kdigo": 0
+      },
+      "4 triple whammy": {
+        "dcr_0800": 0.412,
+        "dcr_hourly_peak": 0.578,
+        "kdigo": 1
+      },
+      "5 ARB + diuretic + fever": {
+        "dcr_0800": 0.349,
+        "dcr_hourly_peak": 0.466,
+        "kdigo": 1
+      },
+      "6 triple whammy + fever": {
+        "dcr_0800": 0.508,
+        "dcr_hourly_peak": 0.693,
+        "kdigo": 1
+      },
+      "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
+        "dcr_0800": 0.597,
+        "dcr_hourly_peak": 0.81,
+        "kdigo": 1
+      }
+    },
+    "new": {
+      "1 no drugs": {
+        "dcr_0800": 0.082,
+        "dcr_hourly_peak": 0.151,
+        "kdigo": 0
+      },
+      "2 NSAID only (Combiflam x3)": {
+        "dcr_0800": 0.146,
+        "dcr_hourly_peak": 0.253,
+        "kdigo": 0
+      },
+      "3 ARB + diuretic": {
+        "dcr_0800": 0.268,
+        "dcr_hourly_peak": 0.403,
+        "kdigo": 0
+      },
+      "4 triple whammy": {
+        "dcr_0800": 0.39,
+        "dcr_hourly_peak": 0.588,
+        "kdigo": 1
+      },
+      "5 ARB + diuretic + fever": {
+        "dcr_0800": 0.326,
+        "dcr_hourly_peak": 0.475,
+        "kdigo": 1
+      },
+      "6 triple whammy + fever": {
+        "dcr_0800": 0.481,
+        "dcr_hourly_peak": 0.707,
+        "kdigo": 1
+      },
+      "7 triple + fever, CYP2C9 poor metaboliser (*3/*3)": {
+        "dcr_0800": 0.569,
+        "dcr_hourly_peak": 0.826,
+        "kdigo": 1
+      }
+    }
+  },
+  "L4_cross_shift": {
+    "v1_engine": {
+      "workdays": 146,
+      "share_end_of_shift_aki_pct": 0.0,
+      "share_next_0800_still_raised_pct": 0.0,
+      "mean_end_of_shift_rise_mg_dl": 0.003,
+      "max_end_of_shift_rise_mg_dl": 0.006,
+      "mean_next_0800_residual_mg_dl": 0.001
+    },
+    "new_twin_engine": {
+      "workdays": 146,
+      "share_end_of_shift_aki_pct": 0.0,
+      "share_next_0800_still_raised_pct": 0.0,
+      "mean_end_of_shift_rise_mg_dl": 0.16,
+      "p90_end_of_shift_rise_mg_dl": 0.163,
+      "max_end_of_shift_rise_mg_dl": 0.165,
+      "mean_cross_shift_egfr_fall_pct": 16.3,
+      "mean_next_0800_residual_mg_dl": 0.0
+    },
+    "new_truth_simulator": {
+      "workdays": 146,
+      "share_end_of_shift_aki_pct": 0.0,
+      "share_next_0800_still_raised_pct": 0.0,
+      "mean_end_of_shift_rise_mg_dl": 0.165,
+      "p90_end_of_shift_rise_mg_dl": 0.238,
+      "max_end_of_shift_rise_mg_dl": 0.276,
+      "mean_cross_shift_egfr_fall_pct": 16.4,
+      "mean_next_0800_residual_mg_dl": -0.0
+    },
+    "band_pct": [
+      20,
+      60
+    ]
+  },
+  "L5_gfr_fall_pct": {
+    "v1_engine_gfr_fall_pct": {
+      "3% body-mass loss": {
+        "ecf_share_0.3": 5.0,
+        "ecf_share_0.5": 12.1,
+        "ecf_share_0.7": 16.2
+      },
+      "5% body-mass loss": {
+        "ecf_share_0.3": 12.1,
+        "ecf_share_0.5": 17.5,
+        "ecf_share_0.7": 19.0
+      },
+      "8% body-mass loss": {
+        "ecf_share_0.3": 17.3,
+        "ecf_share_0.5": 19.3,
+        "ecf_share_0.7": 19.8
+      }
+    },
+    "twin_engine_dehydration_only": {
+      "3% body-mass loss": {
+        "ecf_share_0.3": 5.0,
+        "ecf_share_0.5": 12.1,
+        "ecf_share_0.7": 16.2
+      },
+      "5% body-mass loss": {
+        "ecf_share_0.3": 12.1,
+        "ecf_share_0.5": 17.5,
+        "ecf_share_0.7": 19.0
+      },
+      "8% body-mass loss": {
+        "ecf_share_0.3": 17.3,
+        "ecf_share_0.5": 19.3,
+        "ecf_share_0.7": 19.8
+      }
+    },
+    "twin_engine_with_sustained_exertion": {
+      "3% body-mass loss": {
+        "ecf_share_0.3": 28.7,
+        "ecf_share_0.5": 34.1,
+        "ecf_share_0.7": 37.1
+      },
+      "5% body-mass loss": {
+        "ecf_share_0.3": 34.1,
+        "ecf_share_0.5": 38.2,
+        "ecf_share_0.7": 39.3
+      },
+      "8% body-mass loss": {
+        "ecf_share_0.3": 37.9,
+        "ecf_share_0.5": 39.5,
+        "ecf_share_0.7": 39.8
+      }
+    },
+    "truth_simulator_dehydration_only": {
+      "3% body-mass loss": {
+        "p10": 0.0,
+        "median": 0.0,
+        "p90": 0.0
+      },
+      "5% body-mass loss": {
+        "p10": 0.0,
+        "median": 0.0,
+        "p90": 14.0
+      },
+      "8% body-mass loss": {
+        "p10": 0.0,
+        "median": 9.4,
+        "p90": 57.6
+      }
+    },
+    "truth_simulator_with_sustained_exertion": {
+      "3% body-mass loss": {
+        "p10": 17.3,
+        "median": 25.1,
+        "p90": 37.3
+      },
+      "5% body-mass loss": {
+        "p10": 17.8,
+        "median": 26.6,
+        "p90": 40.0
+      },
+      "8% body-mass loss": {
+        "p10": 20.0,
+        "median": 36.1,
+        "p90": 68.8
+      }
+    }
+  },
+  "event_rates": {
+    "v1": {
+      "2024": {
+        "mismatched": {
+          "patients": 3000,
+          "aki_episodes": 205,
+          "episodes_per_100_patient_seasons": 6.8,
+          "label_positive_pct_of_eligible_days": 0.15
+        },
+        "matched": {
+          "patients": 3000,
+          "aki_episodes": 443,
+          "episodes_per_100_patient_seasons": 14.8,
+          "label_positive_pct_of_eligible_days": 0.35
+        }
+      },
+      "2025": {
+        "mismatched": {
+          "patients": 3000,
+          "aki_episodes": 160,
+          "episodes_per_100_patient_seasons": 5.3,
+          "label_positive_pct_of_eligible_days": 0.12
+        },
+        "matched": {
+          "patients": 3000,
+          "aki_episodes": 383,
+          "episodes_per_100_patient_seasons": 12.8,
+          "label_positive_pct_of_eligible_days": 0.3
+        }
+      },
+      "2026": {
+        "mismatched": {
+          "patients": 3000,
+          "aki_episodes": 208,
+          "episodes_per_100_patient_seasons": 6.9,
+          "label_positive_pct_of_eligible_days": 0.16
+        },
+        "matched": {
+          "patients": 3000,
+          "aki_episodes": 452,
+          "episodes_per_100_patient_seasons": 15.1,
+          "label_positive_pct_of_eligible_days": 0.36
+        }
+      }
+    },
+    "same_patients": {
+      "2024": {
+        "mismatched": {
+          "patients": 3000,
+          "aki_episodes": 216,
+          "episodes_per_100_patient_seasons": 7.2,
+          "label_positive_pct_of_eligible_days": 0.16
+        },
+        "matched": {
+          "patients": 3000,
+          "aki_episodes": 449,
+          "episodes_per_100_patient_seasons": 15.0,
+          "label_positive_pct_of_eligible_days": 0.35
+        }
+      },
+      "2025": {
+        "mismatched": {
+          "patients": 3000,
+          "aki_episodes": 162,
+          "episodes_per_100_patient_seasons": 5.4,
+          "label_positive_pct_of_eligible_days": 0.12
+        },
+        "matched": {
+          "patients": 3000,
+          "aki_episodes": 381,
+          "episodes_per_100_patient_seasons": 12.7,
+          "label_positive_pct_of_eligible_days": 0.3
+        }
+      },
+      "2026": {
+        "mismatched": {
+          "patients": 3000,
+          "aki_episodes": 210,
+          "episodes_per_100_patient_seasons": 7.0,
+          "label_positive_pct_of_eligible_days": 0.16
+        },
+        "matched": {
+          "patients": 3000,
+          "aki_episodes": 444,
+          "episodes_per_100_patient_seasons": 14.8,
+          "label_positive_pct_of_eligible_days": 0.35
+        }
+      }
+    },
+    "new": {
+      "2024": {
+        "mismatched": {
+          "patients": 10000,
+          "aki_episodes": 619,
+          "episodes_per_100_patient_seasons": 6.2,
+          "label_positive_pct_of_eligible_days": 0.14
+        },
+        "matched": {
+          "patients": 10000,
+          "aki_episodes": 1546,
+          "episodes_per_100_patient_seasons": 15.5,
+          "label_positive_pct_of_eligible_days": 0.36
+        }
+      },
+      "2025": {
+        "mismatched": {
+          "patients": 5000,
+          "aki_episodes": 317,
+          "episodes_per_100_patient_seasons": 6.3,
+          "label_positive_pct_of_eligible_days": 0.14
+        },
+        "matched": {
+          "patients": 5000,
+          "aki_episodes": 631,
+          "episodes_per_100_patient_seasons": 12.6,
+          "label_positive_pct_of_eligible_days": 0.3
+        }
+      },
+      "2026": {
+        "mismatched": {
+          "patients": 5000,
+          "aki_episodes": 345,
+          "episodes_per_100_patient_seasons": 6.9,
+          "label_positive_pct_of_eligible_days": 0.16
+        },
+        "matched": {
+          "patients": 5000,
+          "aki_episodes": 754,
+          "episodes_per_100_patient_seasons": 15.1,
+          "label_positive_pct_of_eligible_days": 0.35
+        }
+      }
+    }
+  },
+  "heat_attributable_fraction": {
+    "v1": {
+      "overall": 0.132,
+      "overall_ci95": null,
+      "subgroups": {
+        "all": 0.132,
+        "outdoor workers": 0.15,
+        "home-based": 0.07,
+        "office": 0.143,
+        "age >= 60": 0.169,
+        "age < 60": 0.08,
+        "on diuretic": 0.161,
+        "not on diuretic": 0.121
+      },
+      "sweat_x0.7": 0.051,
+      "sweat_x1.3": 0.154,
+      "matched": 0.327
+    },
+    "same_patients": {
+      "overall": 0.153,
+      "overall_ci95": [
+        0.105,
+        0.208
+      ],
+      "subgroups": {
+        "all": 0.153,
+        "outdoor workers": 0.181,
+        "home-based": 0.095,
+        "office": 0.111,
+        "age >= 60": 0.185,
+        "age < 60": 0.109,
+        "on diuretic": 0.155,
+        "not on diuretic": 0.152
+      },
+      "sweat_x0.7": 0.026,
+      "sweat_x1.3": 0.139,
+      "matched": 0.318
+    },
+    "new": {
+      "overall": 0.099,
+      "overall_ci95": [
+        0.058,
+        0.137
+      ],
+      "subgroups": {
+        "all": 0.099,
+        "outdoor workers": 0.127,
+        "home-based": 0.07,
+        "office": 0.0,
+        "age >= 60": 0.107,
+        "age < 60": 0.089,
+        "on diuretic": 0.121,
+        "not on diuretic": 0.088
+      },
+      "sweat_x0.7": 0.074,
+      "sweat_x1.3": 0.163,
+      "matched": 0.267
+    }
+  },
+  "L1_pooled": {
+    "v1": {
+      "rr": 2.31,
+      "ci95": [
+        1.32,
+        3.36
+      ],
+      "triple_events": 54,
+      "pass": true
+    },
+    "same_patients": {
+      "rr": 2.15,
+      "ci95": [
+        1.22,
+        3.19
+      ],
+      "triple_events": 51,
+      "pass": true
+    },
+    "new": {
+      "rr": 2.3,
+      "ci95": [
+        1.69,
+        3.03
+      ],
+      "triple_events": 144,
+      "pass": true
+    }
+  },
+  "demo_personas": {
+    "S1_kamala": {
+      "v1": {
+        "max_risk": 0.45,
+        "first_red_day": 8,
+        "truth_aki_onset_day": 9,
+        "lead_time_h": 23,
+        "max_intra_day_rise_mg_dl": 0.305
+      },
+      "new": {
+        "max_risk": 0.435,
+        "first_red_day": 8,
+        "truth_aki_onset_day": 9,
+        "lead_time_h": 23,
+        "max_intra_day_rise_mg_dl": 0.316
+      }
+    },
+    "S2_ravi": {
+      "v1": {
+        "max_risk": 0.0,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.024
+      },
+      "new": {
+        "max_risk": 0.0,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.132
+      }
+    },
+    "S3_fatima": {
+      "v1": {
+        "max_risk": 1.0,
+        "first_red_day": 7,
+        "truth_aki_onset_day": 8,
+        "lead_time_h": 23,
+        "max_intra_day_rise_mg_dl": 0.488
+      },
+      "new": {
+        "max_risk": 1.0,
+        "first_red_day": 7,
+        "truth_aki_onset_day": 8,
+        "lead_time_h": 23,
+        "max_intra_day_rise_mg_dl": 0.495
+      }
+    },
+    "S4_iyer": {
+      "v1": {
+        "max_risk": 0.025,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.055
+      },
+      "new": {
+        "max_risk": 0.025,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.059
+      }
+    },
+    "S5_hydrated": {
+      "v1": {
+        "max_risk": 0.0,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.012
+      },
+      "new": {
+        "max_risk": 0.0,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.036
+      }
+    },
+    "S6_cyp2c9": {
+      "v1": {
+        "max_risk": 0.105,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.089
+      },
+      "new": {
+        "max_risk": 0.105,
+        "first_red_day": null,
+        "truth_aki_onset_day": null,
+        "lead_time_h": null,
+        "max_intra_day_rise_mg_dl": 0.096
+      }
+    },
+    "S1_kamala_whatif": {
+      "v1": {
+        "continue as is": 0.41,
+        "1 painkiller swap: ibuprofen -> paracetamol": 0.25,
+        "2 + ORS 1 L/day": 0.0,
+        "3 + pause ARB and diuretic (individualised, weak evidence, clinician decides)": 0.0,
+        "same tablets, CYP2C9 *3/*3 (poor metaboliser)": 0.51,
+        "no illness, no painkiller": 0.005
+      },
+      "new": {
+        "continue as is": 0.48,
+        "1 painkiller swap: ibuprofen -> paracetamol": 0.255,
+        "2 + ORS 1 L/day": 0.015,
+        "3 + pause ARB and diuretic (individualised, weak evidence, clinician decides)": 0.0,
+        "same tablets, CYP2C9 *3/*3 (poor metaboliser)": 0.555,
+        "no illness, no painkiller": 0.01
+      }
+    }
+  }
+}

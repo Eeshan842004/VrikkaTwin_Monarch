@@ -1,0 +1,44 @@
+{
+  "ci_method": "patient-level bootstrap percentile interval, 400 resamples",
+  "constant_calibrated_once": "truth painkiller LLA shift 18 -> 6 mmHg (Part 3); not changed again",
+  "definition": "AKI onset within 72 h; triple = ACEi/ARB + diuretic + NSAID that day; double = ACEi/ARB + diuretic, no NSAID in the last 4 days; adherent, non-excluded days",
+  "pass_band": [
+    1.1,
+    2.5
+  ],
+  "per_season": {
+    "2024": {
+      "rr": 1.94,
+      "ci95": [
+        0.78,
+        3.46
+      ],
+      "triple_events": 18
+    },
+    "2025": {
+      "rr": 2.35,
+      "ci95": [
+        1.1,
+        4.0
+      ],
+      "triple_events": 16
+    },
+    "2026": {
+      "rr": 2.23,
+      "ci95": [
+        0.88,
+        4.16
+      ],
+      "triple_events": 17
+    }
+  },
+  "pooled": {
+    "rr": 2.15,
+    "ci95": [
+      1.22,
+      3.19
+    ],
+    "triple_events": 51,
+    "pass": true
+  }
+}
