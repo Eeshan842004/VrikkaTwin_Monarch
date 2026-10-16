@@ -1,0 +1,3444 @@
+{
+  "regime": "matched",
+  "events_per_feature": {
+    "core_features": 25,
+    "full_features": 61,
+    "train_positive_days": 2649,
+    "train_positive_runs_approx_episodes": 857,
+    "positive_days_per_core_feature": 106.0,
+    "episodes_per_core_feature": 34.3,
+    "positive_days_per_full_feature": 43.4
+  },
+  "thresholds": {
+    "B0_last_lab_logistic": {
+      "red_threshold": 0.003226,
+      "amber_threshold": 0.000507,
+      "red_per_100_patient_days_on_calibration": 0.316,
+      "amber_plus_red_per_100_patient_days_on_calibration": 1.132,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    },
+    "B1_heat_index_rule": {
+      "red_threshold": 0.005836,
+      "amber_threshold": 0.005836,
+      "red_per_100_patient_days_on_calibration": 0.0,
+      "amber_plus_red_per_100_patient_days_on_calibration": 0.0,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    },
+    "B2_triple_heat_egfr_points": {
+      "red_threshold": 0.004143,
+      "amber_threshold": 0.004143,
+      "red_per_100_patient_days_on_calibration": 0.306,
+      "amber_plus_red_per_100_patient_days_on_calibration": 0.306,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    },
+    "B3_lightgbm_raw": {
+      "red_threshold": 0.042781,
+      "amber_threshold": 0.00281,
+      "red_per_100_patient_days_on_calibration": 0.493,
+      "amber_plus_red_per_100_patient_days_on_calibration": 2.944,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    },
+    "B4_twin_physics_risk": {
+      "red_threshold": 0.066952,
+      "amber_threshold": 0.001141,
+      "red_per_100_patient_days_on_calibration": 0.445,
+      "amber_plus_red_per_100_patient_days_on_calibration": 1.375,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    },
+    "M_hybrid_core25": {
+      "red_threshold": 0.051724,
+      "amber_threshold": 0.001667,
+      "red_per_100_patient_days_on_calibration": 0.452,
+      "amber_plus_red_per_100_patient_days_on_calibration": 2.832,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    },
+    "M_full_sensitivity": {
+      "red_threshold": 0.035714,
+      "amber_threshold": 0.001941,
+      "red_per_100_patient_days_on_calibration": 0.496,
+      "amber_plus_red_per_100_patient_days_on_calibration": 2.959,
+      "red_clear_ratio": 0.6666666666666667,
+      "dedup_days": 3,
+      "budgets": {
+        "red": 0.5,
+        "amber_plus_red": 3
+      }
+    }
+  },
+  "lgb_best_iterations": {
+    "M": 139,
+    "M_full": 165,
+    "B3": 337
+  },
+  "internal_test_2024": {
+    "B0_last_lab_logistic": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.0239,
+        "auprc_ci95": [
+          0.0155,
+          0.0355
+        ],
+        "auroc": 0.7556,
+        "auroc_ci95": [
+          0.7145,
+          0.7893
+        ],
+        "brier": 0.003723,
+        "calibration_slope": 0.956,
+        "calibration_intercept": -0.153,
+        "within_patient_auroc": 0.5496,
+        "net_benefit": {
+          "0.05": {
+            "model": -3.6e-05,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.32504,
+        "red_per_100_patient_days_ci95": [
+          0.2962,
+          0.3542
+        ],
+        "amber_plus_red_per_100_patient_days": 1.13209,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          1.0975,
+          1.1672
+        ],
+        "sensitivity_red": 0.60851,
+        "sensitivity_red_ci95": [
+          0.5359,
+          0.6745
+        ],
+        "sensitivity_amber_or_red": 0.97447,
+        "sensitivity_amber_or_red_ci95": [
+          0.9517,
+          0.9922
+        ],
+        "alerts_per_aki_caught_red": 4.08392,
+        "alerts_per_aki_caught_red_ci95": [
+          3.4193,
+          5.0171
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 8.8821,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          7.5555,
+          10.5382
+        ],
+        "red_days_per_100_patient_days": 19.99076,
+        "red_days_per_100_patient_days_ci95": [
+          18.1734,
+          21.699
+        ],
+        "amber_or_red_days_per_100_patient_days": 89.9164,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          88.7125,
+          91.1857
+        ],
+        "ppv_red_alert": 0.03596,
+        "ppv_red_alert_ci95": [
+          0.0225,
+          0.0528
+        ],
+        "ppv_red_day": 0.01116,
+        "ppv_red_day_ci95": [
+          0.0087,
+          0.0141
+        ],
+        "ppv_ceiling_red_day": 0.0189,
+        "ppv_ceiling_red_day_ci95": [
+          0.0156,
+          0.023
+        ],
+        "day_sensitivity_red": 0.59057,
+        "day_sensitivity_red_ci95": [
+          0.514,
+          0.6571
+        ],
+        "day_specificity_red": 0.80157,
+        "day_specificity_red_ci95": [
+          0.7845,
+          0.82
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0031,
+          0.0045
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00112,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0009,
+          0.0014
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00022,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0002,
+          0.0003
+        ],
+        "lead_time": {
+          "median_h_all_caught": 71.0,
+          "pct_caught_ge_24h_ahead": 93.0,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 75,
+              "median_lead_h": 71.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 12,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 56,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B1_heat_index_rule": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.0052,
+        "auprc_ci95": [
+          0.004,
+          0.0064
+        ],
+        "auroc": 0.6025,
+        "auroc_ci95": [
+          0.5689,
+          0.6355
+        ],
+        "brier": 0.003762,
+        "calibration_slope": 0.955,
+        "calibration_intercept": -0.166,
+        "within_patient_auroc": 0.5783,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.0,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.0,
+        "red_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "amber_plus_red_per_100_patient_days": 0.0,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "sensitivity_red": 0.0,
+        "sensitivity_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "sensitivity_amber_or_red": 0.0,
+        "sensitivity_amber_or_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "alerts_per_aki_caught_red": 0.0,
+        "alerts_per_aki_caught_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 0.0,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "red_days_per_100_patient_days": 0.0,
+        "red_days_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "amber_or_red_days_per_100_patient_days": 0.0,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_alert": 0.0,
+        "ppv_red_alert_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_day": 0.0,
+        "ppv_red_day_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_ceiling_red_day": 1.0,
+        "ppv_ceiling_red_day_ci95": [
+          1.0,
+          1.0
+        ],
+        "day_sensitivity_red": 0.0,
+        "day_sensitivity_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "day_specificity_red": 1.0,
+        "day_specificity_red_ci95": [
+          1.0,
+          1.0
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0031,
+          0.0046
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.0,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.0,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0,
+          0.0
+        ],
+        "lead_time": {
+          "median_h_all_caught": null,
+          "pct_caught_ge_24h_ahead": null,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 0,
+              "median_lead_h": null
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 0,
+              "median_lead_h": null
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 0,
+              "median_lead_h": null
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B2_triple_heat_egfr_points": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.0065,
+        "auprc_ci95": [
+          0.0049,
+          0.009
+        ],
+        "auroc": 0.6451,
+        "auroc_ci95": [
+          0.6083,
+          0.6809
+        ],
+        "brier": 0.003759,
+        "calibration_slope": 0.956,
+        "calibration_intercept": -0.164,
+        "within_patient_auroc": 0.6167,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.0,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.32337,
+        "red_per_100_patient_days_ci95": [
+          0.2884,
+          0.3595
+        ],
+        "amber_plus_red_per_100_patient_days": 0.32337,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          0.2884,
+          0.3595
+        ],
+        "sensitivity_red": 0.32766,
+        "sensitivity_red_ci95": [
+          0.2437,
+          0.4099
+        ],
+        "sensitivity_amber_or_red": 0.32766,
+        "sensitivity_amber_or_red_ci95": [
+          0.2437,
+          0.4099
+        ],
+        "alerts_per_aki_caught_red": 7.54545,
+        "alerts_per_aki_caught_red_ci95": [
+          5.9505,
+          10.1771
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 7.54545,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          5.9505,
+          10.1771
+        ],
+        "red_days_per_100_patient_days": 13.55222,
+        "red_days_per_100_patient_days_ci95": [
+          12.1375,
+          15.092
+        ],
+        "amber_or_red_days_per_100_patient_days": 13.55222,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          12.1375,
+          15.092
+        ],
+        "ppv_red_alert": 0.04303,
+        "ppv_red_alert_ci95": [
+          0.0264,
+          0.0622
+        ],
+        "ppv_red_day": 0.00805,
+        "ppv_red_day_ci95": [
+          0.0057,
+          0.0106
+        ],
+        "ppv_ceiling_red_day": 0.02789,
+        "ppv_ceiling_red_day_ci95": [
+          0.0226,
+          0.0346
+        ],
+        "day_sensitivity_red": 0.28866,
+        "day_sensitivity_red_ci95": [
+          0.2131,
+          0.3678
+        ],
+        "day_specificity_red": 0.86506,
+        "day_specificity_red_ci95": [
+          0.8497,
+          0.8794
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0031,
+          0.0045
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00081,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0006,
+          0.0011
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00016,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0001,
+          0.0002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 71.0,
+          "pct_caught_ge_24h_ahead": 84.4,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 51,
+              "median_lead_h": 71.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 2,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 24,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B3_lightgbm_raw": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.1793,
+        "auprc_ci95": [
+          0.1468,
+          0.2172
+        ],
+        "auroc": 0.9155,
+        "auroc_ci95": [
+          0.8967,
+          0.9314
+        ],
+        "brier": 0.003338,
+        "calibration_slope": 0.971,
+        "calibration_intercept": -0.121,
+        "within_patient_auroc": 0.7631,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.001092,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.000704,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.000455,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.000397,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.53042,
+        "red_per_100_patient_days_ci95": [
+          0.4682,
+          0.5963
+        ],
+        "amber_plus_red_per_100_patient_days": 3.21371,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          3.041,
+          3.3913
+        ],
+        "sensitivity_red": 0.79149,
+        "sensitivity_red_ci95": [
+          0.7288,
+          0.8511
+        ],
+        "sensitivity_amber_or_red": 0.97021,
+        "sensitivity_amber_or_red_ci95": [
+          0.9471,
+          0.9902
+        ],
+        "alerts_per_aki_caught_red": 5.12366,
+        "alerts_per_aki_caught_red_ci95": [
+          4.3776,
+          6.0676
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 25.32456,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          21.3545,
+          30.5289
+        ],
+        "red_days_per_100_patient_days": 2.18069,
+        "red_days_per_100_patient_days_ci95": [
+          1.7993,
+          2.6103
+        ],
+        "amber_or_red_days_per_100_patient_days": 17.87686,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          16.6308,
+          19.2543
+        ],
+        "ppv_red_alert": 0.13326,
+        "ppv_red_alert_ci95": [
+          0.1106,
+          0.1594
+        ],
+        "ppv_red_day": 0.08882,
+        "ppv_red_day_ci95": [
+          0.0717,
+          0.1076
+        ],
+        "ppv_ceiling_red_day": 0.1733,
+        "ppv_ceiling_red_day_ci95": [
+          0.1421,
+          0.2114
+        ],
+        "day_sensitivity_red": 0.51252,
+        "day_sensitivity_red_ci95": [
+          0.4583,
+          0.5684
+        ],
+        "day_specificity_red": 0.98005,
+        "day_specificity_red_ci95": [
+          0.9759,
+          0.9836
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0031,
+          0.0045
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00962,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0076,
+          0.0119
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00194,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0015,
+          0.0024
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 56.5,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 121,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 11,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 54,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B4_twin_physics_risk": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.1544,
+        "auprc_ci95": [
+          0.1253,
+          0.1886
+        ],
+        "auroc": 0.8336,
+        "auroc_ci95": [
+          0.8053,
+          0.8583
+        ],
+        "brier": 0.003391,
+        "calibration_slope": 1.01,
+        "calibration_intercept": 0.1,
+        "within_patient_auroc": 0.7268,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.001156,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.000662,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.000379,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.000299,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.45695,
+        "red_per_100_patient_days_ci95": [
+          0.3945,
+          0.5244
+        ],
+        "amber_plus_red_per_100_patient_days": 1.387,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          1.3125,
+          1.4675
+        ],
+        "sensitivity_red": 0.71064,
+        "sensitivity_red_ci95": [
+          0.649,
+          0.7731
+        ],
+        "sensitivity_amber_or_red": 1.0,
+        "sensitivity_amber_or_red_ci95": [
+          1.0,
+          1.0
+        ],
+        "alerts_per_aki_caught_red": 4.91617,
+        "alerts_per_aki_caught_red_ci95": [
+          4.2175,
+          5.8891
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 10.60426,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          9.2797,
+          12.4309
+        ],
+        "red_days_per_100_patient_days": 0.85825,
+        "red_days_per_100_patient_days_ci95": [
+          0.71,
+          1.0184
+        ],
+        "amber_or_red_days_per_100_patient_days": 100.0,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          100.0,
+          100.0
+        ],
+        "ppv_red_alert": 0.16443,
+        "ppv_red_alert_ci95": [
+          0.1355,
+          0.1941
+        ],
+        "ppv_red_day": 0.18029,
+        "ppv_red_day_ci95": [
+          0.1454,
+          0.2184
+        ],
+        "ppv_ceiling_red_day": 0.44034,
+        "ppv_ceiling_red_day_ci95": [
+          0.3664,
+          0.5302
+        ],
+        "day_sensitivity_red": 0.40943,
+        "day_sensitivity_red_ci95": [
+          0.359,
+          0.458
+        ],
+        "day_specificity_red": 0.99294,
+        "day_specificity_red_ci95": [
+          0.9915,
+          0.9943
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0031,
+          0.0045
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.02145,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0167,
+          0.0271
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00436,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0034,
+          0.0055
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 51.5,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 110,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 10,
+              "median_lead_h": 47.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 47,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "M_hybrid_core25": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.2163,
+        "auprc_ci95": [
+          0.1846,
+          0.2495
+        ],
+        "auroc": 0.9138,
+        "auroc_ci95": [
+          0.8933,
+          0.9314
+        ],
+        "brier": 0.003246,
+        "calibration_slope": 1.011,
+        "calibration_intercept": 0.076,
+        "within_patient_auroc": 0.7697,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.00138,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.000847,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.000598,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.000374,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.48256,
+        "red_per_100_patient_days_ci95": [
+          0.42,
+          0.5534
+        ],
+        "amber_plus_red_per_100_patient_days": 3.04283,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          2.8906,
+          3.2128
+        ],
+        "sensitivity_red": 0.81277,
+        "sensitivity_red_ci95": [
+          0.7608,
+          0.8667
+        ],
+        "sensitivity_amber_or_red": 0.97447,
+        "sensitivity_amber_or_red_ci95": [
+          0.9502,
+          0.9918
+        ],
+        "alerts_per_aki_caught_red": 4.53927,
+        "alerts_per_aki_caught_red_ci95": [
+          3.895,
+          5.3774
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 23.87336,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          20.0179,
+          28.887
+        ],
+        "red_days_per_100_patient_days": 1.50444,
+        "red_days_per_100_patient_days_ci95": [
+          1.2273,
+          1.8451
+        ],
+        "amber_or_red_days_per_100_patient_days": 21.81579,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          20.2785,
+          23.3406
+        ],
+        "ppv_red_alert": 0.13956,
+        "ppv_red_alert_ci95": [
+          0.1149,
+          0.1652
+        ],
+        "ppv_red_day": 0.13947,
+        "ppv_red_day_ci95": [
+          0.1128,
+          0.1703
+        ],
+        "ppv_ceiling_red_day": 0.2512,
+        "ppv_ceiling_red_day_ci95": [
+          0.2064,
+          0.3088
+        ],
+        "day_sensitivity_red": 0.55523,
+        "day_sensitivity_red_ci95": [
+          0.4953,
+          0.6121
+        ],
+        "day_specificity_red": 0.987,
+        "day_specificity_red_ci95": [
+          0.984,
+          0.9896
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0031,
+          0.0045
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.0159,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0125,
+          0.02
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00322,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0025,
+          0.0041
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 58.1,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 120,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 11,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 60,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "M_full_sensitivity": {
+      "day_level": {
+        "rows": 179668,
+        "positive_days": 679,
+        "prevalence": 0.00378,
+        "auprc": 0.2552,
+        "auprc_ci95": [
+          0.2166,
+          0.2948
+        ],
+        "auroc": 0.9162,
+        "auroc_ci95": [
+          0.8962,
+          0.9332
+        ],
+        "brier": 0.003151,
+        "calibration_slope": 0.972,
+        "calibration_intercept": -0.119,
+        "within_patient_auroc": 0.7614,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.001475,
+            "treat_all": -0.048653
+          },
+          "0.10": {
+            "model": 0.001006,
+            "treat_all": -0.106912
+          },
+          "0.15": {
+            "model": 0.00074,
+            "treat_all": -0.172024
+          },
+          "0.20": {
+            "model": 0.000568,
+            "treat_all": -0.245276
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 235,
+        "patient_days": 179668,
+        "days": 122,
+        "red_per_100_patient_days": 0.51818,
+        "red_per_100_patient_days_ci95": [
+          0.4489,
+          0.5902
+        ],
+        "amber_plus_red_per_100_patient_days": 3.15192,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          2.9909,
+          3.3206
+        ],
+        "sensitivity_red": 0.84255,
+        "sensitivity_red_ci95": [
+          0.7866,
+          0.888
+        ],
+        "sensitivity_amber_or_red": 0.97447,
+        "sensitivity_amber_or_red_ci95": [
+          0.9518,
+          0.9925
+        ],
+        "alerts_per_aki_caught_red": 4.70202,
+        "alerts_per_aki_caught_red_ci95": [
+          4.0474,
+          5.5292
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 24.72926,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          20.7584,
+          29.5982
+        ],
+        "red_days_per_100_patient_days": 1.97976,
+        "red_days_per_100_patient_days_ci95": [
+          1.6294,
+          2.3827
+        ],
+        "amber_or_red_days_per_100_patient_days": 21.79409,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          20.4326,
+          23.3799
+        ],
+        "ppv_red_alert": 0.12567,
+        "ppv_red_alert_ci95": [
+          0.1032,
+          0.1493
+        ],
+        "ppv_red_day": 0.11583,
+        "ppv_red_day_ci95": [
+          0.0947,
+          0.1389
+        ],
+        "ppv_ceiling_red_day": 0.19089,
+        "ppv_ceiling_red_day_ci95": [
+          0.1592,
+          0.2291
+        ],
+        "day_sensitivity_red": 0.60677,
+        "day_sensitivity_red_ci95": [
+          0.5434,
+          0.6661
+        ],
+        "day_specificity_red": 0.98243,
+        "day_specificity_red_ci95": [
+          0.9788,
+          0.9858
+        ],
+        "prevalence": 0.00378,
+        "prevalence_ci95": [
+          0.0032,
+          0.0045
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01289,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0103,
+          0.0158
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.0026,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0021,
+          0.0032
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 62.1,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 149,
+              "caught_red": 124,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 17,
+              "caught_red": 11,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 69,
+              "caught_red": 63,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "_paired_auprc_difference_M_minus": {
+      "B0_last_lab_logistic": {
+        "point": 0.1924,
+        "ci95": [
+          0.1612,
+          0.2233
+        ]
+      },
+      "B1_heat_index_rule": {
+        "point": 0.2111,
+        "ci95": [
+          0.1804,
+          0.2444
+        ]
+      },
+      "B2_triple_heat_egfr_points": {
+        "point": 0.2098,
+        "ci95": [
+          0.1783,
+          0.2435
+        ]
+      },
+      "B3_lightgbm_raw": {
+        "point": 0.037,
+        "ci95": [
+          0.0085,
+          0.063
+        ]
+      },
+      "B4_twin_physics_risk": {
+        "point": 0.0619,
+        "ci95": [
+          0.0394,
+          0.0827
+        ]
+      },
+      "M_full_sensitivity": {
+        "point": -0.0389,
+        "ci95": [
+          -0.061,
+          -0.0197
+        ]
+      }
+    }
+  },
+  "test_2025": {
+    "B0_last_lab_logistic": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.0118,
+        "auprc_ci95": [
+          0.009,
+          0.0154
+        ],
+        "auroc": 0.7007,
+        "auroc_ci95": [
+          0.6745,
+          0.7252
+        ],
+        "brier": 0.002942,
+        "calibration_slope": 0.987,
+        "calibration_intercept": -0.161,
+        "within_patient_auroc": 0.4771,
+        "net_benefit": {
+          "0.05": {
+            "model": -6.6e-05,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.2908,
+        "red_per_100_patient_days_ci95": [
+          0.2765,
+          0.3046
+        ],
+        "amber_plus_red_per_100_patient_days": 1.09875,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          1.0821,
+          1.1142
+        ],
+        "sensitivity_red": 0.51378,
+        "sensitivity_red_ci95": [
+          0.4662,
+          0.5556
+        ],
+        "sensitivity_amber_or_red": 0.95624,
+        "sensitivity_amber_or_red_ci95": [
+          0.9379,
+          0.973
+        ],
+        "alerts_per_aki_caught_red": 5.52366,
+        "alerts_per_aki_caught_red_ci95": [
+          4.9006,
+          6.3322
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 11.21356,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          10.2033,
+          12.5006
+        ],
+        "red_days_per_100_patient_days": 20.11127,
+        "red_days_per_100_patient_days_ci95": [
+          19.1587,
+          21.0902
+        ],
+        "amber_or_red_days_per_100_patient_days": 90.46052,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          89.7775,
+          91.0736
+        ],
+        "ppv_red_alert": 0.03198,
+        "ppv_red_alert_ci95": [
+          0.022,
+          0.0427
+        ],
+        "ppv_red_day": 0.00723,
+        "ppv_red_day_ci95": [
+          0.0061,
+          0.0083
+        ],
+        "ppv_ceiling_red_day": 0.01473,
+        "ppv_ceiling_red_day_ci95": [
+          0.0132,
+          0.0164
+        ],
+        "day_sensitivity_red": 0.49047,
+        "day_sensitivity_red_ci95": [
+          0.4423,
+          0.5342
+        ],
+        "day_specificity_red": 0.79975,
+        "day_specificity_red_ci95": [
+          0.7899,
+          0.8093
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0027,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00073,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0006,
+          0.0008
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00015,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0001,
+          0.0002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 71.0,
+          "pct_caught_ge_24h_ahead": 90.5,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 185,
+              "median_lead_h": 71.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 12,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 120,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B1_heat_index_rule": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.0037,
+        "auprc_ci95": [
+          0.0032,
+          0.0042
+        ],
+        "auroc": 0.5762,
+        "auroc_ci95": [
+          0.5566,
+          0.5952
+        ],
+        "brier": 0.002953,
+        "calibration_slope": 0.992,
+        "calibration_intercept": -0.172,
+        "within_patient_auroc": 0.5449,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.0,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.0,
+        "red_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "amber_plus_red_per_100_patient_days": 0.0,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "sensitivity_red": 0.0,
+        "sensitivity_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "sensitivity_amber_or_red": 0.0,
+        "sensitivity_amber_or_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "alerts_per_aki_caught_red": 0.0,
+        "alerts_per_aki_caught_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 0.0,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "red_days_per_100_patient_days": 0.0,
+        "red_days_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "amber_or_red_days_per_100_patient_days": 0.0,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_alert": 0.0,
+        "ppv_red_alert_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_day": 0.0,
+        "ppv_red_day_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_ceiling_red_day": 1.0,
+        "ppv_ceiling_red_day_ci95": [
+          1.0,
+          1.0
+        ],
+        "day_sensitivity_red": 0.0,
+        "day_sensitivity_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "day_specificity_red": 1.0,
+        "day_specificity_red_ci95": [
+          1.0,
+          1.0
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0026,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.0,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.0,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0,
+          0.0
+        ],
+        "lead_time": {
+          "median_h_all_caught": null,
+          "pct_caught_ge_24h_ahead": null,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 0,
+              "median_lead_h": null
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 0,
+              "median_lead_h": null
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 0,
+              "median_lead_h": null
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B2_triple_heat_egfr_points": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.0044,
+        "auprc_ci95": [
+          0.0038,
+          0.0052
+        ],
+        "auroc": 0.6164,
+        "auroc_ci95": [
+          0.5949,
+          0.6384
+        ],
+        "brier": 0.002954,
+        "calibration_slope": 0.987,
+        "calibration_intercept": -0.169,
+        "within_patient_auroc": 0.57,
+        "net_benefit": {
+          "0.05": {
+            "model": -3.1e-05,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.31687,
+        "red_per_100_patient_days_ci95": [
+          0.2954,
+          0.3374
+        ],
+        "amber_plus_red_per_100_patient_days": 0.31687,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          0.2954,
+          0.3374
+        ],
+        "sensitivity_red": 0.27553,
+        "sensitivity_red_ci95": [
+          0.2327,
+          0.3176
+        ],
+        "sensitivity_amber_or_red": 0.27553,
+        "sensitivity_amber_or_red_ci95": [
+          0.2327,
+          0.3176
+        ],
+        "alerts_per_aki_caught_red": 11.22353,
+        "alerts_per_aki_caught_red_ci95": [
+          9.4176,
+          13.7418
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 11.22353,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          9.4176,
+          13.7418
+        ],
+        "red_days_per_100_patient_days": 11.91019,
+        "red_days_per_100_patient_days_ci95": [
+          11.1176,
+          12.7581
+        ],
+        "amber_or_red_days_per_100_patient_days": 11.91019,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          11.1176,
+          12.7581
+        ],
+        "ppv_red_alert": 0.02621,
+        "ppv_red_alert_ci95": [
+          0.019,
+          0.0341
+        ],
+        "ppv_red_day": 0.00623,
+        "ppv_red_day_ci95": [
+          0.005,
+          0.0075
+        ],
+        "ppv_ceiling_red_day": 0.02488,
+        "ppv_ceiling_red_day_ci95": [
+          0.0219,
+          0.028
+        ],
+        "day_sensitivity_red": 0.25056,
+        "day_sensitivity_red_ci95": [
+          0.2102,
+          0.2905
+        ],
+        "day_specificity_red": 0.88129,
+        "day_specificity_red_ci95": [
+          0.8729,
+          0.8892
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0027,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00063,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0005,
+          0.0008
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00013,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0001,
+          0.0002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 71.0,
+          "pct_caught_ge_24h_ahead": 88.2,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 127,
+              "median_lead_h": 71.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 4,
+              "median_lead_h": 47.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 39,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B3_lightgbm_raw": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.172,
+        "auprc_ci95": [
+          0.1519,
+          0.1949
+        ],
+        "auroc": 0.8979,
+        "auroc_ci95": [
+          0.8869,
+          0.9079
+        ],
+        "brier": 0.002629,
+        "calibration_slope": 0.98,
+        "calibration_intercept": -0.125,
+        "within_patient_auroc": 0.7441,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.000649,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.000487,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.00037,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.000321,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.45687,
+        "red_per_100_patient_days_ci95": [
+          0.4196,
+          0.4924
+        ],
+        "amber_plus_red_per_100_patient_days": 2.9714,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          2.8688,
+          3.0738
+        ],
+        "sensitivity_red": 0.79417,
+        "sensitivity_red_ci95": [
+          0.7523,
+          0.8302
+        ],
+        "sensitivity_amber_or_red": 0.97569,
+        "sensitivity_amber_or_red_ci95": [
+          0.9631,
+          0.9869
+        ],
+        "alerts_per_aki_caught_red": 5.61429,
+        "alerts_per_aki_caught_red_ci95": [
+          5.097,
+          6.2325
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 29.72093,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          26.724,
+          33.0067
+        ],
+        "red_days_per_100_patient_days": 1.67818,
+        "red_days_per_100_patient_days_ci95": [
+          1.4699,
+          1.8821
+        ],
+        "amber_or_red_days_per_100_patient_days": 16.22247,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          15.476,
+          17.0048
+        ],
+        "ppv_red_alert": 0.14322,
+        "ppv_red_alert_ci95": [
+          0.1286,
+          0.1598
+        ],
+        "ppv_red_day": 0.07996,
+        "ppv_red_day_ci95": [
+          0.0693,
+          0.0921
+        ],
+        "ppv_ceiling_red_day": 0.17655,
+        "ppv_ceiling_red_day_ci95": [
+          0.1548,
+          0.2036
+        ],
+        "day_sensitivity_red": 0.45291,
+        "day_sensitivity_red_ci95": [
+          0.414,
+          0.4862
+        ],
+        "day_specificity_red": 0.98451,
+        "day_specificity_red_ci95": [
+          0.9825,
+          0.9865
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0027,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00859,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0074,
+          0.01
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00173,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0015,
+          0.002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 23.0,
+          "pct_caught_ge_24h_ahead": 46.3,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 371,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 9,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 110,
+              "median_lead_h": 47.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B4_twin_physics_risk": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.1721,
+        "auprc_ci95": [
+          0.1529,
+          0.1943
+        ],
+        "auroc": 0.8068,
+        "auroc_ci95": [
+          0.7894,
+          0.8238
+        ],
+        "brier": 0.002631,
+        "calibration_slope": 0.988,
+        "calibration_intercept": -0.149,
+        "within_patient_auroc": 0.71,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.000824,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.000542,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.000432,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.000317,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.37715,
+        "red_per_100_patient_days_ci95": [
+          0.3422,
+          0.4109
+        ],
+        "amber_plus_red_per_100_patient_days": 1.28757,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          1.2489,
+          1.3269
+        ],
+        "sensitivity_red": 0.74554,
+        "sensitivity_red_ci95": [
+          0.7113,
+          0.7829
+        ],
+        "sensitivity_amber_or_red": 1.0,
+        "sensitivity_amber_or_red_ci95": [
+          1.0,
+          1.0
+        ],
+        "alerts_per_aki_caught_red": 4.93696,
+        "alerts_per_aki_caught_red_ci95": [
+          4.4673,
+          5.5062
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 12.56564,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          11.5324,
+          13.7617
+        ],
+        "red_days_per_100_patient_days": 0.68771,
+        "red_days_per_100_patient_days_ci95": [
+          0.6106,
+          0.7649
+        ],
+        "amber_or_red_days_per_100_patient_days": 100.0,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          100.0,
+          100.0
+        ],
+        "ppv_red_alert": 0.17878,
+        "ppv_red_alert_ci95": [
+          0.16,
+          0.1987
+        ],
+        "ppv_red_day": 0.16783,
+        "ppv_red_day_ci95": [
+          0.1472,
+          0.1896
+        ],
+        "ppv_ceiling_red_day": 0.43081,
+        "ppv_ceiling_red_day_ci95": [
+          0.3851,
+          0.4803
+        ],
+        "day_sensitivity_red": 0.38957,
+        "day_sensitivity_red_ci95": [
+          0.3577,
+          0.421
+        ],
+        "day_specificity_red": 0.99426,
+        "day_specificity_red_ci95": [
+          0.9936,
+          0.995
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0027,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01972,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0169,
+          0.0228
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00401,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0034,
+          0.0046
+        ],
+        "lead_time": {
+          "median_h_all_caught": 23.0,
+          "pct_caught_ge_24h_ahead": 37.8,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 343,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 3,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 114,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "M_hybrid_core25": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.2171,
+        "auprc_ci95": [
+          0.1959,
+          0.2412
+        ],
+        "auroc": 0.9016,
+        "auroc_ci95": [
+          0.8904,
+          0.9126
+        ],
+        "brier": 0.002527,
+        "calibration_slope": 0.98,
+        "calibration_intercept": -0.12,
+        "within_patient_auroc": 0.7493,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.000891,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.000626,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.00049,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.00041,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.39111,
+        "red_per_100_patient_days_ci95": [
+          0.3583,
+          0.4284
+        ],
+        "amber_plus_red_per_100_patient_days": 2.79204,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          2.697,
+          2.8913
+        ],
+        "sensitivity_red": 0.80875,
+        "sensitivity_red_ci95": [
+          0.7744,
+          0.8401
+        ],
+        "sensitivity_amber_or_red": 0.97731,
+        "sensitivity_amber_or_red_ci95": [
+          0.9647,
+          0.9883
+        ],
+        "alerts_per_aki_caught_red": 4.71944,
+        "alerts_per_aki_caught_red_ci95": [
+          4.274,
+          5.2622
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 27.8806,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          25.2803,
+          31.3799
+        ],
+        "red_days_per_100_patient_days": 1.12964,
+        "red_days_per_100_patient_days_ci95": [
+          0.9886,
+          1.2807
+        ],
+        "amber_or_red_days_per_100_patient_days": 19.45827,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          18.615,
+          20.2871
+        ],
+        "ppv_red_alert": 0.16518,
+        "ppv_red_alert_ci95": [
+          0.145,
+          0.1838
+        ],
+        "ppv_red_day": 0.12438,
+        "ppv_red_day_ci95": [
+          0.1064,
+          0.1418
+        ],
+        "ppv_ceiling_red_day": 0.26228,
+        "ppv_ceiling_red_day_ci95": [
+          0.2281,
+          0.2982
+        ],
+        "day_sensitivity_red": 0.47422,
+        "day_sensitivity_red_ci95": [
+          0.4349,
+          0.5116
+        ],
+        "day_specificity_red": 0.99008,
+        "day_specificity_red_ci95": [
+          0.9887,
+          0.9914
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0026,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01397,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0117,
+          0.0162
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00282,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0024,
+          0.0033
+        ],
+        "lead_time": {
+          "median_h_all_caught": 23.0,
+          "pct_caught_ge_24h_ahead": 43.5,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 370,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 6,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 123,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "M_full_sensitivity": {
+      "day_level": {
+        "rows": 602140,
+        "positive_days": 1784,
+        "prevalence": 0.00296,
+        "auprc": 0.2289,
+        "auprc_ci95": [
+          0.2057,
+          0.2556
+        ],
+        "auroc": 0.9019,
+        "auroc_ci95": [
+          0.8903,
+          0.9125
+        ],
+        "brier": 0.002508,
+        "calibration_slope": 0.981,
+        "calibration_intercept": -0.122,
+        "within_patient_auroc": 0.7451,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.00096,
+            "treat_all": -0.049513
+          },
+          "0.10": {
+            "model": 0.000688,
+            "treat_all": -0.107819
+          },
+          "0.15": {
+            "model": 0.000565,
+            "treat_all": -0.172985
+          },
+          "0.20": {
+            "model": 0.000441,
+            "treat_all": -0.246297
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 617,
+        "patient_days": 602140,
+        "days": 122,
+        "red_per_100_patient_days": 0.46534,
+        "red_per_100_patient_days_ci95": [
+          0.4291,
+          0.5052
+        ],
+        "amber_plus_red_per_100_patient_days": 3.02089,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          2.9184,
+          3.1185
+        ],
+        "sensitivity_red": 0.88655,
+        "sensitivity_red_ci95": [
+          0.8635,
+          0.9113
+        ],
+        "sensitivity_amber_or_red": 0.97569,
+        "sensitivity_amber_or_red_ci95": [
+          0.9632,
+          0.9872
+        ],
+        "alerts_per_aki_caught_red": 5.12249,
+        "alerts_per_aki_caught_red_ci95": [
+          4.6183,
+          5.7323
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 30.21595,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          27.2634,
+          33.6676
+        ],
+        "red_days_per_100_patient_days": 1.62603,
+        "red_days_per_100_patient_days_ci95": [
+          1.4383,
+          1.8173
+        ],
+        "amber_or_red_days_per_100_patient_days": 19.67532,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          18.8346,
+          20.4567
+        ],
+        "ppv_red_alert": 0.14097,
+        "ppv_red_alert_ci95": [
+          0.1256,
+          0.1583
+        ],
+        "ppv_red_day": 0.10142,
+        "ppv_red_day_ci95": [
+          0.0889,
+          0.1155
+        ],
+        "ppv_ceiling_red_day": 0.18221,
+        "ppv_ceiling_red_day_ci95": [
+          0.1603,
+          0.2054
+        ],
+        "day_sensitivity_red": 0.55661,
+        "day_sensitivity_red_ci95": [
+          0.5241,
+          0.5922
+        ],
+        "day_specificity_red": 0.98535,
+        "day_specificity_red_ci95": [
+          0.9836,
+          0.9871
+        ],
+        "prevalence": 0.00296,
+        "prevalence_ci95": [
+          0.0026,
+          0.0033
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01113,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0096,
+          0.0129
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00225,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0019,
+          0.0026
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 51.2,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 442,
+              "caught_red": 390,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 10,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 156,
+              "caught_red": 147,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "_paired_auprc_difference_M_minus": {
+      "B0_last_lab_logistic": {
+        "point": 0.2053,
+        "ci95": [
+          0.1838,
+          0.2289
+        ]
+      },
+      "B1_heat_index_rule": {
+        "point": 0.2134,
+        "ci95": [
+          0.1925,
+          0.2372
+        ]
+      },
+      "B2_triple_heat_egfr_points": {
+        "point": 0.2127,
+        "ci95": [
+          0.1917,
+          0.2367
+        ]
+      },
+      "B3_lightgbm_raw": {
+        "point": 0.0451,
+        "ci95": [
+          0.0235,
+          0.0644
+        ]
+      },
+      "B4_twin_physics_risk": {
+        "point": 0.045,
+        "ci95": [
+          0.033,
+          0.0568
+        ]
+      },
+      "M_full_sensitivity": {
+        "point": -0.0118,
+        "ci95": [
+          -0.025,
+          0.0013
+        ]
+      }
+    },
+    "subgroup_age_75_plus_M": {
+      "patients": 474,
+      "auprc": 0.2735,
+      "auprc_ci95": [
+        0.2045,
+        0.3506
+      ],
+      "auroc": 0.8692,
+      "sensitivity_red": 0.8,
+      "episodes": 80,
+      "note": "low muscle mass can blunt creatinine rises in older people, so creatinine-defined AKI may be under-detected (Decisions v4 5d)"
+    }
+  },
+  "example_reasons_2025": [
+    {
+      "patient_id": "T00002",
+      "day": 0,
+      "risk": 0.057,
+      "reasons": [
+        {
+          "feature": "mc_risk_72h",
+          "i18n_key": "reason.mc_risk_72h",
+          "contribution": 1.7143425310449891
+        },
+        {
+          "feature": "mc_gfr_min_frac",
+          "i18n_key": "reason.mc_gfr_min_frac",
+          "contribution": 1.302060710420499
+        },
+        {
+          "feature": "on_ras",
+          "i18n_key": "reason.on_ras",
+          "contribution": 0.39527266377606757
+        }
+      ]
+    },
+    {
+      "patient_id": "T00002",
+      "day": 14,
+      "risk": 0.052,
+      "reasons": [
+        {
+          "feature": "mc_gfr_min_frac",
+          "i18n_key": "reason.mc_gfr_min_frac",
+          "contribution": 1.3278769906224202
+        },
+        {
+          "feature": "tw_cr_ratio",
+          "i18n_key": "reason.tw_cr_ratio",
+          "contribution": 0.6435295485146466
+        },
+        {
+          "feature": "mc_cr_peak_ratio",
+          "i18n_key": "reason.mc_cr_peak_ratio",
+          "contribution": 0.5014399194801402
+        }
+      ]
+    },
+    {
+      "patient_id": "T00002",
+      "day": 15,
+      "risk": 0.057,
+      "reasons": [
+        {
+          "feature": "mc_gfr_min_frac",
+          "i18n_key": "reason.mc_gfr_min_frac",
+          "contribution": 1.320943434092143
+        },
+        {
+          "feature": "mc_risk_72h",
+          "i18n_key": "reason.mc_risk_72h",
+          "contribution": 0.6212354544954287
+        },
+        {
+          "feature": "tw_cr_ratio",
+          "i18n_key": "reason.tw_cr_ratio",
+          "contribution": 0.49955203249421437
+        }
+      ]
+    },
+    {
+      "patient_id": "T00002",
+      "day": 17,
+      "risk": 0.057,
+      "reasons": [
+        {
+          "feature": "mc_gfr_min_frac",
+          "i18n_key": "reason.mc_gfr_min_frac",
+          "contribution": 1.2423830934657327
+        },
+        {
+          "feature": "mc_risk_72h",
+          "i18n_key": "reason.mc_risk_72h",
+          "contribution": 1.2351555124054268
+        },
+        {
+          "feature": "mc_cr_peak_ratio",
+          "i18n_key": "reason.mc_cr_peak_ratio",
+          "contribution": 0.39683570302888255
+        }
+      ]
+    },
+    {
+      "patient_id": "T00002",
+      "day": 18,
+      "risk": 0.064,
+      "reasons": [
+        {
+          "feature": "mc_gfr_min_frac",
+          "i18n_key": "reason.mc_gfr_min_frac",
+          "contribution": 1.3607793808646331
+        },
+        {
+          "feature": "mc_risk_72h",
+          "i18n_key": "reason.mc_risk_72h",
+          "contribution": 1.1938812854210092
+        },
+        {
+          "feature": "tw_cr_ratio",
+          "i18n_key": "reason.tw_cr_ratio",
+          "contribution": 0.6156950967209828
+        }
+      ]
+    }
+  ],
+  "test_2026": {
+    "B0_last_lab_logistic": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.0134,
+        "auprc_ci95": [
+          0.0106,
+          0.0166
+        ],
+        "auroc": 0.7059,
+        "auroc_ci95": [
+          0.6841,
+          0.7284
+        ],
+        "brier": 0.003517,
+        "calibration_slope": 0.958,
+        "calibration_intercept": -0.158,
+        "within_patient_auroc": 0.524,
+        "net_benefit": {
+          "0.05": {
+            "model": -5.7e-05,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.31847,
+        "red_per_100_patient_days_ci95": [
+          0.304,
+          0.3341
+        ],
+        "amber_plus_red_per_100_patient_days": 1.13574,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          1.1193,
+          1.1547
+        ],
+        "sensitivity_red": 0.50683,
+        "sensitivity_red_ci95": [
+          0.4622,
+          0.5514
+        ],
+        "sensitivity_amber_or_red": 0.97268,
+        "sensitivity_amber_or_red_ci95": [
+          0.9589,
+          0.9844
+        ],
+        "alerts_per_aki_caught_red": 5.15094,
+        "alerts_per_aki_caught_red_ci95": [
+          4.6462,
+          5.7919
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 9.57163,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          8.7665,
+          10.4596
+        ],
+        "red_days_per_100_patient_days": 20.25681,
+        "red_days_per_100_patient_days_ci95": [
+          19.3162,
+          21.2497
+        ],
+        "amber_or_red_days_per_100_patient_days": 90.04383,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          89.3772,
+          90.7271
+        ],
+        "ppv_red_alert": 0.03192,
+        "ppv_red_alert_ci95": [
+          0.0237,
+          0.0405
+        ],
+        "ppv_red_day": 0.00858,
+        "ppv_red_day_ci95": [
+          0.0074,
+          0.0098
+        ],
+        "ppv_ceiling_red_day": 0.01752,
+        "ppv_ceiling_red_day_ci95": [
+          0.0159,
+          0.0194
+        ],
+        "day_sensitivity_red": 0.4899,
+        "day_sensitivity_red_ci95": [
+          0.4453,
+          0.5307
+        ],
+        "day_specificity_red": 0.79845,
+        "day_specificity_red_ci95": [
+          0.7886,
+          0.8079
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00086,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0007,
+          0.001
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00017,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0001,
+          0.0002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 71.0,
+          "pct_caught_ge_24h_ahead": 93.3,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 243,
+              "median_lead_h": 71.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 7,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 121,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B1_heat_index_rule": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.0047,
+        "auprc_ci95": [
+          0.0041,
+          0.0053
+        ],
+        "auroc": 0.5919,
+        "auroc_ci95": [
+          0.5727,
+          0.6116
+        ],
+        "brier": 0.003533,
+        "calibration_slope": 0.962,
+        "calibration_intercept": -0.167,
+        "within_patient_auroc": 0.5709,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.0,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.0,
+        "red_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "amber_plus_red_per_100_patient_days": 0.0,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "sensitivity_red": 0.0,
+        "sensitivity_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "sensitivity_amber_or_red": 0.0,
+        "sensitivity_amber_or_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "alerts_per_aki_caught_red": 0.0,
+        "alerts_per_aki_caught_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 0.0,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "red_days_per_100_patient_days": 0.0,
+        "red_days_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "amber_or_red_days_per_100_patient_days": 0.0,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_alert": 0.0,
+        "ppv_red_alert_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_day": 0.0,
+        "ppv_red_day_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_ceiling_red_day": 1.0,
+        "ppv_ceiling_red_day_ci95": [
+          1.0,
+          1.0
+        ],
+        "day_sensitivity_red": 0.0,
+        "day_sensitivity_red_ci95": [
+          0.0,
+          0.0
+        ],
+        "day_specificity_red": 1.0,
+        "day_specificity_red_ci95": [
+          1.0,
+          1.0
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.0,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0,
+          0.0
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.0,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0,
+          0.0
+        ],
+        "lead_time": {
+          "median_h_all_caught": null,
+          "pct_caught_ge_24h_ahead": null,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 0,
+              "median_lead_h": null
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 0,
+              "median_lead_h": null
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 0,
+              "median_lead_h": null
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B2_triple_heat_egfr_points": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.0056,
+        "auprc_ci95": [
+          0.0048,
+          0.0064
+        ],
+        "auroc": 0.6292,
+        "auroc_ci95": [
+          0.6092,
+          0.6483
+        ],
+        "brier": 0.003532,
+        "calibration_slope": 0.958,
+        "calibration_intercept": -0.164,
+        "within_patient_auroc": 0.5966,
+        "net_benefit": {
+          "0.05": {
+            "model": -1.2e-05,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.0,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.0,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.0,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.28564,
+        "red_per_100_patient_days_ci95": [
+          0.2683,
+          0.3024
+        ],
+        "amber_plus_red_per_100_patient_days": 0.28564,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          0.2683,
+          0.3024
+        ],
+        "sensitivity_red": 0.26503,
+        "sensitivity_red_ci95": [
+          0.2275,
+          0.3028
+        ],
+        "sensitivity_amber_or_red": 0.26503,
+        "sensitivity_amber_or_red_ci95": [
+          0.2275,
+          0.3028
+        ],
+        "alerts_per_aki_caught_red": 8.83505,
+        "alerts_per_aki_caught_red_ci95": [
+          7.613,
+          10.4318
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 8.83505,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          7.613,
+          10.4318
+        ],
+        "red_days_per_100_patient_days": 11.75602,
+        "red_days_per_100_patient_days_ci95": [
+          11.0311,
+          12.4681
+        ],
+        "amber_or_red_days_per_100_patient_days": 11.75602,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          11.0311,
+          12.4681
+        ],
+        "ppv_red_alert": 0.03267,
+        "ppv_red_alert_ci95": [
+          0.0237,
+          0.0419
+        ],
+        "ppv_red_day": 0.00707,
+        "ppv_red_day_ci95": [
+          0.0059,
+          0.0083
+        ],
+        "ppv_ceiling_red_day": 0.03018,
+        "ppv_ceiling_red_day_ci95": [
+          0.027,
+          0.0338
+        ],
+        "day_sensitivity_red": 0.23438,
+        "day_sensitivity_red_ci95": [
+          0.2015,
+          0.269
+        ],
+        "day_specificity_red": 0.88286,
+        "day_specificity_red_ci95": [
+          0.8757,
+          0.8902
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00071,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0006,
+          0.0008
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00014,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0001,
+          0.0002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 71.0,
+          "pct_caught_ge_24h_ahead": 83.5,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 156,
+              "median_lead_h": 71.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 5,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 33,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B3_lightgbm_raw": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.1745,
+        "auprc_ci95": [
+          0.1566,
+          0.1938
+        ],
+        "auroc": 0.901,
+        "auroc_ci95": [
+          0.8907,
+          0.9108
+        ],
+        "brier": 0.003149,
+        "calibration_slope": 0.975,
+        "calibration_intercept": -0.124,
+        "within_patient_auroc": 0.7663,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.000883,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.000596,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.00043,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.000364,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.50079,
+        "red_per_100_patient_days_ci95": [
+          0.4681,
+          0.5397
+        ],
+        "amber_plus_red_per_100_patient_days": 3.13524,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          3.0339,
+          3.2368
+        ],
+        "sensitivity_red": 0.79098,
+        "sensitivity_red_ci95": [
+          0.7576,
+          0.8236
+        ],
+        "sensitivity_amber_or_red": 0.97951,
+        "sensitivity_amber_or_red_ci95": [
+          0.9691,
+          0.9886
+        ],
+        "alerts_per_aki_caught_red": 5.18998,
+        "alerts_per_aki_caught_red_ci95": [
+          4.7517,
+          5.698
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 26.23849,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          24.0825,
+          28.9124
+        ],
+        "red_days_per_100_patient_days": 2.11866,
+        "red_days_per_100_patient_days_ci95": [
+          1.9006,
+          2.3821
+        ],
+        "amber_or_red_days_per_100_patient_days": 18.57079,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          17.8274,
+          19.38
+        ],
+        "ppv_red_alert": 0.14143,
+        "ppv_red_alert_ci95": [
+          0.1276,
+          0.1566
+        ],
+        "ppv_red_day": 0.08141,
+        "ppv_red_day_ci95": [
+          0.0712,
+          0.0921
+        ],
+        "ppv_ceiling_red_day": 0.16747,
+        "ppv_ceiling_red_day_ci95": [
+          0.1476,
+          0.1886
+        ],
+        "day_sensitivity_red": 0.48614,
+        "day_sensitivity_red_ci95": [
+          0.4527,
+          0.5184
+        ],
+        "day_specificity_red": 0.98047,
+        "day_specificity_red_ci95": [
+          0.9779,
+          0.9826
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.00876,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0076,
+          0.01
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00176,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0015,
+          0.002
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 52.0,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 434,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 10,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 135,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "B4_twin_physics_risk": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.1292,
+        "auprc_ci95": [
+          0.1137,
+          0.1463
+        ],
+        "auroc": 0.8127,
+        "auroc_ci95": [
+          0.7966,
+          0.8279
+        ],
+        "brier": 0.00325,
+        "calibration_slope": 0.947,
+        "calibration_intercept": -0.273,
+        "within_patient_auroc": 0.7208,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.000956,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.000572,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.000386,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.000221,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.49129,
+        "red_per_100_patient_days_ci95": [
+          0.4569,
+          0.5305
+        ],
+        "amber_plus_red_per_100_patient_days": 1.41738,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          1.3789,
+          1.4611
+        ],
+        "sensitivity_red": 0.74317,
+        "sensitivity_red_ci95": [
+          0.7078,
+          0.782
+        ],
+        "sensitivity_amber_or_red": 1.0,
+        "sensitivity_amber_or_red_ci95": [
+          1.0,
+          1.0
+        ],
+        "alerts_per_aki_caught_red": 5.41912,
+        "alerts_per_aki_caught_red_ci95": [
+          4.9316,
+          5.9422
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 11.61885,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          10.7591,
+          12.5774
+        ],
+        "red_days_per_100_patient_days": 0.90959,
+        "red_days_per_100_patient_days_ci95": [
+          0.8242,
+          1.0041
+        ],
+        "amber_or_red_days_per_100_patient_days": 100.0,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          100.0,
+          100.0
+        ],
+        "ppv_red_alert": 0.15434,
+        "ppv_red_alert_ci95": [
+          0.1389,
+          0.1705
+        ],
+        "ppv_red_day": 0.15555,
+        "ppv_red_day_ci95": [
+          0.1382,
+          0.1743
+        ],
+        "ppv_ceiling_red_day": 0.39007,
+        "ppv_ceiling_red_day_ci95": [
+          0.3523,
+          0.4302
+        ],
+        "day_sensitivity_red": 0.39878,
+        "day_sensitivity_red_ci95": [
+          0.369,
+          0.4278
+        ],
+        "day_specificity_red": 0.99229,
+        "day_specificity_red_ci95": [
+          0.9914,
+          0.9931
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01803,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0157,
+          0.0206
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00366,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0032,
+          0.0042
+        ],
+        "lead_time": {
+          "median_h_all_caught": 23.0,
+          "pct_caught_ge_24h_ahead": 43.6,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 414,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 11,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 119,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "M_hybrid_core25": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.1991,
+        "auprc_ci95": [
+          0.1818,
+          0.2175
+        ],
+        "auroc": 0.9023,
+        "auroc_ci95": [
+          0.8907,
+          0.9132
+        ],
+        "brier": 0.003083,
+        "calibration_slope": 0.941,
+        "calibration_intercept": -0.267,
+        "within_patient_auroc": 0.7705,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.00106,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.000678,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.000481,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.000421,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.47896,
+        "red_per_100_patient_days_ci95": [
+          0.4441,
+          0.5175
+        ],
+        "amber_plus_red_per_100_patient_days": 3.04341,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          2.9566,
+          3.1387
+        ],
+        "sensitivity_red": 0.80328,
+        "sensitivity_red_ci95": [
+          0.7686,
+          0.8378
+        ],
+        "sensitivity_amber_or_red": 0.98361,
+        "sensitivity_amber_or_red_ci95": [
+          0.9738,
+          0.992
+        ],
+        "alerts_per_aki_caught_red": 4.88776,
+        "alerts_per_aki_caught_red_ci95": [
+          4.4683,
+          5.3667
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 25.36389,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          23.1141,
+          27.8732
+        ],
+        "red_days_per_100_patient_days": 1.46504,
+        "red_days_per_100_patient_days_ci95": [
+          1.3047,
+          1.6298
+        ],
+        "amber_or_red_days_per_100_patient_days": 22.0245,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          21.2142,
+          22.9451
+        ],
+        "ppv_red_alert": 0.15101,
+        "ppv_red_alert_ci95": [
+          0.1367,
+          0.1673
+        ],
+        "ppv_red_day": 0.11682,
+        "ppv_red_day_ci95": [
+          0.104,
+          0.1319
+        ],
+        "ppv_ceiling_red_day": 0.24218,
+        "ppv_ceiling_red_day_ci95": [
+          0.2175,
+          0.2702
+        ],
+        "day_sensitivity_red": 0.48239,
+        "day_sensitivity_red_ci95": [
+          0.4494,
+          0.5152
+        ],
+        "day_specificity_red": 0.98702,
+        "day_specificity_red_ci95": [
+          0.9854,
+          0.9885
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01301,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0114,
+          0.0149
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00263,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0023,
+          0.003
+        ],
+        "lead_time": {
+          "median_h_all_caught": 23.0,
+          "pct_caught_ge_24h_ahead": 48.8,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 440,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 12,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 136,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "M_full_sensitivity": {
+      "day_level": {
+        "rows": 600050,
+        "positive_days": 2129,
+        "prevalence": 0.00355,
+        "auprc": 0.2255,
+        "auprc_ci95": [
+          0.2012,
+          0.2519
+        ],
+        "auroc": 0.903,
+        "auroc_ci95": [
+          0.8908,
+          0.9138
+        ],
+        "brier": 0.003019,
+        "calibration_slope": 0.97,
+        "calibration_intercept": -0.124,
+        "within_patient_auroc": 0.7653,
+        "net_benefit": {
+          "0.05": {
+            "model": 0.001148,
+            "treat_all": -0.048897
+          },
+          "0.10": {
+            "model": 0.00083,
+            "treat_all": -0.107169
+          },
+          "0.15": {
+            "model": 0.000658,
+            "treat_all": -0.172296
+          },
+          "0.20": {
+            "model": 0.000543,
+            "treat_all": -0.245565
+          }
+        }
+      },
+      "alerts": {
+        "episodes_with_a_prediction_window": 732,
+        "patient_days": 600050,
+        "days": 122,
+        "red_per_100_patient_days": 0.54129,
+        "red_per_100_patient_days_ci95": [
+          0.4999,
+          0.5834
+        ],
+        "amber_plus_red_per_100_patient_days": 3.18407,
+        "amber_plus_red_per_100_patient_days_ci95": [
+          3.0881,
+          3.2762
+        ],
+        "sensitivity_red": 0.85792,
+        "sensitivity_red_ci95": [
+          0.8288,
+          0.8873
+        ],
+        "sensitivity_amber_or_red": 0.98634,
+        "sensitivity_amber_or_red_ci95": [
+          0.9778,
+          0.9943
+        ],
+        "alerts_per_aki_caught_red": 5.17197,
+        "alerts_per_aki_caught_red_ci95": [
+          4.7605,
+          5.6842
+        ],
+        "alerts_per_aki_caught_amber_plus_red": 26.4626,
+        "alerts_per_aki_caught_amber_plus_red_ci95": [
+          24.312,
+          29.1386
+        ],
+        "red_days_per_100_patient_days": 2.08566,
+        "red_days_per_100_patient_days_ci95": [
+          1.8776,
+          2.3056
+        ],
+        "amber_or_red_days_per_100_patient_days": 22.27131,
+        "amber_or_red_days_per_100_patient_days_ci95": [
+          21.4406,
+          23.1638
+        ],
+        "ppv_red_alert": 0.1327,
+        "ppv_red_alert_ci95": [
+          0.1189,
+          0.1457
+        ],
+        "ppv_red_day": 0.09509,
+        "ppv_red_day_ci95": [
+          0.0843,
+          0.1058
+        ],
+        "ppv_ceiling_red_day": 0.17012,
+        "ppv_ceiling_red_day_ci95": [
+          0.152,
+          0.188
+        ],
+        "day_sensitivity_red": 0.55895,
+        "day_sensitivity_red_ci95": [
+          0.5273,
+          0.5909
+        ],
+        "day_specificity_red": 0.98106,
+        "day_specificity_red_ci95": [
+          0.9789,
+          0.983
+        ],
+        "prevalence": 0.00355,
+        "prevalence_ci95": [
+          0.0032,
+          0.0039
+        ],
+        "ppv_red_day_at_1_10_prevalence": 0.01037,
+        "ppv_red_day_at_1_10_prevalence_ci95": [
+          0.0091,
+          0.0117
+        ],
+        "ppv_red_day_at_1_50_prevalence": 0.00209,
+        "ppv_red_day_at_1_50_prevalence_ci95": [
+          0.0018,
+          0.0024
+        ],
+        "lead_time": {
+          "median_h_all_caught": 47.0,
+          "pct_caught_ge_24h_ahead": 56.2,
+          "by_trigger_gap": {
+            "trigger_ge_24h": {
+              "episodes": 533,
+              "caught_red": 464,
+              "median_lead_h": 23.0
+            },
+            "trigger_lt_24h": {
+              "episodes": 19,
+              "caught_red": 12,
+              "median_lead_h": 71.0
+            },
+            "no_sick_day_trigger": {
+              "episodes": 180,
+              "caught_red": 152,
+              "median_lead_h": 71.0
+            }
+          },
+          "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+        }
+      }
+    },
+    "_paired_auprc_difference_M_minus": {
+      "B0_last_lab_logistic": {
+        "point": 0.1857,
+        "ci95": [
+          0.1692,
+          0.2031
+        ]
+      },
+      "B1_heat_index_rule": {
+        "point": 0.1944,
+        "ci95": [
+          0.1775,
+          0.2123
+        ]
+      },
+      "B2_triple_heat_egfr_points": {
+        "point": 0.1935,
+        "ci95": [
+          0.1767,
+          0.2117
+        ]
+      },
+      "B3_lightgbm_raw": {
+        "point": 0.0246,
+        "ci95": [
+          0.0085,
+          0.0385
+        ]
+      },
+      "B4_twin_physics_risk": {
+        "point": 0.0699,
+        "ci95": [
+          0.0585,
+          0.0812
+        ]
+      },
+      "M_full_sensitivity": {
+        "point": -0.0264,
+        "ci95": [
+          -0.0399,
+          -0.0124
+        ]
+      }
+    },
+    "subgroup_age_75_plus_M": {
+      "patients": 474,
+      "auprc": 0.2251,
+      "auprc_ci95": [
+        0.1835,
+        0.2744
+      ],
+      "auroc": 0.8374,
+      "sensitivity_red": 0.83117,
+      "episodes": 77,
+      "note": "low muscle mass can blunt creatinine rises in older people, so creatinine-defined AKI may be under-detected (Decisions v4 5d)"
+    }
+  },
+  "seconds": 286
+}

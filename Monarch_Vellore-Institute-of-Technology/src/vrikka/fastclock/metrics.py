@@ -2,7 +2,8 @@
 
 Day level (eligible patient-days): AUROC, AUPRC, Brier, calibration slope / intercept, within-patient AUROC, net
 benefit.
-Alert level (after hysteresis and 72-h de-duplication; vrikka.fastclock.alerts): notifications per 100 patient-days,
+Alert level (after hysteresis and 72-h de-duplication; vrikka.fastclock.alerts): notifications and days in each state
+per 100 patient-days,
 sensitivity per AKI episode, alerts per AKI caught ("number needed to alert"), PPV with its ceiling, PPV re-weighted
 to 1/10 and 1/50 of the enriched prevalence (prior shift on the odds), and lead time split by trigger-to-onset gap.
 Confidence intervals: patient-level bootstrap percentile intervals (1,000 resamples).
@@ -155,11 +156,8 @@ def alert_metrics(df: pd.DataFrame, p: np.ndarray, st: dict, events: pd.DataFram
         red_days = [d for d in win if level[i, d] == RED]
         amb_days = [d for d in win if level[i, d] >= AMBER]
         lead = None
-        if red_days:
-            first = red_days[0]
-            while first - 1 >= 0 and level[i, first - 1] == RED:
-                first -= 1
-            lead = 24 * (o - first) - 1
+        if red_days:          # first red day inside the 72-h prediction window (an older red run is not a forecast)
+            lead = 24 * (o - red_days[0]) - 1
         rows.append((i, bool(red_days), bool(amb_days), lead, r.gap))
     E = pd.DataFrame(rows, columns=["i", "red", "amber", "lead_h", "gap"])
     n = len(pids)
@@ -189,6 +187,8 @@ def alert_metrics(df: pd.DataFrame, p: np.ndarray, st: dict, events: pd.DataFram
             "alerts_per_aki_caught_red": g["red_alerts"] / max(g["caught_red"], 1),
             "alerts_per_aki_caught_amber_plus_red": (g["red_alerts"] + g["amber_alerts"])
             / max(g["caught_amber"], 1),
+            "red_days_per_100_patient_days": 100 * g["red_days"] / max(g["elig"], 1),
+            "amber_or_red_days_per_100_patient_days": 100 * g["ambplus_days"] / max(g["elig"], 1),
             "ppv_red_alert": g["red_alert_true"] / max(g["red_alerts"], 1),
             "ppv_red_day": g["red_days_pos"] / max(g["red_days"], 1),
             "ppv_ceiling_red_day": min(1.0, g["pos_days"] / max(g["red_days"], 1)),
@@ -213,6 +213,7 @@ def alert_metrics(df: pd.DataFrame, p: np.ndarray, st: dict, events: pd.DataFram
         "pct_caught_ge_24h_ahead": None if caught.empty else round(100 * float((caught["lead_h"] >= 24).mean()), 1),
         "by_trigger_gap": {g: gap_row(E, caught, g) for g in ("trigger_ge_24h", "trigger_lt_24h",
                                                                "no_sick_day_trigger")},
-        "note": "first red at 09:00 the day before an 08:00 onset = 23 h lead; the 72-h horizon caps it at 71 h",
+        "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an "
+                "08:00 onset = 23 h; the horizon caps it at 71 h",
     }
     return res

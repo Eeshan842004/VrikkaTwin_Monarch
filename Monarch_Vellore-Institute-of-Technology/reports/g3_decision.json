@@ -1,0 +1,340 @@
+{
+  "rule": "Amendment 1 A1.4: the fast clock always leads. Hybrid M leads if it beats B0, B1 and B2 on mismatched AUPRC (2024 internal-test patients); otherwise B4 (twin physics risk) + transparent rules lead.",
+  "decision_set": "2024 internal-test patients (never used for fitting, early stopping, calibration or thresholds)",
+  "auprc": {
+    "B0_last_lab_logistic": {
+      "value": 0.0073,
+      "ci95": [
+        0.0028,
+        0.0189
+      ]
+    },
+    "B1_heat_index_rule": {
+      "value": 0.0016,
+      "ci95": [
+        0.0012,
+        0.0022
+      ]
+    },
+    "B2_triple_heat_egfr_points": {
+      "value": 0.0019,
+      "ci95": [
+        0.0014,
+        0.0026
+      ]
+    },
+    "B3_lightgbm_raw": {
+      "value": 0.0642,
+      "ci95": [
+        0.0253,
+        0.1198
+      ]
+    },
+    "B4_twin_physics_risk": {
+      "value": 0.0114,
+      "ci95": [
+        0.0055,
+        0.0207
+      ]
+    },
+    "M_hybrid_core25": {
+      "value": 0.0262,
+      "ci95": [
+        0.0117,
+        0.0543
+      ]
+    },
+    "M_full_sensitivity": {
+      "value": 0.0512,
+      "ci95": [
+        0.0239,
+        0.0971
+      ]
+    }
+  },
+  "M_beats": {
+    "B0_last_lab_logistic": true,
+    "B1_heat_index_rule": true,
+    "B2_triple_heat_egfr_points": true
+  },
+  "paired_difference_M_minus": {
+    "B0_last_lab_logistic": {
+      "point": 0.0189,
+      "ci95": [
+        0.0045,
+        0.0411
+      ]
+    },
+    "B1_heat_index_rule": {
+      "point": 0.0246,
+      "ci95": [
+        0.0103,
+        0.0522
+      ]
+    },
+    "B2_triple_heat_egfr_points": {
+      "point": 0.0243,
+      "ci95": [
+        0.0102,
+        0.0524
+      ]
+    },
+    "B3_lightgbm_raw": {
+      "point": -0.038,
+      "ci95": [
+        -0.0789,
+        -0.0047
+      ]
+    },
+    "B4_twin_physics_risk": {
+      "point": 0.0148,
+      "ci95": [
+        0.0026,
+        0.0381
+      ]
+    },
+    "M_full_sensitivity": {
+      "point": -0.025,
+      "ci95": [
+        -0.0598,
+        -0.0021
+      ]
+    }
+  },
+  "M_beats_B3_plain_lightgbm": false,
+  "if_M_does_not_beat_B3": "EVAL_PLAN 15.5: we say so and argue from robustness and the what-if capability",
+  "lead_model": "M_hybrid_core25",
+  "lead_time_M_internal_test": {
+    "median_h_all_caught": 23.0,
+    "pct_caught_ge_24h_ahead": 43.6,
+    "by_trigger_gap": {
+      "trigger_ge_24h": {
+        "episodes": 44,
+        "caught_red": 30,
+        "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+        "episodes": 3,
+        "caught_red": 1,
+        "median_lead_h": 47.0
+      },
+      "no_sick_day_trigger": {
+        "episodes": 44,
+        "caught_red": 8,
+        "median_lead_h": 71.0
+      }
+    },
+    "note": "lead = 24 x (onset day - first red day within the 72-h window) - 1 h: red at 09:00 the day before an 08:00 onset = 23 h; the horizon caps it at 71 h"
+  },
+  "lead_time_target_A1_3": {
+    "target": "median lead >= 24 h on episodes whose trigger began >= 24 h before onset",
+    "median_h_trigger_ge_24h": 23.0,
+    "met": false
+  },
+  "operational_M": {
+    "internal_test_2024": {
+      "red_per_100_patient_days": 0.35449,
+      "red_days_per_100_patient_days": 0.82898,
+      "sensitivity_red": 0.42857,
+      "sensitivity_red_ci95": [
+        0.3055,
+        0.5685
+      ],
+      "alerts_per_aki_caught_red": 16.51282,
+      "alerts_per_aki_caught_red_ci95": [
+        11.109,
+        25.0692
+      ],
+      "sensitivity_amber_or_red": 0.68132,
+      "amber_plus_red_per_100_patient_days": 2.78473,
+      "ppv_red_alert": 0.05435,
+      "ppv_red_day": 0.03851,
+      "ppv_ceiling_red_day": 0.17463,
+      "ppv_red_day_at_1_10_prevalence": 0.00398,
+      "ppv_red_day_at_1_50_prevalence": 0.0008
+    },
+    "test_2025": {
+      "red_per_100_patient_days": 0.27542,
+      "red_days_per_100_patient_days": 0.5155,
+      "sensitivity_red": 0.28803,
+      "sensitivity_red_ci95": [
+        0.2286,
+        0.3506
+      ],
+      "alerts_per_aki_caught_red": 18.74157,
+      "alerts_per_aki_caught_red_ci95": [
+        14.5847,
+        24.6229
+      ],
+      "sensitivity_amber_or_red": 0.53722,
+      "amber_plus_red_per_100_patient_days": 2.56018,
+      "ppv_red_alert": 0.04856,
+      "ppv_red_day": 0.03812,
+      "ppv_ceiling_red_day": 0.27803,
+      "ppv_red_day_at_1_10_prevalence": 0.00394,
+      "ppv_red_day_at_1_50_prevalence": 0.00079
+    },
+    "test_2026": {
+      "red_per_100_patient_days": 0.32098,
+      "red_days_per_100_patient_days": 0.6664,
+      "sensitivity_red": 0.25656,
+      "sensitivity_red_ci95": [
+        0.2029,
+        0.3116
+      ],
+      "alerts_per_aki_caught_red": 22.07955,
+      "alerts_per_aki_caught_red_ci95": [
+        17.4773,
+        29.4876
+      ],
+      "sensitivity_amber_or_red": 0.53644,
+      "amber_plus_red_per_100_patient_days": 2.62035,
+      "ppv_red_alert": 0.0386,
+      "ppv_red_day": 0.03049,
+      "ppv_ceiling_red_day": 0.24219,
+      "ppv_red_day_at_1_10_prevalence": 0.00313,
+      "ppv_red_day_at_1_50_prevalence": 0.00063
+    }
+  },
+  "held_out_seasons": {
+    "2025": {
+      "B0_last_lab_logistic": {
+        "auprc": 0.0064,
+        "auprc_ci95": [
+          0.0039,
+          0.0105
+        ],
+        "sensitivity_red": 0.48544,
+        "red_per_100_patient_days": 0.38506
+      },
+      "B1_heat_index_rule": {
+        "auprc": 0.0015,
+        "auprc_ci95": [
+          0.0013,
+          0.0018
+        ],
+        "sensitivity_red": 0.0,
+        "red_per_100_patient_days": 0.0
+      },
+      "B2_triple_heat_egfr_points": {
+        "auprc": 0.0019,
+        "auprc_ci95": [
+          0.0015,
+          0.0031
+        ],
+        "sensitivity_red": 0.01942,
+        "red_per_100_patient_days": 0.03649
+      },
+      "B3_lightgbm_raw": {
+        "auprc": 0.0261,
+        "auprc_ci95": [
+          0.0175,
+          0.0381
+        ],
+        "sensitivity_red": 0.44337,
+        "red_per_100_patient_days": 0.33668
+      },
+      "B4_twin_physics_risk": {
+        "auprc": 0.0081,
+        "auprc_ci95": [
+          0.0053,
+          0.0118
+        ],
+        "sensitivity_red": 0.19417,
+        "red_per_100_patient_days": 0.18411
+      },
+      "M_hybrid_core25": {
+        "auprc": 0.0203,
+        "auprc_ci95": [
+          0.0126,
+          0.0312
+        ],
+        "sensitivity_red": 0.28803,
+        "red_per_100_patient_days": 0.27542
+      },
+      "M_full_sensitivity": {
+        "auprc": 0.0269,
+        "auprc_ci95": [
+          0.0166,
+          0.0449
+        ],
+        "sensitivity_red": 0.3657,
+        "red_per_100_patient_days": 0.26601
+      }
+    },
+    "2026": {
+      "B0_last_lab_logistic": {
+        "auprc": 0.0112,
+        "auprc_ci95": [
+          0.0057,
+          0.0221
+        ],
+        "sensitivity_red": 0.44898,
+        "red_per_100_patient_days": 0.39234
+      },
+      "B1_heat_index_rule": {
+        "auprc": 0.0017,
+        "auprc_ci95": [
+          0.0014,
+          0.002
+        ],
+        "sensitivity_red": 0.0,
+        "red_per_100_patient_days": 0.0
+      },
+      "B2_triple_heat_egfr_points": {
+        "auprc": 0.0021,
+        "auprc_ci95": [
+          0.0017,
+          0.0026
+        ],
+        "sensitivity_red": 0.01166,
+        "red_per_100_patient_days": 0.0332
+      },
+      "B3_lightgbm_raw": {
+        "auprc": 0.0227,
+        "auprc_ci95": [
+          0.0151,
+          0.0358
+        ],
+        "sensitivity_red": 0.44023,
+        "red_per_100_patient_days": 0.37566
+      },
+      "B4_twin_physics_risk": {
+        "auprc": 0.0069,
+        "auprc_ci95": [
+          0.0048,
+          0.0099
+        ],
+        "sensitivity_red": 0.18659,
+        "red_per_100_patient_days": 0.26299
+      },
+      "M_hybrid_core25": {
+        "auprc": 0.013,
+        "auprc_ci95": [
+          0.0087,
+          0.0202
+        ],
+        "sensitivity_red": 0.25656,
+        "red_per_100_patient_days": 0.32098
+      },
+      "M_full_sensitivity": {
+        "auprc": 0.0229,
+        "auprc_ci95": [
+          0.0144,
+          0.039
+        ],
+        "sensitivity_red": 0.35277,
+        "red_per_100_patient_days": 0.29934
+      }
+    }
+  },
+  "matched_regime_internal_test_auprc": {
+    "B0_last_lab_logistic": 0.0239,
+    "B1_heat_index_rule": 0.0052,
+    "B2_triple_heat_egfr_points": 0.0065,
+    "B3_lightgbm_raw": 0.1793,
+    "B4_twin_physics_risk": 0.1544,
+    "M_hybrid_core25": 0.2163,
+    "M_full_sensitivity": 0.2552
+  }
+}

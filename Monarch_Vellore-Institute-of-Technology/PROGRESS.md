@@ -328,3 +328,90 @@ v5 wins wherever it conflicts with v4. Every number below is from the named repo
   1.98 mg/dL.
   - Carry-forward wins (difference CI 0.011-0.038). On MIMIC alone the filter is level (0.391 vs 0.413, CI crosses 0).
   - Reported as it came out. The filter settings were fixed in the registry first.
+
+
+## Part 4: Fast clock (16 Oct 2026; G3 written at 15:15 IST)
+
+### Built
+- `twin/batch_ukf.py`: N patients' UKFs at once. It matches the scalar `KidneyTwin` to 1e-8, so 20,000
+  patient-seasons x 122 days took about 70 min per regime.
+- `fastclock/features.py` + `scripts/build_features.py`: 61 observed-only features at 09:00.
+  - Inputs: twin posterior, 50-draw Monte-Carlo risk on a NOISY city forecast, exposure, body, reports, drugs, static
+    fields, labs.
+  - **Core set of 25** for M, with monotone constraints.
+  - Patient split of the 2024 pool: 60 / 10 / 15 / 15.
+- `fastclock/train.py`:
+  - baselines B0 (last-lab logistic), B1 (heat-index rule), B2 (triple + heat + eGFR points), B3 (plain LightGBM, raw
+    inputs), B4 (twin physics risk);
+  - M (core 25) and M_full (61, sensitivity row);
+  - isotonic calibration; all of it on 2024 only.
+- `fastclock/alerts.py`: red <= 0.5 and amber + red <= 3 notifications per 100 patient-days, with hysteresis and 72-h
+  de-duplication. Tuned on the 2024 calibration split.
+- `fastclock/explain.py`: native `pred_contrib`, top 3 reasons -> `reason.*` keys in EN / HI / KN / TE.
+- `fastclock/metrics.py`: patient-level bootstrap (1,000). Paired AUPRC differences, alert-level sensitivity, alerts
+  per AKI caught, time in red, PPV with its ceiling and at 1/10 and 1/50 prevalence, lead time by trigger gap.
+- Tests: `test_batch_twin.py` (2), `test_fastclock.py` (12). The leakage test changes everything after day 6 and
+  requires identical features up to day 6.
+- Events per core feature (2024 train): 14.7 episodes / 42.6 positive days.
+
+### Results (`reports/fastclock_eval_mismatched.json`, `reports/fastclock_eval_matched.json`, `reports/g3_decision.json`)
+**Mismatched (headline) AUPRC, positive-day prevalence about 0.14 %:**
+
+| | 2024 internal test | 2025 test | 2026 test |
+|---|---|---|---|
+| B0 last lab | 0.0073 | 0.0064 | 0.0112 |
+| B1 heat rule | 0.0016 | 0.0015 | 0.0017 |
+| B2 points | 0.0019 | 0.0019 | 0.0021 |
+| B3 plain LightGBM | **0.0642** | **0.0261** | **0.0227** |
+| B4 twin physics | 0.0114 | 0.0081 | 0.0069 |
+| **M hybrid (core 25)** | 0.0262 | 0.0203 | 0.0130 |
+| M_full (61) | 0.0512 | 0.0269 | 0.0229 |
+
+**Matched (optimistic ceiling) AUPRC:**
+
+| | 2024 internal test | 2025 test | 2026 test |
+|---|---|---|---|
+| B3 plain LightGBM | 0.179 | 0.172 | 0.175 |
+| B4 twin physics | 0.154 | 0.172 | 0.129 |
+| **M hybrid** | **0.216** | **0.217** | **0.199** |
+
+**G3 (pre-registered rule A1.4): M leads.** On the 2024 internal-test patients M beats B0 / B1 / B2. Paired
+differences +0.019 / +0.025 / +0.024; all CIs exclude 0.
+- **M does NOT beat B3** on mismatched data: -0.038, CI -0.079 to -0.005. Per EVAL_PLAN 15.5 we say so.
+- B3's edge comes mostly from the last lab creatinine ratio, which the core 25 leave out.
+
+**Mismatched operational numbers for M (internal / 2025 / 2026):**
+- red sensitivity 43 / 29 / 26 % per AKI episode;
+- 16.5 / 18.7 / 22.1 red alerts per AKI caught;
+- 0.35 / 0.28 / 0.32 red notifications and 0.83 / 0.52 / 0.67 red days per 100 patient-days;
+- amber-or-red sensitivity 68 / 54 / 54 %;
+- red-day PPV 3.9 / 3.8 / 3.1 % (ceiling 17-28 %); 0.3-0.4 % at 1/10 and 0.06-0.08 % at 1/50 prevalence;
+- within-patient AUROC 0.64 / 0.59 / 0.58 (B3 0.58 / 0.55 / 0.57);
+- calibration slope 0.98 / 0.97 / 0.65.
+
+**Lead time (A1.3):** median 23 h, i.e. red at 09:00 the day before an 08:00 onset. On the >= 24 h-gap subset it is
+also 23 h, so the pre-registered >= 24 h target is **not met**.
+- The daily cadence makes "the day before" 23 h.
+- 30-44 % of caught episodes were red 47 h or more ahead.
+
+**By trigger (mismatched 2025 / 2026):**
+- sick-day trigger >= 24 h before onset: 65 / 129 and 58 / 133 caught;
+- no sick-day trigger: 22 / 173 and 27 / 195 caught.
+
+**Age >= 75 (M):** AUPRC 0.049 / 0.024, red sensitivity 38 / 33 % (40 episodes each). Creatinine-defined AKI may be
+under-detected in older people.
+
+### Deviations, clarifications, open questions
+1. **Lead-time definition:** first red day inside the 72-h prediction window. A red run that started earlier is not
+   counted as a forecast. An earlier draft extended runs backwards; it was caught and fixed with a test before the
+   final evaluation.
+2. **Time in red** was added as a secondary operational metric.
+   - B0 keeps 22 % of patient-days red (one high lab stays red for weeks), against 0.5-0.8 % for M.
+   - The notification budget alone does not show this.
+3. **Thresholds** were tuned on calibration data; on held-out data some models land slightly above the 0.5 red budget
+   (matched B3 0.53 internal, M_full matched up to 0.54). Mismatched M stays within budget in every set.
+4. **Open for the team:**
+   - (a) R1a floating-point boundary choice (see the Decisions v4 / v5 section);
+   - (b) whether a post-hoc model (adding the last-lab ratio to the core set, or M_full) should be considered, which
+     would need an Amendment 3 and would make the 2025 / 2026 numbers no longer untouched;
+   - (c) stating the 23-h lead as a missed target.

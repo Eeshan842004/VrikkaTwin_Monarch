@@ -169,3 +169,22 @@ def test_reasons_map_to_i18n_keys_in_every_language(rng):
     for lang in LANGUAGES:
         missing = [f for f in CORE if f"reason.{f}" not in load_yaml(f"i18n/{lang}")]
         assert not missing, (lang, missing)
+
+
+def test_lead_time_counts_only_alerts_inside_the_72h_window(rng):
+    """A patient red since day 2 with an onset on day 10: lead = first red inside days 7-9 = 71 h, not 191 h."""
+    from vrikka.fastclock.metrics import alert_metrics
+    D = 14
+    df = pd.DataFrame({"patient_id": "P1", "day": np.arange(D), "excluded": False, "y": False, "episode_start": False})
+    df.loc[df["day"].isin([7, 8, 9]), "y"] = True
+    df.loc[df["day"] >= 10, "excluded"] = True
+    df.loc[df["day"] == 10, "episode_start"] = True
+    level = np.zeros((1, D), dtype=np.int8)
+    level[0, 2:10] = RED
+    raised = np.zeros((1, D), dtype=bool)
+    raised[0, 2] = True
+    st = {"level": level, "red_raised": raised, "amber_raised": np.zeros((1, D), dtype=bool)}
+    out = alert_metrics(df, np.zeros(D), st, None, rng, n_boot=20)
+    assert out["sensitivity_red"] == 1.0
+    assert out["lead_time"]["median_h_all_caught"] == 71.0
+    assert out["red_days_per_100_patient_days"] == pytest.approx(100 * 8 / 10)

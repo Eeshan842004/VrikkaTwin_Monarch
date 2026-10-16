@@ -1,0 +1,86 @@
+{
+  "B0_last_lab_logistic": {
+    "red_threshold": 0.003226,
+    "amber_threshold": 0.000507,
+    "red_per_100_patient_days_on_calibration": 0.316,
+    "amber_plus_red_per_100_patient_days_on_calibration": 1.132,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  },
+  "B1_heat_index_rule": {
+    "red_threshold": 0.005836,
+    "amber_threshold": 0.005836,
+    "red_per_100_patient_days_on_calibration": 0.0,
+    "amber_plus_red_per_100_patient_days_on_calibration": 0.0,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  },
+  "B2_triple_heat_egfr_points": {
+    "red_threshold": 0.004143,
+    "amber_threshold": 0.004143,
+    "red_per_100_patient_days_on_calibration": 0.306,
+    "amber_plus_red_per_100_patient_days_on_calibration": 0.306,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  },
+  "B3_lightgbm_raw": {
+    "red_threshold": 0.042781,
+    "amber_threshold": 0.00281,
+    "red_per_100_patient_days_on_calibration": 0.493,
+    "amber_plus_red_per_100_patient_days_on_calibration": 2.944,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  },
+  "B4_twin_physics_risk": {
+    "red_threshold": 0.066952,
+    "amber_threshold": 0.001141,
+    "red_per_100_patient_days_on_calibration": 0.445,
+    "amber_plus_red_per_100_patient_days_on_calibration": 1.375,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  },
+  "M_hybrid_core25": {
+    "red_threshold": 0.051724,
+    "amber_threshold": 0.001667,
+    "red_per_100_patient_days_on_calibration": 0.452,
+    "amber_plus_red_per_100_patient_days_on_calibration": 2.832,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  },
+  "M_full_sensitivity": {
+    "red_threshold": 0.035714,
+    "amber_threshold": 0.001941,
+    "red_per_100_patient_days_on_calibration": 0.496,
+    "amber_plus_red_per_100_patient_days_on_calibration": 2.959,
+    "red_clear_ratio": 0.6666666666666667,
+    "dedup_days": 3,
+    "budgets": {
+      "red": 0.5,
+      "amber_plus_red": 3
+    }
+  }
+}

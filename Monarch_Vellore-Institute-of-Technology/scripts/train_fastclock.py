@@ -164,8 +164,19 @@ def g3(res: dict, res_matched: dict | None) -> dict:
                   for k in it if not k.startswith("_")},
         "M_beats": beats, "paired_difference_M_minus": it["_paired_auprc_difference_M_minus"],
         "M_beats_B3_plain_lightgbm": bool(m["auprc"] > it["B3_lightgbm_raw"]["day_level"]["auprc"]),
+        "if_M_does_not_beat_B3": "EVAL_PLAN 15.5: we say so and argue from robustness and the what-if capability",
         "lead_model": "M_hybrid_core25" if all(beats.values()) else "B4_twin_physics_risk + transparent rules",
         "lead_time_M_internal_test": lead,
+        "lead_time_target_A1_3": {
+            "target": "median lead >= 24 h on episodes whose trigger began >= 24 h before onset",
+            "median_h_trigger_ge_24h": lead["by_trigger_gap"]["trigger_ge_24h"]["median_lead_h"],
+            "met": bool((lead["by_trigger_gap"]["trigger_ge_24h"]["median_lead_h"] or 0) >= 24)},
+        "operational_M": {s_: {k: res[s_]["M_hybrid_core25"]["alerts"].get(k) for k in (
+            "red_per_100_patient_days", "red_days_per_100_patient_days", "sensitivity_red", "sensitivity_red_ci95",
+            "alerts_per_aki_caught_red", "alerts_per_aki_caught_red_ci95", "sensitivity_amber_or_red",
+            "amber_plus_red_per_100_patient_days", "ppv_red_alert", "ppv_red_day", "ppv_ceiling_red_day",
+            "ppv_red_day_at_1_10_prevalence", "ppv_red_day_at_1_50_prevalence")}
+            for s_ in ("internal_test_2024", "test_2025", "test_2026") if s_ in res},
         "held_out_seasons": {y: {k: {"auprc": res[f"test_{y}"][k]["day_level"]["auprc"],
                                      "auprc_ci95": res[f"test_{y}"][k]["day_level"]["auprc_ci95"],
                                      "sensitivity_red": res[f"test_{y}"][k]["alerts"]["sensitivity_red"],
