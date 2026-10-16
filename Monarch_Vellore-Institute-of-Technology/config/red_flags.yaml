@@ -1,0 +1,55 @@
+# Heat-illness and kidney red flags (Decisions v4 5a). They run BEFORE any risk model and override it.
+#
+# Source (emergency rule): India National Action Plan on Heat Related Illnesses (NCDC / MoHFW): heatstroke = core
+# temperature >= 40 degC with CNS dysfunction (confusion, delirium, ataxia, seizures, coma); refer to hospital; do not
+# give food or drink if unconscious or with altered sensorium; diuretics and beta-blockers are listed risk factors.
+# https://ncdc.mohfw.gov.in/wp-content/uploads/2024/05/1.Nation-Action-plan-on-Heat-Related-llnesses.pdf
+# The two URGENT rules are team wording from Decisions v4 5a and are marked clinical_wording: VERIFY until a clinician
+# signs them off (docs/NUMBERS_CHECKED.md).
+
+flags:
+  heatstroke_emergency:
+    level: emergency
+    any_of: [confusion, fainting, seizure, unresponsive, temperature_ge_40c]
+    show_risk: false                 # no AKI risk on the emergency screen
+    message_key: redflag.heatstroke
+    call: "108 / 112"
+    clinical_wording: CITED          # NCDC action plan
+  kidney_test_today:
+    level: urgent
+    any_of: [no_urine_12h, cola_urine_with_muscle_pain_after_heat_or_work]
+    show_risk: true
+    message_key: redflag.kidney_test_today
+    clinical_wording: VERIFY
+  vomiting_review_today:
+    level: urgent
+    any_of: [vomiting_no_fluids_6h]
+    show_risk: true
+    message_key: redflag.vomiting_review
+    clinical_wording: VERIFY
+
+# How each sign is decided from a check-in (ASHA form, patient check-in or parsed text).
+signs:
+  temperature_ge_40c: {field: temperature_c, at_least: 40.0}
+  no_urine_12h: {field: no_urine_hours, at_least: 12}
+  vomiting_no_fluids_6h: {field: vomiting_cannot_keep_fluids_hours, at_least: 6}
+  cola_urine_with_muscle_pain_after_heat_or_work: {all_of: [dark_cola_urine, muscle_pain, after_heat_or_heavy_work]}
+  # boolean signs (true = present): confusion, fainting, seizure, unresponsive
+
+# Every field the symptom capture must ask for (ASHA Tier-0 form, patient / family check-in). Part 7 builds the forms
+# from this list; tests check that every sign used by a flag can be captured.
+capture_fields:
+  - {name: confusion, type: bool}
+  - {name: fainting, type: bool}
+  - {name: seizure, type: bool}
+  - {name: unresponsive, type: bool}
+  - {name: temperature_c, type: float}
+  - {name: no_urine_hours, type: float}
+  - {name: dark_cola_urine, type: bool}
+  - {name: muscle_pain, type: bool}
+  - {name: after_heat_or_heavy_work, type: bool}
+  - {name: vomiting_cannot_keep_fluids_hours, type: float}
+
+# Text check-in: a stated sign without a duration is treated as meeting the duration rule (safety first), and the
+# screen says that the duration was not stated.
+text_duration_default: conservative

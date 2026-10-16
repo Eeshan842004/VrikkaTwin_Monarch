@@ -47,3 +47,5 @@ Thumbs.db
 !**/data/synthetic/sample/
 !**/data/synthetic/demo_patients.json
 HANDOFF_CONTEXT.md
+# the published copy is Monarch_Vellore-Institute-of-Technology/docs/MATH_CONTEXT.md
+.github/workflows/math-context.md

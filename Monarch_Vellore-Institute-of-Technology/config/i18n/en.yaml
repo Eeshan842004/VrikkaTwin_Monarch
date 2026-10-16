@@ -1,0 +1,22 @@
+_meta: {language: en, name: English, status: reviewed}
+
+redflag.heatstroke.title: "Emergency: possible heatstroke"
+redflag.heatstroke.body: "Possible heatstroke. Call 108 / 112 now. Move to shade and cool the body. Do not give anything to drink if the person is confused or not fully awake."
+redflag.kidney_test_today.title: "Urgent: see a doctor today"
+redflag.kidney_test_today.body: "See a doctor today; a kidney blood test is needed."
+redflag.vomiting_review.title: "Urgent: see a doctor today"
+redflag.vomiting_review.body: "Vomiting has stopped fluids staying down for more than 6 hours. See a doctor today."
+redflag.duration_not_stated: "How long this has lasted was not stated, so we are treating it as urgent."
+
+ors.drink: "Drink ORS / an electrolyte drink through the day."
+ors.doctor_advises: "Fluid type and amount as advised by your doctor."
+ors.evidence: "Electrolyte intake linked to lower AKI odds in heat-exposed workers (Butler-Dawson 2019, observational)."
+ors.caution: "Caution: ORS is not automatic for this patient."
+ors.reason.heart_failure: "heart failure (fluid and salt load)"
+ors.reason.egfr_lt_30: "eGFR below 30"
+ors.reason.k_ge_5_5: "last potassium 5.5 or higher (ORS contains potassium)"
+
+egfr.not_reliable: "Not reliable while creatinine is changing"
+filtration.label: "Modelled filtration (% of personal baseline, twin estimate)"
+risk.below_floor: "<1%"
+severity.aki: "kidney injury (usually mild, usually recovers; repeated episodes are linked to faster long-term decline)"

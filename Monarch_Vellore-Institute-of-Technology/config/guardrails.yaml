@@ -1,0 +1,30 @@
+# Clinical guardrails for the what-if levers and patient advice (Decisions v4 5b, 5c). Clinical rules, not model
+# constants, so they live here rather than in parameters.yaml (like alert_policy.yaml).
+
+ors:
+  # ORS lever and "drink ORS" advice are replaced by "Fluid type and amount as advised by your doctor" when any of these
+  # holds (Decisions v4 5b): fluid / sodium / potassium load can harm these patients.
+  caution_if:
+    heart_failure: true
+    egfr_below: 30.0              # mL/min/1.73 m2
+    last_potassium_at_or_above: 5.5   # mmol/L
+  who_reduced_osmolarity_ors:     # per litre; WHO. https://www.rehydrate.org/ors/newformula-studies.html
+    sodium_mmol: 75
+    chloride_mmol: 65
+    glucose_mmol: 75
+    potassium_mmol: 20
+    citrate_mmol: 10
+    total_osmolarity_mosm: 245
+  evidence_badge_key: ors.evidence     # Butler-Dawson 2019, observational
+  caution_badge_key: ors.caution
+
+egfr_during_aki:
+  # CKD-EPI assumes steady-state creatinine (Decisions v4 5c). A lab eGFR is tagged "not reliable while creatinine is
+  # changing" if creatinine differs from the last stable value by at least this much, or the twin flags AKI.
+  changing_if_delta_mg_dl: 0.3
+  slow_clock_uses_stable_values_only: true
+
+risk_display:
+  # Decisions v4 4b: never display 0 %. Monte-Carlo risk with 200 draws cannot resolve below 0.5 %.
+  floor_text_below: 0.01          # probabilities below this are shown as "<1%"
+  interval: wilson_95             # every Monte-Carlo risk shows its 95 % interval

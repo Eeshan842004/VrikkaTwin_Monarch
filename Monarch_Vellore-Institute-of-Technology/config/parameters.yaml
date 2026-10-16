@@ -848,11 +848,25 @@ aki_step_stage3:
   notes: ''
 aki_slope_penalty:
   value: -1.83
-  unit: mL/min/1.73m2 per year per episode
+  unit: mL/min/1.73m2 per year, applied once for ANY AKI in history (yes/no)
   range: [-3.0, -0.5]
   provenance: CITED
-  source: Trichy diabetic kidney disease cohort (n = 274) [S]
-  notes: label "estimated from a diabetic cohort (n=274)" for non-diabetics; fades with aki_penalty_tau_years and scales by stage (Decisions v1 item 9)
+  source: Sathiavageesan et al., Indian J Nephrol 2025;35(5):691-3 (single-centre retrospective, Sundaram Hospital Trichy, n = 274 T2D with DKD, mean follow-up 3.3 y; multivariable, p = 0.002, no CI given)
+  notes: Decisions v5 C3. The source reports INTERCURRENT AKI (yes/no) ASSOCIATED with 1.83 mL/min/year excess eGFR loss; it is not a per-episode effect and not causal. Wording - "associated with", "from one Indian diabetic kidney disease cohort"; for people without diabetes - "extrapolated". Fades with aki_penalty_tau_years and scales by stage (Decisions v1 item 9). Extra episodes - aki_penalty_extra_episode_mult (ASSUMPTION), capped by aki_penalty_max_episodes
+aki_penalty_extra_episode_mult:
+  value: 1.0
+  unit: fraction of the penalty added per extra episode
+  range: [0.0, 1.0]
+  provenance: ASSUMPTION
+  source: Decisions v5 C3
+  notes: multiplying the penalty for a second episode is NOT in the source (which is yes/no); 0 = source reading, 1 = plan's per-episode reading. Tornado explores the range
+aki_penalty_max_episodes:
+  value: 2
+  unit: episodes
+  range: [2, 2]
+  provenance: VERIFY
+  source: Decisions v5 C3
+  notes: cap on the number of episodes that add to the slope penalty
 aki_penalty_tau_years:
   value: 2.0
   unit: years

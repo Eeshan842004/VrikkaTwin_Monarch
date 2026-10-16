@@ -16,7 +16,7 @@ share-alike datasets are **not committed**: `scripts/download_public_data.py` fe
 | PMData (Simula; 16 people; raw Fitbit heart rate + self-reported weight) | R4: measured resting-HR noise (`sigma_hr_bpm` = 4.04 bpm); false-alarm check as a secondary line | CC BY 4.0 | No: download script only (raw heart rate ~1 GB) |
 | Circadian Timing and Heat Stress in Firefighters (Mendeley 7ghxcsd9sz) | R5 dropped: outside ISO 7933 validity (PPE, > 50 °C) | CC BY 4.0 | No |
 
-**Assessed and not used** (details in `docs/DATA_SEARCH.md`): BD-KDD (values look synthetic), OSF dm3qf (no licence), CGMacros.
+**Assessed and not used** (details in `docs/DATA_SEARCH.md`): BD-KDD (examined; creatinine implausible for the "healthy" class, no correlation with urea or label, permission letter restricts use), OSF dm3qf (no licence), CGMacros.
 
 **Refused on purpose:** full MIMIC-IV and full eICU-CRD (they need PhysioNet credentialing).
 

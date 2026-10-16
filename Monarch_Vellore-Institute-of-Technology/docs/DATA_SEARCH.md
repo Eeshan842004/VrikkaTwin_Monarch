@@ -15,7 +15,7 @@ PhysioNet, Zenodo, figshare, Dryad, Mendeley Data, OSF, Kaggle, data.gov.in, the
 | Open-Meteo / ERA5 weather, 7 Indian cities, Mar–Jun 2024, 2025, 2026 | Hourly heat exposure | Heat → sweat; 2024 = training season, 2025 and 2026 = held-out test seasons | CC BY 4.0 | Yes |
 | MIMIC-IV Clinical Database Demo v2.2 (+ mimic-code KDIGO SQL) | Real ICU creatinine series and the official KDIGO staging | R1a: our labelling checked against the official code; R1b: our creatinine equation vs real patients | ODbL (open) / MIT | Download script only |
 | eICU-CRD Demo v2.0.1 | A second real creatinine cohort | R1b | ODbL (open) | Download script only |
-| UCI Chronic Kidney Disease (400 patients) | Real lab values (creatinine, urea, haemoglobin, sodium, potassium) | R2: plausibility overlay of our cohort's labs (no pass/fail claim). The UCI page does not name the hospital, city or country, so we do not state a site | CC BY 4.0 | Download script only |
+| UCI CKD dataset (origin not verifiable from the source page; 400 patients) | Real lab values (creatinine, urea, haemoglobin, sodium, potassium) | R2: plausibility overlay of our cohort's labs (no pass/fail claim). The UCI page does not name the hospital, city or country, so we do not state a site | CC BY 4.0 | Download script only |
 | Tawam CKD cohort (Al-Shamsi et al., PLoS ONE 2018, 491 patients) | Baseline values + time to CKD stage 3 | R3: slow-clock risk ranking vs baseline eGFR alone | CC BY 4.0 | Download script only |
 | PMData (16 people; raw Fitbit heart rate, self-reported weight) | Real day-to-day noise | R4: measured resting-HR noise → `sigma_hr_bpm` = 4.04 bpm | CC BY 4.0 | Download script only |
 
@@ -53,3 +53,4 @@ Transient creatinine rises after a hot shift are very common in heat-exposed wor
 - No controlled human dehydration study with serial creatinine.
 - No Indian outpatient serial-creatinine dataset with genotype.
 - No district-level daily heat / kidney-admission data for India.
+- No usable open South Asian outpatient creatinine dataset: the one candidate we found (BD-KDD) was examined and not used (see above).
