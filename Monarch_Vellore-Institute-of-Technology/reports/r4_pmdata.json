@@ -1,0 +1,33 @@
+{
+  "check": "R4 (secondary sanity line; Amendment 1 A1.7). Healthy real people: every red alert is a false alarm.",
+  "dataset": "PMData (Thambawita et al., MMSys 2020; CC BY 4.0): Fitbit daily resting HR + self-reported weight",
+  "people": 13,
+  "patient_days": 1845,
+  "period": [
+    "2019-11-01",
+    "2020-03-31"
+  ],
+  "days_with_weight": 1030,
+  "days_with_resting_hr": 1514,
+  "model": "frozen hybrid model M (mismatched), frozen isotonic map and thresholds; nothing refitted",
+  "red_notifications_per_100_patient_days": 0.0,
+  "amber_plus_red_notifications_per_100_patient_days": 0.0,
+  "red_days_per_100_patient_days": 0.0,
+  "people_with_any_red": 0,
+  "max_calibrated_probability": 0.00143,
+  "red_threshold": 0.013333,
+  "twin_simulation_risk": {
+    "max": 0.04,
+    "share_of_days_at_or_above_display_red_band": 0.0,
+    "share_of_days_at_or_above_display_amber_band": 0.0
+  },
+  "assumptions": {
+    "baseline": "no lab: creatinine back-calculated from baseline_egfr_fallback (\u00a79.3 rule)",
+    "egfr_baseline_feature": 75.0,
+    "routine": "office",
+    "weather": "Oslo, Open-Meteo archive",
+    "sbp": "not recorded (missing channel)",
+    "hr_base": "median of the first 28 resting-HR readings"
+  },
+  "caveats": "Fitbit's daily resting HR is smoothed (day-to-day SD lower than our nightly value); weight is self-reported in whole kilograms; Norwegian winter, so heat never drives risk here."
+}

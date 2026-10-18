@@ -18,11 +18,11 @@ number and its source file; `reports/EVAL_PLAN.md` is the pre-registered evaluat
 | Pre-4 | Amendment 2, engine revision (haemoconcentration + exertion), safety layer, 10k / 5k cohort, R1a / R1b | Done | `09a8617` ... `c7a236d` |
 | 4 | Fast clock: features, baselines, hybrid model, alerts, G3 decision | **Done** | `d101a2b`, `fe36277` |
 | 5 | Slow clock + what-if levers + guardrails + clinical safety doc + R3 | **Done** | see `git log` |
-| 6 | Services layer + security / trust layer | **Not started** (audit log core exists) | |
+| 6 | Services layer + security / trust layer + R4 | **Done** | see `git log` |
 | 7 | Streamlit pages + full evaluation | **Not started** (page stubs only) | |
 | 8 | README, docs, diagram, slides, video, deploy, go public, submit | **Not started** | |
 
-Tests: **186 collected, 185 pass, 1 skipped** (the MIMIC DuckDB data test; rebuild it with
+Tests: **200 collected, 199 pass, 1 skipped** (the MIMIC DuckDB data test; rebuild it with
 `scripts/build_validation_duckdb.py`), ruff clean.
 
 ---
@@ -81,6 +81,7 @@ Tests: **186 collected, 185 pass, 1 skipped** (the MIMIC DuckDB data test; rebui
   26-43 % of AKI with 17-22 alerts per catch. Median lead 23 h: the pre-registered >= 24 h target is **missed**.
 - **R3** (`r3_tawam.json`): slow-clock C-index 0.836 (0.776-0.889) vs baseline eGFR alone 0.834 (0.783-0.877):
   ranks as well as eGFR alone, not better (no serial eGFR in Tawam). KFRE not applicable there.
+- **R4** (`r4_pmdata.json`): 13 healthy PMData people, 1,845 person-days: 0 red and 0 amber notifications.
 - **Demo personas** (`demo_numbers.json`): Kamala red at 43.5 % the day before her simulated AKI; what-if
   continue 48 % -> painkiller swap 25.5 % -> + ORS 1.5 % -> pauses <1 %.
 
@@ -105,13 +106,8 @@ Tests: **186 collected, 185 pass, 1 skipped** (the MIMIC DuckDB data test; rebui
 Slow clock, KFRE, what-if levers, guardrails, sick-day guidance, `docs/CLINICAL_SAFETY.md` and R3. Details and
 numbers in `PROGRESS.md` (Part 5).
 
-### Part 6: services + trust layer (`src/vrikka/services/`, `src/vrikka/security/`, `src/vrikka/interop/`)
-- One services layer enforcing role + consent + audit; Streamlit calls it in-process (FastAPI wrapper only if time).
-- ABDM-style consent artefact checked on every read, with a revoke demo; role-based field filtering.
-- Extend `security/audit.py` (HMAC hash chain already works) with signed checkpoints, verify, and a tamper demo.
-- FHIR R4 export; DPDP mapping table; data-integrity gate (plausibility + replay rejection); Ed25519 device signing as
-  one unit test only.
-- Tests S10 (implausible feed rejected) and S11 (consent revoked); R4 = false red alerts on PMData (secondary line).
+### Part 6: done (18 Oct 2026)
+Services layer, consent, audit checkpoints, integrity gate, FHIR, API, R4. Details in `PROGRESS.md` (Part 6).
 
 ### Part 7: pages + full evaluation (`app/`)
 - Pages: Doctor Triage (with "Order home kidney test" -> tasks table), Patient Twin (what-if + slow clock + sleep/steps),

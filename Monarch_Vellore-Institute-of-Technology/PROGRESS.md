@@ -9,7 +9,7 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 | 3 Twin + synthetic world | P3 ‖ P4 | exit checks | **done** (see below) |
 | 4 Fast clock | P5 | G3 | **done** (G3, see below) |
 | 5 Slow clock + what-if | P6 + P7 | exit checks | **done** (see below) |
-| 6 Backend + trust layer | P8 | G4 | not started |
+| 6 Backend + trust layer | P8 | G4 | **done** (see below) |
 | 7 Frontend + evaluation | P9 ‖ P10 | G5 freeze | not started |
 | 8 Deliverables + submission | P11 | G6 | not started |
 
@@ -485,3 +485,47 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
    shown; this does not change any replay number.
 4. Open team decisions unchanged and left at the science-preserving default: model M (no Amendment 3), the
    pre-registered KDIGO comparison, and the lead time stated as missed.
+
+
+## Part 6: Services + trust layer (18 Oct 2026)
+
+### Built
+- `services/` (one layer for every page and API call): role allowed? -> own record for patient / family -> signed,
+  unexpired consent artefact for every other role, **checked on every read** -> audit entry (allowed or denied, with
+  the reason) -> only the role's fields leave; names are Fernet-encrypted at rest and decrypted only for roles that
+  may see them. `services/directory.py`: the six fictional personas (twin simulation, display bands) and the triage
+  panel (frozen model M), every number from `reports/`.
+- `security/`: `rbac.py` (doctor, patient, family, ASHA, lab, admin; field filtering), `auth.py` (bcrypt demo logins
+  from `.env`, PyJWT tokens), `consent.py` + `interop/abdm_consent.py` (ABDM-style artefact: purpose, requester,
+  health-information types, access mode, date range, expiry, status; Ed25519-signed; revoke), `audit.py` (Ed25519-signed
+  checkpoints on top of the HMAC chain, `first_bad_index`, tamper demo), `device_gateway.py` (plausibility, weight
+  jumps, stale / future time stamps, replayed nonces, Ed25519 device signatures; rules in `config/integrity.yaml`),
+  `crypto.py`, `dpdp.py` (DPDP Act 2023 mapping table; a design mapping, not legal advice).
+- `interop/fhir_export.py` + `loinc.py`: FHIR R4 collection Bundle (Patient, LOINC Observations, RiskAssessment,
+  Consent) with a structural validator.
+- `store/`: SQLite (stdlib) for kidney-test orders, lab results and check-ins; free text encrypted.
+- `api/`: thin FastAPI wrapper over the same services (bearer tokens); `uvicorn vrikka.api.main:app`.
+- `fastclock/frozen.py`: the one place that loads the frozen Part 4 models, isotonic maps and thresholds.
+- Tests: `test_trust.py` (14): **S10** implausible / jumping / replayed / stale / unsigned feeds rejected and audited;
+  **S11** revoked consent blocks doctor reads, triage listing and FHIR export, and is audited; consent signature,
+  expiry and scope; role filtering; own-record rule; order -> lab result -> purple level; potassium alert; check-in
+  runs red flags first and stores text encrypted; tamper demo (a re-chained forgery passes the HMAC chain but fails
+  the signed checkpoint); FHIR validity; DPDP coverage; the API enforces the same rules.
+
+### Results
+- **R4 (secondary line; `reports/r4_pmdata.json`):** 13 of the 16 PMData people have enough data (at least 14 resting
+  HR days and 5 weights); 1,845 person-days in Norway, Nov 2019 - Mar 2020. Frozen M with its frozen thresholds:
+  **0 red and 0 amber notifications** (maximum calibrated probability 0.00143 against a red threshold of 0.0133); the
+  twin's own 72-h simulation never reached the 5 % display band (maximum 0.04). Caveats in the report (Fitbit's
+  smoothed resting HR, whole-kilogram weights, winter, back-calculated baseline).
+- **Cohort reproducibility:** `scripts/generate_cohort.py` on this machine reproduces `reports/cohort_summary.json`
+  exactly and leaves the committed 20-patient sample unchanged.
+
+### Decisions and deviations
+1. The app calls the services in-process (`APP_MODE=inprocess`, now the default); the FastAPI wrapper is optional.
+2. Personas keep the twin's 72-h simulation with the display bands (5 % / 15 %); the frozen Part 4 thresholds belong to
+   the calibrated model M. Under the frozen B4 thresholds every day would be amber (the notification budget counts
+   new notifications, so a constant amber costs one notification per patient), so they are not used for display.
+3. Mr Iyer is the heart-failure persona (ORS guardrail and diuretic-pause warning); Kamala's CYP2C9 variant is named
+   "Kamala, CYP2C9 *3/*3 variant".
+4. The ABDM pattern is demonstrated, not integrated: no ABDM sandbox or gateway is called.

@@ -50,6 +50,7 @@ S5_hydrated:
   expect: "stays green while the naive heat-index rule fires"
 S6_cyp2c9:
   label: "Same patient, same ibuprofen dose: CYP2C9 normal (*1/*1) vs poor metaboliser (*3/*3)"
+  name: "Kamala, CYP2C9 *3/*3 variant"
   person: {age: 68, female: true, weight_kg: 62, height_m: 1.55, egfr: 58, city: Nagpur, occupation: home,
            roof: concrete, cooling: fan, hr_base: 76, sbp_base: 132, beta_blocker: false, cyp2c9: "*3/*3"}
   chronic: {ras: arb, diuretic: chlorthalidone}

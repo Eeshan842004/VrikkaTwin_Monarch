@@ -48,13 +48,20 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=PROJECT_ROOT / ".env", extra="ignore")
 
-    app_mode: Literal["api", "inprocess"] = "api"
-    secret_key: str = Field(default="dev-only-secret-change-me")
+    app_mode: Literal["api", "inprocess"] = "inprocess"
+    secret_key: str = Field(default="dev-only-jwt-secret-change-me-before-any-deployment")
     fernet_key: str = ""
     audit_key: str = "dev-only-key"
     openmeteo_base: str = "https://archive-api.open-meteo.com/v1/archive"
     whisper_model: str = "small"
     api_url: str = "http://127.0.0.1:8000"
+    # demo logins (role: password); demo only, never reuse (see .env.example)
+    demo_doctor_password: str = "doctor-demo"
+    demo_patient_password: str = "patient-demo"
+    demo_family_password: str = "family-demo"
+    demo_asha_password: str = "asha-demo"
+    demo_lab_password: str = "lab-demo"
+    demo_admin_password: str = "admin-demo"
 
 
 def load_yaml(name: str) -> Any:

@@ -53,7 +53,7 @@ TARGETS = {
     "validate-db": lambda: script("build_validation_duckdb.py"),
     "cohort": lambda: (script("generate_cohort.py"), script("make_demo_patients.py")),
     "features": lambda: script("build_features.py"),
-    "train": lambda: script("train_fast_clock.py"),
+    "train": lambda: script("train_fastclock.py"),
     "eval": lambda: script("evaluate.py"),
     "tts": lambda: script("pregenerate_tts.py"),
     "api": lambda: run(PY, "-m", "uvicorn", "vrikka.api.main:app", "--port", "8000"),
