@@ -81,8 +81,9 @@ def test_device_export_shapes():
 
 
 def test_predictor_never_imports_the_simulator():
-    """Anti-circularity (§11.1): twin, fast clock, slow clock, what-if and API code must not import vrikka.simulator."""
-    for pkg in ("twin", "fastclock", "slowclock", "whatif", "api", "physiology"):
+    """Anti-circularity (§11.1): twin, fast clock, slow clock, what-if, services and API code never import
+    vrikka.simulator."""
+    for pkg in ("twin", "fastclock", "slowclock", "whatif", "api", "physiology", "services"):
         for f in (SRC / pkg).rglob("*.py"):
             tree = ast.parse(f.read_text(encoding="utf-8"))
             for node in ast.walk(tree):

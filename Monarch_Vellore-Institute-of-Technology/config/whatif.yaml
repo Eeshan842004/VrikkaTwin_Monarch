@@ -1,0 +1,42 @@
+# What-if levers (master plan §14; Decisions v1 item 1; STATUS Part 5). The ORDER is fixed: (1) painkiller swap,
+# (2) ORS / fluids and the work-hour shift, (3) drug pauses LAST. Lever settings (volumes, hours) are registry values
+# (whatif_ors_l_day, whatif_work_start_hour). Drug classes in drugs_india.yaml `never_levers` are never offered.
+order: [painkiller_swap, ors, work_shift, pause_ras, pause_diuretic, pause_sglt2i, pause_metformin]
+
+levers:
+  painkiller_swap:
+    group: 1
+    label_key: lever.painkiller_swap
+    applies_if_classes: [nsaid_cyp2c9, nsaid_other]
+    swap_to_brand: dolo            # one paracetamol 650 mg tablet for each painkiller tablet (checked against the ceiling)
+  ors:
+    group: 2
+    label_key: lever.ors
+  work_shift:
+    group: 2
+    label_key: lever.work_shift
+    applies_if_outdoor_hours_at_least: 2
+  pause_ras:
+    group: 3
+    label_key: lever.pause_ras
+    applies_if_classes: [acei, arb]
+    channel: ras
+  pause_diuretic:
+    group: 3
+    label_key: lever.pause_diuretic
+    applies_if_classes: [thiazide, loop]
+    channel: diuretic
+  pause_sglt2i:
+    group: 3
+    label_key: lever.pause_sglt2i
+    applies_if_classes: [sglt2i]
+    channel: sglt2                 # no AKI-raising volume effect in the model (sglt2_loss_l_day = 0): the reason is ketoacidosis
+  pause_metformin:
+    group: 3
+    label_key: lever.pause_metformin
+    applies_if_classes: [metformin]
+    channel: null                  # not a kidney-model input: the reason is lactic acidosis if AKI develops
+
+# Every drug-pause lever carries this badge (Think Kidneys 2018: sick-day guidance is individualised and the
+# evidence is weak; the clinician decides).
+pause_badge_key: lever.badge_pause

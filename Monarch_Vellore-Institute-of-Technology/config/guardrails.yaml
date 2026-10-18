@@ -28,3 +28,42 @@ risk_display:
   # Decisions v4 4b: never display 0 %. Monte-Carlo risk with 200 draws cannot resolve below 0.5 %.
   floor_text_below: 0.01          # probabilities below this are shown as "<1%"
   interval: wilson_95             # every Monte-Carlo risk shows its 95 % interval
+
+# ---- Part 5: what-if and sick-day guardrails (master plan §14.2, §38; STATUS Part 5)
+paracetamol:
+  # Daily ceilings are registry values (paracetamol_ceiling_g_day 4 g, paracetamol_ceiling_high_risk_g_day 3 g;
+  # VERIFY, label guidance). The lower ceiling applies when any of these holds.
+  high_risk_if:
+    age_at_or_above: 65
+    weight_below_kg: 50
+    liver_disease: true
+    alcohol_use: true
+  over_ceiling_key: guard.paracetamol_over
+  near_ceiling_fraction: 0.75     # show "close to the daily limit" at or above this share of the ceiling
+
+potassium:
+  # Registry: potassium_caution_mmol_l (5.5, caution on every lever), potassium_alert_mmol_l (6.0, always a same-day
+  # repeat and a clinician alert, whatever the kidney-injury risk).
+  caution_key: guard.k_caution
+  alert_key: guard.k_alert
+  alert_actions: [same_day_repeat_potassium, clinician_alert]
+
+pause_warnings:
+  # Pausing a diuretic in heart failure can cause fluid overload: the lever stays visible but carries a warning and
+  # needs the clinician (never automatic advice to the patient).
+  heart_failure_diuretic: {classes: [thiazide, loop], message_key: guard.hf_diuretic_pause}
+
+creatinine_secretion_inhibitors:
+  # Co-trimoxazole (trimethoprim) and cimetidine raise creatinine by blocking its secretion, but trimethoprim can ALSO
+  # cause real AKI and hyperkalaemia. A creatinine rise is therefore NEVER explained away: the AKI flag stays, with a
+  # note and a potassium check.
+  classes: [creatinine_secretion_inhibitor]
+  never_suppress_aki: true
+  message_key: guard.cotrimoxazole
+
+exclusions:
+  # VrikkaTwin is not designed for these people; the risk is not computed and the screen says why.
+  min_age_years: 18
+  pregnancy: true
+  egfr_below: 15                  # KDIGO G5
+  dialysis: true

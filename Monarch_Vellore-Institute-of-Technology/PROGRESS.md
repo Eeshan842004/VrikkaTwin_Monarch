@@ -7,8 +7,8 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 | 1 Foundation | P0 + P1 | G0, G1 | **done** (G0 `ef100fe`, G1 see below) |
 | 2 Physiology engine | P2 | G2 | **done** (G2, see below) |
 | 3 Twin + synthetic world | P3 ‖ P4 | exit checks | **done** (see below) |
-| 4 Fast clock | P5 | G3 | not started |
-| 5 Slow clock + what-if | P6 + P7 | exit checks | not started |
+| 4 Fast clock | P5 | G3 | **done** (G3, see below) |
+| 5 Slow clock + what-if | P6 + P7 | exit checks | **done** (see below) |
 | 6 Backend + trust layer | P8 | G4 | not started |
 | 7 Frontend + evaluation | P9 ‖ P10 | G5 freeze | not started |
 | 8 Deliverables + submission | P11 | G6 | not started |
@@ -415,3 +415,73 @@ under-detected in older people.
    - (b) whether a post-hoc model (adding the last-lab ratio to the core set, or M_full) should be considered, which
      would need an Amendment 3 and would make the 2025 / 2026 numbers no longer untouched;
    - (c) stating the 23-h lead as a missed target.
+
+
+## Handover (18 Oct 2026, evening): environment on the new build machine
+
+The build moved to a teammate's Windows machine. Python 3.12.10 (Python install manager), venv rebuilt from
+`requirements.lock`. Two findings:
+- **LightGBM crashed on every call** ("access violation reading 0x0000000000000000") because the machine's system
+  Visual C++ runtime is old (`msvcp140.dll` 14.13). LightGBM 4.7 needs 14.40 or newer. `vrikka/__init__.py` now
+  preloads the current runtime that scikit-learn's wheel bundles (Windows only; harmless elsewhere). The proper fix on
+  such a machine is the latest Microsoft Visual C++ Redistributable (x64).
+- With that, the untouched HEAD suite gives **148 tests: 147 pass, 1 skipped** (the MIMIC DuckDB data test; the
+  validation database is not rebuilt on this machine).
+- Regenerating `reports/demo_numbers.json` here reproduces every persona number except one Monte-Carlo value: S5's
+  maximum risk is 0.005 instead of 0.0 (one of 200 draws; HEAD code on this machine gives the same 0.005, so it is a
+  linear-algebra difference between machines, not a code change). Both display as "<1%".
+
+
+## Part 5: Slow clock + what-if + guardrails (18 Oct 2026)
+
+### Built
+- `slowclock/bayes_slope.py`: conjugate Bayesian eGFR slope. Prior by group from the registry (no diabetes -1.5,
+  diabetes -3.0, diabetes + UACR >= 30 mg/g -6.43 per year; SD 2.5; intercept SD 15); observation SD 5. Only stable
+  eGFR values enter (`fastclock/display.lab_egfr_status`): values taken while creatinine is changing are skipped.
+- `slowclock/projection.py`: 2,000 Monte-Carlo draws; 10-90 % ranges only; years to eGFR < 60 / 30 / 15 (">15 years"
+  beyond the search horizon; eGFR floored at 0).
+  - AKI penalty: `aki_slope_penalty` x stage multiplier x exp(-t / `aki_penalty_tau_years`), applied **once for any
+    AKI**; extra episodes add `aki_penalty_extra_episode_mult`, at most `aki_penalty_max_episodes` (2) count. For a
+    past episode only the part still to come is added. A future episode also adds the one-off step `aki_step_stageN`.
+  - SGLT2i: initial dip `sglt2i_initial_dip`, then `sglt2i_slope_effect` per year. BP control and stopping a chronic
+    NSAID use their registry ASSUMPTIONS.
+  - The modifier parameters are drawn uniformly over their registry ranges, so the effect of an AKI or a treatment is
+    itself a range (a fixed penalty gave a zero-width "range", which the ranges-only rule forbids).
+  - Wording keys: "associated with", "extrapolated" for people without diabetes, ranges only.
+- `slowclock/kfre.py`: KFRE only for eGFR 10-59 with a UACR (male centering as published); otherwise the reason.
+- `whatif/levers.py` + `config/whatif.yaml`: levers in the agreed order (painkiller swap -> ORS / work-hour shift ->
+  drug pauses last with the badge "individualised, weak evidence (Think Kidneys 2018), clinician decides"), common
+  random numbers, guardrail status per lever; never-levers are never offered.
+- `whatif/guardrails.py` (extended): paracetamol ceiling across brands, potassium (>= 6.0 same-day repeat + clinician
+  alert; >= 5.5 caution on every lever), heart failure + diuretic pause warning, co-trimoxazole never suppresses AKI,
+  exclusions (< 18, pregnancy, eGFR < 15 / dialysis). Thresholds in `config/guardrails.yaml`.
+- `whatif/sickday.py`: sick-day guidance, generic names, "ask your doctor whether to pause ..." (never "stop").
+- `twin/replay.py`: optional `capture_day` keeps the twin and its 72-h inputs for a live what-if (no number changes).
+- `config.overrides()`: temporary registry values inside their registered ranges (tests, tornado).
+- i18n: alert levels, actions, levers, pause reasons, guardrails, exclusions, sick-day, KFRE and slow-clock text in
+  EN / HI / KN / TE (HI / KN / TE remain "draft translation").
+- `docs/CLINICAL_SAFETY.md`: intended use, exclusions, red flags, guardrails, display rules, limitations, hazard log.
+- Scripts: `validate_r3.py` -> `reports/r3_tawam.json`; `make_slowclock_demo.py` -> `reports/slowclock_demo.json`.
+- Tests: `test_slowclock.py` (15), `test_whatif.py` (23, including the Kamala lever table reproducing
+  `reports/demo_numbers.json` exactly: 0.48 -> 0.255 -> 0.015 -> 0.0).
+
+### Results
+- **R3 (held-out; `reports/r3_tawam.json`):** Tawam, 491 patients, 56 reached eGFR < 60. C-index of the slow clock's
+  years-to-60: **0.836 (95 % CI 0.776-0.889)**; baseline eGFR alone **0.834 (0.783-0.877)**; paired difference CI
+  -0.036 to 0.032. The slow clock ranks progression **as well as baseline eGFR alone, not better**: without serial
+  eGFR, its only extra input is the diabetes prior. KFRE: not applicable (all eGFR >= 60, no UACR).
+- **Personas (`reports/slowclock_demo.json`):** with the baseline eGFR as the only observation the 10-year ranges are
+  wide (e.g. Kamala 9.6-75.5 mL/min/1.73 m2, median 43.3); one stage-1 kidney injury this season is associated with
+  a 10-year difference of -7.8 to -2.9 (median -5.1) under the registry assumptions.
+
+### Decisions and deviations
+1. `sglt2i_slope_effect` 1.4 (VERIFY) -> **1.37 (CITED, EMPA-KIDNEY, range 1.16-1.59)**, as Amendment 2 A2.2 already
+   recorded. This is an input to the slow clock, not a fitted value.
+2. New registry entries: `projection_step_years`, `slow_mc_draws`, `slow_band_low_q` / `slow_band_high_q`, KDIGO
+   thresholds 60 / 30 / 15, `albuminuria_uacr_mg_g`, and the lever settings `whatif_ors_l_day` (1 L/day, the demo's
+   value) and `whatif_work_start_hour` (06:00).
+3. Personas gained `generics` (generic names) and `history` (diabetes, UACR, heart failure, last potassium) in
+   `config/scenarios.yaml`. Mr Iyer now has heart failure (his label says so) so the heart-failure guardrails can be
+   shown; this does not change any replay number.
+4. Open team decisions unchanged and left at the science-preserving default: model M (no Amendment 3), the
+   pre-registered KDIGO comparison, and the lead time stated as missed.

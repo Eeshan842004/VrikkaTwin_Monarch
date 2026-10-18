@@ -945,12 +945,12 @@ egfr_obs_sd:
   source: master plan §13
   notes: eGFR observation noise
 sglt2i_slope_effect:
-  value: 1.4
+  value: 1.37
   unit: mL/min/1.73m2 per year
-  range: [0.8, 2.0]
-  provenance: VERIFY
-  source: EMPA-KIDNEY / DAPA-CKD / 2022 meta-analysis
-  notes: works with and without diabetes [VERIFY]
+  range: [1.16, 1.59]
+  provenance: CITED
+  source: EMPA-KIDNEY Collaborative Group, NEJM 2023;388:117-127 (chronic eGFR slope difference 1.37, 95 % CI 1.16-1.59, people with and without diabetes); value set by Amendment 2 A2.2 (was 1.4 VERIFY)
+  notes: an INPUT to the slow clock (calibration category), never described as reproduced; applies after the initial dip sglt2i_initial_dip
 sglt2i_hazard_ratio:
   value: 0.63
   unit: hazard ratio
@@ -993,6 +993,78 @@ projection_search_years:
   provenance: ASSUMPTION
   source: master plan §13
   notes: beyond this shows as ">15 years"
+projection_step_years:
+  value: 0.25
+  unit: years
+  range: [0.083, 0.5]
+  provenance: ASSUMPTION
+  source: Part 5 (slow clock)
+  notes: time grid of the projection and of the years-to-threshold search (quarterly)
+slow_mc_draws:
+  value: 2000
+  unit: draws
+  range: [1000, 5000]
+  provenance: ASSUMPTION
+  source: Part 5 (slow clock)
+  notes: Monte-Carlo draws of (intercept, slope) from the posterior for the projection ranges
+slow_band_low_q:
+  value: 0.10
+  unit: quantile
+  range: [0.05, 0.10]
+  provenance: ASSUMPTION
+  source: EVAL_PLAN Amendment 1 A1.9 (outputs shown as ranges only, 10-90 % band)
+  notes: lower edge of every slow-clock range
+slow_band_high_q:
+  value: 0.90
+  unit: quantile
+  range: [0.90, 0.95]
+  provenance: ASSUMPTION
+  source: EVAL_PLAN Amendment 1 A1.9
+  notes: upper edge of every slow-clock range
+egfr_threshold_g3a:
+  value: 60.0
+  unit: mL/min/1.73m2
+  range: [60.0, 60.0]
+  provenance: CITED
+  source: KDIGO 2012 CKD guideline (G3a starts below 60)
+  notes: years-to-threshold target used by R3 (Tawam EventCKD35)
+egfr_threshold_g4:
+  value: 30.0
+  unit: mL/min/1.73m2
+  range: [30.0, 30.0]
+  provenance: CITED
+  source: KDIGO 2012 CKD guideline (G4 starts below 30)
+  notes: ''
+egfr_threshold_g5:
+  value: 15.0
+  unit: mL/min/1.73m2
+  range: [15.0, 15.0]
+  provenance: CITED
+  source: KDIGO 2012 CKD guideline (G5 starts below 15)
+  notes: ''
+albuminuria_uacr_mg_g:
+  value: 30.0
+  unit: mg/g
+  range: [30.0, 30.0]
+  provenance: CITED
+  source: KDIGO 2012 CKD guideline (A2 albuminuria >= 30 mg/g)
+  notes: with diabetes, UACR >= this selects the DKD-with-albuminuria slope prior
+
+# ---------------------------------------------------------------- what-if lever settings (Part 5; Decisions v1 item 1)
+whatif_ors_l_day:
+  value: 1.0
+  unit: L/day
+  range: [0.5, 1.5]
+  provenance: ASSUMPTION
+  source: Decisions v1 item 1 (demo lever); WHO reduced-osmolarity ORS
+  notes: ORS / electrolyte drink volume of the ORS lever, spread evenly over the day; the lever is withheld when whatif/guardrails.ors_guardrail says so
+whatif_work_start_hour:
+  value: 6
+  unit: hour of day (local)
+  range: [5, 7]
+  provenance: ASSUMPTION
+  source: Part 5 (work-hour shift lever; NDMA heat-action advice to avoid outdoor work in the afternoon)
+  notes: the work-hour lever moves the start of outdoor work to this hour, same number of hours
 
 # ---------------------------------------------------------------- KFRE (§8, §9.3)
 kfre_s0_2y_non_na:

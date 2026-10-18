@@ -17,18 +17,20 @@ number and its source file; `reports/EVAL_PLAN.md` is the pre-registered evaluat
 | 3 | Personal twin (UKF), Monte-Carlo risk, synthetic world, cohort | Done | `9821fd6`, `8945e96` |
 | Pre-4 | Amendment 2, engine revision (haemoconcentration + exertion), safety layer, 10k / 5k cohort, R1a / R1b | Done | `09a8617` ... `c7a236d` |
 | 4 | Fast clock: features, baselines, hybrid model, alerts, G3 decision | **Done** | `d101a2b`, `fe36277` |
-| 5 | Slow clock + what-if levers + guardrails + clinical safety doc | **Not started** | |
+| 5 | Slow clock + what-if levers + guardrails + clinical safety doc + R3 | **Done** | see `git log` |
 | 6 | Services layer + security / trust layer | **Not started** (audit log core exists) | |
 | 7 | Streamlit pages + full evaluation | **Not started** (page stubs only) | |
 | 8 | README, docs, diagram, slides, video, deploy, go public, submit | **Not started** | |
 
-Tests: **148 pass** (`.venv/Scripts/python -m pytest`), ruff clean.
+Tests: **186 collected, 185 pass, 1 skipped** (the MIMIC DuckDB data test; rebuild it with
+`scripts/build_validation_duckdb.py`), ruff clean.
 
 ---
 
 ## 2. How to run
 
-- Windows, Python **3.12** venv at `.venv` (shap needs 3.12). Install: `pip install -r requirements.lock`.
+- Windows, Python **3.12** venv at `.venv` (shap needs 3.12). Install: `pip install -r requirements.lock`, then
+  `pip install -e . --no-deps`. If Python 3.12 is missing: `pymanager install 3.12` (Python install manager).
 - Run everything from this folder: `.venv/Scripts/python <script>`. `python tasks.py <target>` mirrors the Makefile;
   `python tasks.py test` runs the CI subset.
 - CI: `.github/workflows/ci.yml` at the repo root (ruff + fast tests).
@@ -44,6 +46,8 @@ Tests: **148 pass** (`.venv/Scripts/python -m pytest`), ruff clean.
   - pandas 3 stores "no diuretic" as NaN: use `simulator.ground_truth.diuretic_name()`.
   - Git Bash heredocs containing apostrophes break; write long files with an editor or Python.
   - LightGBM: use `lgb.train`.
+  - LightGBM "access violation reading 0x0000000000000000" = an old system Visual C++ runtime (`msvcp140.dll` < 14.40).
+    `vrikka/__init__.py` preloads scikit-learn's bundled runtime; the real fix is the latest VC++ Redistributable (x64).
 
 ---
 
@@ -75,6 +79,8 @@ Tests: **148 pass** (`.venv/Scripts/python -m pytest`), ruff clean.
 - **G3** (`g3_decision.json`): hybrid M leads by the pre-registered rule (beats B0 / B1 / B2). Plain LightGBM (B3) beats M
   on the mismatched world (0.064 vs 0.026 internal AUPRC); M wins under matched truth (0.22 vs 0.18). M on red catches
   26-43 % of AKI with 17-22 alerts per catch. Median lead 23 h: the pre-registered >= 24 h target is **missed**.
+- **R3** (`r3_tawam.json`): slow-clock C-index 0.836 (0.776-0.889) vs baseline eGFR alone 0.834 (0.783-0.877):
+  ranks as well as eGFR alone, not better (no serial eGFR in Tawam). KFRE not applicable there.
 - **Demo personas** (`demo_numbers.json`): Kamala red at 43.5 % the day before her simulated AKI; what-if
   continue 48 % -> painkiller swap 25.5 % -> + ORS 1.5 % -> pauses <1 %.
 
@@ -95,22 +101,9 @@ Tests: **148 pass** (`.venv/Scripts/python -m pytest`), ruff clean.
 
 ## 6. What is NOT done yet (next steps, in order)
 
-### Part 5: slow clock + what-if + guardrails (`src/vrikka/slowclock/`, `src/vrikka/whatif/`)
-- Bayesian eGFR slope (conjugate prior by HTN / DM / DKD from the registry); outputs as **ranges only** (10-90 %).
-- AKI slope penalty: `aki_slope_penalty` x stage multiplier x exp(-t / `aki_penalty_tau_years`), applied **once for any
-  AKI** ("associated with", Trichy cohort); extra episodes use `aki_penalty_extra_episode_mult`, capped at 2. Wording:
-  "extrapolated" for people without diabetes. Never "per episode", never a headline "kidney-years".
-- One-off AKI eGFR step (`aki_step_stage1/2/3`); SGLT2i slope effect is an input (EMPA-KIDNEY 1.37), initial dip
-  `sglt2i_initial_dip` (assumption). KFRE only where valid (eGFR 10-59 with UACR); keep male centering.
-- Slow clock uses only stable eGFR values (`fastclock/display.lab_egfr_status`).
-- **R3**: Tawam C-index of years-to-eGFR-60 next to "baseline eGFR alone" (and KFRE where valid).
-- What-if levers in this order: (1) painkiller swap NSAID -> paracetamol, (2) ORS / fluids + work-hour shift (respect
-  `whatif/guardrails.ors_guardrail`), (3) drug pauses last with the badge "individualised, weak evidence (Think Kidneys
-  2018), clinician decides". SGLT2i pause reason = ketoacidosis risk; metformin = lactic acidosis risk.
-- Guardrail tests: heart failure + pausing the diuretic -> warning; K >= 6.0 -> same-day repeat; paracetamol ceiling;
-  co-trimoxazole never suppresses AKI; exclusions (<18, pregnancy, eGFR <15 / dialysis).
-- Write `docs/CLINICAL_SAFETY.md` (red flags, guardrails, limitations: creatinine lags GFR 24-48 h; low muscle mass in
-  older people; dehydration-only ceiling; L4 limitation).
+### Part 5: done (18 Oct 2026)
+Slow clock, KFRE, what-if levers, guardrails, sick-day guidance, `docs/CLINICAL_SAFETY.md` and R3. Details and
+numbers in `PROGRESS.md` (Part 5).
 
 ### Part 6: services + trust layer (`src/vrikka/services/`, `src/vrikka/security/`, `src/vrikka/interop/`)
 - One services layer enforcing role + consent + audit; Streamlit calls it in-process (FastAPI wrapper only if time).

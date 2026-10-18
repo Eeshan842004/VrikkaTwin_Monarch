@@ -54,6 +54,7 @@ class Replay:
     intra_day_rise: list = field(default_factory=list)
     heat_index_rule: list = field(default_factory=list)
     whatif: dict = field(default_factory=dict)
+    context: dict = field(default_factory=dict)       # twin + 72-h inputs captured on ``capture_day`` (live what-if)
 
     def summary(self) -> dict:
         onset = [i for i, s in enumerate(aki_onsets(np.array([self.truth_stage]))[0]) if s]
@@ -100,8 +101,18 @@ def _events_hourly(cfg: dict, T: int, day0_offset: int, score: float) -> dict:
     return x
 
 
+def sweat_fn_for(people: pd.DataFrame, city: str, fw: pd.DataFrame):
+    """Work-hour lever helper: 72-h (sweat, met) on forecast ``fw`` with outdoor work starting at another hour."""
+    def fn(start_hour: int) -> tuple[np.ndarray, np.ndarray]:
+        p2 = people.assign(outdoor_start=start_hour)
+        ex = cohort_hourly_sweat({city: fw}, p2, start_hour=8)
+        return ex["sweat_l_h"][:, 0].astype(float), ex["met"][:, 0].astype(float)
+    return fn
+
+
 def replay(name: str, cfg: dict, year: int = 2024, lead_in: int = 7, after: int = 6, n_draws: int | None = None,
-           seed: int = SEED, theta_true: float = 1.0, whatif_day: int | None = None) -> Replay:
+           seed: int = SEED, theta_true: float = 1.0, whatif_day: int | None = None,
+           capture_day: int | None = None) -> Replay:
     person = cfg["person"]
     weather = load_season(year)[person["city"]]
     start = hot_window_start(weather) - pd.Timedelta(days=lead_in)
@@ -142,6 +153,10 @@ def replay(name: str, cfg: dict, year: int = 2024, lead_in: int = 7, after: int 
         f_sweat, f_met = f_expo["sweat_l_h"][:, 0].astype(float), f_expo["met"][:, 0].astype(float)
         today = {k: float(v[i]) for k, v in ev.items()}         # "continue as is"
         future = {"sweat_l_h": f_sweat, "met": f_met, **{k: today[k] for k in today}}
+        if capture_day is not None and d == capture_day:
+            rep.context = {"day": d, "date": rep.dates[d], "twin": twin.snapshot(), "future": dict(future),
+                           "baseline_cr": p_twin.cr_base, "seed_whatif": seed, "seed_day": seed + d,
+                           "sweat_fn": sweat_fn_for(people, person["city"], fw), "score": score}
         rep.risk.append(aki_risk_72h(twin, future, p_twin.cr_base, n_draws, seed=seed + d))
         rep.levels.append(level(rep.risk[-1]))
         rep.truth_cr.append(float(truth["cr"][i]))

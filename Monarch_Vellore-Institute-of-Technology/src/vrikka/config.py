@@ -6,6 +6,8 @@ source. Other YAML files (cohort, cities, alert policy, lexicons) are loaded wit
 """
 from __future__ import annotations
 
+from collections.abc import Iterator
+from contextlib import contextmanager
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Literal
@@ -77,6 +79,26 @@ def param(name: str) -> float:
 def param_range(name: str) -> tuple[float, float]:
     """Sensitivity range of one registry parameter (used by the tornado analysis)."""
     return registry()[name].range
+
+
+@contextmanager
+def overrides(**values: float) -> Iterator[None]:
+    """Temporarily replace registry values (sensitivity analysis and tests only; never used by the product path).
+
+    Values must stay inside each parameter's registered range, so a sensitivity run cannot use numbers the registry
+    does not allow.
+    """
+    reg = registry()
+    old = {k: reg[k] for k in values}
+    try:
+        for k, v in values.items():
+            lo, hi = reg[k].range
+            if not lo - 1e-12 <= v <= hi + 1e-12:
+                raise ValueError(f"{k}={v} is outside its registered range {reg[k].range}")
+            reg[k] = reg[k].model_copy(update={"value": v})
+        yield
+    finally:
+        reg.update(old)
 
 
 @lru_cache(maxsize=1)

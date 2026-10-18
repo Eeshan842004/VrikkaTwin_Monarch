@@ -1,0 +1,47 @@
+{
+  "check": "R3 (held-out; Amendment 2 A2.2)",
+  "dataset": "Tawam CKD cohort, Al-Shamsi et al., PLoS ONE 13(6): e0199920 (2018), S2 data (CC BY 4.0)",
+  "question": "does the slow clock rank who reaches eGFR < 60 sooner? (ranking, not a personal-slope test)",
+  "patients": 491,
+  "events_eGFR_below_60": 56,
+  "followup_years_median": 7.75,
+  "baseline_egfr_range": [
+    60.0,
+    242.6
+  ],
+  "c_index_slow_clock_years_to_60": 0.8361,
+  "c_index_slow_clock_ci95": [
+    0.7756,
+    0.8885
+  ],
+  "c_index_baseline_egfr_alone": 0.8339,
+  "c_index_baseline_egfr_ci95": [
+    0.7829,
+    0.8772
+  ],
+  "paired_difference_slow_minus_egfr": 0.0021,
+  "paired_difference_ci95": [
+    -0.0358,
+    0.0315
+  ],
+  "by_diabetes": {
+    "diabetes": {
+      "patients": 215,
+      "events": 47,
+      "c_index_slow_clock": 0.786,
+      "c_index_baseline_egfr": 0.7898
+    },
+    "no_diabetes": {
+      "patients": 276,
+      "events": 9,
+      "c_index_slow_clock": 0.7278,
+      "c_index_baseline_egfr": 0.8598
+    }
+  },
+  "kfre": {
+    "valid_patients": 0,
+    "note": "not applicable: every baseline eGFR is >= 60 and the data have no UACR (KFRE needs eGFR 10-59 with a UACR)"
+  },
+  "method": "score = median years to eGFR < 60 from the slow clock (baseline eGFR as the only observation, registry slope prior by diabetes status, AKI penalty not applied); '> 15 years' tie at the top. Harrell's C (lifelines) against TimeToEventMonths / EventCKD35; patient-level bootstrap (1000) percentile CIs. No parameter was changed for or after this check.",
+  "bootstrap_resamples": 1000
+}

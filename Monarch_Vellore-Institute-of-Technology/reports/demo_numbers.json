@@ -278,7 +278,7 @@
       ]
     },
     "S4_iyer": {
-      "label": "Mr Iyer (fictional), 74, Chennai: CKD G3b, loop diuretic, beta-blocker",
+      "label": "Mr Iyer (fictional), 74, Chennai: CKD G3b, heart failure, loop diuretic, beta-blocker",
       "expect": "HR channel down-weighted; weight carries the signal",
       "summary": {
         "days": 12,
@@ -371,7 +371,7 @@
       "expect": "stays green while the naive heat-index rule fires",
       "summary": {
         "days": 12,
-        "max_risk": 0.0,
+        "max_risk": 0.005,
         "levels": {
           "green": 12,
           "amber": 0,
@@ -391,7 +391,7 @@
         0.0,
         0.0,
         0.0,
-        0.0,
+        0.005,
         0.0,
         0.0,
         0.0,
