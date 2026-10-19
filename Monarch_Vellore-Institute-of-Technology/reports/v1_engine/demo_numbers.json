@@ -1,8 +1,8 @@
 {
   "note": "fictional personas; demo replay on real 2024 weather; truth = physiology engine; provisional alert thresholds 5 % / 15 % (tuned in Part 4)",
   "scenarios": {
-    "S1_kamala": {
-      "label": "Kamala (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
+    "S1_riya": {
+      "label": "Riya (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
       "expect": "risk rises before AKI; painkiller swap lowers risk; sick-day plan lowest; CYP2C9 *3/*3 highest",
       "summary": {
         "days": 12,
@@ -367,7 +367,7 @@
       ]
     },
     "S5_hydrated": {
-      "label": "Kamala's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
+      "label": "Riya's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
       "expect": "stays green while the naive heat-index rule fires",
       "summary": {
         "days": 12,

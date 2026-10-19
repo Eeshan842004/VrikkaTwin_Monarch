@@ -74,7 +74,7 @@ with tabs[3]:
         sv.gate.register_device("band-demo-signed", crypto.public_key_b64(st.session_state["dev_key"]))
 
     def message(device="band-demo", **readings):
-        return {"device_id": device, "patient_id": "S1_kamala", "ts": datetime.now(UTC).isoformat(),
+        return {"device_id": device, "patient_id": "S1_riya", "ts": datetime.now(UTC).isoformat(),
                 "nonce": uuid.uuid4().hex, "readings": readings or {"weight_kg": 61.6, "resting_hr_bpm": 78}}
 
     c = st.columns(5)

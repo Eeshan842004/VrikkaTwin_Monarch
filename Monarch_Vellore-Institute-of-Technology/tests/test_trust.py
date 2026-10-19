@@ -21,7 +21,7 @@ def sv():
 
 
 def login(sv, user):
-    pw = {"dr_demo": "doctor-demo", "kamala": "patient-demo", "kamala_family": "family-demo",
+    pw = {"dr_demo": "doctor-demo", "riya": "patient-demo", "riya_family": "family-demo",
           "asha_demo": "asha-demo", "lab_demo": "lab-demo", "admin_demo": "admin-demo"}[user]
     s = sv.login(user, pw)
     assert s is not None
@@ -29,7 +29,7 @@ def login(sv, user):
 
 
 def msg(**kw):
-    base = {"device_id": "band-01", "patient_id": "S1_kamala", "ts": datetime.now(UTC).isoformat(),
+    base = {"device_id": "band-01", "patient_id": "S1_riya", "ts": datetime.now(UTC).isoformat(),
             "nonce": uuid.uuid4().hex, "readings": {"weight_kg": 61.6, "resting_hr_bpm": 78}}
     return {**base, **kw}
 
@@ -67,21 +67,21 @@ def test_registered_device_must_sign_with_ed25519(sv):
 
 # --------------------------------------------------------------------------------------------- S11
 def test_s11_revoked_consent_blocks_reads_and_is_audited(sv):
-    dr, kamala = login(sv, "dr_demo"), login(sv, "kamala")
-    assert sv.read_patient(dr, "S1_kamala")["patient_id"] == "S1_kamala"
-    assert "S1_kamala" in [r["patient_id"] for r in sv.list_triage(dr)]
-    sv.revoke_consent(kamala, "S1_kamala", "doctor")
+    dr, riya = login(sv, "dr_demo"), login(sv, "riya")
+    assert sv.read_patient(dr, "S1_riya")["patient_id"] == "S1_riya"
+    assert "S1_riya" in [r["patient_id"] for r in sv.list_triage(dr)]
+    sv.revoke_consent(riya, "S1_riya", "doctor")
     with pytest.raises(AccessDenied) as e:
-        sv.read_patient(dr, "S1_kamala")
+        sv.read_patient(dr, "S1_riya")
     assert e.value.reason == "consent_revoked"
-    assert "S1_kamala" not in [r["patient_id"] for r in sv.list_triage(dr)]
+    assert "S1_riya" not in [r["patient_id"] for r in sv.list_triage(dr)]
     with pytest.raises(AccessDenied):
-        sv.export_fhir(dr, "S1_kamala")
+        sv.export_fhir(dr, "S1_riya")
     denied = [r for r in sv.audit.records if r["action"] == "access_denied"]
     assert denied and denied[-1]["details"]["reason"] == "consent_revoked"
-    assert sv.read_patient(login(sv, "asha_demo"), "S1_kamala")          # other consents untouched
-    sv.grant_consent(kamala, "S1_kamala", "doctor")
-    assert sv.read_patient(dr, "S1_kamala")
+    assert sv.read_patient(login(sv, "asha_demo"), "S1_riya")          # other consents untouched
+    sv.grant_consent(riya, "S1_riya", "doctor")
+    assert sv.read_patient(dr, "S1_riya")
     assert sv.audit.verify_checkpoints()["ok"]
 
 
@@ -99,41 +99,41 @@ def test_consent_artefact_signature_expiry_and_scope():
 
 # --------------------------------------------------------------------------------------------- roles
 def test_patients_and_family_see_only_their_own_record(sv):
-    kamala, fam = login(sv, "kamala"), login(sv, "kamala_family")
-    assert sv.read_patient(kamala, "S1_kamala")["name"] == "Kamala"
+    riya, fam = login(sv, "riya"), login(sv, "riya_family")
+    assert sv.read_patient(riya, "S1_riya")["name"] == "Riya"
     with pytest.raises(AccessDenied) as e:
-        sv.read_patient(kamala, "S3_fatima")
+        sv.read_patient(riya, "S3_fatima")
     assert e.value.reason == "not_your_record"
-    rec = sv.read_patient(fam, "S1_kamala")
+    rec = sv.read_patient(fam, "S1_riya")
     assert "risk" not in rec and "slow_clock" not in rec and rec["level"]
     with pytest.raises(AccessDenied):
         sv.read_patient(fam, "S2_ravi")
 
 
 def test_role_field_filtering(sv):
-    doc = sv.read_patient(login(sv, "dr_demo"), "S1_kamala")
-    asha = sv.read_patient(login(sv, "asha_demo"), "S1_kamala")
+    doc = sv.read_patient(login(sv, "dr_demo"), "S1_riya")
+    asha = sv.read_patient(login(sv, "asha_demo"), "S1_riya")
     assert {"reasons", "slow_clock", "egfr_baseline", "generics"} <= set(doc)
     assert "reasons" not in asha and "slow_clock" not in asha and "egfr_baseline" not in asha
     assert {"level", "advice_keys", "name"} <= set(asha)
     admin = login(sv, "admin_demo")
     with pytest.raises(AccessDenied):
-        sv.read_patient(admin, "S1_kamala")
+        sv.read_patient(admin, "S1_riya")
     lab = login(sv, "lab_demo")
     with pytest.raises(AccessDenied):
-        sv.read_patient(lab, "S1_kamala")
+        sv.read_patient(lab, "S1_riya")
 
 
 def test_order_test_lab_result_and_purple_level(sv):
     dr, lab = login(sv, "dr_demo"), login(sv, "lab_demo")
     with pytest.raises(AccessDenied):
-        sv.order_kidney_test(lab, "S1_kamala")
-    tid = sv.order_kidney_test(dr, "S1_kamala")
+        sv.order_kidney_test(lab, "S1_riya")
+    tid = sv.order_kidney_test(dr, "S1_riya")
     assert [t["task_id"] for t in sv.list_tasks(lab, "ordered")] == [tid]
-    base = sv.patients["S1_kamala"]["cr_baseline"]
+    base = sv.patients["S1_riya"]["cr_baseline"]
     res = sv.record_lab_result(lab, tid, base + 0.4, 4.8)
     assert res["flag"] == "kdigo_stage_1" and res["egfr_tag_key"] == "egfr.not_reliable"
-    assert sv.read_patient(dr, "S1_kamala")["level"] == "purple"
+    assert sv.read_patient(dr, "S1_riya")["level"] == "purple"
     tid2 = sv.order_kidney_test(dr, "S2_ravi")
     assert sv.record_lab_result(lab, tid2, sv.patients["S2_ravi"]["cr_baseline"], 6.2)["potassium_actions"] == [
         "same_day_repeat_potassium", "clinician_alert"]
@@ -179,7 +179,7 @@ def test_checkpoint_needs_the_right_public_key():
 
 # --------------------------------------------------------------------------------------------- interop / DPDP
 def test_fhir_export_is_a_valid_r4_collection(sv):
-    b = sv.export_fhir(login(sv, "dr_demo"), "S1_kamala")
+    b = sv.export_fhir(login(sv, "dr_demo"), "S1_riya")
     assert validate_bundle(b) == []
     kinds = [e["resource"]["resourceType"] for e in b["entry"]]
     assert kinds[0] == "Patient" and "RiskAssessment" in kinds and "Consent" in kinds
@@ -209,12 +209,12 @@ def test_api_wrapper_enforces_the_same_rules():
     tok = c.post("/login", json={"username": "dr_demo", "password": "doctor-demo"}).json()["token"]
     h = {"Authorization": f"Bearer {tok}"}
     assert c.get("/triage", headers=h).status_code == 200
-    assert c.get("/patients/S1_kamala", headers=h).json()["patient_id"] == "S1_kamala"
-    ptok = c.post("/login", json={"username": "kamala", "password": "patient-demo"}).json()["token"]
+    assert c.get("/patients/S1_riya", headers=h).json()["patient_id"] == "S1_riya"
+    ptok = c.post("/login", json={"username": "riya", "password": "patient-demo"}).json()["token"]
     ph = {"Authorization": f"Bearer {ptok}"}
     assert c.get("/patients/S3_fatima", headers=ph).status_code == 403
-    assert c.post("/patients/S1_kamala/consent/revoke", json={"requester": "doctor"}, headers=ph).status_code == 200
-    r = c.get("/patients/S1_kamala", headers=h)
+    assert c.post("/patients/S1_riya/consent/revoke", json={"requester": "doctor"}, headers=ph).status_code == 200
+    r = c.get("/patients/S1_riya", headers=h)
     assert r.status_code == 403 and r.json()["detail"] == "consent_revoked"
     bad = c.post("/devices/readings", json=msg(readings={"weight_kg": 900}))
     assert bad.json()["accepted"] is False

@@ -12,7 +12,7 @@ import sys
 from vrikka.config import DATA_DIR, REPORTS_DIR, load_yaml
 from vrikka.twin.replay import replay
 
-WHATIF_DAY = {"S1_kamala": 8}
+WHATIF_DAY = {"S1_riya": 8}
 
 
 def main() -> int:

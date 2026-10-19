@@ -82,7 +82,7 @@ Tests: **214 collected, 213 pass, 1 skipped** (the MIMIC DuckDB data test; rebui
 - **R3** (`r3_tawam.json`): slow-clock C-index 0.836 (0.776-0.889) vs baseline eGFR alone 0.834 (0.783-0.877):
   ranks as well as eGFR alone, not better (no serial eGFR in Tawam). KFRE not applicable there.
 - **R4** (`r4_pmdata.json`): 13 healthy PMData people, 1,845 person-days: 0 red and 0 amber notifications.
-- **Demo personas** (`demo_numbers.json`): Kamala red at 43.5 % the day before her simulated AKI; what-if
+- **Demo personas** (`demo_numbers.json`): Riya red at 43.5 % the day before her simulated AKI; what-if
   continue 48 % -> painkiller swap 25.5 % -> + ORS 1.5 % -> pauses <1 %.
 
 ---

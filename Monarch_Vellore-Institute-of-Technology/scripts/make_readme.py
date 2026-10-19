@@ -27,7 +27,7 @@ def main() -> int:
         R("cohort_summary"), R("evaluation_extras")
     it = ev["internal_test_2024"]
     m = it["M_hybrid_core25"]
-    k = demo["scenarios"]["S1_kamala"]
+    k = demo["scenarios"]["S1_riya"]
     w = list(k["whatif_72h_risk"].values())
     pd_ = g3["paired_difference_M_minus"]
     lead = g3["lead_time_target_A1_3"]
@@ -58,7 +58,7 @@ def main() -> int:
     text = f"""# VrikkaTwin: a kidney digital twin for heatwaves and sick days
 
 **Team Monarch, Vellore Institute of Technology** · Happiest Health Digital Twin Challenge 2026
-Team: Eeshan, Harshita Kumar.
+Team: Harshita Kumar and Eeshan Gupta.
 
 VrikkaTwin warns of **acute kidney injury (usually mild, usually recovers)** up to **72 hours ahead** for people with
 hypertension or chronic kidney disease during heatwaves and sick days, shows the safer choices that lower that risk,
@@ -147,7 +147,7 @@ Enriched high-risk heat-season cohort: {coh['n_train_patients']:,} training pati
   {ops['test_2026']['alerts_per_aki_caught_red']:.1f} red alerts per injury caught (2024 / 2025 / 2026).
 - **Lead time:** median {lead['median_h_trigger_ge_24h']:.0f} h. **The pre-registered target of at least 24 h was
   missed** (one prediction a day at 09:00 against an 08:00 onset makes "the day before" read just under 24 h).
-- **Kamala (fictional persona):** red at {100 * k['risk_by_day'][k['summary']['first_red_day']]:.1f} % the morning before
+- **Riya (fictional persona):** red at {100 * k['risk_by_day'][k['summary']['first_red_day']]:.1f} % the morning before
   her simulated injury; what-if: continue {100 * w[0]:.1f} % -> painkiller swap {100 * w[1]:.1f} % -> + ORS
   {100 * w[2]:.1f} % -> + pauses <1 %; same tablets with CYP2C9 *3/*3 {100 * w[4]:.1f} %.
 
@@ -172,7 +172,7 @@ model, nothing retuned):
 |---|---|---|---|---|
 """ + "\n".join(rob_lines) + "\n"
     if tor:
-        text += (f"\nSensitivity: {tor['parameters_screened']} registry assumptions screened on Kamala's 72-h risk; "
+        text += (f"\nSensitivity: {tor['parameters_screened']} registry assumptions screened on Riya's 72-h risk; "
                  f"the drinking fraction ranks {tor['phi_drink_rank']}. ")
     if rep_ok is not None:
         text += ("Re-generating the cohort and features on a second machine reproduces the reported held-out AUPRC: "

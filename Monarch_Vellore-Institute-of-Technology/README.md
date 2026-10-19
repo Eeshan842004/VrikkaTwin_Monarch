@@ -1,7 +1,7 @@
 # VrikkaTwin: a kidney digital twin for heatwaves and sick days
 
 **Team Monarch, Vellore Institute of Technology** · Happiest Health Digital Twin Challenge 2026
-Team: Eeshan, Harshita Kumar.
+Team: Harshita Kumar and Eeshan Gupta.
 
 VrikkaTwin warns of **acute kidney injury (usually mild, usually recovers)** up to **72 hours ahead** for people with
 hypertension or chronic kidney disease during heatwaves and sick days, shows the safer choices that lower that risk,
@@ -90,7 +90,7 @@ Enriched high-risk heat-season cohort: 10,000 training patients (2024 season) an
   22.1 red alerts per injury caught (2024 / 2025 / 2026).
 - **Lead time:** median 23 h. **The pre-registered target of at least 24 h was
   missed** (one prediction a day at 09:00 against an 08:00 onset makes "the day before" read just under 24 h).
-- **Kamala (fictional persona):** red at 43.5 % the morning before
+- **Riya (fictional persona):** red at 43.5 % the morning before
   her simulated injury; what-if: continue 48.0 % -> painkiller swap 25.5 % -> + ORS
   1.5 % -> + pauses <1 %; same tablets with CYP2C9 *3/*3 55.5 %.
 
@@ -119,7 +119,7 @@ model, nothing retuned):
 | 50 % of band days missing | 0.0183 | 28 % | 0.255 | 23.0 |
 | Sensor noise x2 | 0.0157 | 28 % | 0.323 | 23.0 |
 
-Sensitivity: 81 registry assumptions screened on Kamala's 72-h risk; the drinking fraction ranks 3. Re-generating the cohort and features on a second machine reproduces the reported held-out AUPRC: yes.
+Sensitivity: 81 registry assumptions screened on Riya's 72-h risk; the drinking fraction ranks 3. Re-generating the cohort and features on a second machine reproduces the reported held-out AUPRC: yes.
 
 Full details, subgroups and categories: the **Evaluation** page of the app and [`PROGRESS.md`](PROGRESS.md).
 

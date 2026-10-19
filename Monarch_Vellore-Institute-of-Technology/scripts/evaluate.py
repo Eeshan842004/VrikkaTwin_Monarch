@@ -9,7 +9,7 @@ Sections:
   reproduction   the frozen model on the re-generated 2025 / 2026 features reproduces reports/fastclock_eval_*.json
   subgroups      M by sex, age band, diabetes, beta-blocker, city, CYP2C9 phenotype, occupation and tier (2025, 2026)
   robustness     no band, Tier 0 only, 30 % / 50 % of band days missing, noise x2, perfect vs noisy forecast (2025)
-  tornado        the registry's ASSUMPTION / VERIFY ranges, one at a time, on the twin's 72-h risk for the Kamala
+  tornado        the registry's ASSUMPTION / VERIFY ranges, one at a time, on the twin's 72-h risk for the Riya
                  persona on her red day (engine + twin sensitivity; top 10 reported)
 """
 from __future__ import annotations
@@ -163,9 +163,9 @@ TORNADO_SKIP_PREFIX = ("aki_", "slope_", "sglt2i_", "projection", "slow_", "what
 def tornado(rng) -> dict:
     from vrikka.twin.replay import replay
 
-    cfg = load_yaml("scenarios")["S1_kamala"]
+    cfg = load_yaml("scenarios")["S1_riya"]
     day = 8
-    base = replay("S1_kamala", cfg).risk[day]
+    base = replay("S1_riya", cfg).risk[day]
     rows = []
     t0 = time.time()
     for name, p in registry().items():
@@ -176,7 +176,7 @@ def tornado(rng) -> dict:
         for edge, v in (("low", lo), ("high", hi)):
             v = int(v) if isinstance(p.value, int) and float(v).is_integer() else float(v)
             with overrides(**{name: v}):
-                r = replay("S1_kamala", cfg)
+                r = replay("S1_riya", cfg)
             vals[edge] = {"value": v, "risk": round(r.risk[day], 3),
                           "aki_onset_day": r.summary()["truth_aki_onset_day"]}
         rows.append({"parameter": name, "provenance": p.provenance, "registry_value": p.value,
@@ -184,7 +184,7 @@ def tornado(rng) -> dict:
         print(f"  tornado {name}: {vals['low']['risk']} / {vals['high']['risk']} ({time.time() - t0:.0f} s)",
               flush=True)
     rows.sort(key=lambda r: -r["swing"])
-    return {"output": "twin 72-h simulated kidney-injury risk for the Kamala persona on her red day (S1, day 8; "
+    return {"output": "twin 72-h simulated kidney-injury risk for the Riya persona on her red day (S1, day 8; "
                       "demo replay on real 2024 Nagpur weather); each parameter at its registry low and high, both "
                       "the demo world and the twin use the changed value",
             "baseline_risk": round(base, 3), "parameters_screened": len(rows), "top10": rows[:10],

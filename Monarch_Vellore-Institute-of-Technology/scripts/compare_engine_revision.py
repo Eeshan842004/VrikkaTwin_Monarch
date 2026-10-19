@@ -40,7 +40,7 @@ def main() -> int:
     out = {"note": "v1 = engine before the revision (3,000 patients). same_patients = new engine, identical 3,000 "
                    "patients and seeds (the engine effect alone). new = new engine, 10,000 train / 5,000 separate test "
                    "patients (headline)."}
-    out["g2_scenarios_kamala_like_nagpur"] = {"v1": scenarios(j(V1 / "physiology_scenarios.json")),
+    out["g2_scenarios_riya_like_nagpur"] = {"v1": scenarios(j(V1 / "physiology_scenarios.json")),
                                              "new": scenarios(j(REPORTS_DIR / "physiology_scenarios.json"))}
     l45, l45v1 = j(REPORTS_DIR / "literature_checks_l4_l5.json"), j(V1 / "literature_checks_l4_l5.json")
     out["L4_cross_shift"] = {"v1_engine": l45v1["L4"]["default"], "new_twin_engine": l45["L4"]["twin_engine"],
@@ -69,8 +69,8 @@ def main() -> int:
                                                                         "truth_aki_onset_day", "lead_time_h",
                                                                         "max_intra_day_rise_mg_dl")}}
                             for k in dn if k in dv1}
-    out["demo_personas"]["S1_kamala_whatif"] = {"v1": dv1["S1_kamala"].get("whatif_72h_risk"),
-                                                "new": dn["S1_kamala"].get("whatif_72h_risk")}
+    out["demo_personas"]["S1_riya_whatif"] = {"v1": dv1["S1_riya"].get("whatif_72h_risk"),
+                                                "new": dn["S1_riya"].get("whatif_72h_risk")}
     (REPORTS_DIR / "engine_revision_comparison.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps(out, indent=1))
     return 0

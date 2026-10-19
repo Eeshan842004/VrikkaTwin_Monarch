@@ -18,7 +18,7 @@ from vrikka.physiology.renal import CHANNELS, Params, creatinine_step, half_life
 SRC = Path(__file__).resolve().parents[1] / "src" / "vrikka"
 
 
-def kamala(**kw):
+def riya(**kw):
     return Params.from_patient(age=68, female=True, weight_kg=62, egfr=58, diuretic="chlorthalidone", **kw)
 
 
@@ -45,7 +45,7 @@ def test_every_kidney_drug_has_a_registered_half_life():
         if cls in model_classes:
             key = generic if generic in lex["half_life_key"] else cls
             assert half_life_for(key) > 0, generic
-    assert set(kamala().half_life_h) == set(CHANNELS)
+    assert set(riya().half_life_h) == set(CHANNELS)
 
 
 def test_no_shared_hard_coded_half_lives_in_source():
@@ -57,7 +57,7 @@ def test_no_shared_hard_coded_half_lives_in_source():
 
 
 def test_diuretic_half_life_is_per_drug():
-    assert kamala().half_life_h["diuretic"] == param("half_life_chlorthalidone_h")
+    assert riya().half_life_h["diuretic"] == param("half_life_chlorthalidone_h")
     hctz = Params.from_patient(age=68, female=True, weight_kg=62, egfr=58, diuretic="hydrochlorothiazide")
     assert hctz.half_life_h["diuretic"] == param("half_life_hctz_h")
     loop = Params.from_patient(age=68, female=True, weight_kg=62, egfr=58, diuretic="furosemide")
@@ -67,14 +67,14 @@ def test_diuretic_half_life_is_per_drug():
 
 def test_chlorthalidone_wears_off_slower_than_hctz():
     pause = np.r_[np.ones(48), np.zeros(48)]
-    chl = simulate(kamala(), {"diuretic": pause})["eff_diuretic"]
+    chl = simulate(riya(), {"diuretic": pause})["eff_diuretic"]
     hctz = simulate(Params.from_patient(age=68, female=True, weight_kg=62, egfr=58, diuretic="hydrochlorothiazide"),
                     {"diuretic": pause})["eff_diuretic"]
     assert chl[48 + 24] > hctz[48 + 24] + 0.2
 
 
 def test_steady_state_creatinine():
-    p = kamala()
+    p = riya()
     out = simulate(p, {"sweat_l_h": np.zeros(240)})
     assert out["cr"][-1] == pytest.approx(p.cr_base, abs=1e-9), "no losses: creatinine stays at baseline"
     cr = p.cr_base
@@ -84,7 +84,7 @@ def test_steady_state_creatinine():
 
 
 def test_exact_kinetics_matches_fine_euler():
-    p = kamala()
+    p = riya()
     exact = creatinine_step(1.0, p.cr_generation_mg_min, 30.0, p.tbw_l * 10, dt_h=24)
     euler, dt = 1.0, 0.001
     for _ in range(int(24 / dt)):
@@ -98,9 +98,9 @@ def test_scenario_ordering_none_lt_nsaid_lt_double_lt_triple_lt_fever():
     d = {
         "none": delta_cr(no_drug, hot_days()),
         "nsaid": delta_cr(no_drug, hot_days(nsaid=nm)),
-        "double": delta_cr(kamala(), hot_days(ras=1, diuretic=1)),
-        "triple": delta_cr(kamala(), hot_days(ras=1, diuretic=1, nsaid=nm)),
-        "triple_fever": delta_cr(kamala(), hot_days(ras=1, diuretic=1, nsaid=nm, fever_excess_c=1.5)),
+        "double": delta_cr(riya(), hot_days(ras=1, diuretic=1)),
+        "triple": delta_cr(riya(), hot_days(ras=1, diuretic=1, nsaid=nm)),
+        "triple_fever": delta_cr(riya(), hot_days(ras=1, diuretic=1, nsaid=nm, fever_excess_c=1.5)),
     }
     vals = list(d.values())
     assert all(a < b for a, b in zip(vals, vals[1:], strict=False)), d
@@ -110,7 +110,7 @@ def test_cyp2c9_changes_ibuprofen_exposure_only():
     assert nsaid_units_per_day("ibuprofen", 1200, 0.0) == pytest.approx(param("cyp2c9_mult_as_0_0"))
     assert nsaid_units_per_day("ibuprofen", 1200, 2.0) == pytest.approx(1.0)
     assert nsaid_units_per_day("diclofenac", 100, 0.0) == pytest.approx(nsaid_units_per_day("diclofenac", 100, 2.0))
-    p = kamala()
+    p = riya()
     nm = delta_cr(p, hot_days(ras=1, diuretic=1, nsaid=nsaid_units_from_tablets("combiflam", 3, 2.0)))
     pm = delta_cr(p, hot_days(ras=1, diuretic=1, nsaid=nsaid_units_from_tablets("combiflam", 3, 0.0)))
     assert pm > nm
@@ -118,18 +118,18 @@ def test_cyp2c9_changes_ibuprofen_exposure_only():
 
 def test_paracetamol_has_no_kidney_effect_but_is_tallied():
     assert nsaid_units_from_tablets("dolo", 3) == 0.0
-    p = kamala()
+    p = riya()
     assert delta_cr(p, hot_days(ras=1, diuretic=1)) == pytest.approx(delta_cr(p, hot_days(ras=1, diuretic=1)))
     assert paracetamol_mg_per_day({"combiflam": 3, "dolo": 3}) == pytest.approx(3 * 325 + 3 * 650)
 
 
 def test_sglt2_has_no_volume_effect_by_default():
-    p = kamala()
+    p = riya()
     assert delta_cr(p, hot_days(ras=1, diuretic=1, sglt2=1)) == pytest.approx(delta_cr(p, hot_days(ras=1, diuretic=1)))
 
 
 def test_fever_counts_degrees_above_37_only():
-    p = kamala()
+    p = riya()
     assert delta_cr(p, hot_days(ras=1, diuretic=1, fever_excess_c=0.0)) == pytest.approx(
         delta_cr(p, hot_days(ras=1, diuretic=1, fever_excess_c=-0.5)))
 
@@ -155,7 +155,7 @@ def test_batch_matches_scalar_to_4_decimals(rng):
 
 def test_ors_refills_the_ecf_more_than_plain_water():
     """Decisions v2 B2: 1 L/day of ORS lowers the ECF deficit (and creatinine rise) more than 1 L/day of water."""
-    p = kamala()
+    p = riya()
     base = hot_days(ras=1, diuretic=1, fever_excess_c=1.5)
     water = simulate(p, {**base, "intake_l_h": np.full(len(base["sweat_l_h"]), 1 / 24)})
     ors = simulate(p, {**base, "ors_l_h": np.full(len(base["sweat_l_h"]), 1 / 24)})

@@ -1,6 +1,6 @@
 {
   "note": "v1 = engine before the revision (3,000 patients). same_patients = new engine, identical 3,000 patients and seeds (the engine effect alone). new = new engine, 10,000 train / 5,000 separate test patients (headline).",
-  "g2_scenarios_kamala_like_nagpur": {
+  "g2_scenarios_riya_like_nagpur": {
     "v1": {
       "1 no drugs": {
         "dcr_0800": 0.098,
@@ -420,7 +420,7 @@
     }
   },
   "demo_personas": {
-    "S1_kamala": {
+    "S1_riya": {
       "v1": {
         "max_risk": 0.45,
         "first_red_day": 8,
@@ -516,7 +516,7 @@
         "max_intra_day_rise_mg_dl": 0.096
       }
     },
-    "S1_kamala_whatif": {
+    "S1_riya_whatif": {
       "v1": {
         "continue as is": 0.41,
         "1 painkiller swap: ibuprofen -> paracetamol": 0.25,

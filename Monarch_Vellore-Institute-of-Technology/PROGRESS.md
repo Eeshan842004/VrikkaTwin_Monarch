@@ -128,7 +128,7 @@ _Built Thu 15 Oct 2026 night, after Decisions v1._
 - Benchmark: 33,000 trajectories × 2,928 hourly steps in **13.0 s** (plan estimate ~6 s; fine).
 
 ### Scenario table (`reports/physiology_scenarios.json`)
-Kamala-like patient (68 F, 62 kg, eGFR 58, a_tot 0.693, phi_drink 0.60). Real Nagpur weather 26–28 May 2024 (peak 45.5 °C, RH 29.5 %). 9 h outdoors. KDIGO uses daily 08:00 creatinine.
+Riya-like patient (68 F, 62 kg, eGFR 58, a_tot 0.693, phi_drink 0.60). Real Nagpur weather 26–28 May 2024 (peak 45.5 °C, RH 29.5 %). 9 h outdoors. KDIGO uses daily 08:00 creatinine.
 
 | Scenario | Water deficit (L) | ECF deficit (L) | Peak ΔCr (hourly) | ΔCr at 08:00 | Min GFR | KDIGO | Same with air capped at 35 °C |
 |---|---|---|---|---|---|---|---|
@@ -223,7 +223,7 @@ Sweat sensitivity: ×0.7 → 5.2 per 100 patient-seasons, HAF 5.1 %; ×1.3 → 9
 - Low vs high drinker (phi 0.45 vs 0.75): learned theta separates in the right direction in all seeds (~1.17 vs ~0.80).
 
 **Demo personas (`reports/demo_numbers.json`; fictional; provisional thresholds 5 % / 15 %):**
-- **S1 Kamala (home-based):** green → amber (9 %, 6 %) → **red 45 % the day before her simulated stage-1 AKI** (lead 23 h; the fever starts that day). What-if: continue 41 % → painkiller swap 25 % → + ORS 0 % → + pauses 0 %; CYP2C9 *3/*3 51 %; no illness 0.5 %.
+- **S1 Riya (home-based):** green → amber (9 %, 6 %) → **red 45 % the day before her simulated stage-1 AKI** (lead 23 h; the fever starts that day). What-if: continue 41 % → painkiller swap 25 % → + ORS 0 % → + pauses 0 %; CYP2C9 *3/*3 51 %; no illness 0.5 %.
 - **S2 Ravi:** green all 12 days.
 - **S3 Fatima:** red the day vomiting starts, AKI next morning.
 - **S4 Mr Iyer:** green, max 2.5 %.
@@ -295,8 +295,8 @@ v5 wins wherever it conflicts with v4. Every number below is from the named repo
 - **L1 pooled 2024-26:** RR 2.30 (95 % CI 1.69-3.03), pass (`reports/l1_pooled.json`; patient-level bootstrap,
   400 resamples; constant calibrated once).
 - **Demo personas** (`reports/demo_numbers.json`):
-  - Kamala goes red at 43.5 % the day before her simulated AKI (23 h lead).
-  - Kamala what-if: continue 48 % -> swap 25.5 % -> + ORS 1.5 % -> pauses 0 % (displayed "<1%").
+  - Riya goes red at 43.5 % the day before her simulated AKI (23 h lead).
+  - Riya what-if: continue 48 % -> swap 25.5 % -> + ORS 1.5 % -> pauses 0 % (displayed "<1%").
   - Ravi stays green with a 0.13 mg/dL transient intra-day rise.
 
 ### Safety items, C3, C4 (commit `666bb17`)
@@ -462,7 +462,7 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
   EN / HI / KN / TE (HI / KN / TE remain "draft translation").
 - `docs/CLINICAL_SAFETY.md`: intended use, exclusions, red flags, guardrails, display rules, limitations, hazard log.
 - Scripts: `validate_r3.py` -> `reports/r3_tawam.json`; `make_slowclock_demo.py` -> `reports/slowclock_demo.json`.
-- Tests: `test_slowclock.py` (15), `test_whatif.py` (23, including the Kamala lever table reproducing
+- Tests: `test_slowclock.py` (15), `test_whatif.py` (23, including the Riya lever table reproducing
   `reports/demo_numbers.json` exactly: 0.48 -> 0.255 -> 0.015 -> 0.0).
 
 ### Results
@@ -471,7 +471,7 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
   -0.036 to 0.032. The slow clock ranks progression **as well as baseline eGFR alone, not better**: without serial
   eGFR, its only extra input is the diabetes prior. KFRE: not applicable (all eGFR >= 60, no UACR).
 - **Personas (`reports/slowclock_demo.json`):** with the baseline eGFR as the only observation the 10-year ranges are
-  wide (e.g. Kamala 9.6-75.5 mL/min/1.73 m2, median 43.3); one stage-1 kidney injury this season is associated with
+  wide (e.g. Riya 9.6-75.5 mL/min/1.73 m2, median 43.3); one stage-1 kidney injury this season is associated with
   a 10-year difference of -7.8 to -2.9 (median -5.1) under the registry assumptions.
 
 ### Decisions and deviations
@@ -526,8 +526,8 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
 2. Personas keep the twin's 72-h simulation with the display bands (5 % / 15 %); the frozen Part 4 thresholds belong to
    the calibrated model M. Under the frozen B4 thresholds every day would be amber (the notification budget counts
    new notifications, so a constant amber costs one notification per patient), so they are not used for display.
-3. Mr Iyer is the heart-failure persona (ORS guardrail and diuretic-pause warning); Kamala's CYP2C9 variant is named
-   "Kamala, CYP2C9 *3/*3 variant".
+3. Mr Iyer is the heart-failure persona (ORS guardrail and diuretic-pause warning); Riya's CYP2C9 variant is named
+   "Riya, CYP2C9 *3/*3 variant".
 4. The ABDM pattern is demonstrated, not integrated: no ABDM sandbox or gateway is called.
 
 
@@ -561,7 +561,7 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
   the daily cadence, not the forecast, limits it.
 - **Subgroups** (2025, 2026; sex, age band, diabetes, beta-blocker, city, CYP2C9, occupation, tier) are in the
   report and on the Evaluation page; small groups have wide intervals.
-- **Tornado** (81 registry ASSUMPTION / VERIFY parameters, Kamala's day-8 risk, world and twin both changed): top
+- **Tornado** (81 registry ASSUMPTION / VERIFY parameters, Riya's day-8 risk, world and twin both changed): top
   three are the twin's prior uncertainty on the sweat multiplier, the poor-intake multiplier and the older adults'
   drinking fraction (phi_drink in the top 3, as expected). Some directions are counter-intuitive because the world
   and the twin change together (for example more drinking shifts the creatinine baseline and the injury timing);

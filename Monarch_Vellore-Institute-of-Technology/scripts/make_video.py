@@ -30,7 +30,7 @@ def R(name: str) -> dict:
 
 def narration() -> list[str]:
     demo, r1, r3, r4 = R("demo_numbers"), R("r1_validation"), R("r3_tawam"), R("r4_pmdata")
-    k = demo["scenarios"]["S1_kamala"]
+    k = demo["scenarios"]["S1_riya"]
     w = list(k["whatif_72h_risk"].values())
     ev = R("fastclock_eval_mismatched")
     ops = [ev[s]["M_hybrid_core25"]["alerts"]["sensitivity_red"] for s in ("internal_test_2024", "test_2025",
@@ -47,7 +47,7 @@ def narration() -> list[str]:
         "The twin is an unscented Kalman filter over body water and creatinine, updated every morning from weight and "
         "resting heart rate. Every morning it simulates the next seventy-two hours many times and applies the same "
         "kidney injury rule used for the labels.",
-        f"Kamala is fictional. On a blood pressure tablet, a water tablet and Combiflam, with a fever, her twin turns "
+        f"Riya is fictional. On a blood pressure tablet, a water tablet and Combiflam, with a fever, her twin turns "
         f"red the morning before her simulated injury. Swapping the painkiller lowers her risk from about "
         f"{round(100 * w[0])} percent to about {round(100 * w[1])} percent, and adding oral rehydration brings it "
         "below a few percent. Medicine pauses come last, and the doctor decides.",

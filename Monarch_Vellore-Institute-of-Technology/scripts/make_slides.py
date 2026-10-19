@@ -78,8 +78,8 @@ def fig_auprc(ev: dict) -> str:
     return str(f)
 
 
-def fig_kamala(demo: dict, dates: list) -> str:
-    k = demo["scenarios"]["S1_kamala"]
+def fig_riya(demo: dict, dates: list) -> str:
+    k = demo["scenarios"]["S1_riya"]
     risk = 100 * np.array(k["risk_by_day"])
     lv = k["levels"]
     x = np.arange(len(risk))
@@ -99,16 +99,16 @@ def fig_kamala(demo: dict, dates: list) -> str:
     ax.text(onset + 0.1, risk.max() * 0.92, "simulated kidney\ninjury (08:00)", fontsize=8, color=INK)
     ax.set_xticks(x, [d[5:] for d in dates], rotation=45, fontsize=8)
     ax.legend(frameon=False, fontsize=8, loc="upper left")
-    style(ax, "Kamala (fictional): twin's 72-h simulated risk each morning", "", "risk (%)")
+    style(ax, "Riya (fictional): twin's 72-h simulated risk each morning", "", "risk (%)")
     fig.tight_layout()
-    f = FIG / "kamala_risk.png"
+    f = FIG / "riya_risk.png"
     fig.savefig(f)
     plt.close(fig)
     return str(f)
 
 
 def fig_whatif(demo: dict) -> str:
-    w = demo["scenarios"]["S1_kamala"]["whatif_72h_risk"]
+    w = demo["scenarios"]["S1_riya"]["whatif_72h_risk"]
     labels = ["continue as is", "1 painkiller swap", "2 + ORS", "3 + pauses (clinician decides)",
               "same tablets, CYP2C9 *3/*3", "no illness, no painkiller"]
     vals = 100 * np.array(list(w.values()))
@@ -121,14 +121,14 @@ def fig_whatif(demo: dict) -> str:
     style(ax, "What if ... (same 200 random draws for every row)", "72-h risk (%)")
     ax.set_xlim(0, vals.max() * 1.2)
     fig.tight_layout()
-    f = FIG / "kamala_whatif.png"
+    f = FIG / "riya_whatif.png"
     fig.savefig(f)
     plt.close(fig)
     return str(f)
 
 
 def fig_slow(slow: dict) -> str:
-    sc = load_yaml("scenarios")["S1_kamala"]
+    sc = load_yaml("scenarios")["S1_riya"]
     post = fit([(0.0, float(sc["person"]["egfr"]))], egfr_now=float(sc["person"]["egfr"]), dm=False)
     scen = [Scenario(label="continue as is"),
             Scenario(episodes=[AkiEpisode(slow["aki_this_season_years"], 1)], label="one stage-1 injury this season"),
@@ -144,9 +144,9 @@ def fig_slow(slow: dict) -> str:
         ax.text(9.0, param(key) + 1, name, fontsize=8, color=MUTED)
     ax.legend(frameon=False, fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=3)
     band = f"{100 * param('slow_band_low_q'):.0f}-{100 * param('slow_band_high_q'):.0f} %"
-    style(ax, f"Kamala: eGFR ranges ({band}), baseline eGFR only", "years from now", "eGFR")
+    style(ax, f"Riya: eGFR ranges ({band}), baseline eGFR only", "years from now", "eGFR")
     fig.tight_layout()
-    f = FIG / "kamala_slowclock.png"
+    f = FIG / "riya_slowclock.png"
     fig.savefig(f)
     plt.close(fig)
     return str(f)
@@ -166,7 +166,7 @@ def fig_tornado(tor: dict) -> str | None:
     ax.axvline(0, color=MUTED, linewidth=1)
     ax.set_yticks(y, [r["parameter"] for r in rows], fontsize=8)
     ax.legend(frameon=False, fontsize=8, loc="lower right")
-    style(ax, f"Top 10 assumptions: Kamala's 72-h risk (baseline {100 * base:.1f} %)", "change (percentage points)")
+    style(ax, f"Top 10 assumptions: Riya's 72-h risk (baseline {100 * base:.1f} %)", "change (percentage points)")
     fig.tight_layout()
     f = FIG / "tornado.png"
     fig.savefig(f)
@@ -227,8 +227,8 @@ def main() -> int:
         R("calibration_checks"), R("literature_checks_l4_l5")
     extra, panel = R("evaluation_extras"), R("demo_triage_panel")
     dates = json.loads((PROJECT_ROOT / "data" / "synthetic" / "demo_patients.json").read_text("utf-8"))[
-        "S1_kamala"]["dates"]
-    k = demo["scenarios"]["S1_kamala"]
+        "S1_riya"]["dates"]
+    k = demo["scenarios"]["S1_riya"]
     m = ev["internal_test_2024"]["M_hybrid_core25"]
     pd_ = g3["paired_difference_M_minus"]
     lead = g3["lead_time_target_A1_3"]
@@ -278,12 +278,12 @@ def main() -> int:
         "Alerts with budgets set in advance: red (doctor review + home kidney test) and amber (self-care), with "
         "hysteresis and 72-hour de-duplication"], 0.6, 1.4, 12.1, 5.4, 18)
 
-    # 5 Kamala
-    s = d.slide("Kamala (fictional), 68, Nagpur: the morning before",
+    # 5 Riya
+    s = d.slide("Riya (fictional), 68, Nagpur: the morning before",
                 f"ARB + chlorthalidone + Combiflam, fever from day 2. Red the morning before her simulated injury "
                 f"(lead {k['summary']['lead_time_h']} h); the naive "
                 f"heat-index rule fired on {k['summary']['heat_index_rule_days']} of {k['summary']['days']} days")
-    d.image(s, fig_kamala(demo, dates), 0.4, 1.6, w=6.4)
+    d.image(s, fig_riya(demo, dates), 0.4, 1.6, w=6.4)
     d.image(s, fig_whatif(demo), 6.8, 1.6, w=6.2)
     d.text(s, "Levers in the agreed order: painkiller swap -> ORS / work hours -> medicine pauses last, badged "
               "'individualised, weak evidence (Think Kidneys 2018), clinician decides'. Patient text never says "
@@ -293,10 +293,10 @@ def main() -> int:
     s = d.slide("The slow clock: ranges, never a single number",
                 "Bayesian eGFR slope with registry priors; each stable lab narrows the range")
     d.image(s, fig_slow(slow), 0.4, 1.6, w=7.2)
-    ka = slow["personas"]["S1_kamala"]["scenarios"]
+    ka = slow["personas"]["S1_riya"]["scenarios"]
     diff = ka["one stage-1 kidney injury this season"]["difference_at_10y_vs_continue"]
     d.bullets(s, [
-        f"Kamala, eGFR in 10 years: {ka['continue as is']['egfr_range_by_year']['10'][0]:.0f}-"
+        f"Riya, eGFR in 10 years: {ka['continue as is']['egfr_range_by_year']['10'][0]:.0f}-"
         f"{ka['continue as is']['egfr_range_by_year']['10'][2]:.0f} (wide: no serial labs yet)",
         f"One stage-1 injury this season is associated with {diff['low']:.1f} to {diff['high']:.1f} mL/min/1.73 m² "
         "at 10 years (one Indian diabetic kidney disease cohort, n = 274; extrapolated without diabetes)",

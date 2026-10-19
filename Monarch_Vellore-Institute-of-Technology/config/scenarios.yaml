@@ -2,8 +2,8 @@
 # belong to the trust layer (Part 6). All personas are FICTIONAL. Days are offsets from the start of the city's
 # hottest 3-day window in May 2024 (day 0 = first hot day); the replay starts `lead_in` days earlier.
 # Drug names are generic first. `truth` = physiology engine with the person's true sweat/drinking (demo replay).
-S1_kamala:
-  label: "Kamala (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2"
+S1_riya:
+  label: "Riya (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2"
   person: {age: 68, female: true, weight_kg: 62, height_m: 1.55, egfr: 58, city: Nagpur, occupation: home,
            roof: concrete, cooling: fan, hr_base: 76, sbp_base: 132, beta_blocker: false, cyp2c9: "*1/*1"}
   chronic: {ras: arb, diuretic: chlorthalidone}
@@ -40,7 +40,7 @@ S4_iyer:
   history: {dm: false, uacr_mg_g: null, heart_failure: true, last_potassium: 5.0}
   expect: "HR channel down-weighted; weight carries the signal"
 S5_hydrated:
-  label: "Kamala's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller"
+  label: "Riya's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller"
   person: {age: 68, female: true, weight_kg: 60, height_m: 1.54, egfr: 62, city: Nagpur, occupation: home,
            roof: concrete, cooling: fan, hr_base: 75, sbp_base: 130, beta_blocker: false, cyp2c9: "*1/*1"}
   chronic: {ras: arb, diuretic: chlorthalidone}
@@ -50,7 +50,7 @@ S5_hydrated:
   expect: "stays green while the naive heat-index rule fires"
 S6_cyp2c9:
   label: "Same patient, same ibuprofen dose: CYP2C9 normal (*1/*1) vs poor metaboliser (*3/*3)"
-  name: "Kamala, CYP2C9 *3/*3 variant"
+  name: "Riya, CYP2C9 *3/*3 variant"
   person: {age: 68, female: true, weight_kg: 62, height_m: 1.55, egfr: 58, city: Nagpur, occupation: home,
            roof: concrete, cooling: fan, hr_base: 76, sbp_base: 132, beta_blocker: false, cyp2c9: "*3/*3"}
   chronic: {ras: arb, diuretic: chlorthalidone}

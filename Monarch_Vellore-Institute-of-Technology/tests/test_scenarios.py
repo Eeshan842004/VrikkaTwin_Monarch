@@ -14,10 +14,10 @@ SC = load_yaml("scenarios")
 
 @pytest.fixture(scope="module")
 def s1():
-    return replay("S1_kamala", SC["S1_kamala"], whatif_day=8)
+    return replay("S1_riya", SC["S1_riya"], whatif_day=8)
 
 
-def test_s1_kamala_warns_before_aki_and_whatifs_order(s1):
+def test_s1_riya_warns_before_aki_and_whatifs_order(s1):
     s = s1.summary()
     assert s["truth_aki_onset_day"] is not None, "the demo week produces a (simulated) AKI"
     assert s["first_red_day"] is not None and s["first_red_day"] <= s["truth_aki_onset_day"]

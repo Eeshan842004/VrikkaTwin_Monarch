@@ -1,5 +1,5 @@
 """Live twin for the fictional personas: replay up to a chosen day (cached), then run what-if levers and the slow clock
-on that twin. The replay is deterministic (seeded), so Kamala's lever table on her red day reproduces
+on that twin. The replay is deterministic (seeded), so Riya's lever table on her red day reproduces
 reports/demo_numbers.json exactly (tests/test_whatif.py)."""
 from __future__ import annotations
 

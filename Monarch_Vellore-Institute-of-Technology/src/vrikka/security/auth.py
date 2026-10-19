@@ -17,8 +17,8 @@ TOKEN_HOURS = 8
 # username -> (role, subject the account is linked to). Personas are fictional.
 DEMO_USERS = {
     "dr_demo": ("doctor", None),
-    "kamala": ("patient", "S1_kamala"),
-    "kamala_family": ("family", "S1_kamala"),
+    "riya": ("patient", "S1_riya"),
+    "riya_family": ("family", "S1_riya"),
     "asha_demo": ("asha", None),
     "lab_demo": ("lab", None),
     "admin_demo": ("admin", None),

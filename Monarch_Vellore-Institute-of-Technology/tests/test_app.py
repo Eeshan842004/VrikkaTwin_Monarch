@@ -10,8 +10,8 @@ from vrikka.security import auth
 
 APP = Path(__file__).resolve().parents[1] / "app"
 sys.path.insert(0, str(APP))
-USERS = {"doctor": ("dr_demo", "doctor-demo"), "patient": ("kamala", "patient-demo"),
-         "family": ("kamala_family", "family-demo"), "asha": ("asha_demo", "asha-demo"),
+USERS = {"doctor": ("dr_demo", "doctor-demo"), "patient": ("riya", "patient-demo"),
+         "family": ("riya_family", "family-demo"), "asha": ("asha_demo", "asha-demo"),
          "lab": ("lab_demo", "lab-demo"),
          "admin": ("admin_demo", "admin-demo")}
 

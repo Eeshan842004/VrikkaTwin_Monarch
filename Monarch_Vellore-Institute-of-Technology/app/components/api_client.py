@@ -10,7 +10,7 @@ from vrikka.config import settings
 from vrikka.security.auth import DEMO_USERS, Session
 from vrikka.services import Services
 
-ROLE_LABEL = {"doctor": "Doctor", "patient": "Patient (Kamala, fictional)", "family": "Family (Kamala's family)",
+ROLE_LABEL = {"doctor": "Doctor", "patient": "Patient (Riya, fictional)", "family": "Family (Riya's family)",
               "asha": "ASHA worker", "lab": "Lab / home test", "admin": "Admin (trust only)"}
 
 

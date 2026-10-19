@@ -1,6 +1,6 @@
 {
-  "S1_kamala": {
-    "label": "Kamala (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
+  "S1_riya": {
+    "label": "Riya (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
     "person": {
       "age": 68,
       "female": true,
@@ -169,7 +169,7 @@
     ]
   },
   "S5_hydrated": {
-    "label": "Kamala's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
+    "label": "Riya's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
     "person": {
       "age": 68,
       "female": true,

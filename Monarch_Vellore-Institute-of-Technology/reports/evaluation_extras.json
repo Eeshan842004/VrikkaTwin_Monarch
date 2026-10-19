@@ -1,7 +1,7 @@
 {
  "note": "frozen Part 4 model, isotonic map and thresholds (mismatched, headline world); nothing refitted or re-thresholded; held-out seasons scored for reporting only",
  "tornado": {
-  "output": "twin 72-h simulated kidney-injury risk for the Kamala persona on her red day (S1, day 8; demo replay on real 2024 Nagpur weather); each parameter at its registry low and high, both the demo world and the twin use the changed value",
+  "output": "twin 72-h simulated kidney-injury risk for the Riya persona on her red day (S1, day 8; demo replay on real 2024 Nagpur weather); each parameter at its registry low and high, both the demo world and the twin use the changed value",
   "baseline_risk": 0.435,
   "parameters_screened": 81,
   "top10": [

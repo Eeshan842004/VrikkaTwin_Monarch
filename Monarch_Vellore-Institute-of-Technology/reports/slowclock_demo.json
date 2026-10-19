@@ -7,8 +7,8 @@
   "draws": 2000,
   "aki_this_season_years": 0.1,
   "personas": {
-    "S1_kamala": {
-      "label": "Kamala (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
+    "S1_riya": {
+      "label": "Riya (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
       "egfr_baseline": 58,
       "dm": false,
       "prior_group": "htn_no_dm",
@@ -559,7 +559,7 @@
       ]
     },
     "S5_hydrated": {
-      "label": "Kamala's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
+      "label": "Riya's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
       "egfr_baseline": 62,
       "dm": false,
       "prior_group": "htn_no_dm",

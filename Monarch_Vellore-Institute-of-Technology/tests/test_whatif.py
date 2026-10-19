@@ -9,7 +9,7 @@ from vrikka.whatif.levers import PatientContext, available_levers, swapped_table
 from vrikka.whatif.red_flags import LANGUAGES, messages
 from vrikka.whatif.sickday import guidance
 
-KAMALA = dict(generics=["telmisartan", "chlorthalidone"], age=68, weight_kg=62, egfr=58,
+RIYA = dict(generics=["telmisartan", "chlorthalidone"], age=68, weight_kg=62, egfr=58,
               painkiller={"combiflam": 3})
 
 
@@ -19,7 +19,7 @@ def test_heart_failure_plus_diuretic_pause_warns():
     assert gr.pause_warnings(["loop"], heart_failure=True) == ["guard.hf_diuretic_pause"]
     assert gr.pause_warnings(["thiazide"], heart_failure=False) == []
     assert gr.pause_warnings(["arb"], heart_failure=True) == []
-    lv = {r["name"]: r for r in available_levers(PatientContext(**{**KAMALA, "heart_failure": True}))}
+    lv = {r["name"]: r for r in available_levers(PatientContext(**{**RIYA, "heart_failure": True}))}
     assert "guard.hf_diuretic_pause" in lv["pause_diuretic"]["warning_keys"]
     assert not lv["ors"]["allowed"] and lv["ors"]["blocked_reason_keys"] == ["ors.reason.heart_failure"]
 
@@ -36,7 +36,7 @@ def test_potassium_rules(k, level, actions):
 
 
 def test_potassium_caution_reaches_every_lever():
-    rows = available_levers(PatientContext(**{**KAMALA, "last_potassium": 6.1}))
+    rows = available_levers(PatientContext(**{**RIYA, "last_potassium": 6.1}))
     assert rows and all("guard.k_alert" in r["warning_keys"] for r in rows)
 
 
@@ -52,11 +52,11 @@ def test_paracetamol_ceiling():
 
 
 def test_painkiller_swap_counts_paracetamol_in_the_new_tablets():
-    assert swapped_tablets(PatientContext(**KAMALA)) == {"dolo": 3}
-    lv = {r["name"]: r for r in available_levers(PatientContext(**KAMALA))}
+    assert swapped_tablets(PatientContext(**RIYA)) == {"dolo": 3}
+    lv = {r["name"]: r for r in available_levers(PatientContext(**RIYA))}
     assert lv["painkiller_swap"]["detail"]["paracetamol"]["total_mg"] == 1950
     assert lv["painkiller_swap"]["warning_keys"] == []
-    heavy = PatientContext(**{**KAMALA, "painkiller": {"combiflam": 5}})
+    heavy = PatientContext(**{**RIYA, "painkiller": {"combiflam": 5}})
     lv = {r["name"]: r for r in available_levers(heavy)}
     assert "guard.paracetamol_over" in lv["painkiller_swap"]["warning_keys"]      # 5 x 650 = 3,250 mg > 3 g
 
@@ -84,7 +84,7 @@ def test_exclusions(kw, reasons):
 
 # --------------------------------------------------------------------------------------------- levers
 def test_levers_come_in_the_agreed_order_and_pauses_carry_the_badge():
-    rows = available_levers(PatientContext(**{**KAMALA, "generics": KAMALA["generics"] + ["empagliflozin",
+    rows = available_levers(PatientContext(**{**RIYA, "generics": RIYA["generics"] + ["empagliflozin",
                                                                                          "metformin"]}))
     names = [r["name"] for r in rows]
     assert names[0] == "painkiller_swap" and names[1] == "ors"
@@ -107,23 +107,23 @@ def test_never_levers_are_never_offered():
 
 
 def test_work_shift_only_for_outdoor_workers():
-    assert "work_shift" not in [r["name"] for r in available_levers(PatientContext(**KAMALA))]
+    assert "work_shift" not in [r["name"] for r in available_levers(PatientContext(**RIYA))]
     ravi = PatientContext(generics=[], age=42, weight_kg=68, egfr=95, outdoor_hours=9)
     assert [r["name"] for r in available_levers(ravi)] == ["ors", "work_shift"]
 
 
 @pytest.mark.slow
-def test_kamala_levers_reproduce_the_reported_what_if():
+def test_riya_levers_reproduce_the_reported_what_if():
     from vrikka.twin.replay import replay
     from vrikka.whatif.levers import run_levers
 
-    cfg = load_yaml("scenarios")["S1_kamala"]
-    rep = replay("S1_kamala", cfg, capture_day=8)
+    cfg = load_yaml("scenarios")["S1_riya"]
+    rep = replay("S1_riya", cfg, capture_day=8)
     c = rep.context
-    rows = run_levers(c["twin"], c["future"], c["baseline_cr"], PatientContext(**KAMALA),
+    rows = run_levers(c["twin"], c["future"], c["baseline_cr"], PatientContext(**RIYA),
                       selected=["painkiller_swap", "ors", "pause_ras", "pause_diuretic"], seed=c["seed_whatif"])
     got = [round(r["risk"], 3) for r in rows]
-    rep_json = json.loads((REPORTS_DIR / "demo_numbers.json").read_text("utf-8"))["scenarios"]["S1_kamala"]
+    rep_json = json.loads((REPORTS_DIR / "demo_numbers.json").read_text("utf-8"))["scenarios"]["S1_riya"]
     w = list(rep_json["whatif_72h_risk"].values())
     assert got[0] == w[0] and got[1] == w[1] and got[2] == w[2] and got[-1] == w[3]
     assert rows[0]["text"].startswith(f"{round(100 * w[0])}%")

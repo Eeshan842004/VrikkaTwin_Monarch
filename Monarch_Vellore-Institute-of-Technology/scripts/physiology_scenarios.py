@@ -1,6 +1,6 @@
 """Gate G2: reproduce the §9.1 scenario ordering with the real engine, plus an engine-level heat check.
 
-Patient: Kamala-like (68 y woman, 62 kg, 1.55 m, baseline eGFR 58), all other values from the registry
+Patient: Riya-like (68 y woman, 62 kg, 1.55 m, baseline eGFR 58), all other values from the registry
 (phi_drink 0.60 because age >= 60). Weather: the 3 hottest consecutive days of the real 2024 Nagpur season.
 Day plan: 7 quiet burn-in days indoors (28 degC) so chronic drugs reach steady state, 3 hot days with 9 h outdoors
 (08:00-17:00, light outdoor work, met_vendor), then 2 quiet recovery days so the creatinine peak is caught.

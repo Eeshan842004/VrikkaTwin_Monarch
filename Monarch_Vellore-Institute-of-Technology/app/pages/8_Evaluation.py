@@ -229,7 +229,7 @@ else:
     tor = extra.get("tornado", {})
     if tor:
         st.plotly_chart(charts.tornado(tor["top10"], tor["baseline_risk"],
-                                       f"Top 10 assumptions: Kamala's 72-h risk (baseline "
+                                       f"Top 10 assumptions: Riya's 72-h risk (baseline "
                                        f"{100 * tor['baseline_risk']:.1f} %)"),
                         width="stretch", theme="streamlit")
         st.caption(tor["output"] + f". {tor['parameters_screened']} registry assumptions screened; the drinking "

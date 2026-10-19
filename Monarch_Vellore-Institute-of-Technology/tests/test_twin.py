@@ -16,15 +16,15 @@ def day_sweat(peak):
     return np.where((h >= 8) & (h < 17), peak, 0.04)
 
 
-def kamala_params(**kw):
+def riya_params(**kw):
     return Params.from_patient(age=68, female=True, weight_kg=62, egfr=58, **kw)
 
 
 def run_twin(theta_true, phi_true, phi_prior=None, peak=0.8, days=7, lab_day=5, seed=0):
     rng = np.random.default_rng(seed)
-    truth = kamala_params()
+    truth = riya_params()
     truth.theta_sweat, truth.phi_drink = theta_true, phi_true
-    twin_p = kamala_params()
+    twin_p = riya_params()
     if phi_prior is not None:
         twin_p.phi_drink = phi_prior
     twin = KidneyTwin(twin_p, hr_base=74, sbp_base=130)
@@ -56,7 +56,7 @@ def test_twin_separates_low_and_high_drinkers():
 
 
 def test_lab_pulls_creatinine_toward_the_lab_value():
-    twin = KidneyTwin(kamala_params(), hr_base=74, sbp_base=130)
+    twin = KidneyTwin(riya_params(), hr_base=74, sbp_base=130)
     twin.predict({"sweat_l_h": day_sweat(0.3)})
     before = twin.x[2]
     twin.update_lab(before + 0.5)
@@ -65,7 +65,7 @@ def test_lab_pulls_creatinine_toward_the_lab_value():
 
 
 def test_missing_channels_do_not_crash_and_leave_state_finite():
-    twin = KidneyTwin(kamala_params(), hr_base=74, sbp_base=130)
+    twin = KidneyTwin(riya_params(), hr_base=74, sbp_base=130)
     for obs in ({}, {"weight": 61.8}, {"hr": 80.0}, {"weight": np.nan, "hr": np.nan, "sbp": 128.0}):
         twin.predict({"sweat_l_h": day_sweat(0.5)})
         twin.update(**obs)
@@ -84,7 +84,7 @@ def test_fever_is_inside_the_hr_model():
 
 
 def hot_twin(days=5):
-    twin = KidneyTwin(kamala_params(diuretic="chlorthalidone"), hr_base=74, sbp_base=130)
+    twin = KidneyTwin(riya_params(diuretic="chlorthalidone"), hr_base=74, sbp_base=130)
     for _ in range(days):
         twin.predict({"sweat_l_h": day_sweat(0.8), "ras": 1, "diuretic": 1})
     return twin
