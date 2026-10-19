@@ -17,6 +17,212 @@
   "green": 8
  },
  "panel_red_with_aki_within_72h": 1,
+ "kidney_weather": {
+  "tomorrow": "2025-05-20",
+  "forecast": "noisy 72-h forecast issued 09:00 on the demo day (the fast clock's input)",
+  "levels_basis": "today's level (its 72-hour window covers tomorrow)",
+  "cities": {
+   "Delhi": {
+    "forecast_tmax_tomorrow_c": 45.6,
+    "archived_tmax_tomorrow_c": 42.6,
+    "patients": 867,
+    "green": 685,
+    "amber": 158,
+    "red": 24
+   },
+   "Nagpur": {
+    "forecast_tmax_tomorrow_c": 41.3,
+    "archived_tmax_tomorrow_c": 40.6,
+    "patients": 777,
+    "green": 638,
+    "amber": 132,
+    "red": 7
+   },
+   "Ahmedabad": {
+    "forecast_tmax_tomorrow_c": 39.8,
+    "archived_tmax_tomorrow_c": 41.1,
+    "patients": 727,
+    "green": 548,
+    "amber": 155,
+    "red": 24
+   },
+   "Hyderabad": {
+    "forecast_tmax_tomorrow_c": 36.7,
+    "archived_tmax_tomorrow_c": 34.5,
+    "patients": 682,
+    "green": 613,
+    "amber": 63,
+    "red": 6
+   },
+   "Palasa": {
+    "forecast_tmax_tomorrow_c": 32.0,
+    "archived_tmax_tomorrow_c": 31.5,
+    "patients": 605,
+    "green": 550,
+    "amber": 54,
+    "red": 1
+   },
+   "Chennai": {
+    "forecast_tmax_tomorrow_c": 29.2,
+    "archived_tmax_tomorrow_c": 31.6,
+    "patients": 574,
+    "green": 536,
+    "amber": 35,
+    "red": 3
+   },
+   "Bengaluru": {
+    "forecast_tmax_tomorrow_c": 28.1,
+    "archived_tmax_tomorrow_c": 27.4,
+    "patients": 730,
+    "green": 715,
+    "amber": 15,
+    "red": 0
+   }
+  },
+  "suggested_tests_today": [
+   {
+    "patient_id": "T02142",
+    "city": "Ahmedabad",
+    "risk": 0.2105,
+    "risk_text": "21%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T01501",
+    "city": "Ahmedabad",
+    "risk": 0.2105,
+    "risk_text": "21%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04156",
+    "city": "Ahmedabad",
+    "risk": 0.2105,
+    "risk_text": "21%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T03385",
+    "city": "Ahmedabad",
+    "risk": 0.2105,
+    "risk_text": "21%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04443",
+    "city": "Ahmedabad",
+    "risk": 0.2105,
+    "risk_text": "21%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04418",
+    "city": "Hyderabad",
+    "risk": 0.1228,
+    "risk_text": "12%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T00255",
+    "city": "Chennai",
+    "risk": 0.1228,
+    "risk_text": "12%",
+    "top_reason": "reason.mc_cr_peak_ratio"
+   },
+   {
+    "patient_id": "T00569",
+    "city": "Chennai",
+    "risk": 0.0465,
+    "risk_text": "5%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T03801",
+    "city": "Ahmedabad",
+    "risk": 0.0465,
+    "risk_text": "5%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T02040",
+    "city": "Ahmedabad",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T02904",
+    "city": "Delhi",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.egfr_baseline"
+   },
+   {
+    "patient_id": "T01756",
+    "city": "Palasa",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T00609",
+    "city": "Delhi",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T00759",
+    "city": "Nagpur",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T00452",
+    "city": "Delhi",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T00166",
+    "city": "Ahmedabad",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04798",
+    "city": "Chennai",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04870",
+    "city": "Delhi",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04317",
+    "city": "Ahmedabad",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   },
+   {
+    "patient_id": "T04205",
+    "city": "Nagpur",
+    "risk": 0.0316,
+    "risk_text": "3%",
+    "top_reason": "reason.mc_gfr_min_frac"
+   }
+  ],
+  "suggested_rule": "every patient in the red state today (red = doctor review + home kidney test, config/alert_policy.yaml), highest risk first"
+ },
  "patients": [
   {
    "patient_id": "T02142",

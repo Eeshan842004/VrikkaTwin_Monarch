@@ -21,9 +21,10 @@ ACTIONS = {
 FIELDS = {
     "doctor": None,                                  # None = every field
     "patient": {"patient_id", "name", "age", "female", "city", "language", "generics", "level", "risk", "risk_text",
-                "advice_keys", "slow_clock", "checkins", "tasks", "label", "whatif", "sickday", "fictional"},
+                "advice_keys", "slow_clock", "checkins", "tasks", "label", "whatif", "sickday", "fictional",
+                "reasons"},
     "family": {"patient_id", "name", "city", "language", "level", "risk_text", "advice_keys", "checkins", "label",
-               "sickday", "fictional"},
+               "sickday", "fictional", "reasons"},
     "asha": {"patient_id", "name", "age", "female", "city", "language", "level", "advice_keys", "red_flags",
              "checkins", "tier", "label", "fictional"},
     "lab": {"patient_id", "age", "female", "tasks", "fictional"},

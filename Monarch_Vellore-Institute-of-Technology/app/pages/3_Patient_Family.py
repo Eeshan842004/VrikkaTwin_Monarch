@@ -5,6 +5,7 @@ from __future__ import annotations
 import streamlit as st
 from components.api_client import require, services
 from components.cards import audio, brand_readback, checkin_form, screen
+from components.summary import visit_summary_html
 from components.theme import badge, frame, lang
 
 from vrikka.i18n import t
@@ -29,6 +30,9 @@ with c2:
     st.markdown(f"### {t('action.' + rec['level'], L)}")
     st.markdown(f"🔊 {t('ui.listen', L)}")
     audio(L, f"level_{rec['level']}")
+
+st.download_button("🖨️ " + t("summary.download", L), visit_summary_html(rec, L),
+                   file_name=f"visit_summary_{rec['patient_id']}_{L}.html", mime="text/html")
 
 sick = rec.get("sickday") or {}
 if sick.get("sick_day"):

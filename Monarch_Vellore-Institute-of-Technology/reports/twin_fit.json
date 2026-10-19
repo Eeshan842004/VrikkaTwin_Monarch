@@ -1,0 +1,1362 @@
+{
+ "note": "fictional personas, demo replay on real 2024 weather; predicted = the twin's expectation of the morning reading before it saw it; no lab draws in the replay (creatinine: twin estimate vs demo truth)",
+ "prior_log_theta_sd": 0.3,
+ "personas": {
+  "S1_riya": {
+   "label": "Riya (fictional), 68, home-based, Nagpur: ARB + thiazide-type diuretic, ibuprofen painkiller (e.g. Combiflam), fever on day 2",
+   "theta_true_demo": 1.0,
+   "days": [
+    {
+     "date": "2024-05-20",
+     "weight_predicted": 61.4,
+     "weight_observed": 61.57,
+     "weight_error": 0.17,
+     "weight_mae_so_far": 0.171,
+     "hr_predicted": 78.6,
+     "hr_observed": 74.4,
+     "hr_error": -4.2,
+     "theta": 0.959,
+     "theta_80": [
+      0.655,
+      1.403
+     ],
+     "personalisation_pct": 1.0,
+     "twin_cr": 1.094,
+     "truth_cr": 1.098
+    },
+    {
+     "date": "2024-05-21",
+     "weight_predicted": 61.43,
+     "weight_observed": 61.3,
+     "weight_error": -0.12,
+     "weight_mae_so_far": 0.147,
+     "hr_predicted": 79.1,
+     "hr_observed": 75.7,
+     "hr_error": -3.4,
+     "theta": 0.929,
+     "theta_80": [
+      0.638,
+      1.354
+     ],
+     "personalisation_pct": 2.1,
+     "twin_cr": 1.151,
+     "truth_cr": 1.155
+    },
+    {
+     "date": "2024-05-22",
+     "weight_predicted": 61.43,
+     "weight_observed": 61.52,
+     "weight_error": 0.09,
+     "weight_mae_so_far": 0.126,
+     "hr_predicted": 78.8,
+     "hr_observed": 75.1,
+     "hr_error": -3.8,
+     "theta": 0.896,
+     "theta_80": [
+      0.616,
+      1.304
+     ],
+     "personalisation_pct": 2.5,
+     "twin_cr": 1.124,
+     "truth_cr": 1.131
+    },
+    {
+     "date": "2024-05-23",
+     "weight_predicted": 61.35,
+     "weight_observed": 61.08,
+     "weight_error": -0.28,
+     "weight_mae_so_far": 0.164,
+     "hr_predicted": 79.2,
+     "hr_observed": 78.0,
+     "hr_error": -1.2,
+     "theta": 0.893,
+     "theta_80": [
+      0.616,
+      1.294
+     ],
+     "personalisation_pct": 3.5,
+     "twin_cr": 1.17,
+     "truth_cr": 1.183
+    },
+    {
+     "date": "2024-05-24",
+     "weight_predicted": 61.44,
+     "weight_observed": 61.22,
+     "weight_error": -0.22,
+     "weight_mae_so_far": 0.174,
+     "hr_predicted": 78.6,
+     "hr_observed": 75.4,
+     "hr_error": -3.1,
+     "theta": 0.868,
+     "theta_80": [
+      0.599,
+      1.257
+     ],
+     "personalisation_pct": 3.6,
+     "twin_cr": 1.115,
+     "truth_cr": 1.124
+    },
+    {
+     "date": "2024-05-25",
+     "weight_predicted": 61.31,
+     "weight_observed": 61.63,
+     "weight_error": 0.32,
+     "weight_mae_so_far": 0.199,
+     "hr_predicted": 78.8,
+     "hr_observed": 81.3,
+     "hr_error": 2.4,
+     "theta": 0.885,
+     "theta_80": [
+      0.612,
+      1.28
+     ],
+     "personalisation_pct": 4.0,
+     "twin_cr": 1.13,
+     "truth_cr": 1.141
+    },
+    {
+     "date": "2024-05-26",
+     "weight_predicted": 61.4,
+     "weight_observed": 61.62,
+     "weight_error": 0.22,
+     "weight_mae_so_far": 0.202,
+     "hr_predicted": 78.8,
+     "hr_observed": 79.3,
+     "hr_error": 0.4,
+     "theta": 0.887,
+     "theta_80": [
+      0.614,
+      1.282
+     ],
+     "personalisation_pct": 4.3,
+     "twin_cr": 1.139,
+     "truth_cr": 1.143
+    },
+    {
+     "date": "2024-05-27",
+     "weight_predicted": 61.31,
+     "weight_observed": 61.11,
+     "weight_error": -0.21,
+     "weight_mae_so_far": 0.203,
+     "hr_predicted": 79.3,
+     "hr_observed": 85.6,
+     "hr_error": 6.2,
+     "theta": 0.956,
+     "theta_80": [
+      0.664,
+      1.376
+     ],
+     "personalisation_pct": 5.3,
+     "twin_cr": 1.216,
+     "truth_cr": 1.2
+    },
+    {
+     "date": "2024-05-28",
+     "weight_predicted": 61.02,
+     "weight_observed": 61.27,
+     "weight_error": 0.25,
+     "weight_mae_so_far": 0.207,
+     "hr_predicted": 95.5,
+     "hr_observed": 98.7,
+     "hr_error": 3.2,
+     "theta": 0.978,
+     "theta_80": [
+      0.687,
+      1.393
+     ],
+     "personalisation_pct": 8.0,
+     "twin_cr": 1.344,
+     "truth_cr": 1.293
+    },
+    {
+     "date": "2024-05-29",
+     "weight_predicted": 60.8,
+     "weight_observed": 60.35,
+     "weight_error": -0.45,
+     "weight_mae_so_far": 0.231,
+     "hr_predicted": 96.6,
+     "hr_observed": 98.5,
+     "hr_error": 1.9,
+     "theta": 1.059,
+     "theta_80": [
+      0.758,
+      1.479
+     ],
+     "personalisation_pct": 13.0,
+     "twin_cr": 1.711,
+     "truth_cr": 1.579
+    },
+    {
+     "date": "2024-05-30",
+     "weight_predicted": 60.9,
+     "weight_observed": 61.11,
+     "weight_error": 0.21,
+     "weight_mae_so_far": 0.229,
+     "hr_predicted": 81.1,
+     "hr_observed": 78.0,
+     "hr_error": -3.0,
+     "theta": 1.001,
+     "theta_80": [
+      0.724,
+      1.384
+     ],
+     "personalisation_pct": 15.8,
+     "twin_cr": 1.606,
+     "truth_cr": 1.545
+    },
+    {
+     "date": "2024-05-31",
+     "weight_predicted": 61.23,
+     "weight_observed": 61.38,
+     "weight_error": 0.14,
+     "weight_mae_so_far": 0.222,
+     "hr_predicted": 79.7,
+     "hr_observed": 81.5,
+     "hr_error": 1.7,
+     "theta": 1.015,
+     "theta_80": [
+      0.736,
+      1.4
+     ],
+     "personalisation_pct": 16.4,
+     "twin_cr": 1.274,
+     "truth_cr": 1.24
+    }
+   ],
+   "weight_mae_first_half": 0.199,
+   "weight_mae_second_half": 0.245,
+   "sigma_weight_kg": 0.4,
+   "personalisation_pct_final": 16.4
+  },
+  "S2_ravi": {
+   "label": "Ravi (fictional), 42, construction worker, Hyderabad, no medicines",
+   "theta_true_demo": 1.0,
+   "days": [
+    {
+     "date": "2024-04-28",
+     "weight_predicted": 67.48,
+     "weight_observed": 67.66,
+     "weight_error": 0.18,
+     "weight_mae_so_far": 0.18,
+     "hr_predicted": 73.9,
+     "hr_observed": 69.6,
+     "hr_error": -4.3,
+     "theta": 0.958,
+     "theta_80": [
+      0.654,
+      1.401
+     ],
+     "personalisation_pct": 1.0,
+     "twin_cr": 1.027,
+     "truth_cr": 1.027
+    },
+    {
+     "date": "2024-04-29",
+     "weight_predicted": 67.8,
+     "weight_observed": 67.67,
+     "weight_error": -0.13,
+     "weight_mae_so_far": 0.155,
+     "hr_predicted": 73.3,
+     "hr_observed": 69.9,
+     "hr_error": -3.4,
+     "theta": 0.937,
+     "theta_80": [
+      0.64,
+      1.371
+     ],
+     "personalisation_pct": 0.9,
+     "twin_cr": 1.013,
+     "truth_cr": 1.012
+    },
+    {
+     "date": "2024-04-30",
+     "weight_predicted": 67.56,
+     "weight_observed": 67.64,
+     "weight_error": 0.08,
+     "weight_mae_so_far": 0.13,
+     "hr_predicted": 74.0,
+     "hr_observed": 70.2,
+     "hr_error": -3.8,
+     "theta": 0.902,
+     "theta_80": [
+      0.618,
+      1.317
+     ],
+     "personalisation_pct": 1.5,
+     "twin_cr": 1.03,
+     "truth_cr": 1.03
+    },
+    {
+     "date": "2024-05-01",
+     "weight_predicted": 67.55,
+     "weight_observed": 67.28,
+     "weight_error": -0.28,
+     "weight_mae_so_far": 0.167,
+     "hr_predicted": 74.0,
+     "hr_observed": 72.8,
+     "hr_error": -1.3,
+     "theta": 0.899,
+     "theta_80": [
+      0.617,
+      1.31
+     ],
+     "personalisation_pct": 2.1,
+     "twin_cr": 1.032,
+     "truth_cr": 1.033
+    },
+    {
+     "date": "2024-05-02",
+     "weight_predicted": 67.52,
+     "weight_observed": 67.29,
+     "weight_error": -0.23,
+     "weight_mae_so_far": 0.179,
+     "hr_predicted": 73.9,
+     "hr_observed": 70.7,
+     "hr_error": -3.1,
+     "theta": 0.878,
+     "theta_80": [
+      0.603,
+      1.277
+     ],
+     "personalisation_pct": 2.4,
+     "twin_cr": 1.031,
+     "truth_cr": 1.032
+    },
+    {
+     "date": "2024-05-03",
+     "weight_predicted": 67.5,
+     "weight_observed": 67.82,
+     "weight_error": 0.32,
+     "weight_mae_so_far": 0.203,
+     "hr_predicted": 73.7,
+     "hr_observed": 76.1,
+     "hr_error": 2.4,
+     "theta": 0.894,
+     "theta_80": [
+      0.614,
+      1.3
+     ],
+     "personalisation_pct": 2.5,
+     "twin_cr": 1.029,
+     "truth_cr": 1.03
+    },
+    {
+     "date": "2024-05-04",
+     "weight_predicted": 67.57,
+     "weight_observed": 67.79,
+     "weight_error": 0.22,
+     "weight_mae_so_far": 0.205,
+     "hr_predicted": 73.8,
+     "hr_observed": 74.2,
+     "hr_error": 0.4,
+     "theta": 0.895,
+     "theta_80": [
+      0.616,
+      1.301
+     ],
+     "personalisation_pct": 2.8,
+     "twin_cr": 1.03,
+     "truth_cr": 1.03
+    },
+    {
+     "date": "2024-05-05",
+     "weight_predicted": 67.56,
+     "weight_observed": 67.36,
+     "weight_error": -0.2,
+     "weight_mae_so_far": 0.205,
+     "hr_predicted": 74.0,
+     "hr_observed": 80.2,
+     "hr_error": 6.2,
+     "theta": 0.951,
+     "theta_80": [
+      0.656,
+      1.38
+     ],
+     "personalisation_pct": 3.2,
+     "twin_cr": 1.035,
+     "truth_cr": 1.033
+    },
+    {
+     "date": "2024-05-06",
+     "weight_predicted": 67.69,
+     "weight_observed": 67.94,
+     "weight_error": 0.25,
+     "weight_mae_so_far": 0.209,
+     "hr_predicted": 73.4,
+     "hr_observed": 76.6,
+     "hr_error": 3.2,
+     "theta": 0.976,
+     "theta_80": [
+      0.672,
+      1.416
+     ],
+     "personalisation_pct": 3.1,
+     "twin_cr": 1.014,
+     "truth_cr": 1.013
+    },
+    {
+     "date": "2024-05-07",
+     "weight_predicted": 67.54,
+     "weight_observed": 67.09,
+     "weight_error": -0.45,
+     "weight_mae_so_far": 0.234,
+     "hr_predicted": 74.1,
+     "hr_observed": 76.2,
+     "hr_error": 2.1,
+     "theta": 1.015,
+     "theta_80": [
+      0.701,
+      1.468
+     ],
+     "personalisation_pct": 4.0,
+     "twin_cr": 1.035,
+     "truth_cr": 1.032
+    },
+    {
+     "date": "2024-05-08",
+     "weight_predicted": 67.66,
+     "weight_observed": 67.84,
+     "weight_error": 0.18,
+     "weight_mae_so_far": 0.228,
+     "hr_predicted": 73.5,
+     "hr_observed": 70.7,
+     "hr_error": -2.8,
+     "theta": 1.0,
+     "theta_80": [
+      0.691,
+      1.447
+     ],
+     "personalisation_pct": 3.9,
+     "twin_cr": 1.027,
+     "truth_cr": 1.025
+    },
+    {
+     "date": "2024-05-09",
+     "weight_predicted": 67.63,
+     "weight_observed": 67.78,
+     "weight_error": 0.15,
+     "weight_mae_so_far": 0.221,
+     "hr_predicted": 73.7,
+     "hr_observed": 75.5,
+     "hr_error": 1.8,
+     "theta": 1.013,
+     "theta_80": [
+      0.7,
+      1.465
+     ],
+     "personalisation_pct": 4.0,
+     "twin_cr": 1.029,
+     "truth_cr": 1.026
+    }
+   ],
+   "weight_mae_first_half": 0.203,
+   "weight_mae_second_half": 0.24,
+   "sigma_weight_kg": 0.4,
+   "personalisation_pct_final": 4.0
+  },
+  "S3_fatima": {
+   "label": "Fatima (fictional), 55, Ahmedabad: T2D on metformin + empagliflozin + ramipril; vomiting x4/day",
+   "theta_true_demo": 1.0,
+   "days": [
+    {
+     "date": "2024-05-16",
+     "weight_predicted": 65.67,
+     "weight_observed": 65.84,
+     "weight_error": 0.17,
+     "weight_mae_so_far": 0.169,
+     "hr_predicted": 79.1,
+     "hr_observed": 74.9,
+     "hr_error": -4.2,
+     "theta": 0.974,
+     "theta_80": [
+      0.663,
+      1.431
+     ],
+     "personalisation_pct": 0.1,
+     "twin_cr": 0.938,
+     "truth_cr": 0.939
+    },
+    {
+     "date": "2024-05-17",
+     "weight_predicted": 65.78,
+     "weight_observed": 65.65,
+     "weight_error": -0.13,
+     "weight_mae_so_far": 0.148,
+     "hr_predicted": 79.4,
+     "hr_observed": 75.9,
+     "hr_error": -3.4,
+     "theta": 0.955,
+     "theta_80": [
+      0.651,
+      1.402
+     ],
+     "personalisation_pct": 0.1,
+     "twin_cr": 0.942,
+     "truth_cr": 0.941
+    },
+    {
+     "date": "2024-05-18",
+     "weight_predicted": 65.72,
+     "weight_observed": 65.81,
+     "weight_error": 0.08,
+     "weight_mae_so_far": 0.127,
+     "hr_predicted": 79.3,
+     "hr_observed": 75.5,
+     "hr_error": -3.8,
+     "theta": 0.931,
+     "theta_80": [
+      0.634,
+      1.366
+     ],
+     "personalisation_pct": 0.1,
+     "twin_cr": 0.942,
+     "truth_cr": 0.942
+    },
+    {
+     "date": "2024-05-19",
+     "weight_predicted": 65.7,
+     "weight_observed": 65.43,
+     "weight_error": -0.27,
+     "weight_mae_so_far": 0.162,
+     "hr_predicted": 79.5,
+     "hr_observed": 78.2,
+     "hr_error": -1.3,
+     "theta": 0.928,
+     "theta_80": [
+      0.632,
+      1.361
+     ],
+     "personalisation_pct": 0.3,
+     "twin_cr": 0.945,
+     "truth_cr": 0.944
+    },
+    {
+     "date": "2024-05-20",
+     "weight_predicted": 65.59,
+     "weight_observed": 65.37,
+     "weight_error": -0.23,
+     "weight_mae_so_far": 0.175,
+     "hr_predicted": 79.6,
+     "hr_observed": 76.4,
+     "hr_error": -3.2,
+     "theta": 0.91,
+     "theta_80": [
+      0.621,
+      1.334
+     ],
+     "personalisation_pct": 0.5,
+     "twin_cr": 0.946,
+     "truth_cr": 0.946
+    },
+    {
+     "date": "2024-05-21",
+     "weight_predicted": 65.57,
+     "weight_observed": 65.89,
+     "weight_error": 0.32,
+     "weight_mae_so_far": 0.2,
+     "hr_predicted": 79.5,
+     "hr_observed": 81.8,
+     "hr_error": 2.3,
+     "theta": 0.921,
+     "theta_80": [
+      0.628,
+      1.35
+     ],
+     "personalisation_pct": 0.6,
+     "twin_cr": 0.945,
+     "truth_cr": 0.945
+    },
+    {
+     "date": "2024-05-22",
+     "weight_predicted": 65.66,
+     "weight_observed": 65.88,
+     "weight_error": 0.22,
+     "weight_mae_so_far": 0.203,
+     "hr_predicted": 79.4,
+     "hr_observed": 79.8,
+     "hr_error": 0.4,
+     "theta": 0.922,
+     "theta_80": [
+      0.629,
+      1.35
+     ],
+     "personalisation_pct": 0.6,
+     "twin_cr": 0.944,
+     "truth_cr": 0.944
+    },
+    {
+     "date": "2024-05-23",
+     "weight_predicted": 64.9,
+     "weight_observed": 64.7,
+     "weight_error": -0.2,
+     "weight_mae_so_far": 0.203,
+     "hr_predicted": 85.0,
+     "hr_observed": 91.2,
+     "hr_error": 6.2,
+     "theta": 0.997,
+     "theta_80": [
+      0.684,
+      1.453
+     ],
+     "personalisation_pct": 2.0,
+     "twin_cr": 1.087,
+     "truth_cr": 1.084
+    },
+    {
+     "date": "2024-05-24",
+     "weight_predicted": 63.97,
+     "weight_observed": 64.24,
+     "weight_error": 0.27,
+     "weight_mae_so_far": 0.21,
+     "hr_predicted": 90.9,
+     "hr_observed": 93.9,
+     "hr_error": 3.0,
+     "theta": 1.005,
+     "theta_80": [
+      0.706,
+      1.43
+     ],
+     "personalisation_pct": 8.2,
+     "twin_cr": 1.592,
+     "truth_cr": 1.585
+    },
+    {
+     "date": "2024-05-25",
+     "weight_predicted": 64.75,
+     "weight_observed": 64.3,
+     "weight_error": -0.45,
+     "weight_mae_so_far": 0.233,
+     "hr_predicted": 85.8,
+     "hr_observed": 87.7,
+     "hr_error": 1.8,
+     "theta": 1.061,
+     "theta_80": [
+      0.752,
+      1.498
+     ],
+     "personalisation_pct": 10.3,
+     "twin_cr": 1.591,
+     "truth_cr": 1.573
+    },
+    {
+     "date": "2024-05-26",
+     "weight_predicted": 65.52,
+     "weight_observed": 65.69,
+     "weight_error": 0.17,
+     "weight_mae_so_far": 0.228,
+     "hr_predicted": 80.5,
+     "hr_observed": 77.6,
+     "hr_error": -2.9,
+     "theta": 1.042,
+     "theta_80": [
+      0.738,
+      1.471
+     ],
+     "personalisation_pct": 10.3,
+     "twin_cr": 1.039,
+     "truth_cr": 1.024
+    },
+    {
+     "date": "2024-05-27",
+     "weight_predicted": 65.69,
+     "weight_observed": 65.82,
+     "weight_error": 0.14,
+     "weight_mae_so_far": 0.22,
+     "hr_predicted": 79.6,
+     "hr_observed": 81.3,
+     "hr_error": 1.7,
+     "theta": 1.055,
+     "theta_80": [
+      0.747,
+      1.49
+     ],
+     "personalisation_pct": 10.2,
+     "twin_cr": 0.953,
+     "truth_cr": 0.948
+    }
+   ],
+   "weight_mae_first_half": 0.2,
+   "weight_mae_second_half": 0.24,
+   "sigma_weight_kg": 0.4,
+   "personalisation_pct_final": 10.2
+  },
+  "S4_iyer": {
+   "label": "Mr Iyer (fictional), 74, Chennai: CKD G3b, heart failure, loop diuretic, beta-blocker",
+   "theta_true_demo": 1.0,
+   "days": [
+    {
+     "date": "2024-05-21",
+     "weight_predicted": 63.61,
+     "weight_observed": 63.77,
+     "weight_error": 0.16,
+     "weight_mae_so_far": 0.157,
+     "hr_predicted": 64.8,
+     "hr_observed": 58.6,
+     "hr_error": -6.3,
+     "theta": 0.994,
+     "theta_80": [
+      0.676,
+      1.463
+     ],
+     "personalisation_pct": -0.4,
+     "twin_cr": 1.983,
+     "truth_cr": 1.994
+    },
+    {
+     "date": "2024-05-22",
+     "weight_predicted": 63.77,
+     "weight_observed": 63.65,
+     "weight_error": -0.12,
+     "weight_mae_so_far": 0.14,
+     "hr_predicted": 64.8,
+     "hr_observed": 59.7,
+     "hr_error": -5.1,
+     "theta": 0.992,
+     "theta_80": [
+      0.673,
+      1.461
+     ],
+     "personalisation_pct": -0.9,
+     "twin_cr": 1.993,
+     "truth_cr": 1.999
+    },
+    {
+     "date": "2024-05-23",
+     "weight_predicted": 63.68,
+     "weight_observed": 63.77,
+     "weight_error": 0.09,
+     "weight_mae_so_far": 0.123,
+     "hr_predicted": 64.9,
+     "hr_observed": 59.1,
+     "hr_error": -5.8,
+     "theta": 0.987,
+     "theta_80": [
+      0.668,
+      1.457
+     ],
+     "personalisation_pct": -1.3,
+     "twin_cr": 1.999,
+     "truth_cr": 2.004
+    },
+    {
+     "date": "2024-05-24",
+     "weight_predicted": 63.69,
+     "weight_observed": 63.42,
+     "weight_error": -0.26,
+     "weight_mae_so_far": 0.158,
+     "hr_predicted": 64.9,
+     "hr_observed": 62.8,
+     "hr_error": -2.1,
+     "theta": 0.989,
+     "theta_80": [
+      0.669,
+      1.463
+     ],
+     "personalisation_pct": -1.8,
+     "twin_cr": 2.005,
+     "truth_cr": 2.011
+    },
+    {
+     "date": "2024-05-25",
+     "weight_predicted": 63.46,
+     "weight_observed": 63.24,
+     "weight_error": -0.21,
+     "weight_mae_so_far": 0.169,
+     "hr_predicted": 65.2,
+     "hr_observed": 60.3,
+     "hr_error": -4.9,
+     "theta": 0.994,
+     "theta_80": [
+      0.672,
+      1.469
+     ],
+     "personalisation_pct": -1.7,
+     "twin_cr": 2.043,
+     "truth_cr": 2.04
+    },
+    {
+     "date": "2024-05-26",
+     "weight_predicted": 63.49,
+     "weight_observed": 63.82,
+     "weight_error": 0.33,
+     "weight_mae_so_far": 0.196,
+     "hr_predicted": 65.1,
+     "hr_observed": 68.4,
+     "hr_error": 3.3,
+     "theta": 0.99,
+     "theta_80": [
+      0.669,
+      1.466
+     ],
+     "personalisation_pct": -2.1,
+     "twin_cr": 2.038,
+     "truth_cr": 2.033
+    },
+    {
+     "date": "2024-05-27",
+     "weight_predicted": 63.4,
+     "weight_observed": 63.63,
+     "weight_error": 0.23,
+     "weight_mae_so_far": 0.201,
+     "hr_predicted": 65.3,
+     "hr_observed": 65.8,
+     "hr_error": 0.5,
+     "theta": 0.975,
+     "theta_80": [
+      0.66,
+      1.442
+     ],
+     "personalisation_pct": -1.7,
+     "twin_cr": 2.051,
+     "truth_cr": 2.065
+    },
+    {
+     "date": "2024-05-28",
+     "weight_predicted": 63.36,
+     "weight_observed": 63.17,
+     "weight_error": -0.19,
+     "weight_mae_so_far": 0.199,
+     "hr_predicted": 65.5,
+     "hr_observed": 74.5,
+     "hr_error": 9.1,
+     "theta": 1.008,
+     "theta_80": [
+      0.683,
+      1.486
+     ],
+     "personalisation_pct": -1.1,
+     "twin_cr": 2.126,
+     "truth_cr": 2.111
+    },
+    {
+     "date": "2024-05-29",
+     "weight_predicted": 63.31,
+     "weight_observed": 63.57,
+     "weight_error": 0.26,
+     "weight_mae_so_far": 0.206,
+     "hr_predicted": 65.5,
+     "hr_observed": 70.3,
+     "hr_error": 4.8,
+     "theta": 0.999,
+     "theta_80": [
+      0.678,
+      1.471
+     ],
+     "personalisation_pct": -0.6,
+     "twin_cr": 2.143,
+     "truth_cr": 2.121
+    },
+    {
+     "date": "2024-05-30",
+     "weight_predicted": 63.43,
+     "weight_observed": 62.98,
+     "weight_error": -0.45,
+     "weight_mae_so_far": 0.23,
+     "hr_predicted": 65.4,
+     "hr_observed": 68.4,
+     "hr_error": 3.0,
+     "theta": 1.025,
+     "theta_80": [
+      0.696,
+      1.509
+     ],
+     "personalisation_pct": -0.7,
+     "twin_cr": 2.142,
+     "truth_cr": 2.11
+    },
+    {
+     "date": "2024-05-31",
+     "weight_predicted": 63.31,
+     "weight_observed": 63.5,
+     "weight_error": 0.19,
+     "weight_mae_so_far": 0.227,
+     "hr_predicted": 65.5,
+     "hr_observed": 61.4,
+     "hr_error": -4.1,
+     "theta": 1.006,
+     "theta_80": [
+      0.683,
+      1.482
+     ],
+     "personalisation_pct": -0.7,
+     "twin_cr": 2.129,
+     "truth_cr": 2.108
+    },
+    {
+     "date": "2024-06-01",
+     "weight_predicted": 63.35,
+     "weight_observed": 63.5,
+     "weight_error": 0.15,
+     "weight_mae_so_far": 0.22,
+     "hr_predicted": 65.5,
+     "hr_observed": 68.1,
+     "hr_error": 2.7,
+     "theta": 1.004,
+     "theta_80": [
+      0.681,
+      1.479
+     ],
+     "personalisation_pct": -0.7,
+     "twin_cr": 2.135,
+     "truth_cr": 2.113
+    }
+   ],
+   "weight_mae_first_half": 0.196,
+   "weight_mae_second_half": 0.245,
+   "sigma_weight_kg": 0.4,
+   "personalisation_pct_final": -0.7
+  },
+  "S5_hydrated": {
+   "label": "Riya's neighbour (fictional): same heat, drinks ORS 1 L/day, no painkiller",
+   "theta_true_demo": 1.0,
+   "days": [
+    {
+     "date": "2024-05-20",
+     "weight_predicted": 59.85,
+     "weight_observed": 60.04,
+     "weight_error": 0.19,
+     "weight_mae_so_far": 0.186,
+     "hr_predicted": 75.0,
+     "hr_observed": 70.8,
+     "hr_error": -4.2,
+     "theta": 0.994,
+     "theta_80": [
+      0.677,
+      1.46
+     ],
+     "personalisation_pct": 0.1,
+     "twin_cr": 0.986,
+     "truth_cr": 0.988
+    },
+    {
+     "date": "2024-05-21",
+     "weight_predicted": 59.92,
+     "weight_observed": 59.81,
+     "weight_error": -0.11,
+     "weight_mae_so_far": 0.149,
+     "hr_predicted": 75.1,
+     "hr_observed": 71.6,
+     "hr_error": -3.5,
+     "theta": 0.996,
+     "theta_80": [
+      0.679,
+      1.462
+     ],
+     "personalisation_pct": 0.2,
+     "twin_cr": 0.99,
+     "truth_cr": 0.988
+    },
+    {
+     "date": "2024-05-22",
+     "weight_predicted": 59.95,
+     "weight_observed": 60.03,
+     "weight_error": 0.08,
+     "weight_mae_so_far": 0.126,
+     "hr_predicted": 75.0,
+     "hr_observed": 71.1,
+     "hr_error": -3.9,
+     "theta": 0.995,
+     "theta_80": [
+      0.676,
+      1.462
+     ],
+     "personalisation_pct": -0.3,
+     "twin_cr": 0.987,
+     "truth_cr": 0.987
+    },
+    {
+     "date": "2024-05-23",
+     "weight_predicted": 59.84,
+     "weight_observed": 59.59,
+     "weight_error": -0.25,
+     "weight_mae_so_far": 0.157,
+     "hr_predicted": 75.5,
+     "hr_observed": 73.6,
+     "hr_error": -1.9,
+     "theta": 0.997,
+     "theta_80": [
+      0.678,
+      1.466
+     ],
+     "personalisation_pct": -0.2,
+     "twin_cr": 0.994,
+     "truth_cr": 0.99
+    },
+    {
+     "date": "2024-05-24",
+     "weight_predicted": 59.96,
+     "weight_observed": 59.73,
+     "weight_error": -0.23,
+     "weight_mae_so_far": 0.172,
+     "hr_predicted": 75.0,
+     "hr_observed": 71.7,
+     "hr_error": -3.3,
+     "theta": 0.995,
+     "theta_80": [
+      0.676,
+      1.466
+     ],
+     "personalisation_pct": -0.7,
+     "twin_cr": 0.986,
+     "truth_cr": 0.986
+    },
+    {
+     "date": "2024-05-25",
+     "weight_predicted": 59.81,
+     "weight_observed": 60.14,
+     "weight_error": 0.33,
+     "weight_mae_so_far": 0.198,
+     "hr_predicted": 75.0,
+     "hr_observed": 77.2,
+     "hr_error": 2.2,
+     "theta": 0.988,
+     "theta_80": [
+      0.67,
+      1.458
+     ],
+     "personalisation_pct": -1.1,
+     "twin_cr": 0.987,
+     "truth_cr": 0.987
+    },
+    {
+     "date": "2024-05-26",
+     "weight_predicted": 59.9,
+     "weight_observed": 60.13,
+     "weight_error": 0.23,
+     "weight_mae_so_far": 0.203,
+     "hr_predicted": 75.0,
+     "hr_observed": 75.3,
+     "hr_error": 0.3,
+     "theta": 0.986,
+     "theta_80": [
+      0.667,
+      1.458
+     ],
+     "personalisation_pct": -1.6,
+     "twin_cr": 0.987,
+     "truth_cr": 0.987
+    },
+    {
+     "date": "2024-05-27",
+     "weight_predicted": 59.8,
+     "weight_observed": 59.62,
+     "weight_error": -0.18,
+     "weight_mae_so_far": 0.2,
+     "hr_predicted": 75.7,
+     "hr_observed": 81.0,
+     "hr_error": 5.4,
+     "theta": 1.022,
+     "theta_80": [
+      0.692,
+      1.51
+     ],
+     "personalisation_pct": -1.5,
+     "twin_cr": 0.991,
+     "truth_cr": 0.989
+    },
+    {
+     "date": "2024-05-28",
+     "weight_predicted": 59.75,
+     "weight_observed": 60.0,
+     "weight_error": 0.25,
+     "weight_mae_so_far": 0.205,
+     "hr_predicted": 75.6,
+     "hr_observed": 78.2,
+     "hr_error": 2.6,
+     "theta": 1.035,
+     "theta_80": [
+      0.704,
+      1.522
+     ],
+     "personalisation_pct": -0.4,
+     "twin_cr": 0.998,
+     "truth_cr": 0.987
+    },
+    {
+     "date": "2024-05-29",
+     "weight_predicted": 59.83,
+     "weight_observed": 59.37,
+     "weight_error": -0.46,
+     "weight_mae_so_far": 0.23,
+     "hr_predicted": 76.0,
+     "hr_observed": 77.0,
+     "hr_error": 1.0,
+     "theta": 1.064,
+     "theta_80": [
+      0.724,
+      1.562
+     ],
+     "personalisation_pct": 0.0,
+     "twin_cr": 0.996,
+     "truth_cr": 0.987
+    },
+    {
+     "date": "2024-05-30",
+     "weight_predicted": 59.77,
+     "weight_observed": 59.95,
+     "weight_error": 0.18,
+     "weight_mae_so_far": 0.226,
+     "hr_predicted": 75.9,
+     "hr_observed": 72.3,
+     "hr_error": -3.6,
+     "theta": 1.031,
+     "theta_80": [
+      0.702,
+      1.512
+     ],
+     "personalisation_pct": 0.3,
+     "twin_cr": 0.991,
+     "truth_cr": 0.987
+    },
+    {
+     "date": "2024-05-31",
+     "weight_predicted": 59.79,
+     "weight_observed": 59.93,
+     "weight_error": 0.14,
+     "weight_mae_so_far": 0.219,
+     "hr_predicted": 76.0,
+     "hr_observed": 76.8,
+     "hr_error": 0.8,
+     "theta": 1.03,
+     "theta_80": [
+      0.702,
+      1.51
+     ],
+     "personalisation_pct": 0.4,
+     "twin_cr": 0.993,
+     "truth_cr": 0.988
+    }
+   ],
+   "weight_mae_first_half": 0.198,
+   "weight_mae_second_half": 0.24,
+   "sigma_weight_kg": 0.4,
+   "personalisation_pct_final": 0.4
+  },
+  "S6_cyp2c9": {
+   "label": "Same patient, same ibuprofen dose: CYP2C9 normal (*1/*1) vs poor metaboliser (*3/*3)",
+   "theta_true_demo": 1.0,
+   "days": [
+    {
+     "date": "2024-05-20",
+     "weight_predicted": 61.4,
+     "weight_observed": 61.57,
+     "weight_error": 0.17,
+     "weight_mae_so_far": 0.171,
+     "hr_predicted": 78.6,
+     "hr_observed": 74.4,
+     "hr_error": -4.2,
+     "theta": 0.959,
+     "theta_80": [
+      0.655,
+      1.403
+     ],
+     "personalisation_pct": 1.0,
+     "twin_cr": 1.094,
+     "truth_cr": 1.098
+    },
+    {
+     "date": "2024-05-21",
+     "weight_predicted": 61.43,
+     "weight_observed": 61.3,
+     "weight_error": -0.12,
+     "weight_mae_so_far": 0.147,
+     "hr_predicted": 79.1,
+     "hr_observed": 75.7,
+     "hr_error": -3.4,
+     "theta": 0.929,
+     "theta_80": [
+      0.638,
+      1.354
+     ],
+     "personalisation_pct": 2.1,
+     "twin_cr": 1.151,
+     "truth_cr": 1.155
+    },
+    {
+     "date": "2024-05-22",
+     "weight_predicted": 61.43,
+     "weight_observed": 61.52,
+     "weight_error": 0.09,
+     "weight_mae_so_far": 0.126,
+     "hr_predicted": 78.8,
+     "hr_observed": 75.1,
+     "hr_error": -3.8,
+     "theta": 0.896,
+     "theta_80": [
+      0.616,
+      1.304
+     ],
+     "personalisation_pct": 2.5,
+     "twin_cr": 1.124,
+     "truth_cr": 1.131
+    },
+    {
+     "date": "2024-05-23",
+     "weight_predicted": 61.35,
+     "weight_observed": 61.08,
+     "weight_error": -0.28,
+     "weight_mae_so_far": 0.164,
+     "hr_predicted": 79.2,
+     "hr_observed": 78.0,
+     "hr_error": -1.2,
+     "theta": 0.893,
+     "theta_80": [
+      0.616,
+      1.294
+     ],
+     "personalisation_pct": 3.5,
+     "twin_cr": 1.17,
+     "truth_cr": 1.183
+    },
+    {
+     "date": "2024-05-24",
+     "weight_predicted": 61.44,
+     "weight_observed": 61.22,
+     "weight_error": -0.22,
+     "weight_mae_so_far": 0.174,
+     "hr_predicted": 78.6,
+     "hr_observed": 75.4,
+     "hr_error": -3.1,
+     "theta": 0.868,
+     "theta_80": [
+      0.599,
+      1.257
+     ],
+     "personalisation_pct": 3.6,
+     "twin_cr": 1.115,
+     "truth_cr": 1.124
+    },
+    {
+     "date": "2024-05-25",
+     "weight_predicted": 61.31,
+     "weight_observed": 61.63,
+     "weight_error": 0.32,
+     "weight_mae_so_far": 0.199,
+     "hr_predicted": 78.8,
+     "hr_observed": 81.3,
+     "hr_error": 2.4,
+     "theta": 0.885,
+     "theta_80": [
+      0.612,
+      1.28
+     ],
+     "personalisation_pct": 4.0,
+     "twin_cr": 1.13,
+     "truth_cr": 1.141
+    },
+    {
+     "date": "2024-05-26",
+     "weight_predicted": 61.4,
+     "weight_observed": 61.62,
+     "weight_error": 0.22,
+     "weight_mae_so_far": 0.202,
+     "hr_predicted": 78.8,
+     "hr_observed": 79.3,
+     "hr_error": 0.4,
+     "theta": 0.887,
+     "theta_80": [
+      0.614,
+      1.282
+     ],
+     "personalisation_pct": 4.3,
+     "twin_cr": 1.145,
+     "truth_cr": 1.15
+    },
+    {
+     "date": "2024-05-27",
+     "weight_predicted": 61.31,
+     "weight_observed": 61.11,
+     "weight_error": -0.21,
+     "weight_mae_so_far": 0.203,
+     "hr_predicted": 79.3,
+     "hr_observed": 85.6,
+     "hr_error": 6.2,
+     "theta": 0.956,
+     "theta_80": [
+      0.664,
+      1.376
+     ],
+     "personalisation_pct": 5.3,
+     "twin_cr": 1.237,
+     "truth_cr": 1.217
+    },
+    {
+     "date": "2024-05-28",
+     "weight_predicted": 61.24,
+     "weight_observed": 61.48,
+     "weight_error": 0.25,
+     "weight_mae_so_far": 0.207,
+     "hr_predicted": 79.6,
+     "hr_observed": 82.8,
+     "hr_error": 3.2,
+     "theta": 0.98,
+     "theta_80": [
+      0.684,
+      1.403
+     ],
+     "personalisation_pct": 6.6,
+     "twin_cr": 1.318,
+     "truth_cr": 1.263
+    },
+    {
+     "date": "2024-05-29",
+     "weight_predicted": 61.31,
+     "weight_observed": 60.86,
+     "weight_error": -0.45,
+     "weight_mae_so_far": 0.232,
+     "hr_predicted": 79.6,
+     "hr_observed": 81.5,
+     "hr_error": 1.9,
+     "theta": 1.019,
+     "theta_80": [
+      0.715,
+      1.453
+     ],
+     "personalisation_pct": 7.7,
+     "twin_cr": 1.329,
+     "truth_cr": 1.254
+    },
+    {
+     "date": "2024-05-30",
+     "weight_predicted": 61.25,
+     "weight_observed": 61.44,
+     "weight_error": 0.19,
+     "weight_mae_so_far": 0.228,
+     "hr_predicted": 79.6,
+     "hr_observed": 76.7,
+     "hr_error": -2.8,
+     "theta": 0.982,
+     "theta_80": [
+      0.691,
+      1.395
+     ],
+     "personalisation_pct": 8.7,
+     "twin_cr": 1.267,
+     "truth_cr": 1.227
+    },
+    {
+     "date": "2024-05-31",
+     "weight_predicted": 61.27,
+     "weight_observed": 61.42,
+     "weight_error": 0.15,
+     "weight_mae_so_far": 0.221,
+     "hr_predicted": 79.5,
+     "hr_observed": 81.3,
+     "hr_error": 1.8,
+     "theta": 0.995,
+     "theta_80": [
+      0.703,
+      1.409
+     ],
+     "personalisation_pct": 9.6,
+     "twin_cr": 1.213,
+     "truth_cr": 1.189
+    }
+   ],
+   "weight_mae_first_half": 0.199,
+   "weight_mae_second_half": 0.243,
+   "sigma_weight_kg": 0.4,
+   "personalisation_pct_final": 9.6
+  }
+ }
+}

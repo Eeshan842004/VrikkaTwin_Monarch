@@ -21,14 +21,16 @@ from vrikka.config import DATA_DIR, REPORTS_DIR, SEED, param
 from vrikka.fastclock import frozen
 from vrikka.fastclock.alerts import AMBER, RED, alert_states
 from vrikka.fastclock.display import lab_egfr_status, risk_text
-from vrikka.fastclock.features import CORE
+from vrikka.fastclock.features import CORE, forecasts
 from vrikka.physiology.equations import egfr_ckd_epi_2021
+from vrikka.physiology.exposure import load_season
 from vrikka.slowclock.bayes_slope import fit_from_labs
 from vrikka.slowclock.kfre import kfre_panel
 from vrikka.slowclock.projection import project
 
 YEAR, REGIME = 2025, "mismatched"
 N_RED, N_AMBER, N_GREEN, HISTORY = 12, 10, 8, 14
+N_SUGGEST = 20       # suggested home kidney tests listed on the Kidney Weather card
 WARMUP_DAYS = 14      # every twin starts from population priors on 1 March; the demo day is chosen after warm-up
 LEVEL = {0: "green", 1: "amber", 2: "red"}
 
@@ -50,6 +52,36 @@ def generics(r) -> list[str]:
     if r.beta_blocker:
         out.append("metoprolol")
     return out
+
+
+def kidney_weather(df, pub, ids, lv, E, P, day: int, dates) -> dict:
+    """Tomorrow's Kidney Weather (optional feature b): tomorrow's forecast maximum per city (the same NOISY forecast
+    the fast clock used, issued at 09:00 on the demo day), today's level counts per city (today's 72-hour window
+    covers tomorrow) and the red patients, highest risk first, as today's suggested home kidney tests."""
+    weather = load_season(YEAR)
+    fc = forecasts(weather, len(dates), seed=SEED + 1000 * YEAR)[day]
+    tomorrow = dates[day + 1].date()
+    city_of = pub.loc[ids, "city"].to_numpy()
+    cities = {}
+    for c, f in fc.items():
+        tm = f[f["time"].dt.date == tomorrow]["temperature_2m"]
+        m = (city_of == c) & E[:, day]
+        arch = weather[c][pd.to_datetime(weather[c]["time"]).dt.date == tomorrow]["temperature_2m"]
+        cities[c] = {"forecast_tmax_tomorrow_c": round(float(tm.max()), 1) if len(tm) else None,
+                     "archived_tmax_tomorrow_c": round(float(arch.max()), 1) if len(arch) else None,
+                     "patients": int(m.sum()), "green": int((m & (lv[:, day] < AMBER)).sum()),
+                     "amber": int((m & (lv[:, day] == AMBER)).sum()), "red": int((m & (lv[:, day] == RED)).sum())}
+    red = np.where((lv[:, day] == RED) & E[:, day])[0]
+    red = red[np.argsort(-P[red, day])][:N_SUGGEST]
+    rows = df[(df["day"] == day) & df["patient_id"].isin(ids[red])].set_index("patient_id").loc[ids[red]]
+    rs = frozen.reasons(rows[list(CORE)].reset_index(drop=True))
+    suggest = [{"patient_id": pid, "city": city_of[i], "risk": round(float(P[i, day]), 4),
+                "risk_text": risk_text(float(P[i, day]))["text"], "top_reason": r[0]["i18n_key"] if r else None}
+               for i, pid, r in zip(red, ids[red], rs, strict=True)]
+    return {"tomorrow": str(tomorrow), "forecast": "noisy 72-h forecast issued 09:00 on the demo day (the fast clock's "
+            "input)", "levels_basis": "today's level (its 72-hour window covers tomorrow)", "cities": cities,
+            "suggested_tests_today": suggest, "suggested_rule": "every patient in the red state today (red = doctor "
+            "review + home kidney test, config/alert_policy.yaml), highest risk first"}
 
 
 def main() -> int:
@@ -150,6 +182,7 @@ def main() -> int:
         "panel_red_with_aki_within_72h": int(sum(o["truth_hidden"]["aki_onset_within_72h"] for o in out
                                                  if o["level"] == "red")),
     }
+    meta["kidney_weather"] = kidney_weather(df, pub, ids, lv, E, P, day, weather_dates)
     (REPORTS_DIR / "demo_triage_panel.json").write_text(json.dumps({**meta, "patients": out}, indent=1),
                                                         encoding="utf-8")
     print(json.dumps(meta, indent=1))

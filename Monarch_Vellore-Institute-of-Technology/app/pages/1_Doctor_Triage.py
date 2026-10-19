@@ -36,6 +36,23 @@ def reasons_text(r: dict) -> str:
     return "; ".join(t(k, L) for k in r.get("reasons", [])[:3])
 
 
+kw = meta.get("kidney_weather")
+if kw:
+    with st.container(border=True):
+        st.subheader(f"🌡️ Tomorrow's Kidney Weather ({kw['tomorrow']})")
+        st.caption(f"Forecast: {kw['forecast']}. Levels: {kw['levels_basis']}, frozen model M, all held-out test "
+                   "patients (synthetic).")
+        st.dataframe([{"city": c, "forecast max tomorrow (°C)": v["forecast_tmax_tomorrow_c"],
+                       "what ERA5 later recorded (°C)": v["archived_tmax_tomorrow_c"], "patients": v["patients"],
+                       word("green"): v["green"], word("amber"): v["amber"], word("red"): v["red"]}
+                      for c, v in sorted(kw["cities"].items(), key=lambda x: -x[1]["red"])],
+                     hide_index=True, width="stretch")
+        st.markdown(f"**Suggested home kidney tests today** ({kw['suggested_rule']}; showing "
+                    f"{len(kw['suggested_tests_today'])} of {sum(v['red'] for v in kw['cities'].values())})")
+        st.dataframe([{"patient": r["patient_id"], "city": r["city"], "72-h risk": r["risk_text"],
+                       "main reason": t(r["top_reason"], L) if r["top_reason"] else ""}
+                      for r in kw["suggested_tests_today"]], hide_index=True, width="stretch", height=250)
+
 tab1, tab2 = st.tabs([f"Synthetic panel scored by model M ({len(panel)})", f"Fictional personas ({len(personas)})"])
 with tab1:
     if meta:

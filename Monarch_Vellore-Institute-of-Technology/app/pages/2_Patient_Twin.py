@@ -6,6 +6,7 @@ import streamlit as st
 from components import charts
 from components.api_client import require, services
 from components.reports import report
+from components.summary import visit_summary_html
 from components.theme import SEQ, badge, frame, lang
 from components.twin_live import active_events, patient_context, replay_ctx, twin_state
 
@@ -52,6 +53,37 @@ act = active_events(pid, day)
 if act:
     st.caption("Reported today: " + ", ".join(act))
 
+st.divider()
+st.subheader("How well does the twin know this patient?")
+tf = report("twin_fit").get("personas", {}).get(pid)
+if tf:
+    days_fit = tf["days"][: day + 1]
+    xs = [d_["date"] for d_ in days_fit]
+    k1, k2, k3 = st.columns(3)
+    k1.metric("Weight prediction error so far (mean absolute)", f"{days_fit[-1]['weight_mae_so_far']:.2f} kg",
+              help=f"scale noise SD in the twin: {tf['sigma_weight_kg']} kg")
+    k2.metric("Learned sweat multiplier (80 % interval)",
+              f"{days_fit[-1]['theta']:.2f} ({days_fit[-1]['theta_80'][0]:.2f}-{days_fit[-1]['theta_80'][1]:.2f})",
+              help=f"demo world's true value {tf['theta_true_demo']}")
+    pers = days_fit[-1]["personalisation_pct"]
+    k3.metric("Personalisation progress", f"{pers:.0f} %" if pers > 0 else "no gain yet",
+              help="how much the uncertainty of the sweat multiplier has shrunk from the population prior")
+    k3.progress(min(max(pers / 100, 0.0), 1.0))
+    a1, a2 = st.columns(2)
+    with a1:
+        st.plotly_chart(charts.lines(xs, {"twin predicted": [d_["weight_predicted"] for d_ in days_fit],
+                                          "observed": [d_["weight_observed"] for d_ in days_fit]},
+                                     "Morning weight: predicted before seeing it vs observed", "kg"),
+                        width="stretch", theme="streamlit")
+    with a2:
+        st.plotly_chart(charts.lines(xs, {"weight error (kg)": [d_["weight_error"] for d_ in days_fit],
+                                          "running mean |error| (kg)": [d_["weight_mae_so_far"] for d_ in days_fit]},
+                                     "Prediction error trend", "kg", hline=(0.0, "no error")),
+                        width="stretch", theme="streamlit")
+    st.caption("Creatinine: no lab was drawn in this demo replay, so the twin's estimate is compared with the demo "
+               f"truth on the Time Machine page. Source: reports/twin_fit.json. {report('twin_fit').get('note', '')}.")
+else:
+    st.info("Run scripts/make_twin_fit.py to create reports/twin_fit.json.")
 st.divider()
 st.subheader("What if ... (72-hour twin simulation, same random draws for every row)")
 pctx = patient_context(pid, act)
@@ -100,6 +132,11 @@ st.plotly_chart(fig, width="stretch", theme="streamlit")
 st.caption("A lever changes the twin's next-72-hour inputs; the difference between rows is the lever, not simulation "
            "noise. Medicine pauses are individualised and the clinician decides; nothing here tells a patient to stop "
            "a medicine.")
+
+st.download_button("🖨️ " + t("summary.download", L),
+                   visit_summary_html({**rec, "level": level,
+                                       "risk_text": risk_text(risk, int(param("mc_draws_ui")))["text"]}, L, rows),
+                   file_name=f"visit_summary_{pid}_{dates[day] if dates else day}_{L}.html", mime="text/html")
 
 sick = guidance(pctx.generics, {"fever_excess_c": 1 if "fever" in act else 0,
                                 "vomit_episodes": 1 if "gi" in act else 0},

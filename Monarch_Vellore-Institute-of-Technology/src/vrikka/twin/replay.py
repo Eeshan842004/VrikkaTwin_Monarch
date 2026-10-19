@@ -19,6 +19,7 @@ from vrikka.physiology.exposure import cohort_hourly_sweat, forecast_weather, lo
 from vrikka.physiology.heat import heat_index_noaa
 from vrikka.physiology.pk_nsaid import activity_score, nsaid_units_from_tablets
 from vrikka.physiology.renal import INPUT_DEFAULTS, Params, simulate
+from vrikka.twin import measurement
 from vrikka.twin.risk_mc import aki_risk_72h
 from vrikka.twin.ukf_twin import KidneyTwin
 
@@ -55,6 +56,7 @@ class Replay:
     heat_index_rule: list = field(default_factory=list)
     whatif: dict = field(default_factory=dict)
     context: dict = field(default_factory=dict)       # twin + 72-h inputs captured on ``capture_day`` (live what-if)
+    fit: list = field(default_factory=list)            # per day: predicted vs observed morning readings, learned theta
 
     def summary(self) -> dict:
         onset = [i for i, s in enumerate(aki_onsets(np.array([self.truth_stage]))[0]) if s]
@@ -140,13 +142,18 @@ def replay(name: str, cfg: dict, year: int = 2024, lead_in: int = 7, after: int 
     for d in range(n_days):
         twin.predict(hours(d * 24 + 8, d * 24 + 32))
         i = (d + 1) * 24 + 7                                    # 08:00 of day d+1 (state after hour 07)
-        twin.update(weight=person["weight_kg"] - truth["v_tot"][i] + rng.normal(0, param("sigma_weight_kg")),
-                    hr=person["hr_base"] + (param("k_hr") * (param("k_hr_beta_blocker_mult") if person["beta_blocker"]
-                                                             else 1.0)) * truth["v_ecf"][i]
-                    + param("hr_fever_bpm_per_c") * ev["fever_excess_c"][i]
-                    + rng.normal(0, param("sigma_hr_bpm") * (param("sigma_hr_beta_blocker_mult")
-                                                             if person["beta_blocker"] else 1.0)),
-                    fever_excess_c=float(ev["fever_excess_c"][i]))
+        w_obs = person["weight_kg"] - truth["v_tot"][i] + rng.normal(0, param("sigma_weight_kg"))
+        hr_obs = (person["hr_base"] + (param("k_hr") * (param("k_hr_beta_blocker_mult") if person["beta_blocker"]
+                                                        else 1.0)) * truth["v_ecf"][i]
+                  + param("hr_fever_bpm_per_c") * ev["fever_excess_c"][i]
+                  + rng.normal(0, param("sigma_hr_bpm") * (param("sigma_hr_beta_blocker_mult")
+                                                           if person["beta_blocker"] else 1.0)))
+        pred = measurement.hx(twin.x, person["hr_base"], person["sbp_base"], person["beta_blocker"],
+                              float(ev["fever_excess_c"][i]))[0]          # what the twin expected this morning
+        rep.fit.append({"weight_predicted": float(pred[0]), "weight_observed": float(w_obs),
+                        "hr_predicted": float(pred[1]), "hr_observed": float(hr_obs)})
+        twin.update(weight=w_obs, hr=hr_obs, fever_excess_c=float(ev["fever_excess_c"][i]))
+        rep.fit[-1].update({"theta": twin.theta, "log_theta_sd": float(np.sqrt(max(twin.P[3, 3], 0.0)))})
         f_issue = i + 1
         fw = forecast_weather(w, f_issue, 72, rng)
         f_expo = cohort_hourly_sweat({person["city"]: fw}, people, start_hour=8)

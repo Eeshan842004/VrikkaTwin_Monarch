@@ -166,6 +166,15 @@ def main() -> int:
          "src/vrikka/physiology/potassium.py"),
         ("ABDM gateway / sandbox integration", "NOT BUILT (pattern demonstrated only)", "src/vrikka/interop/abdm_consent.py"),
         ("Hosted deployment", "NOT BUILT (Dockerfile ready, image not built)", "docker/Dockerfile, docs/DEPLOY.md"),
+        ("Optional a: 'How well does the twin know this patient?' (predicted vs observed morning weight, error trend, "
+         "personalisation progress of the sweat multiplier)", "BUILT", "app/pages/2_Patient_Twin.py, "
+         "scripts/make_twin_fit.py -> reports/twin_fit.json"),
+        ("Optional b: Tomorrow's Kidney Weather (forecast per city, green/amber/red counts, suggested home kidney "
+         "tests)", "BUILT", "app/pages/1_Doctor_Triage.py, scripts/make_triage_panel.py -> "
+         "reports/demo_triage_panel.json (kidney_weather)"),
+        ("Optional c: one-click printable visit summary in the patient's language with disclaimer", "BUILT",
+         "app/components/summary.py (Patient Twin and Patient and Family pages)"),
+        ("LLM chatbot, OCR", "NOT BUILT (by instruction)", "task list Step 3"),
     ]
     for i_, s_, f_ in mos:
         w(f"| {i_} | {s_} | {f_} |")

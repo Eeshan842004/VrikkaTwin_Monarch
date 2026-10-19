@@ -1,6 +1,6 @@
 # VrikkaTwin: build status and handoff
 
-Last updated 19 Oct 2026. Read this first if you are picking up the build. `PROGRESS.md` has the full log with every
+Last updated 19 Oct 2026 (after the optional features). Read this first if you are picking up the build. `PROGRESS.md` has the full log with every
 number and its source file; `reports/EVAL_PLAN.md` is the pre-registered evaluation plan (Amendments 1 and 2).
 
 **Deadlines:** team target is to submit on **Sun 18 Oct 2026, 16:00 IST**; the official Unstop deadline is
@@ -22,7 +22,7 @@ number and its source file; `reports/EVAL_PLAN.md` is the pre-registered evaluat
 | 7 | Streamlit pages + full evaluation (reproduction, robustness, subgroups, tornado) | **Done** | see `git log` |
 | 8 | README, docs, diagram, slides, draft video, Dockerfile | **Done**; human steps below | see `git log` |
 
-Tests: **214 collected, 213 pass, 1 skipped** (the MIMIC DuckDB data test; rebuild it with
+Tests: **219 collected, 218 pass, 1 skipped** (the MIMIC DuckDB data test; rebuild it with
 `scripts/build_validation_duckdb.py`), ruff clean.
 
 ---

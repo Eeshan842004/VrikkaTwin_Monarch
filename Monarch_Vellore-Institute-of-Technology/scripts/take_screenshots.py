@@ -23,10 +23,11 @@ W, H = 1600, 1000
 def ready(page: Page, extra: float = 2.0) -> None:
     page.wait_for_selector('[data-testid="stSidebar"]', timeout=180_000)
     t0 = time.time()
-    while time.time() - t0 < 240:
-        if page.locator('[data-testid="stStatusWidget"]').count() == 0:
-            break
-        time.sleep(0.5)
+    while time.time() - t0 < 3 and page.locator('[data-testid="stStatusWidget"]').count() == 0:
+        time.sleep(0.2)                                   # give a just-triggered rerun time to start
+    t0 = time.time()
+    while time.time() - t0 < 300 and page.locator('[data-testid="stStatusWidget"]').count() > 0:
+        time.sleep(0.5)                                   # then wait until it has finished
     time.sleep(extra)
 
 
@@ -35,6 +36,7 @@ def open_page(page: Page, path: str, login: str | None = None) -> None:
     ready(page)
     if login:
         page.locator('[data-testid="stSidebar"] button', has_text=login).first.click()
+        page.wait_for_selector("text=Logged in", timeout=300_000)
         ready(page, 3.0)
 
 
@@ -53,11 +55,13 @@ def main() -> int:
         page = browser.new_page(viewport={"width": W, "height": H})
 
         open_page(page, "Doctor_Triage", "Doctor")
-        shot(page, "01_doctor_triage")
+        shot(page, "11_kidney_weather")
+        shot(page, "01_doctor_triage", anchor="Synthetic panel scored by model M")
 
         open_page(page, "Patient_Twin", "Patient (Riya, fictional)")
         shot(page, "02_patient_twin_whatif", anchor="What if")
         shot(page, "03_slow_clock", anchor="Slow clock: long-term eGFR ranges")
+        shot(page, "10_twin_knows_patient", anchor="How well does the twin know this patient?")
 
         open_page(page, "Patient_Family", "Patient (Riya, fictional)")
         page.locator('[data-testid="stSidebar"] [data-testid="stSelectbox"]').first.click()
@@ -93,6 +97,18 @@ def main() -> int:
         page.get_by_role("tab", name="Who sees what").click()
         page.get_by_role("button", name="Reset the demo").click()
         ready(page, 3.0)
+
+        # one-click visit summary (Hindi), rendered from the same services the app uses
+        sys.path.insert(0, str(PROJECT_ROOT / "app"))
+        from components.summary import visit_summary_html
+
+        from vrikka.services import Services
+        sv = Services()
+        rec = sv.read_patient(sv.login("riya", "patient-demo"), "S1_riya")
+        page.set_viewport_size({"width": W, "height": H})
+        page.set_content(visit_summary_html(rec, "hi"))
+        time.sleep(1.0)
+        shot(page, "12_visit_summary_hindi", full=True)
         browser.close()
     return 0
 

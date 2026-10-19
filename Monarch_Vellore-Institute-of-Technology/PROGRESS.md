@@ -595,3 +595,28 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
 - **Left to the team (needs their accounts or a person):** push the commits (GitHub sign-in), record and upload the
   demo video and paste its link into `scripts/make_readme.py`, deploy to Hugging Face Spaces, make the repository
   public and check links logged-out, native-speaker and clinician review, submit on Unstop.
+
+
+## Final task list (19 Oct 2026): rename, presentation facts, optional features
+
+- **Persona renamed Kamala -> Riya** everywhere (code, configs, reports, tests, docs, slides, video); age, story and
+  "(fictional)" unchanged. `demo_numbers.json` and `slowclock_demo.json` regenerate byte for byte. Team line: Harshita
+  Kumar and Eeshan Gupta.
+- **Presentation facts:** `scripts/make_summary_reports.py` -> `reports/metrics.json`, `reports/reality_checks.json`
+  (consolidated copies of the existing reports) and `reports/feature_importance.json` (mean |TreeSHAP| of the frozen
+  M: the twin's predicted GFR minimum and creatinine peak rank first in 2025 and 2026); `docs/daily_flow.mmd` ->
+  `deliverables/daily_flow.pdf`; `scripts/take_screenshots.py` (Playwright, system Chrome) ->
+  `deliverables/screenshots/`; `scripts/make_ppt_facts.py` -> `PPT_FACTS.md` (repo root, gitignored).
+- **Optional a, "How well does the twin know this patient?"** (Patient Twin): `twin/replay.py` now records each
+  morning's predicted vs observed weight and HR and the learned sweat multiplier (no number changes);
+  `scripts/make_twin_fit.py` -> `reports/twin_fit.json`. Riya: weight prediction error 0.199 /
+  0.245 kg (first / second half; scale noise SD 0.4 kg, so the twin is
+  at the noise floor from the start) and the sweat-multiplier uncertainty shrinks by
+  16.4 % over the 12 days. Personas have no lab draws, so creatinine stays on the Time
+  Machine (twin estimate vs demo truth).
+- **Optional b, Tomorrow's Kidney Weather** (Doctor Triage): per city the noisy forecast maximum for 2025-05-20
+  next to what ERA5 recorded, today's green / amber / red counts of all held-out test patients (today's 72-h window
+  covers tomorrow) and the red patients, highest risk first, as suggested home kidney tests.
+- **Optional c, visit summary:** printable HTML in the patient's language (risk, reasons, what-if choices, last red
+  flag, next test, disclaimer) from the role-filtered record; patients and family now see their own risk reasons.
+- Tests: `test_app.py` gains the visit summary (4 languages) and report checks; 219 collected, 218 pass, 1 skipped.
