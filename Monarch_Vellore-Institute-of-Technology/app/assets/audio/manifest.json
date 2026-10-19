@@ -1,0 +1,114 @@
+{
+ "en/level_green": {
+  "file": "en/level_green.mp3",
+  "text": "Green: low risk. Carry on as usual: drink water through the day and rest in the shade when it is hot."
+ },
+ "en/level_amber": {
+  "file": "en/level_amber.mp3",
+  "text": "Amber: risk is building. Take care today: drink ORS or fluids within your limits, avoid painkillers like ibuprofen or diclofenac, and stay in the shade."
+ },
+ "en/level_red": {
+  "file": "en/level_red.mp3",
+  "text": "Red: high risk. A doctor should review today and a home kidney blood test is advised."
+ },
+ "en/level_purple": {
+  "file": "en/level_purple.mp3",
+  "text": "Purple: kidney injury confirmed by a lab test. The lab test shows kidney injury: follow your doctor's plan today."
+ },
+ "en/redflag_heatstroke_body": {
+  "file": "en/redflag_heatstroke_body.mp3",
+  "text": "Possible heatstroke. Call 108 / 112 now. Move to shade and cool the body. Do not give anything to drink if the person is confused or not fully awake."
+ },
+ "en/redflag_kidney_test_today_body": {
+  "file": "en/redflag_kidney_test_today_body.mp3",
+  "text": "See a doctor today; a kidney blood test is needed."
+ },
+ "en/redflag_vomiting_review_body": {
+  "file": "en/redflag_vomiting_review_body.mp3",
+  "text": "Vomiting has stopped fluids staying down for more than 6 hours. See a doctor today."
+ },
+ "hi/level_green": {
+  "file": "hi/level_green.mp3",
+  "text": "हरा: कम जोखिम. सामान्य रूप से चलते रहें: दिन भर पानी पिएँ और गर्मी में छाया में आराम करें।"
+ },
+ "hi/level_amber": {
+  "file": "hi/level_amber.mp3",
+  "text": "पीला: जोखिम बढ़ रहा है. आज ध्यान रखें: अपनी सीमा में ORS या तरल पिएँ, आइबुप्रोफ़ेन या डाइक्लोफ़ेनाक जैसी दर्द की दवा से बचें, और छाया में रहें।"
+ },
+ "hi/level_red": {
+  "file": "hi/level_red.mp3",
+  "text": "लाल: ज़्यादा जोखिम. आज डॉक्टर को दिखाना चाहिए और घर पर किडनी की खून की जाँच की सलाह है।"
+ },
+ "hi/level_purple": {
+  "file": "hi/level_purple.mp3",
+  "text": "बैंगनी: लैब जाँच से किडनी की चोट पक्की. लैब जाँच में किडनी की चोट दिखी है: आज अपने डॉक्टर की योजना का पालन करें।"
+ },
+ "hi/redflag_heatstroke_body": {
+  "file": "hi/redflag_heatstroke_body.mp3",
+  "text": "संभावित लू (हीटस्ट्रोक)। अभी 108 / 112 पर कॉल करें। व्यक्ति को छाया में ले जाएँ और शरीर को ठंडा करें। अगर व्यक्ति भ्रमित है या पूरी तरह होश में नहीं है, तो उसे कुछ भी पीने को न दें।"
+ },
+ "hi/redflag_kidney_test_today_body": {
+  "file": "hi/redflag_kidney_test_today_body.mp3",
+  "text": "आज ही डॉक्टर को दिखाएँ; किडनी की खून की जाँच ज़रूरी है।"
+ },
+ "hi/redflag_vomiting_review_body": {
+  "file": "hi/redflag_vomiting_review_body.mp3",
+  "text": "उल्टी के कारण 6 घंटे से ज़्यादा समय से पानी या कोई तरल पेट में नहीं टिक रहा। आज ही डॉक्टर को दिखाएँ।"
+ },
+ "kn/level_green": {
+  "file": "kn/level_green.mp3",
+  "text": "ಹಸಿರು: ಕಡಿಮೆ ಅಪಾಯ. ಎಂದಿನಂತೆ ಮುಂದುವರಿಯಿರಿ: ದಿನವಿಡೀ ನೀರು ಕುಡಿಯಿರಿ ಮತ್ತು ಬಿಸಿಲಿನಲ್ಲಿ ನೆರಳಿನಲ್ಲಿ ವಿಶ್ರಾಂತಿ ಪಡೆಯಿರಿ."
+ },
+ "kn/level_amber": {
+  "file": "kn/level_amber.mp3",
+  "text": "ಹಳದಿ: ಅಪಾಯ ಹೆಚ್ಚುತ್ತಿದೆ. ಇಂದು ಎಚ್ಚರವಾಗಿರಿ: ನಿಮ್ಮ ಮಿತಿಯೊಳಗೆ ORS ಅಥವಾ ದ್ರವ ಕುಡಿಯಿರಿ, ಐಬುಪ್ರೊಫೆನ್ ಅಥವಾ ಡೈಕ್ಲೋಫೆನಾಕ್‌ನಂತಹ ನೋವಿನ ಮಾತ್ರೆ ತಪ್ಪಿಸಿ, ನೆರಳಿನಲ್ಲಿರಿ."
+ },
+ "kn/level_red": {
+  "file": "kn/level_red.mp3",
+  "text": "ಕೆಂಪು: ಹೆಚ್ಚಿನ ಅಪಾಯ. ಇಂದೇ ವೈದ್ಯರು ನೋಡಬೇಕು ಮತ್ತು ಮನೆಯಲ್ಲಿ ಕಿಡ್ನಿ ರಕ್ತ ಪರೀಕ್ಷೆ ಮಾಡಿಸಲು ಸಲಹೆ."
+ },
+ "kn/level_purple": {
+  "file": "kn/level_purple.mp3",
+  "text": "ನೇರಳೆ: ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಯಿಂದ ಕಿಡ್ನಿ ಗಾಯ ದೃಢಪಟ್ಟಿದೆ. ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಯಲ್ಲಿ ಕಿಡ್ನಿ ಗಾಯ ಕಂಡಿದೆ: ಇಂದು ನಿಮ್ಮ ವೈದ್ಯರ ಯೋಜನೆ ಅನುಸರಿಸಿ."
+ },
+ "kn/redflag_heatstroke_body": {
+  "file": "kn/redflag_heatstroke_body.mp3",
+  "text": "ಬಿಸಿಲಿನ ಆಘಾತ (ಹೀಟ್‌ಸ್ಟ್ರೋಕ್) ಆಗಿರಬಹುದು. ಈಗಲೇ 108 / 112 ಗೆ ಕರೆ ಮಾಡಿ. ವ್ಯಕ್ತಿಯನ್ನು ನೆರಳಿಗೆ ಕರೆದೊಯ್ದು ದೇಹವನ್ನು ತಣ್ಣಗಾಗಿಸಿ. ವ್ಯಕ್ತಿ ಗೊಂದಲದಲ್ಲಿದ್ದರೆ ಅಥವಾ ಪೂರ್ಣ ಎಚ್ಚರದಲ್ಲಿ ಇಲ್ಲದಿದ್ದರೆ ಕುಡಿಯಲು ಏನನ್ನೂ ಕೊಡಬೇಡಿ."
+ },
+ "kn/redflag_kidney_test_today_body": {
+  "file": "kn/redflag_kidney_test_today_body.mp3",
+  "text": "ಇಂದೇ ವೈದ್ಯರನ್ನು ಭೇಟಿ ಮಾಡಿ; ಮೂತ್ರಪಿಂಡದ ರಕ್ತ ಪರೀಕ್ಷೆ ಅಗತ್ಯ."
+ },
+ "kn/redflag_vomiting_review_body": {
+  "file": "kn/redflag_vomiting_review_body.mp3",
+  "text": "ವಾಂತಿಯಿಂದಾಗಿ 6 ಗಂಟೆಗಳಿಗಿಂತ ಹೆಚ್ಚು ಕಾಲ ದ್ರವ ಹೊಟ್ಟೆಯಲ್ಲಿ ನಿಲ್ಲುತ್ತಿಲ್ಲ. ಇಂದೇ ವೈದ್ಯರನ್ನು ಭೇಟಿ ಮಾಡಿ."
+ },
+ "te/level_green": {
+  "file": "te/level_green.mp3",
+  "text": "ఆకుపచ్చ: తక్కువ ప్రమాదం. ఎప్పటిలాగే కొనసాగండి: రోజంతా నీళ్లు తాగండి, ఎండగా ఉన్నప్పుడు నీడలో విశ్రాంతి తీసుకోండి."
+ },
+ "te/level_amber": {
+  "file": "te/level_amber.mp3",
+  "text": "పసుపు: ప్రమాదం పెరుగుతోంది. ఈరోజు జాగ్రత్తగా ఉండండి: మీ పరిమితిలో ORS లేదా ద్రవాలు తాగండి, ఐబుప్రొఫెన్ లేదా డైక్లోఫెనాక్ వంటి నొప్పి మాత్రలు వద్దు, నీడలో ఉండండి."
+ },
+ "te/level_red": {
+  "file": "te/level_red.mp3",
+  "text": "ఎరుపు: ఎక్కువ ప్రమాదం. ఈరోజే డాక్టర్ చూడాలి, ఇంట్లో కిడ్నీ రక్త పరీక్ష చేయించుకోవాలని సూచన."
+ },
+ "te/level_purple": {
+  "file": "te/level_purple.mp3",
+  "text": "ఊదా: ల్యాబ్ పరీక్షతో కిడ్నీ గాయం నిర్ధారణ అయింది. ల్యాబ్ పరీక్షలో కిడ్నీ గాయం కనిపించింది: ఈరోజు మీ డాక్టర్ ప్రణాళికను పాటించండి."
+ },
+ "te/redflag_heatstroke_body": {
+  "file": "te/redflag_heatstroke_body.mp3",
+  "text": "వడదెబ్బ (హీట్‌స్ట్రోక్) అయి ఉండవచ్చు. వెంటనే 108 / 112 కు కాల్ చేయండి. వ్యక్తిని నీడలోకి తీసుకెళ్లి శరీరాన్ని చల్లబరచండి. వ్యక్తి గందరగోళంగా ఉంటే లేదా పూర్తిగా స్పృహలో లేకపోతే తాగడానికి ఏమీ ఇవ్వవద్దు."
+ },
+ "te/redflag_kidney_test_today_body": {
+  "file": "te/redflag_kidney_test_today_body.mp3",
+  "text": "ఈరోజే డాక్టర్‌ను కలవండి; కిడ్నీ రక్త పరీక్ష అవసరం."
+ },
+ "te/redflag_vomiting_review_body": {
+  "file": "te/redflag_vomiting_review_body.mp3",
+  "text": "వాంతుల వల్ల 6 గంటలకు పైగా ద్రవాలు కడుపులో నిలవడం లేదు. ఈరోజే డాక్టర్‌ను కలవండి."
+ }
+}

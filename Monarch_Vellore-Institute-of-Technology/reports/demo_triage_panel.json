@@ -1,0 +1,6209 @@
+{
+ "source": "held-out 2025 test season, mismatched (headline) world; synthetic patients (fictional)",
+ "model": "frozen hybrid model M (Part 4): frozen isotonic map, thresholds, hysteresis and 72-h de-duplication",
+ "demo_day": 79,
+ "demo_date": "2025-05-19",
+ "warmup_days_excluded": 14,
+ "red_state_on_day_0": 285,
+ "red_state_per_day_median_after_warmup": 24.0,
+ "patients_in_red_state_that_day": 65,
+ "patients_in_amber_state_that_day": 612,
+ "eligible_patients_that_day": 4962,
+ "red_threshold": 0.013333,
+ "amber_threshold": 0.002809,
+ "panel": {
+  "red": 12,
+  "amber": 10,
+  "green": 8
+ },
+ "panel_red_with_aki_within_72h": 1,
+ "patients": [
+  {
+   "patient_id": "T02142",
+   "label": "Synthetic patient T02142 (fictional)",
+   "age": 78,
+   "female": true,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "home",
+   "tier": "T0",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 35.1,
+   "cr_baseline": 1.512,
+   "uacr_mg_g": 19.6,
+   "last_potassium": 4.1,
+   "cyp2c9": "*2/*3",
+   "generics": [
+    "telmisartan",
+    "metformin",
+    "amlodipine",
+    "metoprolol"
+   ],
+   "risk": 0.21052631578947367,
+   "risk_text": "21%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.egfr_baseline",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    1.628,
+    1.113,
+    0.92
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00243,
+     0.00789,
+     0.00243,
+     0.00243,
+     0.00789,
+     0.00377,
+     0.00281,
+     0.00444,
+     0.00377,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.01333,
+     0.21053
+    ],
+    "level": [
+     "green",
+     "amber",
+     "green",
+     "green",
+     "amber",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red",
+     "red"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     0.6,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.0,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.76,
+    "gfr_frac": 0.925,
+    "cr_ratio": 1.148,
+    "theta": 1.12
+   },
+   "last_lab": {
+    "day": 65,
+    "creatinine_mg_dl": 1.669,
+    "egfr": 31.2,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.0052461535547913,
+    "risk_5y": 0.020161656228413816,
+    "referral_prompt": false,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -6.63,
+     -0.44
+    ],
+    "egfr_10y_range": [
+     0.0,
+     0.0,
+     29.5
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "0-8.5 years",
+     "g5": "2.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04443",
+   "label": "Synthetic patient T04443 (fictional)",
+   "age": 49,
+   "female": true,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 98.1,
+   "cr_baseline": 0.746,
+   "uacr_mg_g": 23.3,
+   "last_potassium": 4.1,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "ramipril",
+    "amlodipine"
+   ],
+   "risk": 0.21052631578947367,
+   "risk_text": "21%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.rep_gi_episodes",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    2.287,
+    1.383,
+    1.207
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00444,
+     0.00789,
+     0.00377,
+     0.00328,
+     0.00789,
+     0.00377,
+     0.00789,
+     0.0048,
+     0.00789,
+     0.0048,
+     0.00377,
+     0.00377,
+     0.00444,
+     0.21053
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red"
+    ],
+    "steps": [
+     13100,
+     null,
+     14250,
+     12360,
+     11880,
+     10380,
+     14280,
+     16510,
+     null,
+     14880,
+     null,
+     null,
+     13150,
+     12160
+    ],
+    "sleep_h": [
+     6.7,
+     null,
+     6.3,
+     6.5,
+     6.5,
+     6.6,
+     7.0,
+     6.8,
+     null,
+     6.9,
+     null,
+     null,
+     7.2,
+     6.5
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.6,
+     -0.6,
+     -0.2,
+     null,
+     -0.7,
+     0.2,
+     -0.5,
+     0.0,
+     -1.0,
+     -1.5,
+     -1.0,
+     -1.1,
+     -1.0
+    ],
+    "hr_delta_bpm": [
+     -3.8,
+     null,
+     -0.8,
+     5.2,
+     3.2,
+     8.2,
+     1.2,
+     7.2,
+     null,
+     6.2,
+     null,
+     null,
+     12.2,
+     14.2
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.82,
+    "gfr_frac": 0.597,
+    "cr_ratio": 1.384,
+    "theta": 2.198
+   },
+   "last_lab": {
+    "day": 3,
+    "creatinine_mg_dl": 0.782,
+    "egfr": 92.8,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.65,
+     0.61
+    ],
+    "egfr_10y_range": [
+     38.5,
+     70.8,
+     102.9
+    ],
+    "years_to": {
+     "g3a": "6.2 to more than 15 years",
+     "g4": "11.5 to more than 15 years",
+     "g5": "14.2 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T01501",
+   "label": "Synthetic patient T01501 (fictional)",
+   "age": 66,
+   "female": false,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 45.4,
+   "cr_baseline": 1.653,
+   "uacr_mg_g": 610.1,
+   "last_potassium": 4.9,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan",
+    "empagliflozin",
+    "metformin",
+    "amlodipine"
+   ],
+   "risk": 0.21052631578947367,
+   "risk_text": "21%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.egfr_baseline"
+   ],
+   "reason_contributions": [
+    2.417,
+    1.093,
+    0.933
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.01333,
+     0.12281,
+     0.01333,
+     0.00789,
+     0.04651,
+     0.03162,
+     0.03162,
+     0.03162,
+     0.03162,
+     0.04651,
+     0.03162,
+     0.02679,
+     0.12281,
+     0.21053
+    ],
+    "level": [
+     "red",
+     "red",
+     "red",
+     "amber",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red"
+    ],
+    "steps": [
+     13230,
+     14780,
+     14290,
+     16080,
+     null,
+     12320,
+     14100,
+     13450,
+     null,
+     12380,
+     12780,
+     13790,
+     13190,
+     13530
+    ],
+    "sleep_h": [
+     7.0,
+     6.0,
+     7.3,
+     7.7,
+     null,
+     6.1,
+     7.4,
+     7.3,
+     null,
+     6.7,
+     5.4,
+     6.9,
+     5.5,
+     6.5
+    ],
+    "wt_vs_dry_kg": [
+     -1.0,
+     -0.9,
+     -2.4,
+     -0.4,
+     -1.5,
+     -1.8,
+     null,
+     -1.7,
+     -1.1,
+     -1.6,
+     -1.6,
+     -1.8,
+     -1.8,
+     -1.6
+    ],
+    "hr_delta_bpm": [
+     2.9,
+     3.9,
+     2.9,
+     -3.1,
+     null,
+     11.9,
+     6.9,
+     4.9,
+     null,
+     7.9,
+     6.9,
+     -0.1,
+     10.9,
+     3.9
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 1.0,
+    "gfr_frac": 0.942,
+    "cr_ratio": 1.192,
+    "theta": 1.137
+   },
+   "last_lab": {
+    "day": 66,
+    "creatinine_mg_dl": 1.773,
+    "egfr": 41.8,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.013041875995488672,
+    "risk_5y": 0.04956269122087775,
+    "referral_prompt": false,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "dkd_albuminuria",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -9.51,
+     -3.31
+    ],
+    "egfr_10y_range": [
+     0.0,
+     0.0,
+     10.9
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "1.2-4.5 years",
+     "g5": "3-8.8 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04156",
+   "label": "Synthetic patient T04156 (fictional)",
+   "age": 43,
+   "female": true,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 49.5,
+   "cr_baseline": 1.362,
+   "uacr_mg_g": 12.8,
+   "last_potassium": 4.9,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "ramipril",
+    "amlodipine"
+   ],
+   "risk": 0.21052631578947367,
+   "risk_text": "21%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    2.333,
+    1.091,
+    0.84
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00789,
+     0.01633,
+     0.00789,
+     0.00789,
+     0.02679,
+     0.00377,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.01333,
+     0.21053
+    ],
+    "level": [
+     "amber",
+     "red",
+     "amber",
+     "amber",
+     "red",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red",
+     "red"
+    ],
+    "steps": [
+     11550,
+     12720,
+     13150,
+     14690,
+     12950,
+     null,
+     14390,
+     15640,
+     11530,
+     12560,
+     null,
+     14530,
+     12730,
+     9650
+    ],
+    "sleep_h": [
+     5.3,
+     5.1,
+     6.4,
+     7.2,
+     5.9,
+     null,
+     7.2,
+     6.7,
+     5.9,
+     6.2,
+     null,
+     5.4,
+     7.1,
+     6.2
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.6,
+     null,
+     null,
+     -0.3,
+     -1.0,
+     -0.8,
+     -0.8,
+     null,
+     -1.0,
+     -1.0,
+     -1.2,
+     -0.9,
+     -0.6
+    ],
+    "hr_delta_bpm": [
+     6.7,
+     5.7,
+     1.7,
+     2.7,
+     0.7,
+     null,
+     -0.3,
+     2.7,
+     4.7,
+     12.7,
+     null,
+     5.7,
+     6.7,
+     2.7
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.98,
+    "gfr_frac": 0.964,
+    "cr_ratio": 1.115,
+    "theta": 1.157
+   },
+   "last_lab": {
+    "day": 37,
+    "creatinine_mg_dl": 1.385,
+    "egfr": 48.5,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.00188526904923203,
+    "risk_5y": 0.00728041442094951,
+    "referral_prompt": false,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 4,
+    "slope_range_per_year": [
+     -4.41,
+     1.79
+    ],
+    "egfr_10y_range": [
+     3.2,
+     34.4,
+     66.7
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "3.8 to more than 15 years",
+     "g5": "7.2 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T03385",
+   "label": "Synthetic patient T03385 (fictional)",
+   "age": 69,
+   "female": false,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 60.0,
+   "cr_baseline": 1.29,
+   "uacr_mg_g": 5.2,
+   "last_potassium": 4.5,
+   "cyp2c9": "*1/*3",
+   "generics": [
+    "telmisartan",
+    "furosemide",
+    "amlodipine"
+   ],
+   "risk": 0.21052631578947367,
+   "risk_text": "21%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    2.472,
+    0.917,
+    0.799
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.01333,
+     0.00789,
+     0.01333,
+     0.00789,
+     0.01333,
+     0.00789,
+     0.01633,
+     0.21053
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red",
+     "amber",
+     "red",
+     "amber",
+     "red",
+     "amber",
+     "red",
+     "red"
+    ],
+    "steps": [
+     11510,
+     11260,
+     13570,
+     12000,
+     15850,
+     11320,
+     13170,
+     11090,
+     12240,
+     13390,
+     13470,
+     null,
+     13930,
+     14790
+    ],
+    "sleep_h": [
+     6.1,
+     6.8,
+     5.9,
+     5.8,
+     5.6,
+     7.5,
+     6.1,
+     6.3,
+     5.5,
+     6.7,
+     6.9,
+     null,
+     6.8,
+     7.2
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -1.2,
+     -1.1,
+     -0.7,
+     -1.6,
+     null,
+     -1.4,
+     null,
+     null,
+     -1.8,
+     -1.5,
+     -2.2,
+     -2.2,
+     -1.7
+    ],
+    "hr_delta_bpm": [
+     12.3,
+     -5.7,
+     6.3,
+     11.3,
+     -3.7,
+     5.3,
+     4.3,
+     3.3,
+     4.3,
+     6.3,
+     7.3,
+     null,
+     6.3,
+     11.3
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.94,
+    "gfr_frac": 0.866,
+    "cr_ratio": 1.205,
+    "theta": 0.914
+   },
+   "last_lab": {
+    "day": 2,
+    "creatinine_mg_dl": 1.272,
+    "egfr": 61.0,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.03,
+     1.23
+    ],
+    "egfr_10y_range": [
+     10.5,
+     42.9,
+     75.0
+    ],
+    "years_to": {
+     "g3a": "0 to more than 15 years",
+     "g4": "6.2 to more than 15 years",
+     "g5": "9.2 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T00255",
+   "label": "Synthetic patient T00255 (fictional)",
+   "age": 67,
+   "female": false,
+   "city": "Chennai",
+   "language": "en",
+   "occupation": "office",
+   "tier": "T2",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 37.2,
+   "cr_baseline": 1.942,
+   "uacr_mg_g": 258.4,
+   "last_potassium": 4.8,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan"
+   ],
+   "risk": 0.12280701754385964,
+   "risk_text": "12%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_cr_peak_ratio",
+    "reason.mc_gfr_min_frac",
+    "reason.rep_gi_episodes"
+   ],
+   "reason_contributions": [
+    1.094,
+    0.971,
+    0.898
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.01333,
+     0.0048,
+     0.00231,
+     0.00231,
+     0.00031,
+     0.00066,
+     0.00066,
+     0.00143,
+     0.00066,
+     0.00115,
+     0.00122,
+     0.00143,
+     0.00122,
+     0.12281
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "red"
+    ],
+    "steps": [
+     3690,
+     3130,
+     5150,
+     6840,
+     5270,
+     null,
+     null,
+     4970,
+     3360,
+     5020,
+     4300,
+     7870,
+     null,
+     4590
+    ],
+    "sleep_h": [
+     7.3,
+     6.2,
+     7.5,
+     6.9,
+     7.4,
+     null,
+     null,
+     5.7,
+     7.2,
+     7.2,
+     7.1,
+     6.8,
+     null,
+     7.3
+    ],
+    "wt_vs_dry_kg": [
+     -2.0,
+     -1.3,
+     -0.4,
+     -0.5,
+     null,
+     -0.6,
+     -0.3,
+     null,
+     null,
+     -0.9,
+     -0.6,
+     -1.5,
+     null,
+     -0.7
+    ],
+    "hr_delta_bpm": [
+     7.2,
+     8.2,
+     -5.8,
+     2.2,
+     -6.8,
+     null,
+     null,
+     5.2,
+     -0.8,
+     0.2,
+     -0.8,
+     6.2,
+     null,
+     2.2
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 1.0,
+    "gfr_frac": 0.94,
+    "cr_ratio": 1.024,
+    "theta": 1.07
+   },
+   "last_lab": {
+    "day": 23,
+    "creatinine_mg_dl": 1.853,
+    "egfr": 39.4,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.021485949131308746,
+    "risk_5y": 0.08066518251625987,
+    "referral_prompt": true,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.37,
+     1.87
+    ],
+    "egfr_10y_range": [
+     0.0,
+     24.7,
+     56.6
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "1.2 to more than 15 years",
+     "g5": "5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04418",
+   "label": "Synthetic patient T04418 (fictional)",
+   "age": 66,
+   "female": false,
+   "city": "Hyderabad",
+   "language": "te",
+   "occupation": "home",
+   "tier": "T0",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 91.1,
+   "cr_baseline": 0.925,
+   "uacr_mg_g": 17.1,
+   "last_potassium": 4.4,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "hydrochlorothiazide"
+   ],
+   "risk": 0.12280701754385964,
+   "risk_text": "12%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.rep_gi_episodes",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    1.477,
+    1.455,
+    1.177
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00122,
+     0.00143,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00122,
+     0.00031,
+     0.00031,
+     0.12281
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "red"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.6,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -0.4,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.96,
+    "gfr_frac": 0.661,
+    "cr_ratio": 1.282,
+    "theta": 1.044
+   },
+   "last_lab": {
+    "day": 68,
+    "creatinine_mg_dl": 0.919,
+    "egfr": 91.9,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.06,
+     1.13
+    ],
+    "egfr_10y_range": [
+     40.2,
+     72.4,
+     104.0
+    ],
+    "years_to": {
+     "g3a": "6.2 to more than 15 years",
+     "g4": "12.2 to more than 15 years",
+     "g5": "more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": true,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T03801",
+   "label": "Synthetic patient T03801 (fictional)",
+   "age": 67,
+   "female": false,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 96.8,
+   "cr_baseline": 0.805,
+   "uacr_mg_g": 11.3,
+   "last_potassium": 4.9,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "ramipril",
+    "metoprolol"
+   ],
+   "risk": 0.046511627906976744,
+   "risk_text": "5%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    1.916,
+    0.96,
+    0.808
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00231,
+     0.00789,
+     0.00377,
+     0.00377,
+     0.00789,
+     0.00377,
+     0.00444,
+     0.00789,
+     0.01333,
+     0.01333,
+     0.02679,
+     0.00789,
+     0.01633,
+     0.04651
+    ],
+    "level": [
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red",
+     "red",
+     "red",
+     "amber",
+     "red",
+     "red"
+    ],
+    "steps": [
+     14760,
+     13950,
+     16250,
+     null,
+     null,
+     13280,
+     13140,
+     null,
+     11940,
+     14540,
+     13720,
+     null,
+     14600,
+     13810
+    ],
+    "sleep_h": [
+     6.6,
+     6.8,
+     6.8,
+     null,
+     null,
+     6.3,
+     8.4,
+     null,
+     6.8,
+     6.7,
+     6.7,
+     null,
+     7.8,
+     7.1
+    ],
+    "wt_vs_dry_kg": [
+     -1.1,
+     0.2,
+     null,
+     -1.2,
+     -1.3,
+     -1.4,
+     null,
+     null,
+     -0.4,
+     -1.4,
+     -2.0,
+     -1.4,
+     null,
+     -3.0
+    ],
+    "hr_delta_bpm": [
+     -9.9,
+     -3.9,
+     5.1,
+     null,
+     null,
+     -2.9,
+     8.1,
+     null,
+     3.1,
+     1.1,
+     10.1,
+     null,
+     -7.9,
+     -1.9
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.6,
+    "gfr_frac": 0.801,
+    "cr_ratio": 1.496,
+    "theta": 1.167
+   },
+   "last_lab": {
+    "day": 4,
+    "creatinine_mg_dl": 0.839,
+    "egfr": 95.6,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.72,
+     1.55
+    ],
+    "egfr_10y_range": [
+     47.9,
+     80.2,
+     112.3
+    ],
+    "years_to": {
+     "g3a": "7.5 to more than 15 years",
+     "g4": "14 to more than 15 years",
+     "g5": "more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T00569",
+   "label": "Synthetic patient T00569 (fictional)",
+   "age": 42,
+   "female": false,
+   "city": "Chennai",
+   "language": "en",
+   "occupation": "construction_farm",
+   "tier": "T2",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": true,
+   "egfr_baseline": 89.8,
+   "cr_baseline": 1.061,
+   "uacr_mg_g": 10.1,
+   "last_potassium": 4.1,
+   "cyp2c9": "*1/*3",
+   "generics": [
+    "telmisartan",
+    "metoprolol"
+   ],
+   "risk": 0.046511627906976744,
+   "risk_text": "5%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.rep_gi_episodes",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    2.146,
+    1.133,
+    1.097
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00243,
+     0.00231,
+     0.00231,
+     0.00231,
+     0.00243,
+     0.00231,
+     0.00243,
+     0.00231,
+     0.00231,
+     0.00231,
+     0.00243,
+     0.21053,
+     0.21053,
+     0.04651
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "red",
+     "red",
+     "red"
+    ],
+    "steps": [
+     14420,
+     11760,
+     null,
+     14700,
+     13340,
+     null,
+     12760,
+     null,
+     12960,
+     15280,
+     12210,
+     null,
+     13060,
+     13760
+    ],
+    "sleep_h": [
+     6.6,
+     6.2,
+     null,
+     7.9,
+     6.8,
+     null,
+     6.8,
+     null,
+     6.5,
+     6.6,
+     6.5,
+     null,
+     7.0,
+     6.2
+    ],
+    "wt_vs_dry_kg": [
+     -1.4,
+     -0.8,
+     null,
+     -1.1,
+     null,
+     -0.6,
+     -1.6,
+     null,
+     -1.1,
+     -0.8,
+     null,
+     -1.2,
+     -1.0,
+     -2.0
+    ],
+    "hr_delta_bpm": [
+     3.6,
+     -1.4,
+     null,
+     -3.4,
+     1.6,
+     null,
+     6.6,
+     null,
+     -1.4,
+     6.6,
+     3.6,
+     null,
+     10.6,
+     -2.4
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 0.545,
+    "cr_ratio": 1.913,
+    "theta": 1.038
+   },
+   "last_lab": {
+    "day": 65,
+    "creatinine_mg_dl": 1.042,
+    "egfr": 91.7,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.52,
+     0.68
+    ],
+    "egfr_10y_range": [
+     38.6,
+     70.9,
+     102.5
+    ],
+    "years_to": {
+     "g3a": "6.2 to more than 15 years",
+     "g4": "11.8 to more than 15 years",
+     "g5": "14.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04798",
+   "label": "Synthetic patient T04798 (fictional)",
+   "age": 58,
+   "female": false,
+   "city": "Chennai",
+   "language": "en",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 45.9,
+   "cr_baseline": 1.708,
+   "uacr_mg_g": 5.9,
+   "last_potassium": 4.7,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan"
+   ],
+   "risk": 0.03162055335968379,
+   "risk_text": "3%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.egfr_baseline"
+   ],
+   "reason_contributions": [
+    1.595,
+    0.81,
+    0.665
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.03162,
+     0.01333,
+     0.03162,
+     0.01333,
+     0.00789,
+     0.01333,
+     0.03162,
+     0.02679,
+     0.03162,
+     0.04651,
+     0.03162,
+     0.00789,
+     0.00789,
+     0.03162
+    ],
+    "level": [
+     "red",
+     "red",
+     "red",
+     "red",
+     "amber",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "red",
+     "amber",
+     "amber",
+     "red"
+    ],
+    "steps": [
+     13090,
+     13430,
+     null,
+     14940,
+     null,
+     null,
+     11570,
+     14710,
+     13260,
+     null,
+     12700,
+     12540,
+     13190,
+     16050
+    ],
+    "sleep_h": [
+     8.0,
+     7.5,
+     null,
+     6.1,
+     null,
+     null,
+     6.5,
+     7.8,
+     7.8,
+     null,
+     7.1,
+     6.6,
+     7.3,
+     6.4
+    ],
+    "wt_vs_dry_kg": [
+     -1.2,
+     -1.1,
+     -1.7,
+     null,
+     -1.5,
+     -0.9,
+     -1.1,
+     -1.6,
+     -1.4,
+     null,
+     null,
+     -1.3,
+     -1.1,
+     -0.9
+    ],
+    "hr_delta_bpm": [
+     7.0,
+     4.0,
+     null,
+     10.0,
+     null,
+     null,
+     5.0,
+     10.0,
+     12.0,
+     null,
+     7.0,
+     10.0,
+     14.0,
+     10.0
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.5,
+    "gfr_frac": 0.968,
+    "cr_ratio": 1.163,
+    "theta": 1.859
+   },
+   "last_lab": {
+    "day": 47,
+    "creatinine_mg_dl": 2.019,
+    "egfr": 37.5,
+    "reliable": false,
+    "tag_key": "egfr.not_reliable",
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.0018260915451315807,
+    "risk_5y": 0.00705248596602448,
+    "referral_prompt": false,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 2,
+    "slope_range_per_year": [
+     -4.52,
+     1.8
+    ],
+    "egfr_10y_range": [
+     0.0,
+     32.1,
+     65.0
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "3 to more than 15 years",
+     "g5": "6.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T02040",
+   "label": "Synthetic patient T02040 (fictional)",
+   "age": 68,
+   "female": false,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": false,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 65.8,
+   "cr_baseline": 1.201,
+   "uacr_mg_g": 7.6,
+   "last_potassium": 4.3,
+   "cyp2c9": "*1/*3",
+   "generics": [],
+   "risk": 0.03162055335968379,
+   "risk_text": "3%",
+   "level": "red",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.fc_sweat_72h",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    1.065,
+    1.028,
+    0.96
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00377,
+     0.00789,
+     0.0048,
+     0.00377,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.01333,
+     0.03162
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red",
+     "red"
+    ],
+    "steps": [
+     null,
+     13880,
+     13130,
+     13030,
+     null,
+     12890,
+     null,
+     null,
+     13130,
+     13730,
+     null,
+     null,
+     11870,
+     null
+    ],
+    "sleep_h": [
+     null,
+     6.6,
+     6.1,
+     7.1,
+     null,
+     6.9,
+     null,
+     null,
+     6.4,
+     7.3,
+     null,
+     null,
+     6.2,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     -1.6,
+     -0.8,
+     -0.6,
+     -0.3,
+     -0.4,
+     -1.8,
+     -1.0,
+     -1.6,
+     -2.0,
+     -1.8,
+     -1.8,
+     -2.4,
+     -1.7,
+     -1.6
+    ],
+    "hr_delta_bpm": [
+     null,
+     11.1,
+     3.1,
+     -2.9,
+     null,
+     12.1,
+     null,
+     null,
+     16.1,
+     9.1,
+     null,
+     null,
+     17.1,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 0.763,
+    "cr_ratio": 1.344,
+    "theta": 3.031
+   },
+   "last_lab": {
+    "day": 21,
+    "creatinine_mg_dl": 1.146,
+    "egfr": 69.6,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.35,
+     1.89
+    ],
+    "egfr_10y_range": [
+     23.0,
+     55.2,
+     87.2
+    ],
+    "years_to": {
+     "g3a": "1.2 to more than 15 years",
+     "g4": "8.5 to more than 15 years",
+     "g5": "12 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T02904",
+   "label": "Synthetic patient T02904 (fictional)",
+   "age": 54,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 30.2,
+   "cr_baseline": 2.471,
+   "uacr_mg_g": 4.2,
+   "last_potassium": 4.8,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "torsemide"
+   ],
+   "risk": 0.03162055335968379,
+   "risk_text": "3%",
+   "level": "red",
+   "reasons": [
+    "reason.egfr_baseline",
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    1.171,
+    1.09,
+    0.727
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00789,
+     0.00789,
+     0.01333,
+     0.00789,
+     0.01633,
+     0.03162,
+     0.01633,
+     0.01333,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.03162
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "red",
+     "amber",
+     "red",
+     "red",
+     "red",
+     "red",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "red"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.7,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.3,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.74,
+    "gfr_frac": 0.947,
+    "cr_ratio": 1.13,
+    "theta": 0.758
+   },
+   "last_lab": {
+    "day": 68,
+    "creatinine_mg_dl": 2.55,
+    "egfr": 29.1,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.009786227919846735,
+    "risk_5y": 0.03736499770510071,
+    "referral_prompt": false,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -6.15,
+     0.04
+    ],
+    "egfr_10y_range": [
+     0.0,
+     0.0,
+     30.6
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "0-3 years",
+     "g5": "2.2 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T00011",
+   "label": "Synthetic patient T00011 (fictional)",
+   "age": 74,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "home",
+   "tier": "T0",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 65.9,
+   "cr_baseline": 1.163,
+   "uacr_mg_g": 12.8,
+   "last_potassium": 4.6,
+   "cyp2c9": "*1/*3",
+   "generics": [
+    "telmisartan",
+    "amlodipine"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.age"
+   ],
+   "reason_contributions": [
+    0.67,
+    0.608,
+    0.224
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00122,
+     0.00143,
+     0.00231,
+     0.00231,
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00789,
+     0.00444,
+     0.0048,
+     0.00328,
+     0.00377,
+     0.00328,
+     0.00789
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.4,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.4,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.18,
+    "gfr_frac": 0.937,
+    "cr_ratio": 1.154,
+    "theta": 1.403
+   },
+   "last_lab": {
+    "day": 24,
+    "creatinine_mg_dl": 1.11,
+    "egfr": 69.7,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.49,
+     1.76
+    ],
+    "egfr_10y_range": [
+     26.4,
+     58.6,
+     90.6
+    ],
+    "years_to": {
+     "g3a": "2.5 to more than 15 years",
+     "g4": "9.2 to more than 15 years",
+     "g5": "12.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04980",
+   "label": "Synthetic patient T04980 (fictional)",
+   "age": 68,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "home",
+   "tier": "T2",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 93.9,
+   "cr_baseline": 0.873,
+   "uacr_mg_g": 10.5,
+   "last_potassium": 5.0,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan",
+    "indapamide",
+    "amlodipine"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.tw_theta"
+   ],
+   "reason_contributions": [
+    1.306,
+    0.81,
+    0.369
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00231,
+     0.00243,
+     0.00377,
+     0.00281,
+     0.00281,
+     0.00377,
+     0.00281,
+     0.00444,
+     0.00444,
+     0.00789,
+     0.00328,
+     0.00377,
+     0.00377,
+     0.00789
+    ],
+    "level": [
+     "green",
+     "green",
+     "amber",
+     "green",
+     "green",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     4890,
+     4660,
+     5110,
+     4370,
+     null,
+     7020,
+     4410,
+     4780,
+     3060,
+     5130,
+     2510,
+     5220,
+     null,
+     2930
+    ],
+    "sleep_h": [
+     6.7,
+     6.4,
+     7.1,
+     7.5,
+     null,
+     7.1,
+     6.3,
+     6.6,
+     8.1,
+     7.2,
+     7.0,
+     7.5,
+     null,
+     7.6
+    ],
+    "wt_vs_dry_kg": [
+     -1.4,
+     -0.6,
+     -0.3,
+     -0.7,
+     0.0,
+     -0.2,
+     -0.7,
+     -1.5,
+     null,
+     -1.2,
+     -0.8,
+     -2.0,
+     -2.0,
+     -1.6
+    ],
+    "hr_delta_bpm": [
+     0.7,
+     4.7,
+     5.7,
+     7.7,
+     null,
+     7.7,
+     -1.3,
+     8.7,
+     4.7,
+     9.7,
+     -2.3,
+     7.7,
+     null,
+     11.7
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.7,
+    "gfr_frac": 0.823,
+    "cr_ratio": 1.254,
+    "theta": 1.582
+   },
+   "last_lab": {
+    "day": 55,
+    "creatinine_mg_dl": 0.969,
+    "egfr": 85.1,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 4,
+    "slope_range_per_year": [
+     -5.21,
+     0.97
+    ],
+    "egfr_10y_range": [
+     38.8,
+     69.8,
+     101.8
+    ],
+    "years_to": {
+     "g3a": "6 to more than 15 years",
+     "g4": "11.8 to more than 15 years",
+     "g5": "14.8 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T00056",
+   "label": "Synthetic patient T00056 (fictional)",
+   "age": 79,
+   "female": true,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "office",
+   "tier": "T0",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 68.8,
+   "cr_baseline": 0.859,
+   "uacr_mg_g": 6.4,
+   "last_potassium": 4.5,
+   "cyp2c9": "*2/*2",
+   "generics": [
+    "chlorthalidone"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_cr_peak_ratio",
+    "reason.tw_theta",
+    "reason.mc_gfr_min_frac"
+   ],
+   "reason_contributions": [
+    0.782,
+    0.667,
+    0.612
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00231,
+     0.00377,
+     0.00231,
+     0.00231,
+     0.00377,
+     0.00377,
+     0.00243,
+     0.00281,
+     0.00377,
+     0.00377,
+     0.00377,
+     0.00377,
+     0.00444,
+     0.00789
+    ],
+    "level": [
+     "green",
+     "amber",
+     "green",
+     "green",
+     "amber",
+     "amber",
+     "green",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -1.7,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.8,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.16,
+    "gfr_frac": 0.841,
+    "cr_ratio": 1.222,
+    "theta": 1.242
+   },
+   "last_lab": {
+    "day": 20,
+    "creatinine_mg_dl": 0.874,
+    "egfr": 67.4,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.91,
+     1.34
+    ],
+    "egfr_10y_range": [
+     18.0,
+     50.3,
+     82.3
+    ],
+    "years_to": {
+     "g3a": "1.2 to more than 15 years",
+     "g4": "7.8 to more than 15 years",
+     "g5": "10.8 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04871",
+   "label": "Synthetic patient T04871 (fictional)",
+   "age": 64,
+   "female": true,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 90.5,
+   "cr_baseline": 0.739,
+   "uacr_mg_g": 18.8,
+   "last_potassium": 4.9,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan",
+    "metformin"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    0.968,
+    0.678,
+    0.327
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00377,
+     0.00377,
+     0.00377,
+     0.00281,
+     0.00789,
+     0.00328,
+     0.00444,
+     0.00243,
+     0.00231,
+     0.00243,
+     0.00231,
+     0.00231,
+     0.00231,
+     0.00789
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "amber"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.6,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.2,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.02,
+    "gfr_frac": 0.996,
+    "cr_ratio": 1.008,
+    "theta": 0.567
+   },
+   "last_lab": {
+    "day": 46,
+    "creatinine_mg_dl": 0.739,
+    "egfr": 90.4,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 4,
+    "slope_range_per_year": [
+     -5.58,
+     0.62
+    ],
+    "egfr_10y_range": [
+     35.7,
+     66.8,
+     98.9
+    ],
+    "years_to": {
+     "g3a": "5.8 to more than 15 years",
+     "g4": "11.2 to more than 15 years",
+     "g5": "14 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04860",
+   "label": "Synthetic patient T04860 (fictional)",
+   "age": 66,
+   "female": true,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 74.8,
+   "cr_baseline": 0.857,
+   "uacr_mg_g": 5.5,
+   "last_potassium": 4.7,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "ramipril",
+    "chlorthalidone",
+    "empagliflozin",
+    "metformin",
+    "amlodipine"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    1.396,
+    0.794,
+    0.611
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00231,
+     0.00377,
+     0.00243,
+     0.00231,
+     0.01333,
+     0.00243,
+     0.00789,
+     0.00444,
+     0.00789,
+     0.0048,
+     0.00444,
+     0.00444,
+     0.00444,
+     0.00789
+    ],
+    "level": [
+     "green",
+     "amber",
+     "green",
+     "green",
+     "red",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     0.3,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.7,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.42,
+    "gfr_frac": 0.961,
+    "cr_ratio": 1.075,
+    "theta": 0.938
+   },
+   "last_lab": {
+    "day": 29,
+    "creatinine_mg_dl": 0.898,
+    "egfr": 70.7,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -6.49,
+     -0.25
+    ],
+    "egfr_10y_range": [
+     6.6,
+     38.9,
+     70.7
+    ],
+    "years_to": {
+     "g3a": "1.8 to more than 15 years",
+     "g4": "6.5 to more than 15 years",
+     "g5": "8.8 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04846",
+   "label": "Synthetic patient T04846 (fictional)",
+   "age": 58,
+   "female": true,
+   "city": "Nagpur",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T1",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 72.5,
+   "cr_baseline": 0.917,
+   "uacr_mg_g": 9.9,
+   "last_potassium": 4.9,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan",
+    "amlodipine"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.tw_v_ecf_sd",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    0.598,
+    0.598,
+    0.494
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00444,
+     0.00377,
+     0.00377,
+     0.00377,
+     0.00444,
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00377,
+     0.00231,
+     0.00231,
+     0.00281,
+     0.00328,
+     0.00789
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "green",
+     "green",
+     "amber",
+     "green",
+     "green",
+     "green",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     11630,
+     12190,
+     11890,
+     12870,
+     12590,
+     15850,
+     13780,
+     12410,
+     15260,
+     null,
+     15230,
+     11390,
+     14840,
+     12030
+    ],
+    "sleep_h": [
+     6.2,
+     7.0,
+     5.8,
+     8.6,
+     6.6,
+     8.3,
+     7.1,
+     6.3,
+     8.0,
+     null,
+     7.3,
+     6.8,
+     7.9,
+     6.5
+    ],
+    "wt_vs_dry_kg": [
+     -1.4,
+     -1.4,
+     -1.9,
+     -1.8,
+     null,
+     -1.2,
+     -1.0,
+     -1.7,
+     null,
+     -1.7,
+     -1.7,
+     -1.6,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     0.7,
+     2.7,
+     -4.3,
+     3.7,
+     2.7,
+     -1.3,
+     -5.3,
+     3.7,
+     -1.3,
+     null,
+     1.7,
+     1.7,
+     -0.3,
+     -4.3
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 1.0,
+    "cr_ratio": 1.005,
+    "theta": 0.94
+   },
+   "last_lab": {
+    "day": 53,
+    "creatinine_mg_dl": 0.937,
+    "egfr": 70.6,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.61,
+     1.6
+    ],
+    "egfr_10y_range": [
+     28.7,
+     61.2,
+     92.7
+    ],
+    "years_to": {
+     "g3a": "3.2 to more than 15 years",
+     "g4": "9.8 to more than 15 years",
+     "g5": "13 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04843",
+   "label": "Synthetic patient T04843 (fictional)",
+   "age": 63,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "home",
+   "tier": "T2",
+   "dm": false,
+   "htn": false,
+   "ckd_g3": true,
+   "heart_failure": false,
+   "egfr_baseline": 38.8,
+   "cr_baseline": 1.914,
+   "uacr_mg_g": 80.4,
+   "last_potassium": 3.8,
+   "cyp2c9": "*1/*1",
+   "generics": [],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.egfr_baseline",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    0.651,
+    0.619,
+    0.556
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00143,
+     0.00231,
+     0.00243,
+     0.00377,
+     0.00377,
+     0.00444,
+     0.00444,
+     0.00444,
+     0.0048,
+     0.00789,
+     0.00281,
+     0.00444,
+     0.00377,
+     0.00789
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     6250,
+     null,
+     null,
+     5490,
+     null,
+     null,
+     4830,
+     6260,
+     2640,
+     3780,
+     5370,
+     3530,
+     null,
+     5390
+    ],
+    "sleep_h": [
+     6.3,
+     null,
+     null,
+     5.9,
+     null,
+     null,
+     6.4,
+     6.6,
+     7.1,
+     6.9,
+     6.0,
+     7.9,
+     null,
+     8.1
+    ],
+    "wt_vs_dry_kg": [
+     0.2,
+     0.0,
+     0.3,
+     0.6,
+     null,
+     0.4,
+     null,
+     -0.4,
+     -0.3,
+     -0.5,
+     0.2,
+     -0.3,
+     -0.8,
+     -1.1
+    ],
+    "hr_delta_bpm": [
+     0.4,
+     null,
+     null,
+     8.4,
+     null,
+     null,
+     -3.6,
+     1.4,
+     10.4,
+     4.4,
+     3.4,
+     4.4,
+     null,
+     2.4
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.24,
+    "gfr_frac": 0.926,
+    "cr_ratio": 1.14,
+    "theta": 1.535
+   },
+   "last_lab": {
+    "day": 53,
+    "creatinine_mg_dl": 2.018,
+    "egfr": 36.4,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": true,
+    "risk_2y": 0.011655049450279842,
+    "risk_5y": 0.04438087553053216,
+    "referral_prompt": false,
+    "referral_threshold_5y": 0.05
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -4.86,
+     1.35
+    ],
+    "egfr_10y_range": [
+     0.0,
+     20.6,
+     52.1
+    ],
+    "years_to": {
+     "g3a": "already below",
+     "g4": "1.2 to more than 15 years",
+     "g5": "4.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04791",
+   "label": "Synthetic patient T04791 (fictional)",
+   "age": 52,
+   "female": true,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 75.4,
+   "cr_baseline": 0.915,
+   "uacr_mg_g": 19.7,
+   "last_potassium": 5.4,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "ramipril",
+    "chlorthalidone",
+    "amlodipine"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    1.316,
+    0.864,
+    0.408
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00243,
+     0.00243,
+     0.00377,
+     0.00281,
+     0.00444,
+     0.00377,
+     0.0048,
+     0.0048,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789
+    ],
+    "level": [
+     "green",
+     "green",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.3,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -0.9,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.7,
+    "gfr_frac": 0.938,
+    "cr_ratio": 1.132,
+    "theta": 1.106
+   },
+   "last_lab": {
+    "day": 43,
+    "creatinine_mg_dl": 1.01,
+    "egfr": 67.0,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -7.0,
+     -0.78
+    ],
+    "egfr_10y_range": [
+     2.6,
+     35.0,
+     66.5
+    ],
+    "years_to": {
+     "g3a": "1.8 to more than 15 years",
+     "g4": "6.2 to more than 15 years",
+     "g5": "8.2 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T02709",
+   "label": "Synthetic patient T02709 (fictional)",
+   "age": 57,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T2",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 60.0,
+   "cr_baseline": 1.373,
+   "uacr_mg_g": 10.6,
+   "last_potassium": 4.5,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "ramipril",
+    "amlodipine"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.tw_v_ecf_sd"
+   ],
+   "reason_contributions": [
+    1.165,
+    0.748,
+    0.385
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00377,
+     0.00377,
+     0.00789,
+     0.00281,
+     0.00377,
+     0.0048,
+     0.00377,
+     0.00377,
+     0.00243,
+     0.00377,
+     0.00789,
+     0.00377,
+     0.00377,
+     0.00789
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "amber"
+    ],
+    "steps": [
+     14260,
+     15910,
+     11750,
+     14400,
+     13120,
+     15680,
+     11720,
+     null,
+     null,
+     12140,
+     14740,
+     15280,
+     13640,
+     14560
+    ],
+    "sleep_h": [
+     8.5,
+     6.3,
+     6.5,
+     6.7,
+     6.6,
+     8.6,
+     7.5,
+     null,
+     null,
+     7.4,
+     7.0,
+     8.1,
+     7.1,
+     6.5
+    ],
+    "wt_vs_dry_kg": [
+     0.3,
+     0.3,
+     0.5,
+     0.8,
+     0.6,
+     0.0,
+     1.1,
+     0.2,
+     0.4,
+     0.2,
+     -0.9,
+     -1.1,
+     -0.7,
+     0.1
+    ],
+    "hr_delta_bpm": [
+     2.6,
+     2.6,
+     1.6,
+     1.6,
+     7.6,
+     2.6,
+     -4.4,
+     null,
+     null,
+     2.6,
+     10.6,
+     3.6,
+     -1.4,
+     1.6
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.42,
+    "gfr_frac": 0.991,
+    "cr_ratio": 1.036,
+    "theta": 0.839
+   },
+   "last_lab": {
+    "day": 57,
+    "creatinine_mg_dl": 1.419,
+    "egfr": 57.7,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -6.59,
+     -0.38
+    ],
+    "egfr_10y_range": [
+     0.0,
+     26.5,
+     58.1
+    ],
+    "years_to": {
+     "g3a": "0-4.8 years",
+     "g4": "4.8 to more than 15 years",
+     "g5": "7 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T02749",
+   "label": "Synthetic patient T02749 (fictional)",
+   "age": 41,
+   "female": false,
+   "city": "Chennai",
+   "language": "en",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 73.4,
+   "cr_baseline": 1.261,
+   "uacr_mg_g": 9.0,
+   "last_potassium": 3.7,
+   "cyp2c9": "*3/*3",
+   "generics": [
+    "empagliflozin"
+   ],
+   "risk": 0.007890365448504985,
+   "risk_text": "<1%",
+   "level": "amber",
+   "reasons": [
+    "reason.nsaid_today",
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    1.633,
+    0.713,
+    0.284
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00789,
+     0.00122,
+     0.00122,
+     0.00143,
+     0.00143,
+     0.00143,
+     0.00143,
+     0.00143,
+     0.00031,
+     0.00066,
+     0.00789
+    ],
+    "level": [
+     "amber",
+     "amber",
+     "amber",
+     "amber",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "amber"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.6,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -0.2,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 1.0,
+    "cr_ratio": 1.0,
+    "theta": 0.95
+   },
+   "last_lab": {
+    "day": 65,
+    "creatinine_mg_dl": 1.302,
+    "egfr": 70.6,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -6.26,
+     -0.07
+    ],
+    "egfr_10y_range": [
+     8.2,
+     40.5,
+     72.1
+    ],
+    "years_to": {
+     "g3a": "1.8 to more than 15 years",
+     "g4": "6.8 to more than 15 years",
+     "g5": "9 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T00430",
+   "label": "Synthetic patient T00430 (fictional)",
+   "age": 68,
+   "female": false,
+   "city": "Hyderabad",
+   "language": "te",
+   "occupation": "home",
+   "tier": "T2",
+   "dm": true,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 102.3,
+   "cr_baseline": 0.657,
+   "uacr_mg_g": 14.1,
+   "last_potassium": 4.4,
+   "cyp2c9": "*1/*3",
+   "generics": [
+    "empagliflozin",
+    "metformin"
+   ],
+   "risk": 0.0001208532237597438,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.age",
+    "reason.hr_delta_bpm",
+    "reason.heart_failure"
+   ],
+   "reason_contributions": [
+    0.082,
+    0.062,
+    0.005
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00031,
+     0.00122,
+     0.00066,
+     0.00031,
+     0.00115,
+     0.00143,
+     0.00115,
+     0.00122,
+     0.00012,
+     0.00031,
+     0.00031,
+     0.00012,
+     0.00012,
+     0.00012
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     6040,
+     4990,
+     4280,
+     null,
+     1230,
+     null,
+     null,
+     3230,
+     6050,
+     6590,
+     null,
+     null,
+     4350,
+     7000
+    ],
+    "sleep_h": [
+     6.4,
+     6.8,
+     8.0,
+     null,
+     6.1,
+     null,
+     null,
+     6.0,
+     6.5,
+     7.3,
+     null,
+     null,
+     8.1,
+     6.3
+    ],
+    "wt_vs_dry_kg": [
+     -0.7,
+     null,
+     -0.6,
+     null,
+     -0.1,
+     -0.6,
+     -0.2,
+     -0.4,
+     -0.1,
+     -0.4,
+     -0.1,
+     null,
+     null,
+     0.0
+    ],
+    "hr_delta_bpm": [
+     -5.4,
+     3.6,
+     -2.4,
+     null,
+     -1.4,
+     null,
+     null,
+     4.6,
+     -3.4,
+     1.6,
+     null,
+     null,
+     0.6,
+     5.6
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 0.999,
+    "cr_ratio": 0.999,
+    "theta": 0.789
+   },
+   "last_lab": {
+    "day": 48,
+    "creatinine_mg_dl": 0.681,
+    "egfr": 101.2,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 4,
+    "slope_range_per_year": [
+     -6.25,
+     -0.06
+    ],
+    "egfr_10y_range": [
+     39.9,
+     71.0,
+     103.0
+    ],
+    "years_to": {
+     "g3a": "6.8 to more than 15 years",
+     "g4": "11.8 to more than 15 years",
+     "g5": "14.2 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T03469",
+   "label": "Synthetic patient T03469 (fictional)",
+   "age": 51,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 70.1,
+   "cr_baseline": 1.244,
+   "uacr_mg_g": 17.2,
+   "last_potassium": 4.8,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "telmisartan"
+   ],
+   "risk": 0.0028089887640449437,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    0.606,
+    0.503,
+    0.318
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00143,
+     0.00231,
+     0.00231,
+     0.00143,
+     0.00231,
+     0.00231,
+     0.00328,
+     0.00243,
+     0.00231,
+     0.00231,
+     0.00231,
+     0.00243,
+     0.00231,
+     0.00281
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "amber",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     0.0,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.0,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.16,
+    "gfr_frac": 0.996,
+    "cr_ratio": 1.014,
+    "theta": 0.913
+   },
+   "last_lab": {
+    "day": 7,
+    "creatinine_mg_dl": 1.298,
+    "egfr": 66.6,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.34,
+     0.92
+    ],
+    "egfr_10y_range": [
+     17.8,
+     50.2,
+     82.3
+    ],
+    "years_to": {
+     "g3a": "2 to more than 15 years",
+     "g4": "7.8 to more than 15 years",
+     "g5": "10.8 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T04275",
+   "label": "Synthetic patient T04275 (fictional)",
+   "age": 59,
+   "female": true,
+   "city": "Palasa",
+   "language": "te",
+   "occupation": "home",
+   "tier": "T2",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 60.0,
+   "cr_baseline": 1.068,
+   "uacr_mg_g": 7.7,
+   "last_potassium": 4.1,
+   "cyp2c9": "*1/*1",
+   "generics": [],
+   "risk": 0.000663643402278509,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.nsaid_today",
+    "reason.age",
+    "reason.tw_v_ecf_sd"
+   ],
+   "reason_contributions": [
+    0.093,
+    0.089,
+    0.047
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00012,
+     0.00031,
+     0.00031,
+     0.00031,
+     8e-05,
+     0.00066,
+     0.00066,
+     0.00066,
+     0.00143,
+     0.00031,
+     0.00066,
+     0.00031,
+     0.00031,
+     0.00066
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     5270,
+     5710,
+     2260,
+     7850,
+     3150,
+     null,
+     6640,
+     4220,
+     5700,
+     3860,
+     4030,
+     3570,
+     2910,
+     null
+    ],
+    "sleep_h": [
+     5.8,
+     6.6,
+     7.4,
+     6.9,
+     6.6,
+     null,
+     7.5,
+     6.2,
+     6.1,
+     6.0,
+     5.6,
+     6.7,
+     7.3,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     0.4,
+     -0.2,
+     null,
+     -0.1,
+     null,
+     -0.1,
+     -0.9,
+     null,
+     -0.9,
+     -0.8,
+     -0.3,
+     -0.5,
+     null,
+     -0.5
+    ],
+    "hr_delta_bpm": [
+     2.5,
+     5.5,
+     5.5,
+     1.5,
+     -9.5,
+     null,
+     -2.5,
+     7.5,
+     7.5,
+     8.5,
+     5.5,
+     -1.5,
+     -2.5,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 1.0,
+    "cr_ratio": 0.999,
+    "theta": 0.945
+   },
+   "last_lab": {
+    "day": 4,
+    "creatinine_mg_dl": 1.058,
+    "egfr": 60.7,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.14,
+     1.12
+    ],
+    "egfr_10y_range": [
+     8.4,
+     40.7,
+     72.8
+    ],
+    "years_to": {
+     "g3a": "0 to more than 15 years",
+     "g4": "6 to more than 15 years",
+     "g5": "8.8 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T03248",
+   "label": "Synthetic patient T03248 (fictional)",
+   "age": 34,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": false,
+   "htn": true,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 108.1,
+   "cr_baseline": 0.947,
+   "uacr_mg_g": 37.9,
+   "last_potassium": 4.7,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "amlodipine"
+   ],
+   "risk": 0.0014303286895328547,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.mc_cr_peak_ratio",
+    "reason.mc_gfr_min_frac",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    0.462,
+    0.369,
+    0.31
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00066,
+     0.00066,
+     0.00031,
+     0.00066,
+     0.00031,
+     0.00143
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -0.4,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -0.3,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 0.999,
+    "cr_ratio": 1.002,
+    "theta": 0.938
+   },
+   "last_lab": {
+    "day": 6,
+    "creatinine_mg_dl": 1.034,
+    "egfr": 97.3,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.19,
+     1.07
+    ],
+    "egfr_10y_range": [
+     51.6,
+     84.0,
+     116.1
+    ],
+    "years_to": {
+     "g3a": "8.5 to more than 15 years",
+     "g4": "14.2 to more than 15 years",
+     "g5": "more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T02157",
+   "label": "Synthetic patient T02157 (fictional)",
+   "age": 43,
+   "female": false,
+   "city": "Delhi",
+   "language": "hi",
+   "occupation": "construction_farm",
+   "tier": "T2",
+   "dm": true,
+   "htn": false,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 83.8,
+   "cr_baseline": 1.118,
+   "uacr_mg_g": 84.8,
+   "last_potassium": 4.0,
+   "cyp2c9": "*1/*1",
+   "generics": [
+    "empagliflozin",
+    "metformin"
+   ],
+   "risk": 0.0024274406332453827,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.mc_cr_peak_ratio",
+    "reason.fc_sweat_72h"
+   ],
+   "reason_contributions": [
+    0.573,
+    0.522,
+    0.291
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00231,
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00243,
+     0.00231,
+     0.00231,
+     0.00231,
+     0.00243
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     14810,
+     15670,
+     13780,
+     13990,
+     15900,
+     14990,
+     12330,
+     15220,
+     17340,
+     14530,
+     16650,
+     12690,
+     12060,
+     15170
+    ],
+    "sleep_h": [
+     7.4,
+     7.5,
+     7.8,
+     7.0,
+     8.6,
+     6.9,
+     7.9,
+     6.2,
+     6.5,
+     5.7,
+     7.5,
+     5.6,
+     5.7,
+     6.5
+    ],
+    "wt_vs_dry_kg": [
+     -1.3,
+     -1.2,
+     null,
+     -1.0,
+     -1.8,
+     -1.7,
+     -1.5,
+     null,
+     -1.5,
+     -1.9,
+     -1.6,
+     -0.9,
+     null,
+     -1.6
+    ],
+    "hr_delta_bpm": [
+     1.4,
+     0.4,
+     2.4,
+     1.4,
+     4.4,
+     0.4,
+     3.4,
+     7.4,
+     3.4,
+     11.4,
+     5.4,
+     9.4,
+     1.4,
+     5.4
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 0.969,
+    "cr_ratio": 1.069,
+    "theta": 1.04
+   },
+   "last_lab": {
+    "day": 46,
+    "creatinine_mg_dl": 0.999,
+    "egfr": 95.9,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dkd_albuminuria",
+    "stable_labs_used": 4,
+    "slope_range_per_year": [
+     -8.52,
+     -2.32
+    ],
+    "egfr_10y_range": [
+     3.4,
+     34.4,
+     66.4
+    ],
+    "years_to": {
+     "g3a": "3.2-12.8 years",
+     "g4": "7 to more than 15 years",
+     "g5": "8.8 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T02182",
+   "label": "Synthetic patient T02182 (fictional)",
+   "age": 62,
+   "female": false,
+   "city": "Ahmedabad",
+   "language": "hi",
+   "occupation": "home",
+   "tier": "T0",
+   "dm": true,
+   "htn": false,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 93.2,
+   "cr_baseline": 0.927,
+   "uacr_mg_g": 7.2,
+   "last_potassium": 3.8,
+   "cyp2c9": "*1/*1",
+   "generics": [],
+   "risk": 0.000663643402278509,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.mc_cr_peak_ratio",
+    "reason.nsaid_today",
+    "reason.age"
+   ],
+   "reason_contributions": [
+    0.104,
+    0.1,
+    0.072
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     8e-05,
+     8e-05,
+     8e-05,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00012,
+     0.00031,
+     0.00012,
+     8e-05,
+     0.00012,
+     0.00066,
+     0.00066
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -1.0,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.2,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 0.995,
+    "cr_ratio": 1.01,
+    "theta": 0.857
+   },
+   "last_lab": {
+    "day": 69,
+    "creatinine_mg_dl": 0.99,
+    "egfr": 86.1,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 4,
+    "slope_range_per_year": [
+     -7.08,
+     -0.92
+    ],
+    "egfr_10y_range": [
+     21.9,
+     52.8,
+     84.4
+    ],
+    "years_to": {
+     "g3a": "4.8 to more than 15 years",
+     "g4": "9 to more than 15 years",
+     "g5": "11 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T00443",
+   "label": "Synthetic patient T00443 (fictional)",
+   "age": 32,
+   "female": false,
+   "city": "Chennai",
+   "language": "en",
+   "occupation": "construction_farm",
+   "tier": "T0",
+   "dm": false,
+   "htn": false,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 100.3,
+   "cr_baseline": 1.019,
+   "uacr_mg_g": 4.9,
+   "last_potassium": 3.9,
+   "cyp2c9": "*1/*1",
+   "generics": [],
+   "risk": 0.0003123757596410519,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.mc_gfr_min_frac",
+    "reason.fc_sweat_72h",
+    "reason.mc_cr_peak_ratio"
+   ],
+   "reason_contributions": [
+    0.421,
+    0.196,
+    0.19
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     0.00143,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00115,
+     0.00031,
+     0.00031,
+     0.00143,
+     0.00122,
+     0.00031,
+     0.00031,
+     0.00031
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "sleep_h": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "wt_vs_dry_kg": [
+     null,
+     -1.2,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -1.6,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hr_delta_bpm": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 1.0,
+    "cr_ratio": 1.0,
+    "theta": 1.018
+   },
+   "last_lab": {
+    "day": 13,
+    "creatinine_mg_dl": 1.063,
+    "egfr": 95.3,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "htn_no_dm",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -5.65,
+     0.61
+    ],
+    "egfr_10y_range": [
+     39.5,
+     71.9,
+     103.9
+    ],
+    "years_to": {
+     "g3a": "6.5 to more than 15 years",
+     "g4": "11.8 to more than 15 years",
+     "g5": "14.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  },
+  {
+   "patient_id": "T03838",
+   "label": "Synthetic patient T03838 (fictional)",
+   "age": 41,
+   "female": false,
+   "city": "Chennai",
+   "language": "en",
+   "occupation": "home",
+   "tier": "T1",
+   "dm": true,
+   "htn": false,
+   "ckd_g3": false,
+   "heart_failure": false,
+   "egfr_baseline": 106.0,
+   "cr_baseline": 0.928,
+   "uacr_mg_g": 15.3,
+   "last_potassium": 4.6,
+   "cyp2c9": "*1/*3",
+   "generics": [
+    "metformin"
+   ],
+   "risk": 0.0,
+   "risk_text": "<1%",
+   "level": "green",
+   "reasons": [
+    "reason.hr_delta_bpm",
+    "reason.heart_failure",
+    "reason.rep_ors_l"
+   ],
+   "reason_contributions": [
+    0.016,
+    0.005,
+    0.0
+   ],
+   "trajectory": {
+    "days": [
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "dates": [
+     "2025-05-06",
+     "2025-05-07",
+     "2025-05-08",
+     "2025-05-09",
+     "2025-05-10",
+     "2025-05-11",
+     "2025-05-12",
+     "2025-05-13",
+     "2025-05-14",
+     "2025-05-15",
+     "2025-05-16",
+     "2025-05-17",
+     "2025-05-18",
+     "2025-05-19"
+    ],
+    "risk": [
+     8e-05,
+     0.00012,
+     0.00031,
+     0.00031,
+     0.00031,
+     0.00066,
+     0.00031,
+     0.00031,
+     0.00031,
+     8e-05,
+     0.00031,
+     8e-05,
+     8e-05,
+     0.0
+    ],
+    "level": [
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green",
+     "green"
+    ],
+    "steps": [
+     3700,
+     3830,
+     2740,
+     5410,
+     4820,
+     3920,
+     3940,
+     2840,
+     3840,
+     null,
+     3940,
+     null,
+     null,
+     6350
+    ],
+    "sleep_h": [
+     6.9,
+     7.0,
+     5.7,
+     7.4,
+     6.6,
+     6.8,
+     6.1,
+     8.4,
+     5.9,
+     null,
+     6.9,
+     null,
+     null,
+     7.9
+    ],
+    "wt_vs_dry_kg": [
+     -0.4,
+     -0.5,
+     -0.1,
+     0.4,
+     0.1,
+     -0.1,
+     0.2,
+     0.4,
+     0.0,
+     0.1,
+     0.5,
+     0.1,
+     0.1,
+     0.8
+    ],
+    "hr_delta_bpm": [
+     0.4,
+     2.4,
+     1.4,
+     3.4,
+     -2.6,
+     4.4,
+     -6.6,
+     0.4,
+     5.4,
+     null,
+     2.4,
+     null,
+     null,
+     -1.6
+    ]
+   },
+   "twin": {
+    "mc_risk_72h": 0.0,
+    "gfr_frac": 1.0,
+    "cr_ratio": 0.999,
+    "theta": 0.914
+   },
+   "last_lab": {
+    "day": 72,
+    "creatinine_mg_dl": 1.009,
+    "egfr": 95.9,
+    "reliable": true,
+    "tag_key": null,
+    "reason": "routine"
+   },
+   "kfre": {
+    "valid": false,
+    "reason_key": "kfre.egfr_too_high"
+   },
+   "slow_clock": {
+    "prior_group": "dm_htn",
+    "stable_labs_used": 3,
+    "slope_range_per_year": [
+     -7.25,
+     -1.06
+    ],
+    "egfr_10y_range": [
+     31.1,
+     63.3,
+     94.9
+    ],
+    "years_to": {
+     "g3a": "6.2 to more than 15 years",
+     "g4": "10.2 to more than 15 years",
+     "g5": "12.5 to more than 15 years"
+    }
+   },
+   "truth_hidden": {
+    "aki_onset_within_72h": false,
+    "note": "simulation truth, never seen by the model; shown only behind the reveal toggle"
+   }
+  }
+ ]
+}

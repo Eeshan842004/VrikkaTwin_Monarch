@@ -91,14 +91,18 @@ def city_weather_features(weather: dict[str, pd.DataFrame], D: int) -> dict[str,
     return out
 
 
-def forecasts(weather: dict[str, pd.DataFrame], D: int, seed: int) -> list[dict[str, pd.DataFrame]]:
-    """Noisy 72-hour city forecast issued at 09:00 (= after the 08:00 hour) every day; padded at the season end."""
+def forecasts(weather: dict[str, pd.DataFrame], D: int, seed: int,
+              perfect: bool = False) -> list[dict[str, pd.DataFrame]]:
+    """Noisy 72-hour city forecast issued at 09:00 (= after the 08:00 hour) every day; padded at the season end.
+
+    ``perfect=True`` (robustness analysis only, EVAL_PLAN 15.4) uses the archived weather itself as the forecast; the
+    headline always uses the noisy forecast."""
     out = []
     for d in range(D):
         rng = np.random.default_rng(seed + d)
         day = {}
         for c, w in weather.items():
-            f = forecast_weather(w, d * 24 + 8, 72, rng)
+            f = w.iloc[d * 24 + 8:d * 24 + 80].copy() if perfect else forecast_weather(w, d * 24 + 8, 72, rng)
             if len(f) < 72:
                 f = pd.concat([f, f.iloc[[-1] * (72 - len(f))]], ignore_index=True)
                 f["time"] = pd.date_range(f["time"].iloc[0], periods=72, freq="h")

@@ -1,0 +1,3974 @@
+{
+ "note": "frozen Part 4 model, isotonic map and thresholds (mismatched, headline world); nothing refitted or re-thresholded; held-out seasons scored for reporting only",
+ "tornado": {
+  "output": "twin 72-h simulated kidney-injury risk for the Kamala persona on her red day (S1, day 8; demo replay on real 2024 Nagpur weather); each parameter at its registry low and high, both the demo world and the twin use the changed value",
+  "baseline_risk": 0.435,
+  "parameters_screened": 81,
+  "top10": [
+   {
+    "parameter": "ukf_p0_log_theta",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "log units (SD)",
+    "low": {
+     "value": 0.15,
+     "risk": 0.705,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.5,
+     "risk": 0.3,
+     "aki_onset_day": 9
+    },
+    "swing": 0.405
+   },
+   {
+    "parameter": "poor_intake_mult",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.6,
+    "unit": "multiplier",
+    "low": {
+     "value": 0.4,
+     "risk": 0.55,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.235,
+     "aki_onset_day": null
+    },
+    "swing": 0.315
+   },
+   {
+    "parameter": "phi_drink_old",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.6,
+    "unit": "fraction of sweat replaced by drinking",
+    "low": {
+     "value": 0.4,
+     "risk": 0.29,
+     "aki_onset_day": 8
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.545,
+     "aki_onset_day": null
+    },
+    "swing": 0.255
+   },
+   {
+    "parameter": "ecf_frac_sweat",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.5,
+    "unit": "fraction",
+    "low": {
+     "value": 0.3,
+     "risk": 0.11,
+     "aki_onset_day": null
+    },
+    "high": {
+     "value": 0.7,
+     "risk": 0.315,
+     "aki_onset_day": 8
+    },
+    "swing": 0.205
+   },
+   {
+    "parameter": "fever_loss_l_day_per_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.2,
+    "unit": "L/day per degC above 37",
+    "low": {
+     "value": 0.1,
+     "risk": 0.365,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.3,
+     "risk": 0.51,
+     "aki_onset_day": 9
+    },
+    "swing": 0.145
+   },
+   {
+    "parameter": "forecast_sd_day3_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.0,
+    "unit": "degC",
+    "low": {
+     "value": 1.0,
+     "risk": 0.36,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.0,
+     "risk": 0.48,
+     "aki_onset_day": 9
+    },
+    "swing": 0.12
+   },
+   {
+    "parameter": "diuretic_loss_thiazide_l_day",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.2,
+    "unit": "L/day",
+    "low": {
+     "value": 0.1,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.6,
+     "risk": 0.35,
+     "aki_onset_day": 8
+    },
+    "swing": 0.095
+   },
+   {
+    "parameter": "ukf_q_v_tot",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "L (SD per day)",
+    "low": {
+     "value": 0.15,
+     "risk": 0.51,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.5,
+     "risk": 0.425,
+     "aki_onset_day": 9
+    },
+    "swing": 0.085
+   },
+   {
+    "parameter": "d50",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.065,
+    "unit": "fraction of ECV lost",
+    "low": {
+     "value": 0.04,
+     "risk": 0.165,
+     "aki_onset_day": 1
+    },
+    "high": {
+     "value": 0.1,
+     "risk": 0.1,
+     "aki_onset_day": null
+    },
+    "swing": 0.065
+   },
+   {
+    "parameter": "ukf_q_cr",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.05,
+    "unit": "mg/dL (SD per day)",
+    "low": {
+     "value": 0.02,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.1,
+     "risk": 0.51,
+     "aki_onset_day": 9
+    },
+    "swing": 0.06
+   }
+  ],
+  "all": [
+   {
+    "parameter": "ukf_p0_log_theta",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "log units (SD)",
+    "low": {
+     "value": 0.15,
+     "risk": 0.705,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.5,
+     "risk": 0.3,
+     "aki_onset_day": 9
+    },
+    "swing": 0.405
+   },
+   {
+    "parameter": "poor_intake_mult",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.6,
+    "unit": "multiplier",
+    "low": {
+     "value": 0.4,
+     "risk": 0.55,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.235,
+     "aki_onset_day": null
+    },
+    "swing": 0.315
+   },
+   {
+    "parameter": "phi_drink_old",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.6,
+    "unit": "fraction of sweat replaced by drinking",
+    "low": {
+     "value": 0.4,
+     "risk": 0.29,
+     "aki_onset_day": 8
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.545,
+     "aki_onset_day": null
+    },
+    "swing": 0.255
+   },
+   {
+    "parameter": "ecf_frac_sweat",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.5,
+    "unit": "fraction",
+    "low": {
+     "value": 0.3,
+     "risk": 0.11,
+     "aki_onset_day": null
+    },
+    "high": {
+     "value": 0.7,
+     "risk": 0.315,
+     "aki_onset_day": 8
+    },
+    "swing": 0.205
+   },
+   {
+    "parameter": "fever_loss_l_day_per_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.2,
+    "unit": "L/day per degC above 37",
+    "low": {
+     "value": 0.1,
+     "risk": 0.365,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.3,
+     "risk": 0.51,
+     "aki_onset_day": 9
+    },
+    "swing": 0.145
+   },
+   {
+    "parameter": "forecast_sd_day3_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.0,
+    "unit": "degC",
+    "low": {
+     "value": 1.0,
+     "risk": 0.36,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.0,
+     "risk": 0.48,
+     "aki_onset_day": 9
+    },
+    "swing": 0.12
+   },
+   {
+    "parameter": "diuretic_loss_thiazide_l_day",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.2,
+    "unit": "L/day",
+    "low": {
+     "value": 0.1,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.6,
+     "risk": 0.35,
+     "aki_onset_day": 8
+    },
+    "swing": 0.095
+   },
+   {
+    "parameter": "ukf_q_v_tot",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "L (SD per day)",
+    "low": {
+     "value": 0.15,
+     "risk": 0.51,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.5,
+     "risk": 0.425,
+     "aki_onset_day": 9
+    },
+    "swing": 0.085
+   },
+   {
+    "parameter": "d50",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.065,
+    "unit": "fraction of ECV lost",
+    "low": {
+     "value": 0.04,
+     "risk": 0.165,
+     "aki_onset_day": 1
+    },
+    "high": {
+     "value": 0.1,
+     "risk": 0.1,
+     "aki_onset_day": null
+    },
+    "swing": 0.065
+   },
+   {
+    "parameter": "ukf_q_cr",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.05,
+    "unit": "mg/dL (SD per day)",
+    "low": {
+     "value": 0.02,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.1,
+     "risk": 0.51,
+     "aki_onset_day": 9
+    },
+    "swing": 0.06
+   },
+   {
+    "parameter": "ukf_q_log_theta",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.03,
+    "unit": "log units (SD per day)",
+    "low": {
+     "value": 0.01,
+     "risk": 0.455,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.06,
+     "risk": 0.4,
+     "aki_onset_day": 9
+    },
+    "swing": 0.055
+   },
+   {
+    "parameter": "indoor_offset_concrete_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": -3.0,
+    "unit": "degC vs outdoor",
+    "low": {
+     "value": -5.0,
+     "risk": 0.42,
+     "aki_onset_day": null
+    },
+    "high": {
+     "value": -1.0,
+     "risk": 0.475,
+     "aki_onset_day": 9
+    },
+    "swing": 0.055
+   },
+   {
+    "parameter": "sigma_weight_kg",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.4,
+    "unit": "kg",
+    "low": {
+     "value": 0.2,
+     "risk": 0.415,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.6,
+     "risk": 0.46,
+     "aki_onset_day": 9
+    },
+    "swing": 0.045
+   },
+   {
+    "parameter": "i_ras",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.8,
+    "unit": "fraction",
+    "low": {
+     "value": 0.6,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.95,
+     "risk": 0.465,
+     "aki_onset_day": 9
+    },
+    "swing": 0.035
+   },
+   {
+    "parameter": "aff_share",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.5,
+    "unit": "fraction",
+    "low": {
+     "value": 0.3,
+     "risk": 0.475,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.7,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "swing": 0.025
+   },
+   {
+    "parameter": "ukf_q_v_ecf",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.15,
+    "unit": "L (SD per day)",
+    "low": {
+     "value": 0.08,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.3,
+     "risk": 0.41,
+     "aki_onset_day": 9
+    },
+    "swing": 0.025
+   },
+   {
+    "parameter": "met_home",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.2,
+    "unit": "met",
+    "low": {
+     "value": 0.7,
+     "risk": 0.425,
+     "aki_onset_day": null
+    },
+    "high": {
+     "value": 1.7,
+     "risk": 0.4,
+     "aki_onset_day": 9
+    },
+    "swing": 0.025
+   },
+   {
+    "parameter": "k_hr",
+    "provenance": "ASSUMPTION",
+    "registry_value": 8.0,
+    "unit": "bpm per L of ECF deficit",
+    "low": {
+     "value": 4.0,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 12.0,
+     "risk": 0.465,
+     "aki_onset_day": 9
+    },
+    "swing": 0.02
+   },
+   {
+    "parameter": "ukf_q_w_dry",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.05,
+    "unit": "kg (SD per day)",
+    "low": {
+     "value": 0.02,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.1,
+     "risk": 0.455,
+     "aki_onset_day": 9
+    },
+    "swing": 0.02
+   },
+   {
+    "parameter": "ukf_p0_w_dry",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.0,
+    "unit": "kg (SD)",
+    "low": {
+     "value": 0.5,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.0,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "swing": 0.02
+   },
+   {
+    "parameter": "tr_offset_sun_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 13.0,
+    "unit": "degC at 800 W/m2",
+    "low": {
+     "value": 5.0,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 20.0,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "swing": 0.02
+   },
+   {
+    "parameter": "ecf_frac_drug",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.0,
+    "unit": "fraction",
+    "low": {
+     "value": 0.8,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.015
+   },
+   {
+    "parameter": "a_tot_old",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.6,
+    "unit": "fraction",
+    "low": {
+     "value": 0.5,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.75,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "swing": 0.015
+   },
+   {
+    "parameter": "ukf_alpha",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "dimensionless",
+    "low": {
+     "value": 0.1,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.45,
+     "aki_onset_day": 9
+    },
+    "swing": 0.015
+   },
+   {
+    "parameter": "a_tot_young",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.8,
+    "unit": "fraction",
+    "low": {
+     "value": 0.6,
+     "risk": 0.455,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.9,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "swing": 0.01
+   },
+   {
+    "parameter": "nsaid_e50",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.0,
+    "unit": "normalised NSAID units",
+    "low": {
+     "value": 0.5,
+     "risk": 0.465,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.0,
+     "risk": 0.455,
+     "aki_onset_day": 9
+    },
+    "swing": 0.01
+   },
+   {
+    "parameter": "half_life_nsaid_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 6.0,
+    "unit": "h",
+    "low": {
+     "value": 3.0,
+     "risk": 0.44,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 9.0,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "swing": 0.01
+   },
+   {
+    "parameter": "clo_sari_salwar",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.6,
+    "unit": "clo",
+    "low": {
+     "value": 0.3,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "swing": 0.01
+   },
+   {
+    "parameter": "indoor_lag_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2,
+    "unit": "h",
+    "low": {
+     "value": 1,
+     "risk": 0.445,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 4,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.01
+   },
+   {
+    "parameter": "hill_n",
+    "provenance": "ASSUMPTION",
+    "registry_value": 3.0,
+    "unit": "dimensionless",
+    "low": {
+     "value": 2.0,
+     "risk": 0.485,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 4.0,
+     "risk": 0.49,
+     "aki_onset_day": 9
+    },
+    "swing": 0.005
+   },
+   {
+    "parameter": "tau_recover_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 12.0,
+    "unit": "h",
+    "low": {
+     "value": 6.0,
+     "risk": 0.03,
+     "aki_onset_day": null
+    },
+    "high": {
+     "value": 24.0,
+     "risk": 0.025,
+     "aki_onset_day": 1
+    },
+    "swing": 0.005
+   },
+   {
+    "parameter": "ukf_p0_v_tot",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.5,
+    "unit": "L (SD)",
+    "low": {
+     "value": 0.3,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "swing": 0.005
+   },
+   {
+    "parameter": "forecast_sd_day1_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.0,
+    "unit": "degC",
+    "low": {
+     "value": 0.5,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.005
+   },
+   {
+    "parameter": "forecast_sd_day2_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.5,
+    "unit": "degC",
+    "low": {
+     "value": 0.75,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.25,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.005
+   },
+   {
+    "parameter": "forecast_rh_rel_sd",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.1,
+    "unit": "relative SD of humidity",
+    "low": {
+     "value": 0.05,
+     "risk": 0.43,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.15,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.005
+   },
+   {
+    "parameter": "vd_floor_frac",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.8,
+    "unit": "fraction of baseline total body water",
+    "low": {
+     "value": 0.7,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.9,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "ecf_frac_gi",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.0,
+    "unit": "fraction",
+    "low": {
+     "value": 0.8,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "k_ex",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.25,
+    "unit": "fraction of GFR lost at full exertion",
+    "low": {
+     "value": 0.1,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.4,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "tau_ex_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.0,
+    "unit": "h",
+    "low": {
+     "value": 0.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "ex_met_threshold",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.0,
+    "unit": "met",
+    "low": {
+     "value": 1.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "ex_met_span",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.0,
+    "unit": "met",
+    "low": {
+     "value": 1.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "phi_drink_young",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.75,
+    "unit": "fraction of sweat replaced by drinking",
+    "low": {
+     "value": 0.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.9,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "phi_drink_no_water_at_work_mult",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.8,
+    "unit": "multiplier",
+    "low": {
+     "value": 0.6,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "ors_ecf_frac",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.9,
+    "unit": "fraction of ORS volume that refills the ECF",
+    "low": {
+     "value": 0.7,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "sickle_trait_tau_mult",
+    "provenance": "VERIFY",
+    "registry_value": 1.3,
+    "unit": "multiplier",
+    "low": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_ras_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 24.0,
+    "unit": "h",
+    "low": {
+     "value": 12.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 36.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_hctz_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 12.0,
+    "unit": "h",
+    "low": {
+     "value": 6.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 18.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_chlorthalidone_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 48.0,
+    "unit": "h",
+    "low": {
+     "value": 24.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 72.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_indapamide_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 24.0,
+    "unit": "h",
+    "low": {
+     "value": 12.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 36.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_loop_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 6.0,
+    "unit": "h",
+    "low": {
+     "value": 3.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 9.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_mra_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 24.0,
+    "unit": "h",
+    "low": {
+     "value": 12.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 36.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "half_life_sglt2_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 12.0,
+    "unit": "h",
+    "low": {
+     "value": 6.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 18.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "diuretic_loss_loop_l_day",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.4,
+    "unit": "L/day",
+    "low": {
+     "value": 0.1,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.6,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "sglt2_loss_l_day",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.0,
+    "unit": "L/day",
+    "low": {
+     "value": 0.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.15,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "vomit_loss_l",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "L per episode",
+    "low": {
+     "value": 0.1,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "diarrhoea_loss_l",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.4,
+    "unit": "L per episode",
+    "low": {
+     "value": 0.1,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "water_glass_l",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.25,
+    "unit": "L per glass",
+    "low": {
+     "value": 0.2,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.3,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "k_hr_beta_blocker_mult",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.4,
+    "unit": "multiplier",
+    "low": {
+     "value": 0.2,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.6,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "hr_fever_bpm_per_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 10.0,
+    "unit": "bpm per degC above 37",
+    "low": {
+     "value": 7.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 13.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "k_bp",
+    "provenance": "ASSUMPTION",
+    "registry_value": 5.0,
+    "unit": "mmHg per L of ECF deficit",
+    "low": {
+     "value": 2.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 10.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "sigma_hr_beta_blocker_mult",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.5,
+    "unit": "multiplier on sigma_hr_bpm",
+    "low": {
+     "value": 1.25,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "sigma_sbp_mmhg",
+    "provenance": "ASSUMPTION",
+    "registry_value": 8.0,
+    "unit": "mmHg",
+    "low": {
+     "value": 5.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 12.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "ukf_p0_v_ecf",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.3,
+    "unit": "L (SD)",
+    "low": {
+     "value": 0.15,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.6,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "ukf_p0_cr_frac",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.1,
+    "unit": "fraction of baseline creatinine (SD)",
+    "low": {
+     "value": 0.05,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.2,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "met_office",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.3,
+    "unit": "met",
+    "low": {
+     "value": 0.8,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.8,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "met_vendor",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.0,
+    "unit": "met",
+    "low": {
+     "value": 1.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "met_delivery",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.5,
+    "unit": "met",
+    "low": {
+     "value": 2.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "met_construction_farm",
+    "provenance": "ASSUMPTION",
+    "registry_value": 3.0,
+    "unit": "met",
+    "low": {
+     "value": 2.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.5,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "clo_light_cotton",
+    "provenance": "ASSUMPTION",
+    "registry_value": 0.5,
+    "unit": "clo",
+    "low": {
+     "value": 0.3,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.8,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "indoor_offset_tin_roof_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": -1.0,
+    "unit": "degC vs outdoor",
+    "low": {
+     "value": -3.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "indoor_offset_thatch_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": -2.0,
+    "unit": "degC vs outdoor",
+    "low": {
+     "value": -4.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 0.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "indoor_offset_ac_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": -6.0,
+    "unit": "degC vs outdoor",
+    "low": {
+     "value": -10.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": -4.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "indoor_offset_cooler_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": -4.0,
+    "unit": "degC vs outdoor",
+    "low": {
+     "value": -6.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": -2.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "hot_day_tmax_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 40.0,
+    "unit": "degC",
+    "low": {
+     "value": 38.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 42.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "hot_night_tmin_c",
+    "provenance": "ASSUMPTION",
+    "registry_value": 30.0,
+    "unit": "degC",
+    "low": {
+     "value": 28.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 32.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "sweat_cap_l_h",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.5,
+    "unit": "L/h",
+    "low": {
+     "value": 1.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "cyp2c9_mult_as_1_5",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.3,
+    "unit": "NSAID exposure multiplier",
+    "low": {
+     "value": 0.91,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 1.69,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "cyp2c9_mult_as_1_0",
+    "provenance": "ASSUMPTION",
+    "registry_value": 1.6,
+    "unit": "NSAID exposure multiplier",
+    "low": {
+     "value": 1.12,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.08,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "cyp2c9_mult_as_0_5",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.0,
+    "unit": "NSAID exposure multiplier",
+    "low": {
+     "value": 1.4,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 2.6,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "cyp2c9_mult_as_0_0",
+    "provenance": "ASSUMPTION",
+    "registry_value": 2.5,
+    "unit": "NSAID exposure multiplier",
+    "low": {
+     "value": 1.75,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 3.25,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   },
+   {
+    "parameter": "egfr_obs_sd",
+    "provenance": "ASSUMPTION",
+    "registry_value": 5.0,
+    "unit": "mL/min/1.73m2",
+    "low": {
+     "value": 3.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "high": {
+     "value": 8.0,
+     "risk": 0.435,
+     "aki_onset_day": 9
+    },
+    "swing": 0.0
+   }
+  ],
+  "phi_drink_rank": 3
+ },
+ "reproduction": {
+  "2025": {
+   "rows": 610000,
+   "positive_days": 868,
+   "models": {
+    "B4_twin_physics_risk": {
+     "auprc_now": 0.0081,
+     "auprc_reported": 0.0081,
+     "reproduced": true
+    },
+    "B3_lightgbm_raw": {
+     "auprc_now": 0.0261,
+     "auprc_reported": 0.0261,
+     "reproduced": true
+    },
+    "M_hybrid_core25": {
+     "auprc_now": 0.0203,
+     "auprc_reported": 0.0203,
+     "reproduced": true
+    },
+    "M_full_sensitivity": {
+     "auprc_now": 0.0269,
+     "auprc_reported": 0.0269,
+     "reproduced": true
+    }
+   }
+  },
+  "2026": {
+   "rows": 610000,
+   "positive_days": 977,
+   "models": {
+    "B4_twin_physics_risk": {
+     "auprc_now": 0.0069,
+     "auprc_reported": 0.0069,
+     "reproduced": true
+    },
+    "B3_lightgbm_raw": {
+     "auprc_now": 0.0227,
+     "auprc_reported": 0.0227,
+     "reproduced": true
+    },
+    "M_hybrid_core25": {
+     "auprc_now": 0.013,
+     "auprc_reported": 0.013,
+     "reproduced": true
+    },
+    "M_full_sensitivity": {
+     "auprc_now": 0.0229,
+     "auprc_reported": 0.0229,
+     "reproduced": true
+    }
+   }
+  }
+ },
+ "robustness": {
+  "season": 2025,
+  "patients": 2500,
+  "headline_noisy_forecast": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0178,
+   "auprc_ci95": [
+    0.009,
+    0.0308
+   ],
+   "auroc": 0.7303,
+   "episodes": 165,
+   "sensitivity_red": 0.279,
+   "sensitivity_red_ci95": [
+    0.2112,
+    0.3619
+   ],
+   "sensitivity_amber_or_red": 0.521,
+   "red_per_100_patient_days": 0.28,
+   "alerts_per_aki_caught_red": 18.5,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 26.1,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 37,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 2,
+     "median_lead_h": 71.0
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 7,
+     "median_lead_h": 23.0
+    }
+   }
+  },
+  "no_band": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0231,
+   "auprc_ci95": [
+    0.0105,
+    0.0416
+   ],
+   "auroc": 0.7306,
+   "episodes": 165,
+   "sensitivity_red": 0.255,
+   "sensitivity_red_ci95": [
+    0.1874,
+    0.3337
+   ],
+   "sensitivity_amber_or_red": 0.479,
+   "red_per_100_patient_days": 0.221,
+   "alerts_per_aki_caught_red": 15.9,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 23.8,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 34,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 2,
+     "median_lead_h": 71.0
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 6,
+     "median_lead_h": 23.0
+    }
+   }
+  },
+  "tier0_only": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0209,
+   "auprc_ci95": [
+    0.0106,
+    0.036
+   ],
+   "auroc": 0.737,
+   "episodes": 165,
+   "sensitivity_red": 0.242,
+   "sensitivity_red_ci95": [
+    0.1714,
+    0.3113
+   ],
+   "sensitivity_amber_or_red": 0.467,
+   "red_per_100_patient_days": 0.204,
+   "alerts_per_aki_caught_red": 15.4,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 17.5,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 34,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 0,
+     "median_lead_h": null
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 6,
+     "median_lead_h": 23.0
+    }
+   }
+  },
+  "drop30": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0169,
+   "auprc_ci95": [
+    0.0091,
+    0.0304
+   ],
+   "auroc": 0.7273,
+   "episodes": 165,
+   "sensitivity_red": 0.279,
+   "sensitivity_red_ci95": [
+    0.1988,
+    0.373
+   ],
+   "sensitivity_amber_or_red": 0.491,
+   "red_per_100_patient_days": 0.262,
+   "alerts_per_aki_caught_red": 17.2,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 26.1,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 37,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 2,
+     "median_lead_h": 71.0
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 7,
+     "median_lead_h": 23.0
+    }
+   }
+  },
+  "drop50": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0183,
+   "auprc_ci95": [
+    0.0097,
+    0.0315
+   ],
+   "auroc": 0.7262,
+   "episodes": 165,
+   "sensitivity_red": 0.279,
+   "sensitivity_red_ci95": [
+    0.1985,
+    0.3724
+   ],
+   "sensitivity_amber_or_red": 0.485,
+   "red_per_100_patient_days": 0.255,
+   "alerts_per_aki_caught_red": 16.8,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 23.9,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 38,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 2,
+     "median_lead_h": 71.0
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 6,
+     "median_lead_h": 23.0
+    }
+   }
+  },
+  "noise2x": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0157,
+   "auprc_ci95": [
+    0.0082,
+    0.0306
+   ],
+   "auroc": 0.7232,
+   "episodes": 165,
+   "sensitivity_red": 0.279,
+   "sensitivity_red_ci95": [
+    0.1983,
+    0.353
+   ],
+   "sensitivity_amber_or_red": 0.491,
+   "red_per_100_patient_days": 0.323,
+   "alerts_per_aki_caught_red": 21.3,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 28.3,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 38,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 2,
+     "median_lead_h": 71.0
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 6,
+     "median_lead_h": 23.0
+    }
+   }
+  },
+  "perfect_forecast": {
+   "patients": 2500,
+   "positive_days": 473,
+   "auprc": 0.0169,
+   "auprc_ci95": [
+    0.0102,
+    0.0298
+   ],
+   "auroc": 0.7329,
+   "episodes": 165,
+   "sensitivity_red": 0.261,
+   "sensitivity_red_ci95": [
+    0.1836,
+    0.3425
+   ],
+   "sensitivity_amber_or_red": 0.509,
+   "red_per_100_patient_days": 0.204,
+   "alerts_per_aki_caught_red": 14.4,
+   "median_lead_h": 23.0,
+   "pct_caught_ge_24h_ahead": 25.6,
+   "lead_by_trigger_gap": {
+    "trigger_ge_24h": {
+     "episodes": 77,
+     "caught_red": 35,
+     "median_lead_h": 23.0
+    },
+    "trigger_lt_24h": {
+     "episodes": 4,
+     "caught_red": 2,
+     "median_lead_h": 71.0
+    },
+    "no_sick_day_trigger": {
+     "episodes": 84,
+     "caught_red": 6,
+     "median_lead_h": 23.0
+    }
+   }
+  }
+ },
+ "subgroups": {
+  "2025": {
+   "sex": {
+    "female": {
+     "patients": 2434,
+     "positive_days": 344,
+     "auprc": 0.0147,
+     "auprc_ci95": [
+      0.0073,
+      0.0268
+     ],
+     "auroc": 0.7265,
+     "episodes": 121,
+     "sensitivity_red": 0.264,
+     "sensitivity_red_ci95": [
+      0.1792,
+      0.3514
+     ],
+     "sensitivity_amber_or_red": 0.504,
+     "red_per_100_patient_days": 0.274,
+     "alerts_per_aki_caught_red": 25.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 18.8,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 50,
+       "caught_red": 25,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 69,
+       "caught_red": 7,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "male": {
+     "patients": 2566,
+     "positive_days": 524,
+     "auprc": 0.0261,
+     "auprc_ci95": [
+      0.0165,
+      0.0444
+     ],
+     "auroc": 0.7623,
+     "episodes": 188,
+     "sensitivity_red": 0.303,
+     "sensitivity_red_ci95": [
+      0.2218,
+      0.3684
+     ],
+     "sensitivity_amber_or_red": 0.559,
+     "red_per_100_patient_days": 0.276,
+     "alerts_per_aki_caught_red": 15.1,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 36.8,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 79,
+       "caught_red": 40,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 5,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 104,
+       "caught_red": 15,
+       "median_lead_h": 47.0
+      }
+     }
+    }
+   },
+   "age_band": {
+    "60-74": {
+     "patients": 1820,
+     "positive_days": 332,
+     "auprc": 0.0255,
+     "auprc_ci95": [
+      0.0125,
+      0.046
+     ],
+     "auroc": 0.7543,
+     "episodes": 121,
+     "sensitivity_red": 0.397,
+     "sensitivity_red_ci95": [
+      0.3063,
+      0.4846
+     ],
+     "sensitivity_amber_or_red": 0.661,
+     "red_per_100_patient_days": 0.4,
+     "alerts_per_aki_caught_red": 18.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 35.4,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 61,
+       "caught_red": 34,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 4,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 56,
+       "caught_red": 12,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "<60": {
+     "patients": 2706,
+     "positive_days": 426,
+     "auprc": 0.0108,
+     "auprc_ci95": [
+      0.0054,
+      0.0202
+     ],
+     "auroc": 0.7444,
+     "episodes": 148,
+     "sensitivity_red": 0.176,
+     "sensitivity_red_ci95": [
+      0.1,
+      0.2521
+     ],
+     "sensitivity_amber_or_red": 0.439,
+     "red_per_100_patient_days": 0.186,
+     "alerts_per_aki_caught_red": 23.5,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 23.1,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 41,
+       "caught_red": 20,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 105,
+       "caught_red": 6,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    ">=75": {
+     "patients": 474,
+     "positive_days": 110,
+     "auprc": 0.0485,
+     "auprc_ci95": [
+      0.0199,
+      0.1063
+     ],
+     "auroc": 0.7457,
+     "episodes": 40,
+     "sensitivity_red": 0.375,
+     "sensitivity_red_ci95": [
+      0.1666,
+      0.6289
+     ],
+     "sensitivity_amber_or_red": 0.525,
+     "red_per_100_patient_days": 0.311,
+     "alerts_per_aki_caught_red": 11.9,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 26.7,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 27,
+       "caught_red": 11,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 12,
+       "caught_red": 4,
+       "median_lead_h": 35.0
+      }
+     }
+    }
+   },
+   "diabetes": {
+    "diabetes": {
+     "patients": 1501,
+     "positive_days": 282,
+     "auprc": 0.022,
+     "auprc_ci95": [
+      0.0086,
+      0.0479
+     ],
+     "auroc": 0.7066,
+     "episodes": 100,
+     "sensitivity_red": 0.28,
+     "sensitivity_red_ci95": [
+      0.1711,
+      0.3751
+     ],
+     "sensitivity_amber_or_red": 0.52,
+     "red_per_100_patient_days": 0.289,
+     "alerts_per_aki_caught_red": 18.8,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 28.6,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 34,
+       "caught_red": 18,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 64,
+       "caught_red": 8,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "no diabetes": {
+     "patients": 3499,
+     "positive_days": 586,
+     "auprc": 0.0201,
+     "auprc_ci95": [
+      0.0121,
+      0.0331
+     ],
+     "auroc": 0.7669,
+     "episodes": 209,
+     "sensitivity_red": 0.292,
+     "sensitivity_red_ci95": [
+      0.2146,
+      0.3623
+     ],
+     "sensitivity_amber_or_red": 0.545,
+     "red_per_100_patient_days": 0.269,
+     "alerts_per_aki_caught_red": 18.7,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 31.1,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 95,
+       "caught_red": 47,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 5,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 109,
+       "caught_red": 14,
+       "median_lead_h": 35.0
+      }
+     }
+    }
+   },
+   "beta_blocker": {
+    "not on beta-blocker": {
+     "patients": 4146,
+     "positive_days": 681,
+     "auprc": 0.0217,
+     "auprc_ci95": [
+      0.0129,
+      0.0351
+     ],
+     "auroc": 0.7541,
+     "episodes": 243,
+     "sensitivity_red": 0.292,
+     "sensitivity_red_ci95": [
+      0.2333,
+      0.3624
+     ],
+     "sensitivity_amber_or_red": 0.543,
+     "red_per_100_patient_days": 0.274,
+     "alerts_per_aki_caught_red": 19.4,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 29.6,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 99,
+       "caught_red": 51,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 6,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 138,
+       "caught_red": 18,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "on beta-blocker": {
+     "patients": 854,
+     "positive_days": 187,
+     "auprc": 0.0162,
+     "auprc_ci95": [
+      0.0064,
+      0.0386
+     ],
+     "auroc": 0.7214,
+     "episodes": 66,
+     "sensitivity_red": 0.273,
+     "sensitivity_red_ci95": [
+      0.1402,
+      0.4003
+     ],
+     "sensitivity_amber_or_red": 0.515,
+     "red_per_100_patient_days": 0.281,
+     "alerts_per_aki_caught_red": 16.1,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 33.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 30,
+       "caught_red": 14,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 35,
+       "caught_red": 4,
+       "median_lead_h": 59.0
+      }
+     }
+    }
+   },
+   "city": {
+    "Ahmedabad": {
+     "patients": 731,
+     "positive_days": 101,
+     "auprc": 0.0098,
+     "auprc_ci95": [
+      0.0034,
+      0.0276
+     ],
+     "auroc": 0.6987,
+     "episodes": 35,
+     "sensitivity_red": 0.257,
+     "sensitivity_red_ci95": [
+      0.1247,
+      0.4286
+     ],
+     "sensitivity_amber_or_red": 0.486,
+     "red_per_100_patient_days": 0.383,
+     "alerts_per_aki_caught_red": 37.8,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 22.2,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 16,
+       "caught_red": 8,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 3,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 16,
+       "caught_red": 1,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "Bengaluru": {
+     "patients": 736,
+     "positive_days": 146,
+     "auprc": 0.0241,
+     "auprc_ci95": [
+      0.0095,
+      0.0557
+     ],
+     "auroc": 0.7853,
+     "episodes": 53,
+     "sensitivity_red": 0.189,
+     "sensitivity_red_ci95": [
+      0.0815,
+      0.3036
+     ],
+     "sensitivity_amber_or_red": 0.472,
+     "red_per_100_patient_days": 0.135,
+     "alerts_per_aki_caught_red": 12.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 30.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 20,
+       "caught_red": 7,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 33,
+       "caught_red": 3,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "Chennai": {
+     "patients": 578,
+     "positive_days": 88,
+     "auprc": 0.0319,
+     "auprc_ci95": [
+      0.007,
+      0.0768
+     ],
+     "auroc": 0.7816,
+     "episodes": 33,
+     "sensitivity_red": 0.364,
+     "sensitivity_red_ci95": [
+      0.1737,
+      0.5203
+     ],
+     "sensitivity_amber_or_red": 0.606,
+     "red_per_100_patient_days": 0.282,
+     "alerts_per_aki_caught_red": 16.4,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 33.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 10,
+       "caught_red": 9,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 23,
+       "caught_red": 3,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "Delhi": {
+     "patients": 878,
+     "positive_days": 191,
+     "auprc": 0.0145,
+     "auprc_ci95": [
+      0.0062,
+      0.0312
+     ],
+     "auroc": 0.7212,
+     "episodes": 67,
+     "sensitivity_red": 0.239,
+     "sensitivity_red_ci95": [
+      0.1526,
+      0.3531
+     ],
+     "sensitivity_amber_or_red": 0.507,
+     "red_per_100_patient_days": 0.286,
+     "alerts_per_aki_caught_red": 19.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 25.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 30,
+       "caught_red": 15,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 35,
+       "caught_red": 1,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "Hyderabad": {
+     "patients": 684,
+     "positive_days": 107,
+     "auprc": 0.0377,
+     "auprc_ci95": [
+      0.0088,
+      0.073
+     ],
+     "auroc": 0.7751,
+     "episodes": 38,
+     "sensitivity_red": 0.289,
+     "sensitivity_red_ci95": [
+      0.1429,
+      0.4393
+     ],
+     "sensitivity_amber_or_red": 0.553,
+     "red_per_100_patient_days": 0.223,
+     "alerts_per_aki_caught_red": 16.8,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 9.1,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 17,
+       "caught_red": 9,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 21,
+       "caught_red": 2,
+       "median_lead_h": 35.0
+      }
+     }
+    },
+    "Nagpur": {
+     "patients": 781,
+     "positive_days": 137,
+     "auprc": 0.0471,
+     "auprc_ci95": [
+      0.0147,
+      0.0857
+     ],
+     "auroc": 0.7756,
+     "episodes": 49,
+     "sensitivity_red": 0.408,
+     "sensitivity_red_ci95": [
+      0.2222,
+      0.5665
+     ],
+     "sensitivity_amber_or_red": 0.653,
+     "red_per_100_patient_days": 0.262,
+     "alerts_per_aki_caught_red": 12.4,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 45.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 22,
+       "caught_red": 12,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 27,
+       "caught_red": 8,
+       "median_lead_h": 35.0
+      }
+     }
+    },
+    "Palasa": {
+     "patients": 612,
+     "positive_days": 98,
+     "auprc": 0.0172,
+     "auprc_ci95": [
+      0.0029,
+      0.0588
+     ],
+     "auroc": 0.7284,
+     "episodes": 34,
+     "sensitivity_red": 0.324,
+     "sensitivity_red_ci95": [
+      0.148,
+      0.5185
+     ],
+     "sensitivity_amber_or_red": 0.5,
+     "red_per_100_patient_days": 0.369,
+     "alerts_per_aki_caught_red": 24.9,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 36.4,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 14,
+       "caught_red": 5,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 18,
+       "caught_red": 4,
+       "median_lead_h": 35.0
+      }
+     }
+    }
+   },
+   "cyp2c9": {
+    "intermediate (AS 1.0-1.5)": {
+     "patients": 1215,
+     "positive_days": 220,
+     "auprc": 0.0216,
+     "auprc_ci95": [
+      0.0082,
+      0.0466
+     ],
+     "auroc": 0.7618,
+     "episodes": 80,
+     "sensitivity_red": 0.312,
+     "sensitivity_red_ci95": [
+      0.1999,
+      0.4302
+     ],
+     "sensitivity_amber_or_red": 0.588,
+     "red_per_100_patient_days": 0.299,
+     "alerts_per_aki_caught_red": 17.6,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 24.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 30,
+       "caught_red": 17,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 3,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 47,
+       "caught_red": 6,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "normal (AS 2.0)": {
+     "patients": 3689,
+     "positive_days": 632,
+     "auprc": 0.0204,
+     "auprc_ci95": [
+      0.0121,
+      0.0325
+     ],
+     "auroc": 0.7413,
+     "episodes": 223,
+     "sensitivity_red": 0.283,
+     "sensitivity_red_ci95": [
+      0.2154,
+      0.3533
+     ],
+     "sensitivity_amber_or_red": 0.516,
+     "red_per_100_patient_days": 0.259,
+     "alerts_per_aki_caught_red": 18.4,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 33.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 97,
+       "caught_red": 47,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 4,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 122,
+       "caught_red": 16,
+       "median_lead_h": 35.0
+      }
+     }
+    },
+    "poor (AS 0-0.5)": {
+     "patients": 96,
+     "positive_days": 16,
+     "auprc": 0.0359,
+     "auprc_ci95": [
+      0.0017,
+      0.1851
+     ],
+     "auroc": 0.7797,
+     "episodes": 6,
+     "sensitivity_red": 0.167,
+     "sensitivity_red_ci95": [
+      0.0,
+      0.5
+     ],
+     "sensitivity_amber_or_red": 0.667,
+     "red_per_100_patient_days": 0.601,
+     "alerts_per_aki_caught_red": 70.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 0.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 2,
+       "caught_red": 1,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 4,
+       "caught_red": 0,
+       "median_lead_h": null
+      }
+     }
+    }
+   },
+   "occupation": {
+    "construction_farm": {
+     "patients": 839,
+     "positive_days": 370,
+     "auprc": 0.0214,
+     "auprc_ci95": [
+      0.0113,
+      0.039
+     ],
+     "auroc": 0.6374,
+     "episodes": 133,
+     "sensitivity_red": 0.323,
+     "sensitivity_red_ci95": [
+      0.23,
+      0.4234
+     ],
+     "sensitivity_amber_or_red": 0.639,
+     "red_per_100_patient_days": 0.821,
+     "alerts_per_aki_caught_red": 19.2,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 48.8,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 46,
+       "caught_red": 26,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 4,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 83,
+       "caught_red": 15,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "delivery": {
+     "patients": 289,
+     "positive_days": 132,
+     "auprc": 0.0049,
+     "auprc_ci95": [
+      0.0029,
+      0.0089
+     ],
+     "auroc": 0.5474,
+     "episodes": 46,
+     "sensitivity_red": 0.043,
+     "sensitivity_red_ci95": [
+      0.0,
+      0.1252
+     ],
+     "sensitivity_amber_or_red": 0.326,
+     "red_per_100_patient_days": 0.472,
+     "alerts_per_aki_caught_red": 81.5,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 0.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 7,
+       "caught_red": 1,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 38,
+       "caught_red": 1,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "home": {
+     "patients": 2496,
+     "positive_days": 224,
+     "auprc": 0.0238,
+     "auprc_ci95": [
+      0.0095,
+      0.0488
+     ],
+     "auroc": 0.6768,
+     "episodes": 79,
+     "sensitivity_red": 0.354,
+     "sensitivity_red_ci95": [
+      0.2173,
+      0.4932
+     ],
+     "sensitivity_amber_or_red": 0.456,
+     "red_per_100_patient_days": 0.13,
+     "alerts_per_aki_caught_red": 14.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 14.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 43,
+       "caught_red": 23,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 35,
+       "caught_red": 5,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "office": {
+     "patients": 968,
+     "positive_days": 114,
+     "auprc": 0.0226,
+     "auprc_ci95": [
+      0.0073,
+      0.0571
+     ],
+     "auroc": 0.7497,
+     "episodes": 41,
+     "sensitivity_red": 0.22,
+     "sensitivity_red_ci95": [
+      0.1058,
+      0.3704
+     ],
+     "sensitivity_amber_or_red": 0.488,
+     "red_per_100_patient_days": 0.093,
+     "alerts_per_aki_caught_red": 12.1,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 11.1,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 25,
+       "caught_red": 9,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 15,
+       "caught_red": 0,
+       "median_lead_h": null
+      }
+     }
+    },
+    "vendor": {
+     "patients": 408,
+     "positive_days": 28,
+     "auprc": 0.0949,
+     "auprc_ci95": [
+      0.0118,
+      0.1988
+     ],
+     "auroc": 0.7968,
+     "episodes": 10,
+     "sensitivity_red": 0.7,
+     "sensitivity_red_ci95": [
+      0.3844,
+      1.0
+     ],
+     "sensitivity_amber_or_red": 1.0,
+     "red_per_100_patient_days": 0.358,
+     "alerts_per_aki_caught_red": 25.4,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 14.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 8,
+       "caught_red": 6,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 2,
+       "caught_red": 1,
+       "median_lead_h": 23.0
+      }
+     }
+    }
+   },
+   "tier": {
+    "T0": {
+     "patients": 1704,
+     "positive_days": 271,
+     "auprc": 0.0237,
+     "auprc_ci95": [
+      0.0091,
+      0.0453
+     ],
+     "auroc": 0.7753,
+     "episodes": 99,
+     "sensitivity_red": 0.253,
+     "sensitivity_red_ci95": [
+      0.1504,
+      0.3638
+     ],
+     "sensitivity_amber_or_red": 0.545,
+     "red_per_100_patient_days": 0.185,
+     "alerts_per_aki_caught_red": 15.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 28.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 39,
+       "caught_red": 17,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 60,
+       "caught_red": 8,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "T1": {
+     "patients": 2269,
+     "positive_days": 358,
+     "auprc": 0.0172,
+     "auprc_ci95": [
+      0.0085,
+      0.0305
+     ],
+     "auroc": 0.7295,
+     "episodes": 127,
+     "sensitivity_red": 0.268,
+     "sensitivity_red_ci95": [
+      0.1915,
+      0.3483
+     ],
+     "sensitivity_amber_or_red": 0.496,
+     "red_per_100_patient_days": 0.3,
+     "alerts_per_aki_caught_red": 24.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 32.4,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 46,
+       "caught_red": 27,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 5,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 76,
+       "caught_red": 7,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "T2": {
+     "patients": 1027,
+     "positive_days": 239,
+     "auprc": 0.0265,
+     "auprc_ci95": [
+      0.0113,
+      0.0582
+     ],
+     "auroc": 0.7324,
+     "episodes": 83,
+     "sensitivity_red": 0.361,
+     "sensitivity_red_ci95": [
+      0.2381,
+      0.475
+     ],
+     "sensitivity_amber_or_red": 0.59,
+     "red_per_100_patient_days": 0.371,
+     "alerts_per_aki_caught_red": 15.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 30.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 44,
+       "caught_red": 21,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 2,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 37,
+       "caught_red": 7,
+       "median_lead_h": 23.0
+      }
+     }
+    }
+   }
+  },
+  "2026": {
+   "sex": {
+    "female": {
+     "patients": 2434,
+     "positive_days": 405,
+     "auprc": 0.0094,
+     "auprc_ci95": [
+      0.004,
+      0.0196
+     ],
+     "auroc": 0.694,
+     "episodes": 140,
+     "sensitivity_red": 0.221,
+     "sensitivity_red_ci95": [
+      0.1417,
+      0.297
+     ],
+     "sensitivity_amber_or_red": 0.45,
+     "red_per_100_patient_days": 0.311,
+     "alerts_per_aki_caught_red": 29.6,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 45.2,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 51,
+       "caught_red": 17,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 5,
+       "caught_red": 2,
+       "median_lead_h": 47.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 84,
+       "caught_red": 12,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "male": {
+     "patients": 2566,
+     "positive_days": 572,
+     "auprc": 0.0178,
+     "auprc_ci95": [
+      0.0109,
+      0.0267
+     ],
+     "auroc": 0.7517,
+     "episodes": 203,
+     "sensitivity_red": 0.281,
+     "sensitivity_red_ci95": [
+      0.2179,
+      0.3509
+     ],
+     "sensitivity_amber_or_red": 0.596,
+     "red_per_100_patient_days": 0.33,
+     "alerts_per_aki_caught_red": 18.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 36.8,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 82,
+       "caught_red": 41,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 10,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 111,
+       "caught_red": 15,
+       "median_lead_h": 47.0
+      }
+     }
+    }
+   },
+   "age_band": {
+    "60-74": {
+     "patients": 1820,
+     "positive_days": 367,
+     "auprc": 0.0138,
+     "auprc_ci95": [
+      0.0063,
+      0.0238
+     ],
+     "auroc": 0.7573,
+     "episodes": 132,
+     "sensitivity_red": 0.288,
+     "sensitivity_red_ci95": [
+      0.1985,
+      0.3919
+     ],
+     "sensitivity_amber_or_red": 0.659,
+     "red_per_100_patient_days": 0.456,
+     "alerts_per_aki_caught_red": 26.4,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 47.4,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 49,
+       "caught_red": 22,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 7,
+       "caught_red": 3,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 76,
+       "caught_red": 13,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "<60": {
+     "patients": 2706,
+     "positive_days": 499,
+     "auprc": 0.0103,
+     "auprc_ci95": [
+      0.0062,
+      0.0179
+     ],
+     "auroc": 0.7144,
+     "episodes": 171,
+     "sensitivity_red": 0.216,
+     "sensitivity_red_ci95": [
+      0.1522,
+      0.2779
+     ],
+     "sensitivity_amber_or_red": 0.45,
+     "red_per_100_patient_days": 0.214,
+     "alerts_per_aki_caught_red": 19.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 40.5,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 59,
+       "caught_red": 24,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 3,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 109,
+       "caught_red": 13,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    ">=75": {
+     "patients": 474,
+     "positive_days": 111,
+     "auprc": 0.0242,
+     "auprc_ci95": [
+      0.009,
+      0.0773
+     ],
+     "auroc": 0.7002,
+     "episodes": 40,
+     "sensitivity_red": 0.325,
+     "sensitivity_red_ci95": [
+      0.1613,
+      0.5418
+     ],
+     "sensitivity_amber_or_red": 0.5,
+     "red_per_100_patient_days": 0.415,
+     "alerts_per_aki_caught_red": 18.2,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 15.4,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 25,
+       "caught_red": 12,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 5,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 10,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      }
+     }
+    }
+   },
+   "diabetes": {
+    "diabetes": {
+     "patients": 1501,
+     "positive_days": 281,
+     "auprc": 0.0156,
+     "auprc_ci95": [
+      0.0076,
+      0.0325
+     ],
+     "auroc": 0.7272,
+     "episodes": 98,
+     "sensitivity_red": 0.286,
+     "sensitivity_red_ci95": [
+      0.1953,
+      0.3847
+     ],
+     "sensitivity_amber_or_red": 0.551,
+     "red_per_100_patient_days": 0.315,
+     "alerts_per_aki_caught_red": 20.5,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 42.9,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 38,
+       "caught_red": 17,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 59,
+       "caught_red": 11,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "no diabetes": {
+     "patients": 3499,
+     "positive_days": 696,
+     "auprc": 0.0121,
+     "auprc_ci95": [
+      0.0077,
+      0.0197
+     ],
+     "auroc": 0.7275,
+     "episodes": 245,
+     "sensitivity_red": 0.245,
+     "sensitivity_red_ci95": [
+      0.1777,
+      0.3012
+     ],
+     "sensitivity_amber_or_red": 0.531,
+     "red_per_100_patient_days": 0.324,
+     "alerts_per_aki_caught_red": 22.8,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 38.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 95,
+       "caught_red": 41,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 14,
+       "caught_red": 3,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 136,
+       "caught_red": 16,
+       "median_lead_h": 47.0
+      }
+     }
+    }
+   },
+   "beta_blocker": {
+    "not on beta-blocker": {
+     "patients": 4146,
+     "positive_days": 778,
+     "auprc": 0.0123,
+     "auprc_ci95": [
+      0.0079,
+      0.0195
+     ],
+     "auroc": 0.7235,
+     "episodes": 274,
+     "sensitivity_red": 0.259,
+     "sensitivity_red_ci95": [
+      0.1966,
+      0.3196
+     ],
+     "sensitivity_amber_or_red": 0.54,
+     "red_per_100_patient_days": 0.323,
+     "alerts_per_aki_caught_red": 22.8,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 32.4,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 99,
+       "caught_red": 48,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 12,
+       "caught_red": 2,
+       "median_lead_h": 47.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 163,
+       "caught_red": 21,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "on beta-blocker": {
+     "patients": 854,
+     "positive_days": 199,
+     "auprc": 0.0187,
+     "auprc_ci95": [
+      0.0074,
+      0.0458
+     ],
+     "auroc": 0.7422,
+     "episodes": 69,
+     "sensitivity_red": 0.246,
+     "sensitivity_red_ci95": [
+      0.1366,
+      0.3378
+     ],
+     "sensitivity_amber_or_red": 0.522,
+     "red_per_100_patient_days": 0.312,
+     "alerts_per_aki_caught_red": 18.9,
+     "median_lead_h": 71.0,
+     "pct_caught_ge_24h_ahead": 70.6,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 34,
+       "caught_red": 10,
+       "median_lead_h": 59.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 3,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 32,
+       "caught_red": 6,
+       "median_lead_h": 71.0
+      }
+     }
+    }
+   },
+   "city": {
+    "Ahmedabad": {
+     "patients": 731,
+     "positive_days": 144,
+     "auprc": 0.0087,
+     "auprc_ci95": [
+      0.004,
+      0.0264
+     ],
+     "auroc": 0.706,
+     "episodes": 50,
+     "sensitivity_red": 0.28,
+     "sensitivity_red_ci95": [
+      0.1591,
+      0.4238
+     ],
+     "sensitivity_amber_or_red": 0.5,
+     "red_per_100_patient_days": 0.444,
+     "alerts_per_aki_caught_red": 28.1,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 14.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 22,
+       "caught_red": 10,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 27,
+       "caught_red": 4,
+       "median_lead_h": 23.0
+      }
+     }
+    },
+    "Bengaluru": {
+     "patients": 736,
+     "positive_days": 114,
+     "auprc": 0.0137,
+     "auprc_ci95": [
+      0.0032,
+      0.0544
+     ],
+     "auroc": 0.7741,
+     "episodes": 41,
+     "sensitivity_red": 0.22,
+     "sensitivity_red_ci95": [
+      0.0344,
+      0.4168
+     ],
+     "sensitivity_amber_or_red": 0.439,
+     "red_per_100_patient_days": 0.128,
+     "alerts_per_aki_caught_red": 12.7,
+     "median_lead_h": 47.0,
+     "pct_caught_ge_24h_ahead": 55.6,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 11,
+       "caught_red": 3,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 29,
+       "caught_red": 5,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "Chennai": {
+     "patients": 578,
+     "positive_days": 88,
+     "auprc": 0.0196,
+     "auprc_ci95": [
+      0.0044,
+      0.058
+     ],
+     "auroc": 0.7244,
+     "episodes": 31,
+     "sensitivity_red": 0.323,
+     "sensitivity_red_ci95": [
+      0.1998,
+      0.4839
+     ],
+     "sensitivity_amber_or_red": 0.484,
+     "red_per_100_patient_days": 0.487,
+     "alerts_per_aki_caught_red": 34.1,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 20.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 13,
+       "caught_red": 8,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 17,
+       "caught_red": 2,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "Delhi": {
+     "patients": 878,
+     "positive_days": 200,
+     "auprc": 0.0237,
+     "auprc_ci95": [
+      0.0086,
+      0.0487
+     ],
+     "auroc": 0.6908,
+     "episodes": 70,
+     "sensitivity_red": 0.243,
+     "sensitivity_red_ci95": [
+      0.146,
+      0.3438
+     ],
+     "sensitivity_amber_or_red": 0.557,
+     "red_per_100_patient_days": 0.312,
+     "alerts_per_aki_caught_red": 19.5,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 35.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 31,
+       "caught_red": 15,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 3,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 36,
+       "caught_red": 2,
+       "median_lead_h": 59.0
+      }
+     }
+    },
+    "Hyderabad": {
+     "patients": 684,
+     "positive_days": 110,
+     "auprc": 0.0231,
+     "auprc_ci95": [
+      0.0032,
+      0.0701
+     ],
+     "auroc": 0.7361,
+     "episodes": 38,
+     "sensitivity_red": 0.263,
+     "sensitivity_red_ci95": [
+      0.074,
+      0.4286
+     ],
+     "sensitivity_amber_or_red": 0.579,
+     "red_per_100_patient_days": 0.229,
+     "alerts_per_aki_caught_red": 19.0,
+     "median_lead_h": 47.0,
+     "pct_caught_ge_24h_ahead": 70.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 15,
+       "caught_red": 6,
+       "median_lead_h": 35.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 23,
+       "caught_red": 4,
+       "median_lead_h": 59.0
+      }
+     }
+    },
+    "Nagpur": {
+     "patients": 781,
+     "positive_days": 194,
+     "auprc": 0.0142,
+     "auprc_ci95": [
+      0.0072,
+      0.0259
+     ],
+     "auroc": 0.777,
+     "episodes": 67,
+     "sensitivity_red": 0.269,
+     "sensitivity_red_ci95": [
+      0.1835,
+      0.3963
+     ],
+     "sensitivity_amber_or_red": 0.642,
+     "red_per_100_patient_days": 0.31,
+     "alerts_per_aki_caught_red": 16.2,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 38.9,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 28,
+       "caught_red": 11,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 3,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 36,
+       "caught_red": 7,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "Palasa": {
+     "patients": 612,
+     "positive_days": 127,
+     "auprc": 0.0158,
+     "auprc_ci95": [
+      0.0031,
+      0.0387
+     ],
+     "auroc": 0.6802,
+     "episodes": 46,
+     "sensitivity_red": 0.217,
+     "sensitivity_red_ci95": [
+      0.085,
+      0.3613
+     ],
+     "sensitivity_amber_or_red": 0.478,
+     "red_per_100_patient_days": 0.381,
+     "alerts_per_aki_caught_red": 28.2,
+     "median_lead_h": 59.0,
+     "pct_caught_ge_24h_ahead": 60.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 13,
+       "caught_red": 5,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 6,
+       "caught_red": 2,
+       "median_lead_h": 47.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 27,
+       "caught_red": 3,
+       "median_lead_h": 71.0
+      }
+     }
+    }
+   },
+   "cyp2c9": {
+    "intermediate (AS 1.0-1.5)": {
+     "patients": 1215,
+     "positive_days": 289,
+     "auprc": 0.026,
+     "auprc_ci95": [
+      0.0116,
+      0.0463
+     ],
+     "auroc": 0.756,
+     "episodes": 104,
+     "sensitivity_red": 0.308,
+     "sensitivity_red_ci95": [
+      0.2021,
+      0.4044
+     ],
+     "sensitivity_amber_or_red": 0.587,
+     "red_per_100_patient_days": 0.351,
+     "alerts_per_aki_caught_red": 16.1,
+     "median_lead_h": 35.0,
+     "pct_caught_ge_24h_ahead": 50.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 36,
+       "caught_red": 18,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 7,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 61,
+       "caught_red": 13,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "normal (AS 2.0)": {
+     "patients": 3689,
+     "positive_days": 670,
+     "auprc": 0.011,
+     "auprc_ci95": [
+      0.0077,
+      0.0167
+     ],
+     "auroc": 0.7159,
+     "episodes": 233,
+     "sensitivity_red": 0.232,
+     "sensitivity_red_ci95": [
+      0.1688,
+      0.2919
+     ],
+     "sensitivity_amber_or_red": 0.515,
+     "red_per_100_patient_days": 0.301,
+     "alerts_per_aki_caught_red": 24.9,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 35.2,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 92,
+       "caught_red": 38,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 8,
+       "caught_red": 2,
+       "median_lead_h": 47.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 133,
+       "caught_red": 14,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "poor (AS 0-0.5)": {
+     "patients": 96,
+     "positive_days": 18,
+     "auprc": 0.0045,
+     "auprc_ci95": [
+      0.0013,
+      0.015
+     ],
+     "auroc": 0.6651,
+     "episodes": 6,
+     "sensitivity_red": 0.333,
+     "sensitivity_red_ci95": [
+      0.0,
+      1.0
+     ],
+     "sensitivity_amber_or_red": 0.5,
+     "red_per_100_patient_days": 0.723,
+     "alerts_per_aki_caught_red": 42.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 0.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 5,
+       "caught_red": 2,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      }
+     }
+    }
+   },
+   "occupation": {
+    "construction_farm": {
+     "patients": 839,
+     "positive_days": 408,
+     "auprc": 0.015,
+     "auprc_ci95": [
+      0.0087,
+      0.025
+     ],
+     "auroc": 0.6631,
+     "episodes": 145,
+     "sensitivity_red": 0.297,
+     "sensitivity_red_ci95": [
+      0.212,
+      0.3776
+     ],
+     "sensitivity_amber_or_red": 0.703,
+     "red_per_100_patient_days": 0.922,
+     "alerts_per_aki_caught_red": 21.5,
+     "median_lead_h": 47.0,
+     "pct_caught_ge_24h_ahead": 60.5,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 39,
+       "caught_red": 19,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 6,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 100,
+       "caught_red": 23,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "delivery": {
+     "patients": 289,
+     "positive_days": 110,
+     "auprc": 0.0063,
+     "auprc_ci95": [
+      0.0031,
+      0.0151
+     ],
+     "auroc": 0.5716,
+     "episodes": 38,
+     "sensitivity_red": 0.132,
+     "sensitivity_red_ci95": [
+      0.0312,
+      0.2355
+     ],
+     "sensitivity_amber_or_red": 0.395,
+     "red_per_100_patient_days": 0.578,
+     "alerts_per_aki_caught_red": 40.2,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 40.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 14,
+       "caught_red": 2,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 2,
+       "caught_red": 1,
+       "median_lead_h": 23.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 22,
+       "caught_red": 2,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "home": {
+     "patients": 2496,
+     "positive_days": 309,
+     "auprc": 0.0154,
+     "auprc_ci95": [
+      0.0075,
+      0.0321
+     ],
+     "auroc": 0.6433,
+     "episodes": 107,
+     "sensitivity_red": 0.252,
+     "sensitivity_red_ci95": [
+      0.1499,
+      0.3508
+     ],
+     "sensitivity_amber_or_red": 0.421,
+     "red_per_100_patient_days": 0.149,
+     "alerts_per_aki_caught_red": 16.8,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 14.8,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 54,
+       "caught_red": 25,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 6,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 47,
+       "caught_red": 1,
+       "median_lead_h": 71.0
+      }
+     }
+    },
+    "office": {
+     "patients": 968,
+     "positive_days": 103,
+     "auprc": 0.0068,
+     "auprc_ci95": [
+      0.0018,
+      0.0223
+     ],
+     "auroc": 0.6944,
+     "episodes": 37,
+     "sensitivity_red": 0.189,
+     "sensitivity_red_ci95": [
+      0.0731,
+      0.3337
+     ],
+     "sensitivity_amber_or_red": 0.351,
+     "red_per_100_patient_days": 0.121,
+     "alerts_per_aki_caught_red": 20.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 14.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 17,
+       "caught_red": 7,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 19,
+       "caught_red": 0,
+       "median_lead_h": null
+      }
+     }
+    },
+    "vendor": {
+     "patients": 408,
+     "positive_days": 47,
+     "auprc": 0.0332,
+     "auprc_ci95": [
+      0.0032,
+      0.0893
+     ],
+     "auroc": 0.6783,
+     "episodes": 16,
+     "sensitivity_red": 0.375,
+     "sensitivity_red_ci95": [
+      0.1663,
+      0.589
+     ],
+     "sensitivity_amber_or_red": 0.562,
+     "red_per_100_patient_days": 0.448,
+     "alerts_per_aki_caught_red": 37.0,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 33.3,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 9,
+       "caught_red": 5,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 0,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 7,
+       "caught_red": 1,
+       "median_lead_h": 47.0
+      }
+     }
+    }
+   },
+   "tier": {
+    "T0": {
+     "patients": 1704,
+     "positive_days": 409,
+     "auprc": 0.0195,
+     "auprc_ci95": [
+      0.0093,
+      0.0366
+     ],
+     "auroc": 0.7391,
+     "episodes": 142,
+     "sensitivity_red": 0.239,
+     "sensitivity_red_ci95": [
+      0.1406,
+      0.3309
+     ],
+     "sensitivity_amber_or_red": 0.5,
+     "red_per_100_patient_days": 0.231,
+     "alerts_per_aki_caught_red": 14.0,
+     "median_lead_h": 35.0,
+     "pct_caught_ge_24h_ahead": 50.0,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 53,
+       "caught_red": 20,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 8,
+       "caught_red": 3,
+       "median_lead_h": 71.0
+      },
+      "no_sick_day_trigger": {
+       "episodes": 81,
+       "caught_red": 11,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "T1": {
+     "patients": 2269,
+     "positive_days": 371,
+     "auprc": 0.0129,
+     "auprc_ci95": [
+      0.0068,
+      0.0259
+     ],
+     "auroc": 0.7063,
+     "episodes": 129,
+     "sensitivity_red": 0.287,
+     "sensitivity_red_ci95": [
+      0.2135,
+      0.3659
+     ],
+     "sensitivity_amber_or_red": 0.543,
+     "red_per_100_patient_days": 0.367,
+     "alerts_per_aki_caught_red": 27.3,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 29.7,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 53,
+       "caught_red": 29,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 1,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 75,
+       "caught_red": 8,
+       "median_lead_h": 47.0
+      }
+     }
+    },
+    "T2": {
+     "patients": 1027,
+     "positive_days": 197,
+     "auprc": 0.0132,
+     "auprc_ci95": [
+      0.0054,
+      0.0292
+     ],
+     "auroc": 0.771,
+     "episodes": 72,
+     "sensitivity_red": 0.236,
+     "sensitivity_red_ci95": [
+      0.1301,
+      0.3456
+     ],
+     "sensitivity_amber_or_red": 0.597,
+     "red_per_100_patient_days": 0.369,
+     "alerts_per_aki_caught_red": 26.9,
+     "median_lead_h": 23.0,
+     "pct_caught_ge_24h_ahead": 41.2,
+     "lead_by_trigger_gap": {
+      "trigger_ge_24h": {
+       "episodes": 27,
+       "caught_red": 9,
+       "median_lead_h": 23.0
+      },
+      "trigger_lt_24h": {
+       "episodes": 6,
+       "caught_red": 0,
+       "median_lead_h": null
+      },
+      "no_sick_day_trigger": {
+       "episodes": 39,
+       "caught_red": 8,
+       "median_lead_h": 47.0
+      }
+     }
+    }
+   }
+  }
+ }
+}
