@@ -1,0 +1,265 @@
+{
+ "method": "mean |pred_contrib| (LightGBM native TreeSHAP) of the frozen model M per core feature on the held-out mismatched features; eligible days; also the share of days each feature is a top-3 risk-raising reason",
+ "seasons": {
+  "2025": {
+   "rows_sampled": 200000,
+   "ranking": [
+    {
+     "feature": "mc_gfr_min_frac",
+     "mean_abs_contribution": 0.33556,
+     "share_of_days_in_top3_reasons": 0.3282
+    },
+    {
+     "feature": "mc_cr_peak_ratio",
+     "mean_abs_contribution": 0.29977,
+     "share_of_days_in_top3_reasons": 0.4398
+    },
+    {
+     "feature": "tw_v_ecf_sd",
+     "mean_abs_contribution": 0.20248,
+     "share_of_days_in_top3_reasons": 0.3162
+    },
+    {
+     "feature": "egfr_baseline",
+     "mean_abs_contribution": 0.17181,
+     "share_of_days_in_top3_reasons": 0.1485
+    },
+    {
+     "feature": "tw_theta",
+     "mean_abs_contribution": 0.16617,
+     "share_of_days_in_top3_reasons": 0.3621
+    },
+    {
+     "feature": "age",
+     "mean_abs_contribution": 0.13459,
+     "share_of_days_in_top3_reasons": 0.5098
+    },
+    {
+     "feature": "fc_sweat_72h",
+     "mean_abs_contribution": 0.08528,
+     "share_of_days_in_top3_reasons": 0.1619
+    },
+    {
+     "feature": "hr_delta_bpm",
+     "mean_abs_contribution": 0.05878,
+     "share_of_days_in_top3_reasons": 0.3688
+    },
+    {
+     "feature": "tw_cr_ratio",
+     "mean_abs_contribution": 0.02234,
+     "share_of_days_in_top3_reasons": 0.0399
+    },
+    {
+     "feature": "fc_tmax_72h",
+     "mean_abs_contribution": 0.01983,
+     "share_of_days_in_top3_reasons": 0.0311
+    },
+    {
+     "feature": "tw_v_ecf",
+     "mean_abs_contribution": 0.01909,
+     "share_of_days_in_top3_reasons": 0.0208
+    },
+    {
+     "feature": "wt_vs_dry_kg",
+     "mean_abs_contribution": 0.01818,
+     "share_of_days_in_top3_reasons": 0.0696
+    },
+    {
+     "feature": "nsaid_units_7d",
+     "mean_abs_contribution": 0.01762,
+     "share_of_days_in_top3_reasons": 0.0525
+    },
+    {
+     "feature": "nsaid_today",
+     "mean_abs_contribution": 0.01681,
+     "share_of_days_in_top3_reasons": 0.0404
+    },
+    {
+     "feature": "on_ras",
+     "mean_abs_contribution": 0.00999,
+     "share_of_days_in_top3_reasons": 0.047
+    },
+    {
+     "feature": "tw_gfr_frac",
+     "mean_abs_contribution": 0.00745,
+     "share_of_days_in_top3_reasons": 0.0105
+    },
+    {
+     "feature": "heart_failure",
+     "mean_abs_contribution": 0.00664,
+     "share_of_days_in_top3_reasons": 0.0377
+    },
+    {
+     "feature": "rep_poor_intake",
+     "mean_abs_contribution": 0.00382,
+     "share_of_days_in_top3_reasons": 0.0035
+    },
+    {
+     "feature": "rep_gi_episodes",
+     "mean_abs_contribution": 0.00374,
+     "share_of_days_in_top3_reasons": 0.0018
+    },
+    {
+     "feature": "mc_risk_72h",
+     "mean_abs_contribution": 0.00339,
+     "share_of_days_in_top3_reasons": 0.0001
+    },
+    {
+     "feature": "on_diuretic",
+     "mean_abs_contribution": 0.00247,
+     "share_of_days_in_top3_reasons": 0.0022
+    },
+    {
+     "feature": "hot_streak_days",
+     "mean_abs_contribution": 0.00162,
+     "share_of_days_in_top3_reasons": 0.0001
+    },
+    {
+     "feature": "rep_fever_c",
+     "mean_abs_contribution": 0.00087,
+     "share_of_days_in_top3_reasons": 0.0006
+    },
+    {
+     "feature": "triple_today",
+     "mean_abs_contribution": 0.00023,
+     "share_of_days_in_top3_reasons": 0.0
+    },
+    {
+     "feature": "rep_ors_l",
+     "mean_abs_contribution": 0.00019,
+     "share_of_days_in_top3_reasons": 0.0063
+    }
+   ]
+  },
+  "2026": {
+   "rows_sampled": 200000,
+   "ranking": [
+    {
+     "feature": "mc_gfr_min_frac",
+     "mean_abs_contribution": 0.33538,
+     "share_of_days_in_top3_reasons": 0.3469
+    },
+    {
+     "feature": "mc_cr_peak_ratio",
+     "mean_abs_contribution": 0.30113,
+     "share_of_days_in_top3_reasons": 0.4719
+    },
+    {
+     "feature": "tw_v_ecf_sd",
+     "mean_abs_contribution": 0.21107,
+     "share_of_days_in_top3_reasons": 0.2915
+    },
+    {
+     "feature": "egfr_baseline",
+     "mean_abs_contribution": 0.17224,
+     "share_of_days_in_top3_reasons": 0.1493
+    },
+    {
+     "feature": "tw_theta",
+     "mean_abs_contribution": 0.17186,
+     "share_of_days_in_top3_reasons": 0.3572
+    },
+    {
+     "feature": "age",
+     "mean_abs_contribution": 0.13564,
+     "share_of_days_in_top3_reasons": 0.4929
+    },
+    {
+     "feature": "fc_sweat_72h",
+     "mean_abs_contribution": 0.08666,
+     "share_of_days_in_top3_reasons": 0.1907
+    },
+    {
+     "feature": "hr_delta_bpm",
+     "mean_abs_contribution": 0.05823,
+     "share_of_days_in_top3_reasons": 0.3565
+    },
+    {
+     "feature": "tw_cr_ratio",
+     "mean_abs_contribution": 0.02243,
+     "share_of_days_in_top3_reasons": 0.0422
+    },
+    {
+     "feature": "tw_v_ecf",
+     "mean_abs_contribution": 0.0214,
+     "share_of_days_in_top3_reasons": 0.0241
+    },
+    {
+     "feature": "fc_tmax_72h",
+     "mean_abs_contribution": 0.01944,
+     "share_of_days_in_top3_reasons": 0.0277
+    },
+    {
+     "feature": "wt_vs_dry_kg",
+     "mean_abs_contribution": 0.01786,
+     "share_of_days_in_top3_reasons": 0.0652
+    },
+    {
+     "feature": "nsaid_units_7d",
+     "mean_abs_contribution": 0.01669,
+     "share_of_days_in_top3_reasons": 0.046
+    },
+    {
+     "feature": "nsaid_today",
+     "mean_abs_contribution": 0.01664,
+     "share_of_days_in_top3_reasons": 0.0383
+    },
+    {
+     "feature": "on_ras",
+     "mean_abs_contribution": 0.00985,
+     "share_of_days_in_top3_reasons": 0.042
+    },
+    {
+     "feature": "tw_gfr_frac",
+     "mean_abs_contribution": 0.00762,
+     "share_of_days_in_top3_reasons": 0.0097
+    },
+    {
+     "feature": "heart_failure",
+     "mean_abs_contribution": 0.00686,
+     "share_of_days_in_top3_reasons": 0.0341
+    },
+    {
+     "feature": "rep_poor_intake",
+     "mean_abs_contribution": 0.004,
+     "share_of_days_in_top3_reasons": 0.0033
+    },
+    {
+     "feature": "rep_gi_episodes",
+     "mean_abs_contribution": 0.00396,
+     "share_of_days_in_top3_reasons": 0.0019
+    },
+    {
+     "feature": "mc_risk_72h",
+     "mean_abs_contribution": 0.0037,
+     "share_of_days_in_top3_reasons": 0.0002
+    },
+    {
+     "feature": "on_diuretic",
+     "mean_abs_contribution": 0.00274,
+     "share_of_days_in_top3_reasons": 0.0019
+    },
+    {
+     "feature": "hot_streak_days",
+     "mean_abs_contribution": 0.00176,
+     "share_of_days_in_top3_reasons": 0.0002
+    },
+    {
+     "feature": "rep_fever_c",
+     "mean_abs_contribution": 0.00086,
+     "share_of_days_in_top3_reasons": 0.0005
+    },
+    {
+     "feature": "triple_today",
+     "mean_abs_contribution": 0.00025,
+     "share_of_days_in_top3_reasons": 0.0
+    },
+    {
+     "feature": "rep_ors_l",
+     "mean_abs_contribution": 0.00019,
+     "share_of_days_in_top3_reasons": 0.0053
+    }
+   ]
+  }
+ }
+}

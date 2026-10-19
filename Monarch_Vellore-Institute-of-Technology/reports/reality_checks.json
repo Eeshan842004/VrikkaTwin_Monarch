@@ -1,0 +1,250 @@
+{
+ "categories": "Amendment 2 A2.2: CALIBRATION may inform parameters; HELD-OUT never used for tuning; REVISION-INFORMED motivated the engine revision and is shown next to its v1 failure",
+ "checks": [
+  {
+   "id": "L1",
+   "category": "CALIBRATION",
+   "source": "Lapi et al., BMJ 2013 (triple therapy RR 1.31; 1.82 in the first 30 days)",
+   "result": {
+    "rr": 2.3,
+    "ci95": [
+     1.69,
+     3.03
+    ],
+    "triple_events": 144,
+    "pass": true
+   },
+   "band": [
+    1.1,
+    2.5
+   ],
+   "verdict": "PASS",
+   "file": "reports/l1_pooled.json"
+  },
+  {
+   "id": "L2",
+   "category": "CALIBRATION",
+   "source": "Brazil renal admissions ~ +0.9 %/degC (hospital admissions vs our mild KDIGO AKI)",
+   "result": {
+    "pct_change_per_degC": 0.04,
+    "direction_ok": true,
+    "reference": "Brazil renal admissions ~ +0.9 %/degC (hospital admissions vs our mild KDIGO AKI)"
+   },
+   "verdict": "DIRECTION CORRECT (loose sanity check)",
+   "file": "reports/calibration_checks.json"
+  },
+  {
+   "id": "L4",
+   "category": "REVISION-INFORMED",
+   "source": "Butler-Dawson 2019: cross-shift AKI ~51-54 % per month in heavy cane cutters; Sorensen 2019: mean cross-shift eGFR fall 21.8 % (SD 13.6 %)",
+   "band_pct": [
+    20,
+    60
+   ],
+   "v1": {
+    "workdays": 146,
+    "share_end_of_shift_aki_pct": 0.0,
+    "share_next_0800_still_raised_pct": 0.0,
+    "mean_end_of_shift_rise_mg_dl": 0.003,
+    "max_end_of_shift_rise_mg_dl": 0.006,
+    "mean_next_0800_residual_mg_dl": 0.001
+   },
+   "v2_twin_engine": {
+    "workdays": 146,
+    "share_end_of_shift_aki_pct": 0.0,
+    "share_next_0800_still_raised_pct": 0.0,
+    "mean_end_of_shift_rise_mg_dl": 0.16,
+    "p90_end_of_shift_rise_mg_dl": 0.163,
+    "max_end_of_shift_rise_mg_dl": 0.165,
+    "mean_cross_shift_egfr_fall_pct": 16.3,
+    "mean_next_0800_residual_mg_dl": 0.0
+   },
+   "v2_truth_simulator": {
+    "workdays": 146,
+    "share_end_of_shift_aki_pct": 0.0,
+    "share_next_0800_still_raised_pct": 0.0,
+    "mean_end_of_shift_rise_mg_dl": 0.165,
+    "p90_end_of_shift_rise_mg_dl": 0.238,
+    "max_end_of_shift_rise_mg_dl": 0.276,
+    "mean_cross_shift_egfr_fall_pct": 16.4,
+    "mean_next_0800_residual_mg_dl": -0.0
+   },
+   "verdict": "FAIL (stated limitation)",
+   "file": "reports/literature_checks_l4_l5.json"
+  },
+  {
+   "id": "L5",
+   "category": "REVISION-INFORMED",
+   "source": "Belli 2018: GFR fall ~25-27 % at ~3.7 % loss; 27.1-44.4 % at 5.2-10.4 % loss",
+   "v1": {
+    "3% body-mass loss": {
+     "ecf_share_0.3": 5.0,
+     "ecf_share_0.5": 12.1,
+     "ecf_share_0.7": 16.2
+    },
+    "5% body-mass loss": {
+     "ecf_share_0.3": 12.1,
+     "ecf_share_0.5": 17.5,
+     "ecf_share_0.7": 19.0
+    },
+    "8% body-mass loss": {
+     "ecf_share_0.3": 17.3,
+     "ecf_share_0.5": 19.3,
+     "ecf_share_0.7": 19.8
+    }
+   },
+   "v2_dehydration_only": {
+    "3% body-mass loss": {
+     "ecf_share_0.3": 5.0,
+     "ecf_share_0.5": 12.1,
+     "ecf_share_0.7": 16.2
+    },
+    "5% body-mass loss": {
+     "ecf_share_0.3": 12.1,
+     "ecf_share_0.5": 17.5,
+     "ecf_share_0.7": 19.0
+    },
+    "8% body-mass loss": {
+     "ecf_share_0.3": 17.3,
+     "ecf_share_0.5": 19.3,
+     "ecf_share_0.7": 19.8
+    }
+   },
+   "v2_with_sustained_exertion": {
+    "3% body-mass loss": {
+     "ecf_share_0.3": 28.7,
+     "ecf_share_0.5": 34.1,
+     "ecf_share_0.7": 37.1
+    },
+    "5% body-mass loss": {
+     "ecf_share_0.3": 34.1,
+     "ecf_share_0.5": 38.2,
+     "ecf_share_0.7": 39.3
+    },
+    "8% body-mass loss": {
+     "ecf_share_0.3": 37.9,
+     "ecf_share_0.5": 39.5,
+     "ecf_share_0.7": 39.8
+    }
+   },
+   "verdict": "v1 below range; v2 with exertion inside the reference range (revision-informed, not validation)",
+   "file": "reports/literature_checks_l4_l5.json"
+  },
+  {
+   "id": "R1a",
+   "category": "HELD-OUT",
+   "source": "MIMIC-IV Clinical Database Demo v2.2 + official mimic-code KDIGO SQL",
+   "result": {
+    "agreement_pct": 99.29,
+    "values_compared": 1272,
+    "stays": 140,
+    "pass_threshold_pct": 99.0
+   },
+   "verdict": "PASS",
+   "file": "reports/r1_validation.json"
+  },
+  {
+   "id": "R1b",
+   "category": "HELD-OUT",
+   "source": "MIMIC-IV demo + eICU-CRD demo",
+   "result": {
+    "pairs": 8812,
+    "stays": 1630,
+    "rmse_mg_dl": {
+     "kinetic_filter": 0.5564,
+     "carry_forward": 0.5325,
+     "linear_trend": 1.983
+    },
+    "rmse_ci95": {
+     "kinetic_filter": [
+      0.491,
+      0.6135
+     ],
+     "carry_forward": [
+      0.4716,
+      0.5876
+     ],
+     "linear_trend": [
+      1.0813,
+      2.9371
+     ]
+    },
+    "kinetic_minus_best_simple_ci95": [
+     0.0105,
+     0.0381
+    ],
+    "winner": "carry_forward",
+    "kinetic_beats_carry_forward": false
+   },
+   "verdict": "FAIL (carry-forward wins)",
+   "file": "reports/r1_validation.json"
+  },
+  {
+   "id": "R2",
+   "category": "HELD-OUT",
+   "source": "UCI Chronic Kidney Disease (origin not stated on the UCI page)",
+   "result": "lab-distribution overlay",
+   "verdict": "NO PASS/FAIL CLAIM (plausibility only)",
+   "claim": "plausibility overlay only, no pass/fail",
+   "file": "reports/r2_overlay.json"
+  },
+  {
+   "id": "R3",
+   "category": "HELD-OUT",
+   "source": "Tawam CKD cohort, Al-Shamsi et al., PLoS ONE 13(6): e0199920 (2018), S2 data (CC BY 4.0)",
+   "result": {
+    "patients": 491,
+    "events_eGFR_below_60": 56,
+    "c_index_slow_clock_years_to_60": 0.8361,
+    "c_index_slow_clock_ci95": [
+     0.7756,
+     0.8885
+    ],
+    "c_index_baseline_egfr_alone": 0.8339,
+    "c_index_baseline_egfr_ci95": [
+     0.7829,
+     0.8772
+    ],
+    "paired_difference_ci95": [
+     -0.0358,
+     0.0315
+    ]
+   },
+   "verdict": "AS GOOD AS BASELINE eGFR ALONE, NOT BETTER",
+   "file": "reports/r3_tawam.json"
+  },
+  {
+   "id": "R4",
+   "category": "HELD-OUT (secondary line)",
+   "source": "PMData (Thambawita et al., MMSys 2020; CC BY 4.0): Fitbit daily resting HR + self-reported weight",
+   "result": {
+    "people": 13,
+    "patient_days": 1845,
+    "red_notifications_per_100_patient_days": 0.0,
+    "amber_plus_red_notifications_per_100_patient_days": 0.0,
+    "max_calibrated_probability": 0.00143
+   },
+   "verdict": "PASS (target ~0)",
+   "file": "reports/r4_pmdata.json"
+  },
+  {
+   "id": "sigma_hr",
+   "category": "CALIBRATION",
+   "source": "PMData raw Fitbit heart rate (CC BY 4.0)",
+   "result": {
+    "sigma_hr_bpm": 4.04,
+    "people_qualifying": 15
+   },
+   "verdict": "USED AS PARAMETER",
+   "file": "reports/pmdata_noise.json"
+  },
+  {
+   "id": "SGLT2i",
+   "category": "CALIBRATION (input)",
+   "source": "EMPA-KIDNEY, Lancet Diabetes Endocrinol 2024 (chronic slope difference 1.37, 95 % CI 1.16-1.59)",
+   "result": "used as the slow-clock input sglt2i_slope_effect",
+   "verdict": "INPUT, never described as reproduced",
+   "file": "config/parameters.yaml; docs/NUMBERS_CHECKED.md"
+  }
+ ]
+}

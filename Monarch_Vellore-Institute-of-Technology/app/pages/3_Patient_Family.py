@@ -21,7 +21,8 @@ c1, c2 = st.columns([1, 2])
 with c1:
     st.markdown(badge(rec["level"], L), unsafe_allow_html=True)
     if rec.get("risk_text"):
-        st.markdown(f"<div class='vt-hero'>{rec['risk_text']}</div><div class='vt-small'>{t('ui.risk_label', L)}"
+        risk_line = rec['risk_text'].replace('95% interval', t('risk.interval', L))
+        st.markdown(f"<div class='vt-hero'>{risk_line}</div><div class='vt-small'>{t('ui.risk_label', L)}"
                     "</div>", unsafe_allow_html=True)
 with c2:
     st.markdown(f"**{t('ui.what_to_do', L)}**")

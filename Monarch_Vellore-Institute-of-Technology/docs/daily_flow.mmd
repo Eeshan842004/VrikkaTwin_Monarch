@@ -1,0 +1,19 @@
+%% One day in VrikkaTwin (rendered to deliverables/daily_flow.pdf and .png with mermaid-cli)
+flowchart LR
+  A["08:00<br/>morning weight, resting HR, BP<br/>(phone · band · weekly ASHA visit)"] --> G["Data-integrity gate<br/>plausible? fresh? signed?"]
+  G --> U["UKF update<br/>(+ lab update on lab days)"]
+  C["Check-in any time<br/>symptoms, tablets, ORS"] --> RF{"Red flags first"}
+  RF -->|emergency| E["Call 108 / 112<br/>no kidney score"]
+  RF -->|urgent| Q["Same-day doctor<br/>level at least red"]
+  RF -->|none| F
+  U --> F["09:00 features<br/>twin posterior + Monte-Carlo 72 h<br/>on the noisy city forecast"]
+  W["Weather forecast<br/>Open-Meteo"] --> F
+  F --> M["Hybrid model M<br/>calibrated risk + top-3 reasons"]
+  Q --> L
+  M --> L["Alert level<br/>green · amber · red<br/>hysteresis, 72-h de-duplication"]
+  L --> D["Doctor: triage, order home kidney test"]
+  L --> P["Patient / family: advice + audio<br/>EN · HI · KN · TE"]
+  D --> T["Lab result<br/>confirmed injury -> purple"]
+  T --> U
+  U --> N["Overnight: predict 24 h ahead<br/>with the day's exposures"]
+  N -->|next morning| A
