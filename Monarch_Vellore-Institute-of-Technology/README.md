@@ -12,6 +12,7 @@ open datasets: **not a medical device**; every person shown is synthetic or fict
 |---|---|
 | Video (demo walkthrough) | VIDEO LINK: add the unlisted YouTube URL here after upload (script: [`docs/VIDEO_SCRIPT.md`](docs/VIDEO_SCRIPT.md)) |
 | Architecture diagram (PDF) | [`deliverables/architecture.pdf`](deliverables/architecture.pdf) |
+| One-day data flow (PDF) · app screenshots | [`deliverables/daily_flow.pdf`](deliverables/daily_flow.pdf) · [`deliverables/screenshots/`](deliverables/screenshots/) |
 | Presentation (PDF / PPTX) | [`deliverables/VrikkaTwin_slides.pdf`](deliverables/VrikkaTwin_slides.pdf) · [`.pptx`](deliverables/VrikkaTwin_slides.pptx) |
 | Licence | [MIT](LICENSE) (code); data licences in [`data/README.md`](data/README.md) |
 | Design notes · safety case · facts checked | [`docs/DESIGN.md`](docs/DESIGN.md) · [`docs/CLINICAL_SAFETY.md`](docs/CLINICAL_SAFETY.md) · [`docs/NUMBERS_CHECKED.md`](docs/NUMBERS_CHECKED.md) |
