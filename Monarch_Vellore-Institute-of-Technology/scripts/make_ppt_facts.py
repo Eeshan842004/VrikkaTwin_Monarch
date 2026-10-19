@@ -19,7 +19,7 @@ import pandas as pd
 
 from vrikka.config import DATA_DIR, PROJECT_ROOT, REPORTS_DIR, load_yaml, param, registry
 from vrikka.fastclock.features import CORE, FULL
-from vrikka.fastclock.train import LGB_PARAMS, MAX_ROUNDS, EARLY_STOP
+from vrikka.fastclock.train import EARLY_STOP, LGB_PARAMS, MAX_ROUNDS
 from vrikka.i18n import LANGUAGES
 from vrikka.security.dpdp import DPDP_MAP
 from vrikka.security.rbac import ACTIONS
@@ -367,7 +367,7 @@ def main() -> int:
     w(f"**Heat-attributable fraction** (2024, mismatched, air capped at {cal['cap_c']} °C; "
       f"reports/calibration_checks.json): overall {pct(h['all']['haf'])} (CI {ci(h['all']['haf_ci95'], 1, 100)} %); "
       + "; ".join(f"{k} {pct(v['haf'])} (CI {ci(v['haf_ci95'], 1, 100)} %)" for k, v in h.items() if k != "all")
-      + f". By occupation: " + "; ".join(f"{k} {pct(v['haf'])}" for k, v in cal["haf_by_occupation"].items())
+      + ". By occupation: " + "; ".join(f"{k} {pct(v['haf'])}" for k, v in cal["haf_by_occupation"].items())
       + f". Sensitivity: sweat x0.7 {pct(cal['sweat_sensitivity']['x0.7']['haf'])}, x1.3 "
       f"{pct(cal['sweat_sensitivity']['x1.3']['haf'])}; matched truth {pct(cal['haf_matched_regime']['haf'])}. "
       "Quote as a range.")

@@ -26,6 +26,7 @@ ignore = ["E741"]   # physiology uses short symbol names (e.g. l, I) that match 
 [tool.ruff.lint.per-file-ignores]
 "app/pages/*" = ["N999"]
 "scripts/make_readme.py" = ["E501"]   # the README template is Markdown (table rows cannot wrap)
+"scripts/make_ppt_facts.py" = ["E501"]   # Markdown fact-sheet template
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
