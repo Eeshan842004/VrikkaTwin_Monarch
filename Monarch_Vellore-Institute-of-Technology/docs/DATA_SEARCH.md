@@ -38,7 +38,7 @@ PhysioNet, Zenodo, figshare, Dryad, Mendeley Data, OSF, Kaggle, data.gov.in, the
 | ID | Evidence | How we use it |
 |---|---|---|
 | L1 | Lapi et al., BMJ 2013 (n = 487,372): triple therapy RR 1.31 overall, 1.82 in the first 30 days | Triple vs double therapy within antihypertensive users; band 1.1–2.5 |
-| L2 | Brazil, 2.7 M renal admissions: +0.9 % per °C | Loose sanity check (hospital admissions vs our mild AKI) |
+| L2 | Wen et al. 2021 (Lancet Reg Health Am), Brazil, 2.7 M renal admissions: +0.9 % per °C | Loose sanity check (hospital admissions vs our mild AKI) |
 | L3 | Trichy diabetic kidney disease cohort (n = 274): −1.83 mL/min/yr per AKI | Slow-clock penalty, labelled "from a diabetic cohort" |
 | L4 | Butler-Dawson et al. 2019 (n = 517 cane cutters): cross-shift AKI ~50 % per month; Sorensen et al. 2019: mean cross-shift eGFR fall 21.8 % | Intra-day creatinine in a heavy outdoor worker |
 | L5 | Belli et al. 2018 (n = 6 ultramarathon runners): GFR −25–27 % at ~3.7 % body-mass loss, −27–44 % above 5 % | Volume → GFR dose-response sanity check |

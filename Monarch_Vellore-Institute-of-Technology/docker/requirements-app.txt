@@ -1,0 +1,26 @@
+# Runtime subset of requirements.lock for the hosted app (Streamlit pages + services + optional FastAPI).
+# Versions are pinned to the lock; the full lock (with analysis and notebook tools) stays the reference for development.
+numpy==2.2.6
+scipy==1.18.1
+pandas==3.0.6
+pyarrow==25.0.1
+pyyaml==6.0.3
+pydantic==2.14.1
+pydantic-settings==2.16.0
+filterpy==1.4.5
+pythermalcomfort==4.6.1
+numba==0.68.0
+llvmlite==0.50.0
+lightgbm==4.7.0
+scikit-learn==1.9.1
+matplotlib==3.11.2
+streamlit==1.65.0
+plotly==7.1.0
+fastapi==0.143.1
+uvicorn==0.54.0
+httpx==0.28.1
+cryptography==50.0.2
+pyjwt==2.15.1
+bcrypt==5.0.0
+rapidfuzz==3.14.6
+requests==2.34.2

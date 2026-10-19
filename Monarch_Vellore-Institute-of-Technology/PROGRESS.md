@@ -10,8 +10,8 @@ Team Monarch, Vellore Institute of Technology. The build follows the team's desi
 | 4 Fast clock | P5 | G3 | **done** (G3, see below) |
 | 5 Slow clock + what-if | P6 + P7 | exit checks | **done** (see below) |
 | 6 Backend + trust layer | P8 | G4 | **done** (see below) |
-| 7 Frontend + evaluation | P9 ‖ P10 | G5 freeze | not started |
-| 8 Deliverables + submission | P11 | G6 | not started |
+| 7 Frontend + evaluation | P9 ‖ P10 | G5 freeze | **done** (see below) |
+| 8 Deliverables + submission | P11 | G6 | **done except the human steps** (see below) |
 
 ---
 
@@ -529,3 +529,70 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
 3. Mr Iyer is the heart-failure persona (ORS guardrail and diuretic-pause warning); Kamala's CYP2C9 variant is named
    "Kamala, CYP2C9 *3/*3 variant".
 4. The ABDM pattern is demonstrated, not integrated: no ABDM sandbox or gateway is called.
+
+
+## Part 7: Pages + full evaluation (18-19 Oct 2026)
+
+### Built
+- **App** (`app/`, Streamlit, in-process services): Home (honest headline numbers), Doctor Triage (synthetic panel
+  scored by the frozen model M with reasons, labs with the "not reliable" tag, KFRE where valid, Order home kidney
+  test, FHIR download, a "reveal the simulation truth" toggle), Patient Twin (twin state, live what-if levers in the
+  agreed order with guardrails, sick-day guidance, slow-clock fan chart), Patient and Family (EN / HI / KN / TE,
+  pre-generated audio, check-in with red flags first, consent revoke / grant), ASHA Field (Telugu by default, form
+  built from `config/red_flags.yaml`, brand read-back), Lab Tasks (results; confirmed injury turns purple), Trust
+  Center (consent, audit log, tamper demo, integrity gate, FHIR, DPDP, role matrix), Time Machine, Evaluation (every
+  check in its category, failures shown as failures). Charts follow the dataviz method (validated palette, one axis,
+  status colours always with an icon and a word).
+- `vrikka/i18n.py`, `voice/nlu.py` (rapidfuzz brand recognition: "combiflem" -> ibuprofen + paracetamol),
+  `scripts/pregenerate_tts.py` (28 gTTS files, committed; no live speech in the hosted app).
+- `scripts/make_triage_panel.py` -> `reports/demo_triage_panel.json`; `scripts/build_robustness_features.py`;
+  `scripts/evaluate.py` -> `reports/evaluation_extras.json`; `fastclock/features.forecasts(perfect=...)`
+  (robustness only; the headline stays on the noisy forecast).
+- Tests: `test_app.py` (every page runs headlessly for its roles; role gate; ASHA defaults to Telugu). The pages
+  were also driven in a real browser (headless Chrome via puppeteer): no exceptions, no page errors.
+
+### Results (frozen Part 4 model; nothing refitted or re-thresholded)
+- **Reproduction:** re-generating the cohort and the 2025 / 2026 features on this machine reproduces the reported
+  held-out AUPRC of B3, B4, M and M_full exactly (`evaluation_extras.json`, `reproduction`).
+- **Robustness** (2025, first 2,500 test patients, the same patients in every row): headline AUPRC 0.0178; no band
+  0.0231; everyone Tier 0 0.0209; 30 % / 50 % band days missing 0.0169 / 0.0183; noise x2 0.0157; perfect forecast
+  0.0169. Every confidence interval overlaps the headline's: **in this synthetic world the wearable band adds no
+  measurable value**; a weekly weight carries the signal. The median lead stays 23 h even with a perfect forecast:
+  the daily cadence, not the forecast, limits it.
+- **Subgroups** (2025, 2026; sex, age band, diabetes, beta-blocker, city, CYP2C9, occupation, tier) are in the
+  report and on the Evaluation page; small groups have wide intervals.
+- **Tornado** (81 registry ASSUMPTION / VERIFY parameters, Kamala's day-8 risk, world and twin both changed): top
+  three are the twin's prior uncertainty on the sweat multiplier, the poor-intake multiplier and the older adults'
+  drinking fraction (phi_drink in the top 3, as expected). Some directions are counter-intuitive because the world
+  and the twin change together (for example more drinking shifts the creatinine baseline and the injury timing);
+  reported as they came out.
+- **Triage panel:** the frozen model puts 285 of 5,000 test patients in the red state on 1 March, the first day of
+  the season, because every twin starts from wide population priors (cold start). After a two-week warm-up the median
+  is 24 red patients a day. The demo day (19 May 2025) has 65 red of 4,962; of the 12 red patients in the panel, 1 had
+  a simulated injury within 72 h (shown behind the reveal toggle, consistent with the low PPV).
+
+### Deviations
+1. Robustness variants use the first 2,500 test patients (one shard) because each 5,000-patient rebuild takes about
+   40 minutes on this machine; the comparison is always on the same patients.
+2. The demo day skips the first 14 days (warm-up); the cold-start red count is reported, not hidden.
+3. Personas show the twin's simulation with display bands; the triage panel shows model M (see Part 6 decisions).
+
+
+## Part 8: Deliverables (19 Oct 2026)
+
+- `README.md` generated by `scripts/make_readme.py` (every number read from `reports/`; external facts only from
+  supported rows of `docs/NUMBERS_CHECKED.md`).
+- `docs/DESIGN.md`, `docs/NUMBERS_CHECKED.md` (16 facts checked against their sources; EMPA-KIDNEY slope citation
+  corrected to the Lancet Diabetes Endocrinol 2024 analysis; Brazil citation corrected to Wen et al. 2021; the Belli
+  body-mass pairing only partly supported, so it is not quoted), `docs/VIDEO_SCRIPT.md`, `docs/DEPLOY.md`,
+  `docs/CLINICAL_SAFETY.md`.
+- `deliverables/architecture.pdf` / `.png` (mermaid source `docs/architecture.mmd`, rendered with mermaid-cli),
+  `deliverables/VrikkaTwin_slides.pptx` / `.pdf` (`scripts/make_slides.py`, numbers from reports, PDF via PowerPoint),
+  `deliverables/VrikkaTwin_overview.mp4` (`scripts/make_video.py`: narrated slide overview, a draft until the team
+  records the live demo).
+- `docker/Dockerfile` + `docker/requirements-app.txt` (runtime subset of the lock, checked in a fresh venv; the image
+  itself was not built because Docker is not installed on this machine).
+- **Left to the team (needs their accounts or a person):** push the commits (GitHub sign-in), record and upload the
+  demo video and paste its link into `scripts/make_readme.py`, deploy to Hugging Face Spaces, make the repository
+  public and check links logged-out, native-speaker and clinician review, add any missing team member names, submit
+  on Unstop.

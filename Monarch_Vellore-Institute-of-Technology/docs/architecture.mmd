@@ -1,0 +1,61 @@
+%% VrikkaTwin architecture. Rendered to deliverables/architecture.pdf and .png with mermaid-cli (see README).
+flowchart TB
+  subgraph IN["1 · Inputs (observed only)"]
+    direction LR
+    W["Weather<br/>Open-Meteo ERA5, 7 cities<br/>noisy 72-h forecast"]
+    D["Morning weight, resting HR, BP<br/>phone · band · ASHA visit"]
+    R["Symptoms, tablets, ORS<br/>text check-in, brand read-back"]
+    L["Labs<br/>creatinine, potassium"]
+  end
+  subgraph GATE["2 · Entry checks"]
+    direction LR
+    IG["Data-integrity gate<br/>plausibility · replay · Ed25519 signatures"]
+    RF["Red flags run first<br/>heatstroke → call 108 / 112<br/>urgent → same-day doctor"]
+  end
+  subgraph CORE["3 · Kidney digital twin"]
+    direction LR
+    EX["Exposure<br/>ISO 7933 PHS sweat"]
+    TW["Personal twin<br/>UKF: body water, creatinine,<br/>sweat multiplier"]
+    MC["Monte-Carlo 72 h<br/>same KDIGO rule as labels"]
+    M["Fast clock: hybrid model M<br/>monotone LightGBM<br/>calibrated risk + top-3 reasons"]
+    AL["Alert policy<br/>green · amber · red · purple"]
+    WI["What-if levers<br/>painkiller swap → ORS / work hours<br/>→ pauses last (clinician decides)"]
+    GR["Guardrails<br/>ORS · paracetamol · potassium<br/>heart failure · co-trimoxazole"]
+    SC["Slow clock<br/>Bayesian eGFR slope, ranges<br/>fading AKI penalty · KFRE"]
+  end
+  subgraph TRUST["4 · Trust layer: one services layer for app and API"]
+    direction LR
+    SV["role → own record / signed consent<br/>→ audit → field filter"]
+    AU["Hash-chained audit log<br/>Ed25519-signed checkpoints"]
+    FH["FHIR R4 export<br/>ABDM-style consent · DPDP map"]
+  end
+  subgraph UI["5 · Users (Streamlit pages)"]
+    direction LR
+    DR["Doctor triage<br/>order home kidney test"]
+    PT["Patient / family<br/>EN · HI · KN · TE + audio"]
+    AS["ASHA Tier-0 form"]
+    LB["Lab tasks"]
+  end
+  SIM[("Synthetic world: mismatched truth<br/>evaluation only, never imported by the model")]
+
+  W --> EX
+  D --> IG
+  R --> RF
+  L --> TW
+  L --> SC
+  IG --> TW
+  EX --> TW
+  RF -->|no emergency| MC
+  TW --> MC --> M --> AL
+  TW --> WI
+  GR --> WI
+  AL --> SV
+  WI --> SV
+  SC --> SV
+  SV --> AU
+  SV --> FH
+  SV --> DR
+  SV --> PT
+  SV --> AS
+  SV --> LB
+  SIM -.->|scores held-out seasons| M

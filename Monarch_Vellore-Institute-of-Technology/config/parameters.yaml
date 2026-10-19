@@ -949,7 +949,7 @@ sglt2i_slope_effect:
   unit: mL/min/1.73m2 per year
   range: [1.16, 1.59]
   provenance: CITED
-  source: EMPA-KIDNEY Collaborative Group, NEJM 2023;388:117-127 (chronic eGFR slope difference 1.37, 95 % CI 1.16-1.59, people with and without diabetes); value set by Amendment 2 A2.2 (was 1.4 VERIFY)
+  source: EMPA-KIDNEY Collaborative Group, prespecified analysis, Lancet Diabetes Endocrinol 2024;12:51-60 (chronic eGFR slope difference 1.37, 95 % CI 1.16-1.59, with and without diabetes; trial report NEJM 2023;388:117-127); value set by Amendment 2 A2.2 (was 1.4 VERIFY); source checked in docs/NUMBERS_CHECKED.md
   notes: an INPUT to the slow clock (calibration category), never described as reproduced; applies after the initial dip sglt2i_initial_dip
 sglt2i_hazard_ratio:
   value: 0.63
