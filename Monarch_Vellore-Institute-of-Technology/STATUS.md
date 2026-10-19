@@ -123,8 +123,7 @@ PDF), a narrated draft overview video, Dockerfile. **Still to do by the team:**
    (`VIDEO_URL`) and re-run it.
 3. Deploy (Hugging Face Spaces, `docs/DEPLOY.md`) if a hosted link is wanted; build the Docker image once first.
 4. Native-speaker review of HI / KN / TE and clinician sign-off of the two URGENT messages (open decision 4).
-5. Add any missing team member names to the README template.
-6. Make the repository public, open every README link logged-out, and the team leader submits on Unstop.
+5. Make the repository public, open every README link logged-out, and the team leader submits on Unstop.
 
 ## 7. Private planning files (NOT in the repo, on purpose)
 

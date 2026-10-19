@@ -58,7 +58,7 @@ def main() -> int:
     text = f"""# VrikkaTwin: a kidney digital twin for heatwaves and sick days
 
 **Team Monarch, Vellore Institute of Technology** · Happiest Health Digital Twin Challenge 2026
-Team: Eeshan, Harshita Kumar (add any other team members before submitting).
+Team: Eeshan, Harshita Kumar.
 
 VrikkaTwin warns of **acute kidney injury (usually mild, usually recovers)** up to **72 hours ahead** for people with
 hypertension or chronic kidney disease during heatwaves and sick days, shows the safer choices that lower that risk,

@@ -594,5 +594,4 @@ The build moved to a teammate's Windows machine. Python 3.12.10 (Python install 
   itself was not built because Docker is not installed on this machine).
 - **Left to the team (needs their accounts or a person):** push the commits (GitHub sign-in), record and upload the
   demo video and paste its link into `scripts/make_readme.py`, deploy to Hugging Face Spaces, make the repository
-  public and check links logged-out, native-speaker and clinician review, add any missing team member names, submit
-  on Unstop.
+  public and check links logged-out, native-speaker and clinician review, submit on Unstop.
