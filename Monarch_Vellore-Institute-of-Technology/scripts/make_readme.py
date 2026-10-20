@@ -178,8 +178,8 @@ Everything the submission guidelines ask for, and where to find it.
 | Technical stack and AI/ML model details | [Section 6](#6-the-ai-and-the-models) and [Section 10](#10-tech-stack) |
 | Video, 20 minutes or longer, unlisted on YouTube | {video_cell} |
 | Open-source licence | MIT, see [`LICENSE`](LICENSE) and [Section 13](#13-licence) |
-| Architecture diagram (PDF) | [`deliverables/architecture.pdf`](deliverables/architecture.pdf) (also as [PNG](deliverables/architecture.png)) |
-| Presentation (PDF / PPT) with project details and outcome | [`deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf`](deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf) · [`.pptx`](deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx) |
+| Architecture diagram (PDF) | {dl('deliverables/architecture.pdf', 'architecture.pdf')} (also as {dl('deliverables/architecture.png', 'PNG')}) |
+| Presentation (PDF / PPT) with project details and outcome | {dl('deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf', 'Presentation PDF')} · {dl('deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx', 'PPTX')} ({n_slides} slides) |
 | Folder named "Team Name_College Name" | [`{FOLDER}/`](.) |
 | Public repository, every link open | This repository is public; the code, reports, diagrams and slides are all in it |
 
