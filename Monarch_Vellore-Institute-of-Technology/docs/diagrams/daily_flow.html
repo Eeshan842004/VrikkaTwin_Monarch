@@ -1,0 +1,126 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>VrikkaTwin daily flow</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .lane { position: absolute; left: 40px; right: 40px; border-radius: 18px; z-index: 1;
+          background: color-mix(in srgb, var(--c) 6%, #fff); border: 2px dashed color-mix(in srgb, var(--c) 40%, transparent); }
+  .lanelab { position: absolute; left: 40px; width: 86px; border-radius: 18px 0 0 18px; background: var(--c); color: #fff;
+             z-index: 2; display: flex; align-items: center; justify-content: center; }
+  .lanelab span { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 800; font-size: 15px;
+                  letter-spacing: 1.3px; text-transform: uppercase; text-align: center; line-height: 1.25; }
+  .x1 { left: 150px; } .x2 { left: 440px; } .x3 { left: 730px; } .x4 { left: 1020px; } .x5 { left: 1310px; } .x6 { left: 1600px; }
+  .w { width: 262px; }
+  .ya { top: 150px; height: 168px; } .yb { top: 395px; height: 178px; } .yc { top: 655px; height: 168px; }
+  .card .top .t { margin-left: auto; font-size: 14px; font-weight: 800; background: rgba(255,255,255,.22);
+                  padding: 2px 8px; border-radius: 999px; }
+  .num { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--c);
+         font-weight: 800; font-size: 15px; align-items: center; justify-content: center; }
+  .story { position: absolute; left: 40px; right: 40px; top: 900px; height: 132px; border-radius: 18px; z-index: 3;
+           background: linear-gradient(90deg, #0f766e, #0d9488); color: #fff; display: flex; align-items: center;
+           padding: 0 26px; gap: 22px; box-shadow: 0 6px 16px rgba(15,23,42,.15); }
+  .story .k { font-size: 15px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; opacity: .9;
+              white-space: nowrap; }
+  .story .seq { display: flex; align-items: center; gap: 12px; flex: 1; flex-wrap: nowrap; }
+  .story .pill { flex: 1; background: rgba(255,255,255,.16); border: 1.5px solid rgba(255,255,255,.45); border-radius: 12px;
+                 padding: 8px 12px; font-size: 15px; line-height: 1.3; text-align: center; }
+  .story .ar { font-size: 22px; font-weight: 800; }
+  .story b { color: #fef08a; }
+</style></head>
+<body>
+<div id="canvas">
+<svg id="wires"><defs></defs></svg>
+
+<div class="header">
+  <h1>Vrikka<span class="v">Twin</span> · one day in the life of the twin</h1>
+  <div class="tag">Every morning the twin re-learns the patient and looks 72 hours ahead<br>
+    <b>Danger signs are checked first, at any time of day</b></div>
+</div>
+<div class="rule"></div>
+
+<!-- lanes -->
+<div class="lane c-twin" style="top:132px; height:205px;"></div>
+<div class="lanelab c-twin" style="top:132px; height:205px;"><span>Every morning<br>automatic</span></div>
+<div class="lane c-ai" style="top:362px; height:238px;"></div>
+<div class="lanelab c-ai" style="top:362px; height:238px;"><span>What happens<br>next</span></div>
+<div class="lane c-safe" style="top:625px; height:252px;"></div>
+<div class="lanelab c-safe" style="top:625px; height:252px;"><span>Any time<br>check-in</span></div>
+
+<!-- lane A: morning pipeline -->
+<div class="card c-in x1 w ya" id="s1"><div class="top"><span class="num">1</span>Readings<span class="t">08:00</span></div><div class="body"><ul>
+  <li><b>Weight</b> (smart scale)</li><li><b>Resting heart rate</b> (band)</li><li>No device: ASHA weekly visit</li></ul></div></div>
+<div class="card c-safe x2 w ya" id="s2"><div class="top"><span class="num">2</span>Integrity check</div><div class="body"><ul>
+  <li>Plausible value?</li><li>Fresh, not replayed?</li><li>Signed by the device?</li></ul></div></div>
+<div class="card c-twin x3 w ya" id="s3"><div class="top"><span class="num">3</span>Twin update</div><div class="body"><ul>
+  <li>Kalman filter re-estimates</li><li><b>body water</b> + <b>creatinine</b></li><li>Lab result used if one came in</li></ul></div></div>
+<div class="card c-twin x4 w ya" id="s4"><div class="top"><span class="num">4</span>Simulate 72 h<span class="t">09:00</span></div><div class="body"><ul>
+  <li><b>200 possible futures</b></li><li>on the noisy weather forecast</li><li>with today's tablets &amp; symptoms</li></ul></div></div>
+<div class="card c-ai x5 w ya" id="s5"><div class="top"><span class="num">5</span>Model M</div><div class="body"><ul>
+  <li>LightGBM + 25 features</li><li>Calibrated <b>% risk</b></li><li><b>Top-3 reasons</b></li></ul></div></div>
+<div class="card c-ai x6 w ya" id="s6"><div class="top"><span class="num">6</span>Alert level</div><div class="body">
+  <div><span class="chip g">✅ Green</span><span class="chip a">⚠️ Amber</span><span class="chip r">⛔ Red</span></div>
+  <ul style="margin-top:6px"><li>Red kept ≤ 0.5 per 100 days</li><li>No alert fatigue</li></ul></div></div>
+
+<!-- lane B: outcomes -->
+<div class="card c-user x1 w yb" id="og" style="--c:#16a34a"><div class="top">✅ Green · low risk</div><div class="body"><ul>
+  <li>Carry on as usual</li><li>Water through the day</li><li>Shade when it's hot</li></ul></div></div>
+<div class="card x2 w yb" id="oa" style="--c:#d97706; --bg:#fffbeb"><div class="top">⚠️ Amber · building</div><div class="body"><ul>
+  <li>ORS, avoid painkillers, shade</li><li>🔔 <b>Patient + family</b></li><li>4 languages + audio</li></ul></div></div>
+<div class="card x3 w yb" id="or" style="--c:#dc2626; --bg:#fef2f2"><div class="top">⛔ Red · high risk</div><div class="body"><ul>
+  <li>🔔 <b>Patient, family, doctor</b></li><li>Doctor reviews the reasons</li><li>Painkiller / medicine review</li></ul></div></div>
+<div class="card c-user x4 w yb" id="ot"><div class="top">🧪 Home kidney test</div><div class="body"><ul>
+  <li>Doctor orders in one click</li><li>Sample collected at home</li><li>About <b>₹189</b></li></ul></div></div>
+<div class="card c-trust x5 w yb" id="ol"><div class="top">🔬 Lab result</div><div class="body"><ul>
+  <li>Entered by the lab</li><li>Flows <b>back into the twin</b></li><li>↻ tomorrow's step 3</li></ul></div></div>
+<div class="card x6 w yb" id="op" style="--c:#7e22ce; --bg:#faf5ff"><div class="top">🟣 Confirmed injury</div><div class="body"><ul>
+  <li>Lab-confirmed kidney injury</li><li>Doctor's plan today</li><li>Usually mild, recovers</li></ul></div></div>
+
+<!-- lane C: any-time check-in -->
+<div class="card c-in x1 w yc" id="c1"><div class="top">💬 Check-in</div><div class="body"><ul>
+  <li>Patient, family or ASHA</li><li>"bukhar hai, Combiflam li"</li><li>Tablets + symptoms, any language</li></ul></div></div>
+<div class="card c-safe x2 w yc" id="c2"><div class="top">🚨 Red flags first</div><div class="body"><ul>
+  <li>Runs <b>before any AI</b></li><li>Confusion, fits, fainting</li><li>≥ 40 °C, no urine 12 h</li></ul></div></div>
+<div class="card x3 w yc" id="c3" style="--c:#b91c1c; --bg:#fee2e2"><div class="top">🚑 Emergency</div><div class="body"><ul>
+  <li><b>Call 108 / 112</b> button</li><li>Shade, cool the body</li><li>🔔 Doctor + family at once</li></ul></div></div>
+<div class="card x4 w yc" id="c4" style="--c:#ea580c; --bg:#fff7ed"><div class="top">⚠️ Urgent</div><div class="body"><ul>
+  <li>See a doctor today</li><li>Alert at least <b>red</b></li><li>Kidney blood test</li></ul></div></div>
+<div class="card c-grey x5 w yc" id="c5"><div class="top">✔️ No danger sign</div><div class="body"><ul>
+  <li>Symptoms + tablets recorded</li><li>Used in tonight's twin run</li><li>💊 Triple-whammy check</li></ul></div></div>
+<div class="card c-trust x6 w yc" id="c6"><div class="top">🧾 Audit log</div><div class="body"><ul>
+  <li>Every step recorded</li><li>Consent checked</li><li>Tamper-evident</li></ul></div></div>
+
+<!-- story -->
+<div class="story"><div class="k">Example<br>(fictional)</div><div class="seq">
+  <div class="pill">👵 Riya, 68 · Nagpur<br>BP pill + water tablet</div><div class="ar">→</div>
+  <div class="pill">🌡️ 45 °C heatwave<br>✅ green → ⚠️ amber</div><div class="ar">→</div>
+  <div class="pill">🤒 Fever + Combiflam<br><b>⛔ red 43 %</b></div><div class="ar">→</div>
+  <div class="pill">⏰ Warned <b>23 h</b> before<br>the simulated injury</div><div class="ar">→</div>
+  <div class="pill">🔁 Swap painkiller + ORS<br>risk <b>48 % → &lt; 2 %</b></div></div></div>
+
+<div class="footer"><span>Team Monarch · Vellore Institute of Technology · Happiest Health Digital Twin Challenge 2026</span>
+  <span>Synthetic &amp; fictional patients only · not a medical device</span></div>
+</div>
+
+<script src="common.js"></script>
+<script>
+const cIn = '#2563eb', cSafe = '#dc2626', cTwin = '#0d9488', cAi = '#7c3aed', cGrey = '#475569', cRed = '#dc2626';
+// lane A pipeline
+H('s1', 's2', cIn); H('s2', 's3', cSafe); H('s3', 's4', cTwin); H('s4', 's5', cTwin); H('s5', 's6', cAi);
+// lane A -> lane B: a bus under the alert card dropping into green / amber / red
+const a6 = rect('s6'), g = rect('og'), am = rect('oa'), rd = rect('or');
+const busY = 352;
+P([[a6.cx, a6.b + 2], [a6.cx, busY], [g.cx, busY], [g.cx, g.t - 3]], cAi);
+P([[am.cx, busY], [am.cx, am.t - 3]], cAi);
+P([[rd.cx, busY], [rd.cx, rd.t - 3]], cAi);
+// lane B chain
+H('or', 'ot', cRed); H('ot', 'ol', '#16a34a'); H('ol', 'op', '#d97706');
+// lane C
+H('c1', 'c2', cIn); H('c2', 'c3', cSafe);
+const c2 = rect('c2'), c4 = rect('c4'), c5 = rect('c5'), c3 = rect('c3');
+const bus2 = 862;
+P([[c2.cx, c2.b + 2], [c2.cx, bus2], [c5.cx, bus2], [c5.cx, c5.b + 3]], cSafe);
+P([[c4.cx, bus2], [c4.cx, c4.b + 3]], cSafe);
+// urgent -> at least red (up into lane B red card)? red card is in column 3; urgent in column 4 -> route up then left
+P([[c4.cx, c4.t - 2], [c4.cx, 612], [rd.cx + 40, 612], [rd.cx + 40, rd.b + 3]], '#ea580c', {dash: true});
+H('c5', 'c6', cGrey);
+</script>
+</body></html>

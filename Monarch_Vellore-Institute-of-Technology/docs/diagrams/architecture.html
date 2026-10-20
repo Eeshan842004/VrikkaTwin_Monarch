@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>VrikkaTwin architecture</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* grid: 6 columns x 4 rows */
+  :root { --r1: 172px; --r2: 355px; --r3: 538px; --r4: 721px; --h: 163px; --bt: 172px; --bh: 712px; }
+  .x1 { left: 40px;   width: 300px; } .x2 { left: 390px;  width: 200px; } .x3 { left: 640px;  width: 330px; }
+  .x4 { left: 1020px; width: 310px; } .x5 { left: 1380px; width: 200px; } .x6 { left: 1630px; width: 250px; }
+  .y1 { top: var(--r1); height: var(--h); } .y2 { top: var(--r2); height: var(--h); }
+  .y3 { top: var(--r3); height: var(--h); } .y4 { top: var(--r4); height: var(--h); }
+  .tall { top: var(--bt); height: var(--bh); }
+</style></head>
+<body>
+<div id="canvas">
+<svg id="wires"><defs></defs></svg>
+
+<div class="header">
+  <h1>Vrikka<span class="v">Twin</span> · system architecture</h1>
+  <div class="tag">A kidney digital twin for heatwaves and sick days<br><b>"Heat loads the gun; a sick day or a painkiller pulls the trigger."</b></div>
+</div>
+<div class="rule"></div>
+
+<div class="coltitle x1 c-in"><span class="n">1</span>Two data streams</div>
+<div class="coltitle x2 c-safe"><span class="n">2</span>Safety first</div>
+<div class="coltitle x3 c-twin"><span class="n">3</span>Digital twin</div>
+<div class="coltitle x4 c-ai"><span class="n">4</span>Predict &amp; explain</div>
+<div class="coltitle x5 c-trust"><span class="n">5</span>Trust layer</div>
+<div class="coltitle x6 c-user"><span class="n">6</span>Users</div>
+
+<!-- 1 inputs -->
+<div class="card c-in x1 y1" id="i1"><div class="top"><span class="ic">🏥</span>Static EHR</div><div class="body"><ul>
+  <li>Age, sex, city, occupation</li><li>BP · diabetes · CKD · baseline eGFR</li>
+  <li>Daily medicines</li><li><b>Gene:</b> CYP2C9 (painkiller clearance)</li></ul></div></div>
+<div class="card c-in x1 y2" id="i2"><div class="top"><span class="ic">⌚</span>Wearables &amp; IoT</div><div class="body"><ul>
+  <li><b>Morning weight</b> (smart scale)</li><li><b>Resting heart rate</b>, steps, sleep</li>
+  <li>Home BP cuff</li><li>No device: <b>ASHA weekly visit</b></li></ul></div></div>
+<div class="card c-in x1 y3" id="i3"><div class="top"><span class="ic">🌡️</span>Weather</div><div class="body"><ul>
+  <li>Real hourly ERA5 weather</li><li><b>7 Indian cities</b>, 2024-2026</li><li>Noisy 72-h forecast</li></ul></div></div>
+<div class="card c-in x1 y4" id="i4"><div class="top"><span class="ic">💬</span>Check-ins &amp; labs</div><div class="body"><ul>
+  <li>Symptoms, tablets, ORS</li><li>In English · हिन्दी · ಕನ್ನಡ · తెలుగు</li><li>Lab creatinine, potassium</li></ul></div></div>
+
+<!-- 2 safety -->
+<div class="bar c-safe x2 tall" id="safe"><div class="top">🛡️ Checked first</div>
+  <div class="sec"><h4>🚨 Red flags</h4><p>Confusion, fits, ≥ 40 °C<br>→ <b>🚑 call 108 / 112</b><br>before any AI</p></div>
+  <div class="sec"><h4>✅ Integrity gate</h4><p>Plausible value<br>Fresh, not replayed<br>Device-signed</p></div>
+  <div class="sec"><h4>⛔ Not designed for</h4><p>Under 18, pregnancy,<br>eGFR &lt; 15 / dialysis</p></div>
+</div>
+
+<!-- 3 twin -->
+<div class="card c-twin x3 tall" id="twin"><div class="top"><span class="ic">🫘</span>Personal kidney twin</div>
+  <div class="body" style="justify-content:space-evenly; padding: 12px 0;">
+    <div class="step"><h4>☀️ Heat exposure</h4><p>Weather + daily routine → <b>sweat per hour</b> (ISO 7933)</p></div>
+    <div class="down">▼</div>
+    <div class="step" style="box-shadow:0 0 0 4px #99f6e4"><h4>🧠 Kalman filter, every 08:00</h4>
+      <p>Estimates hidden <b>body water</b> and <b>creatinine</b> from weight + heart rate, and learns <b>this person's
+      sweat rate</b></p></div>
+    <div class="down">▼</div>
+    <div class="step"><h4>🎲 72-hour simulation</h4><p><b>200 possible futures</b> on the forecast, scored with the
+      KDIGO kidney-injury rule</p></div>
+    <p style="margin: 12px 18px 0; font-size: 13.5px; color: #0f766e; text-align:center; line-height:1.35">
+      Physiology: autoregulation · triple whammy · exertion · haemoconcentration</p>
+  </div></div>
+
+<!-- 4 AI -->
+<div class="card c-ai x4 y1" id="a1"><div class="top"><span class="ic">⚡</span>Fast clock · 72 h</div><div class="body"><ul>
+  <li>Hybrid <b>LightGBM model M</b></li><li>Twin outputs + <b>25 clinical features</b></li>
+  <li>Calibrated % + <b>top-3 reasons</b></li></ul></div></div>
+<div class="card c-ai x4 y2" id="a2"><div class="top"><span class="ic">🚦</span>Alert level</div><div class="body">
+  <div><span class="chip g">✅ Green</span><span class="chip a">⚠️ Amber</span><span class="chip r">⛔ Red</span><span class="chip p">🟣 Confirmed</span></div>
+  <ul style="margin-top:5px"><li>Red ≤ 0.5 per 100 patient-days</li><li>🔔 Sent to patient, family, doctor</li></ul></div></div>
+<div class="card c-ai x4 y3" id="a3"><div class="top"><span class="ic">🔁</span>What-if simulator</div><div class="body"><ul>
+  <li>① Swap painkiller → ② ORS · work hours</li><li>③ Pause medicine (doctor decides)</li>
+  <li>Guardrails: ORS, K⁺, heart failure</li></ul></div></div>
+<div class="card c-ai x4 y4" id="a4"><div class="top"><span class="ic">🐢</span>Slow clock · 10 years</div><div class="body"><ul>
+  <li>Bayesian eGFR trend</li><li><b>Ranges only</b>, never one number</li><li>KFRE where valid</li></ul></div></div>
+
+<!-- 5 trust -->
+<div class="bar c-trust x5 tall" id="trust"><div class="top">🔐 Every read</div>
+  <div class="sec"><h4>✍️ Consent</h4><p>Signed, ABDM-style<br>Revoke in one click</p></div>
+  <div class="sec"><h4>🧾 Audit log</h4><p>Hash-chained<br>Signed checkpoints<br>Tamper-evident</p></div>
+  <div class="sec"><h4>🌐 Standards</h4><p>FHIR R4 export<br>DPDP Act 2023 map</p></div>
+</div>
+
+<!-- 6 users -->
+<div class="card c-user x6 y1" id="u1"><div class="top"><span class="ic">🩺</span>Doctor</div><div class="body"><ul>
+  <li>Ranked triage + reasons</li><li>Kidney Weather by city</li><li><b>Order home kidney test</b></li></ul></div></div>
+<div class="card c-user x6 y2" id="u2"><div class="top"><span class="ic">👪</span>Patient &amp; family</div><div class="body"><ul>
+  <li>4 languages + audio</li><li><b>🚑 Ambulance button</b></li><li>💊 Medicine list, consent</li></ul></div></div>
+<div class="card c-user x6 y3" id="u3"><div class="top"><span class="ic">🧑‍⚕️</span>ASHA worker</div><div class="body"><ul>
+  <li>Tier-0 form in Telugu</li><li>No smartwatch needed</li><li>Red flags + 🚑</li></ul></div></div>
+<div class="card c-user x6 y4" id="u4"><div class="top"><span class="ic">🧪</span>Lab</div><div class="body"><ul>
+  <li>Home sample, ₹189 test</li><li>Result flows <b>back into the twin</b></li></ul></div></div>
+
+<!-- evidence -->
+<div class="band" style="top: 908px; height: 128px;">
+  <div class="lab">EVIDENCE</div>
+  <div class="cell"><h4>🧬 Synthetic training world</h4><p><b>15,000 patients</b>: 10,000 train (2024) · 5,000 separate test (2025, 2026).
+    Built with a <b>different kidney model</b> + hidden causes, so the AI cannot copy itself.</p></div>
+  <div class="cell"><h4>🌍 Real public data checks</h4><p><b>MIMIC-IV</b> &amp; <b>eICU</b> ICU creatinine · <b>Tawam</b> 491 CKD patients ·
+    <b>PMData</b> Fitbit noise · <b>UCI CKD</b> lab values</p></div>
+  <div class="cell"><h4>📚 Published evidence</h4><p>Triple whammy (BMJ, 487,372 patients) · EMPA-KIDNEY · heat-worker studies ·
+    CPIC genetics · KDIGO · ICMR-INDIAB</p></div>
+</div>
+
+<div class="footer"><span>Team Monarch · Vellore Institute of Technology · Happiest Health Digital Twin Challenge 2026</span>
+  <span>Research prototype · synthetic &amp; open data only · not a medical device</span></div>
+</div>
+
+<script src="common.js"></script>
+<script>
+const cIn = '#2563eb', cSafe = '#dc2626', cTwin = '#0d9488', cAi = '#7c3aed', cTrust = '#d97706';
+for (const i of ['i1', 'i2', 'i3', 'i4']) H(i, 'safe', cIn);
+for (const i of ['i1', 'i2', 'i3', 'i4']) H('safe', 'twin', cSafe, {y: rect(i).cy});
+for (const a of ['a1', 'a3', 'a4']) H('twin', a, cTwin, {y: rect(a).cy});
+V('a1', 'a2', cAi);
+for (const a of ['a1', 'a2', 'a3', 'a4']) H(a, 'trust', cAi);
+for (const u of ['u1', 'u2', 'u3', 'u4']) H('trust', u, cTrust, {y: rect(u).cy});
+</script>
+</body></html>
