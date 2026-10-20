@@ -65,7 +65,7 @@ app/Home.py` -> http://localhost:8501 (one-click demo logins in the sidebar).
 ### 2.5 Part 8: deliverables
 - `README.md` generated from the reports (`scripts/make_readme.py`); `docs/DESIGN.md`, `docs/NUMBERS_CHECKED.md` (16
   external facts checked against their sources; two citations corrected), `docs/VIDEO_SCRIPT.md`, `docs/DEPLOY.md`.
-- `deliverables/`: `architecture.pdf`, `daily_flow.pdf`, `VrikkaTwin_slides.pptx` / `.pdf` (numbers from the reports),
+- `deliverables/`: `architecture.pdf`, `daily_flow.pdf`, `VrikkaTwin_Team_Monarch_Presentation.pptx` / `.pdf` (the final 34-slide deck),
   `VrikkaTwin_overview.mp4` (4-minute narrated draft), `screenshots/` (14 PNGs), `docker/Dockerfile`.
 - `PPT_FACTS.md` in the repository root (gitignored, `scripts/make_ppt_facts.py`): every fact for the slides with its
   source file.
