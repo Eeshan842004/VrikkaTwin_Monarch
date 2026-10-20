@@ -3,6 +3,7 @@ that runs the red flags first, and (patient only) who can see the data, with a o
 from __future__ import annotations
 
 import streamlit as st
+from components.alerts import ambulance_button, medicines_panel
 from components.api_client import require, services
 from components.cards import audio, brand_readback, checkin_form, screen
 from components.summary import visit_summary_html
@@ -16,6 +17,7 @@ sv = services()
 L = lang()
 rec = sv.read_patient(s, s.subject)
 
+ambulance_button(sv, s, s.subject, L, "pf_amb_top")
 st.subheader(t("ui.today_title" if s.role == "patient" else "ui.family_title", L))
 st.caption(f"{rec.get('name', '')} · {t('ui.fictional', L)}")
 c1, c2 = st.columns([1, 2])
@@ -45,12 +47,17 @@ if sick.get("sick_day"):
         st.caption(", ".join(t(k, L) for k in sick["ors"]["reason_keys"]))
 
 st.divider()
+medicines_panel(sv, s, s.subject, L, "pf_meds")
+
+st.divider()
 got = checkin_form("pf_checkin", L)
 if got:
     fields, text = got
     brand_readback(text, L)
     res = sv.submit_checkin(s, s.subject, L, fields, text or None)
     screen(res, L)
+    if res["level"] == "emergency":
+        ambulance_button(sv, s, s.subject, L, "pf_amb_flag")
 
 if s.role == "patient":
     st.divider()

@@ -9,10 +9,12 @@ from __future__ import annotations
 ROLES = ("doctor", "patient", "family", "asha", "lab", "admin")
 
 ACTIONS = {
-    "doctor": {"read_patient", "list_triage", "order_test", "run_whatif", "export_fhir", "view_audit", "checkin"},
-    "patient": {"read_patient", "run_whatif", "checkin", "manage_consent", "export_fhir"},
-    "family": {"read_patient", "checkin"},
-    "asha": {"read_patient", "list_triage", "checkin"},
+    "doctor": {"read_patient", "list_triage", "order_test", "run_whatif", "export_fhir", "view_audit", "checkin",
+               "manage_medicines", "read_notifications"},
+    "patient": {"read_patient", "run_whatif", "checkin", "manage_consent", "export_fhir", "manage_medicines",
+                "read_notifications", "call_ambulance"},
+    "family": {"read_patient", "checkin", "manage_medicines", "read_notifications", "call_ambulance"},
+    "asha": {"read_patient", "list_triage", "checkin", "manage_medicines", "call_ambulance"},
     "lab": {"list_tasks", "record_result"},
     "admin": {"view_audit", "manage_devices"},
 }
@@ -22,11 +24,11 @@ FIELDS = {
     "doctor": None,                                  # None = every field
     "patient": {"patient_id", "name", "age", "female", "city", "language", "generics", "level", "risk", "risk_text",
                 "advice_keys", "slow_clock", "checkins", "tasks", "label", "whatif", "sickday", "fictional",
-                "reasons"},
+                "reasons", "medicines"},
     "family": {"patient_id", "name", "city", "language", "level", "risk_text", "advice_keys", "checkins", "label",
-               "sickday", "fictional", "reasons"},
+               "sickday", "fictional", "reasons", "medicines"},
     "asha": {"patient_id", "name", "age", "female", "city", "language", "level", "advice_keys", "red_flags",
-             "checkins", "tier", "label", "fictional"},
+             "checkins", "tier", "label", "fictional", "medicines"},
     "lab": {"patient_id", "age", "female", "tasks", "fictional"},
     "admin": {"patient_id"},
 }

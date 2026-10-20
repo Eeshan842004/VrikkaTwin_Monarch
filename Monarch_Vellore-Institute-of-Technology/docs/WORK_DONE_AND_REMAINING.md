@@ -77,6 +77,18 @@ app/Home.py` -> http://localhost:8501 (one-click demo logins in the sidebar).
 - Optional b: Tomorrow's Kidney Weather on Doctor Triage (`reports/demo_triage_panel.json`, `kidney_weather`).
 - Optional c: one-click printable visit summary in the patient's language with the disclaimer.
 
+### 2.7 Alerts, emergency button and daily medicines (20 Oct)
+- **Alerts:** a red risk level, a red flag, a triple-whammy medicine combination or an ambulance call goes at once to
+  the patient, and to the doctor and family while their consent is granted (amber goes to patient and family only).
+  Everyone sees them in the **🔔 Alerts** inbox in the sidebar. Every alert is in the audit log.
+- **🚑 Emergency button** on the Patient / Family and ASHA pages (and after an emergency check-in): it logs the call,
+  alerts the doctor and family, and shows a **Dial 108** link (opens the phone dialler).
+- **💊 Daily medicines** on the Patient / Family, ASHA and Doctor Triage pages: the list starts from the health record;
+  anyone caring for the patient can add a medicine by brand or generic (Combiflam -> ibuprofen + paracetamol) or mark
+  one as stopped. Adding a painkiller on top of a BP pill and a water tablet raises a triple-whammy alert at once.
+- Tests: `tests/test_alerts_meds.py` (10). Fixed on the way: each services session now has its own copy of the patient
+  records, so edits never leak between sessions.
+
 ---
 
 ## 3. Headline results (all synthetic unless stated; sources in brackets)

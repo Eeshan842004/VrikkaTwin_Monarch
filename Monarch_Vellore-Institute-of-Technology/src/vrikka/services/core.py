@@ -9,8 +9,15 @@ here, and every call follows the same steps:
 5. the record leaves with only the fields the role may see, and names are decrypted only for those roles.
 
 Device readings pass the data-integrity gate first (test S10). Red flags run before any risk (whatif/red_flags.py).
+
+Alerts: a red risk level, a red flag, a triple-whammy medicine combination or an ambulance call is sent at once to the
+patient, and to the doctor and family only while their consent is GRANTED. Medicines: the daily list starts from the
+EHR and can be edited by the patient, family, doctor or ASHA; brand names are resolved to generics (Combiflam ->
+ibuprofen + paracetamol) and the sick-day guidance follows the edited list.
 """
 from __future__ import annotations
+
+import copy
 
 from vrikka.config import load_yaml
 from vrikka.interop import fhir_export
@@ -27,6 +34,9 @@ from vrikka.whatif import red_flags
 from vrikka.whatif.sickday import guidance
 
 CONSENTED_REQUESTERS = ("doctor", "asha", "lab", "family")
+RAS = {"arb", "acei"}
+DIURETIC = {"thiazide", "loop"}
+NSAID = {"nsaid_cyp2c9", "nsaid_other"}
 NAME_ROLES = {"doctor", "patient", "family", "asha"}
 
 
@@ -36,12 +46,14 @@ class Services:
         self.consents = ConsentRegistry()
         self.gate = IntegrityGate(self.audit)
         self.con = db.connect(db_path if db_path is not None else ":memory:")
-        self.patients = directory.all_patients()
+        self.patients = copy.deepcopy(directory.all_patients())   # own copy: edits never leak between sessions
         if seed_consents:
             for pid in self.patients:
                 for req in CONSENTED_REQUESTERS:
                     self.consents.grant(pid, req)
+        self._meds_seeded: set[str] = set()
         self.audit.append("services_started", patients=len(self.patients))
+        self.send_risk_alerts()
         self.audit.checkpoint()
 
     # ------------------------------------------------------------------ sessions
@@ -74,6 +86,7 @@ class Services:
         if s.role in NAME_ROLES:
             out["name"] = decrypt_text(rec["name_enc"])
         out["tasks"] = repo.tasks(self.con, rec["patient_id"])
+        out["medicines"] = self._medicines(rec["patient_id"])
         out["checkins"] = repo.checkins(self.con, rec["patient_id"])
         lab = next((t for t in out["tasks"] if t["status"] == "resulted"), None)
         if lab and lab["result_flag"] and lab["result_flag"].startswith("kdigo_stage"):
@@ -157,6 +170,9 @@ class Services:
             capture.update({k: v for k, v in red_flags.parse_text(text, language).items() if v not in (None, [])})
         res = red_flags.evaluate(capture, language, audit=self.audit, patient_id=pid, actor=s.username)
         repo.add_checkin(self.con, pid, s.username, s.role, language, capture, text, res.level)
+        if res.level in ("emergency", "urgent"):
+            self._notify(pid, res.level, "red_flag", f"notify.redflag_{res.level}", ", ".join(res.flags),
+                         source=f"{s.role} check-in")
         return {"level": res.level, "flags": res.flags, "title": res.title, "body": res.body, "call": res.call,
                 "show_risk": res.show_risk, "notes": res.notes, "parsed": capture,
                 "minimum_alert_level": "red" if res.level == "urgent" else None}
@@ -210,3 +226,122 @@ class Services:
         st = self.audit.verify_checkpoints()
         self.audit.append("audit_verified", actor=s.username, ok=st["ok"])
         return {**st, "records": len(self.audit.records), "public_key": self.audit.public_key}
+
+    # ------------------------------------------------------------------ alerts (notifications)
+    def _recipients(self, pid: str) -> list[str]:
+        """The patient always; the doctor and family only while their consent artefact is GRANTED."""
+        out = ["patient"]
+        for role in ("doctor", "family"):
+            ok, _ = self.consents.check(pid, role, rbac.HI_TYPE[role])
+            if ok:
+                out.append(role)
+        return out
+
+    def _notify(self, pid: str, level: str, kind: str, message_key: str, detail: str = "",
+                source: str = "system", to: tuple[str, ...] | None = None) -> list[str]:
+        sent = [r for r in self._recipients(pid) if to is None or r in to]
+        for r in sent:
+            repo.add_notification(self.con, pid, r, level, kind, message_key, detail, source)
+        self.audit.append("alert_sent", subject=pid, level=level, kind=kind, recipients=sent, source=source)
+        return sent
+
+    def send_risk_alerts(self) -> int:
+        """Today's risk levels: red -> patient, family and doctor; amber -> patient and family (self-care)."""
+        n = 0
+        for pid, rec in self.patients.items():
+            if rec.get("level") == "red":
+                self._notify(pid, "red", "risk_alert", "notify.risk_red", rec.get("risk_text", ""), "fast clock")
+                n += 1
+            elif rec.get("level") == "amber":
+                self._notify(pid, "amber", "risk_alert", "notify.risk_amber", rec.get("risk_text", ""), "fast clock",
+                             to=("patient", "family"))
+                n += 1
+        return n
+
+    def inbox(self, s: auth.Session, unread_only: bool = False) -> list[dict]:
+        """Alerts for the logged-in person: the doctor sees every consented patient, patient / family their own."""
+        rbac.require(s.role, "read_notifications")
+        if s.role == "doctor":
+            rows = [r for r in repo.notifications(self.con, "doctor")
+                    if self.consents.check(r["patient_id"], "doctor", rbac.HI_TYPE["doctor"])[0]]
+        else:
+            rows = repo.notifications(self.con, s.role, s.subject)
+        if unread_only:
+            rows = [r for r in rows if not r["read"]]
+        for r in rows:
+            p = self.patients.get(r["patient_id"], {})
+            r["patient_name"] = decrypt_text(p["name_enc"]) if p.get("name_enc") else r["patient_id"]
+        return rows
+
+    def mark_read(self, s: auth.Session, notif_ids: list[int]) -> None:
+        rbac.require(s.role, "read_notifications")
+        mine = {r["notif_id"] for r in self.inbox(s)}
+        repo.mark_read(self.con, [i for i in notif_ids if i in mine])
+
+    def call_ambulance(self, s: auth.Session, pid: str) -> dict:
+        """Emergency button: logs the call and alerts the doctor and family at once; the phone dials 108."""
+        self._authorize(s, "call_ambulance", pid)
+        call = load_yaml("red_flags")["flags"]["heatstroke_emergency"]["call"]
+        sent = self._notify(pid, "emergency", "ambulance", "notify.ambulance", f"pressed by {s.role}",
+                            source=f"{s.role} emergency button")
+        self.audit.append("ambulance_called", actor=s.username, subject=pid, role=s.role, numbers=call)
+        return {"numbers": call, "dial": call.split("/")[0].strip(), "notified": sent}
+
+    # ------------------------------------------------------------------ daily medicines
+    @staticmethod
+    def resolve_medicine(name: str) -> dict:
+        """Brand or generic -> generics and classes from config/drugs_india.yaml (unknown names are kept, flagged)."""
+        lex = load_yaml("drugs_india")
+        key = name.strip().lower().replace("-", "_").replace(" ", "_")
+        if key in lex["brands"]:
+            gens = list(lex["brands"][key]["generics"])
+        elif key in lex["generics"]:
+            gens = [key]
+        else:
+            return {"generics": [], "classes": [], "recognised": False}
+        return {"generics": gens, "classes": sorted({lex["generics"][g] for g in gens if g in lex["generics"]}),
+                "recognised": True}
+
+    def _medicines(self, pid: str) -> list[dict]:
+        if pid not in self._meds_seeded:                  # first use: start from the EHR medicine list
+            self._meds_seeded.add(pid)
+            if not repo.medicines(self.con, pid, active_only=False):
+                for g in self.patients[pid].get("generics", []):
+                    repo.add_medicine(self.con, pid, g, [g], None, None, "EHR")
+        return repo.medicines(self.con, pid)
+
+    def _sync_generics(self, pid: str) -> list[str]:
+        gens = sorted({g for m in repo.medicines(self.con, pid) for g in m["generics"]})
+        self.patients[pid]["generics"] = gens
+        return gens
+
+    def list_medicines(self, s: auth.Session, pid: str) -> list[dict]:
+        self._authorize(s, "read_patient", pid)
+        return self._medicines(pid)
+
+    def add_medicine(self, s: auth.Session, pid: str, name: str, dose: str | None = None,
+                     times_per_day: int | None = None) -> dict:
+        self._authorize(s, "manage_medicines", pid)
+        if not name or not name.strip():
+            raise ValueError("medicine name is empty")
+        self._medicines(pid)
+        r = self.resolve_medicine(name)
+        mid = repo.add_medicine(self.con, pid, name.strip(), r["generics"], dose or None, times_per_day, s.username)
+        gens = self._sync_generics(pid)
+        self.audit.append("medicine_added", actor=s.username, subject=pid, medicine=name.strip(),
+                          generics=r["generics"], recognised=r["recognised"])
+        lex = load_yaml("drugs_india")["generics"]
+        classes = {lex.get(g) for g in gens}
+        warnings = []
+        if classes & RAS and classes & DIURETIC and classes & NSAID and set(r["classes"]) & (RAS | DIURETIC | NSAID):
+            warnings.append("notify.triple_whammy")
+            self._notify(pid, "red", "medicine", "notify.triple_whammy", name.strip(), source=f"{s.role} medicine list")
+        return {"med_id": mid, **r, "warnings": warnings}
+
+    def stop_medicine(self, s: auth.Session, pid: str, med_id: int) -> None:
+        self._authorize(s, "manage_medicines", pid)
+        if med_id not in {m["med_id"] for m in self._medicines(pid)}:
+            raise rbac.AccessDenied("unknown_medicine")
+        repo.stop_medicine(self.con, med_id)
+        self._sync_generics(pid)
+        self.audit.append("medicine_stopped", actor=s.username, subject=pid, med_id=med_id)

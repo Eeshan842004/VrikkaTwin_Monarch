@@ -38,6 +38,8 @@ def login_box() -> None:
     s = session()
     if s is not None:
         st.success(f"Logged in: **{ROLE_LABEL[s.role]}**")
+        from components.alerts import inbox_sidebar
+        inbox_sidebar(services(), s, st.session_state.get("lang", "en"))
         if st.button("Log out", key="logout"):
             st.session_state.pop("session", None)
             st.rerun()

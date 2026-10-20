@@ -5,6 +5,7 @@ import json
 
 import streamlit as st
 from components import charts
+from components.alerts import medicines_panel
 from components.api_client import require, services
 from components.reports import report
 from components.theme import badge, frame, lang, level_icon
@@ -148,3 +149,6 @@ with c2:
     if rec.get("tasks"):
         st.markdown("**Kidney-test tasks**")
         st.dataframe(rec["tasks"], hide_index=True, width="stretch")
+
+st.divider()
+medicines_panel(sv, s, pick, L, f"doc_meds_{pick}")

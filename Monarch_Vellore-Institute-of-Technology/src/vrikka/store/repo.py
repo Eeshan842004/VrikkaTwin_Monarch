@@ -1,4 +1,5 @@
-"""Repository functions over the SQLite store (tasks and check-ins). The services layer is the only caller."""
+"""Repository functions over the SQLite store (tasks, check-ins, notifications, medicines). The services layer is
+the only caller."""
 from __future__ import annotations
 
 import json
@@ -57,3 +58,48 @@ def checkins(con: sqlite3.Connection, patient_id: str) -> list[dict]:
         d["text"] = decrypt_text(enc) if enc else None
         out.append(d)
     return out
+
+
+def add_notification(con: sqlite3.Connection, patient_id: str, recipient: str, level: str, kind: str,
+                     message_key: str, detail: str, source: str) -> int:
+    cur = con.execute("INSERT INTO notifications (patient_id, recipient, level, kind, message_key, detail, source, ts) "
+                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                      (patient_id, recipient, level, kind, message_key, detail, source, _now()))
+    con.commit()
+    return int(cur.lastrowid)
+
+
+def notifications(con: sqlite3.Connection, recipient: str, patient_id: str | None = None) -> list[dict]:
+    q, args = "SELECT * FROM notifications WHERE recipient = ?", [recipient]
+    if patient_id:
+        q, args = q + " AND patient_id = ?", [*args, patient_id]
+    return [dict(r) for r in con.execute(q + " ORDER BY notif_id DESC", args)]
+
+
+def mark_read(con: sqlite3.Connection, notif_ids: list[int]) -> None:
+    con.executemany("UPDATE notifications SET read = 1 WHERE notif_id = ?", [(i,) for i in notif_ids])
+    con.commit()
+
+
+def add_medicine(con: sqlite3.Connection, patient_id: str, name: str, generics: list[str], dose: str | None,
+                 times_per_day: int | None, added_by: str) -> int:
+    cur = con.execute("INSERT INTO medicines (patient_id, name, generics, dose, times_per_day, added_by, added_at) "
+                      "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                      (patient_id, name, json.dumps(generics), dose, times_per_day, added_by, _now()))
+    con.commit()
+    return int(cur.lastrowid)
+
+
+def medicines(con: sqlite3.Connection, patient_id: str, active_only: bool = True) -> list[dict]:
+    q = "SELECT * FROM medicines WHERE patient_id = ?" + (" AND active = 1" if active_only else "")
+    out = []
+    for r in con.execute(q + " ORDER BY med_id", (patient_id,)):
+        d = dict(r)
+        d["generics"] = json.loads(d["generics"])
+        out.append(d)
+    return out
+
+
+def stop_medicine(con: sqlite3.Connection, med_id: int) -> None:
+    con.execute("UPDATE medicines SET active = 0 WHERE med_id = ?", (med_id,))
+    con.commit()
