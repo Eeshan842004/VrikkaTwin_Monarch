@@ -176,7 +176,7 @@ Everything the submission guidelines ask for, and where to find it.
 | Project title | VrikkaTwin: a kidney digital twin for heatwaves and sick days |
 | Problem statement and healthcare use case | [Section 3](#3-problem-statement-and-healthcare-use-case) |
 | Technical stack and AI/ML model details | [Section 6](#6-the-ai-and-the-models) and [Section 10](#10-tech-stack) |
-| Video, 20 minutes or longer, unlisted on YouTube | {video_cell} |
+| 15-20 minute demo video, unlisted on YouTube | {video_cell} |
 | Open-source licence | MIT, see [`LICENSE`](LICENSE) and [Section 13](#13-licence) |
 | Architecture diagram (PDF) | {dl('deliverables/architecture.pdf', 'architecture.pdf')} (also as {dl('deliverables/architecture.png', 'PNG')}) |
 | Presentation (PDF / PPT) with project details and outcome | {dl('deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf', 'Presentation PDF')} · {dl('deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx', 'PPTX')} ({n_slides} slides) |
