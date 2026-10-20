@@ -69,7 +69,7 @@ Everything the submission guidelines ask for, and where to find it.
 | Project title | VrikkaTwin: a kidney digital twin for heatwaves and sick days |
 | Problem statement and healthcare use case | [Section 3](#3-problem-statement-and-healthcare-use-case) |
 | Technical stack and AI/ML model details | [Section 6](#6-the-ai-and-the-models) and [Section 10](#10-tech-stack) |
-| 15-20 minute demo video, unlisted on YouTube | [YouTube, unlisted](https://youtu.be/qEd4srvijhY) |
+| 20 min demo video, unlisted on YouTube | [YouTube, unlisted](https://youtu.be/qEd4srvijhY) |
 | Open-source licence | MIT, see [`LICENSE`](./Monarch_Vellore-Institute-of-Technology/LICENSE) and [Section 13](#13-licence) |
 | Architecture diagram (PDF) | [architecture.pdf](https://github.com/Eeshan842004/VrikkaTwin_Monarch/raw/main/Monarch_Vellore-Institute-of-Technology/deliverables/architecture.pdf) (also as [PNG](https://github.com/Eeshan842004/VrikkaTwin_Monarch/raw/main/Monarch_Vellore-Institute-of-Technology/deliverables/architecture.png)) |
 | Presentation (PDF / PPT) with project details and outcome | [Presentation PDF](https://github.com/Eeshan842004/VrikkaTwin_Monarch/raw/main/Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf) · [PPTX](https://github.com/Eeshan842004/VrikkaTwin_Monarch/raw/main/Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx) (34 slides) |
