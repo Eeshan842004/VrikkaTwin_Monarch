@@ -6,7 +6,7 @@ share-alike datasets are **not committed**: `scripts/download_public_data.py` fe
 
 | Source | Used for | Licence | In this repo? |
 |---|---|---|---|
-| Our synthetic cohort (`scripts/generate_cohort.py`, enriched high-risk heat-season cohort, 3,000 patients x 3 seasons) | Training and evaluation | MIT (ours) | 20-patient sample (`data/synthetic/sample/`) + generator (deterministic, seed 42) |
+| Our synthetic cohort (`scripts/generate_cohort.py`, enriched high-risk heat-season cohort, 10,000 training patients (2024 season) + 5,000 separate test patients (2025 and 2026 seasons)) | Training and evaluation | MIT (ours) | 20-patient sample (`data/synthetic/sample/`) + generator (deterministic, seed 42) |
 | Open-Meteo historical weather (ERA5), 7 Indian cities, 1 Mar to 30 Jun of 2024 (training), 2025 and 2026 (held-out test) | Heat exposure replay | CC BY 4.0, "Weather data by Open-Meteo.com" | Yes, `data/weather/*.parquet` (see `ATTRIBUTION.md`) |
 | MIMIC-IV Clinical Database Demo v2.2 (PhysioNet) | KDIGO labelling check (R1a), creatinine kinetics (R1b) | ODbL v1.0 (open access) | No: download script only (share-alike) |
 | eICU-CRD Demo v2.0.1 (PhysioNet) | Creatinine kinetics, second cohort (R1b) | ODbL v1.0 (open access) | No: download script only |
