@@ -1,6 +1,6 @@
 # VrikkaTwin: build status and handoff
 
-Last updated 19 Oct 2026 (after the optional features). Read this first if you are picking up the build. `PROGRESS.md` has the full log with every
+Last updated 20 Oct 2026. Read this first if you are picking up the build; `docs/WORK_DONE_AND_REMAINING.md` lists what was done and what is left. `PROGRESS.md` has the full log with every
 number and its source file; `reports/EVAL_PLAN.md` is the pre-registered evaluation plan (Amendments 1 and 2).
 
 **Deadlines:** team target is to submit on **Sun 18 Oct 2026, 16:00 IST**; the official Unstop deadline is
