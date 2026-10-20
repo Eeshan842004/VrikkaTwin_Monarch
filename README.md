@@ -9,7 +9,7 @@ Team **Monarch** · **Vellore Institute of Technology** · Happiest Health Digit
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)
 ![Data: synthetic and open only](https://img.shields.io/badge/data-synthetic%20%2B%20open-orange.svg)
 
-**Video link: added here once the upload is live.**
+**[Watch the walkthrough on YouTube](https://youtu.be/qEd4srvijhY)** (unlisted)
 
 ---
 
@@ -69,10 +69,10 @@ Everything the submission guidelines ask for, and where to find it.
 | Project title | VrikkaTwin: a kidney digital twin for heatwaves and sick days |
 | Problem statement and healthcare use case | [Section 3](#3-problem-statement-and-healthcare-use-case) |
 | Technical stack and AI/ML model details | [Section 6](#6-the-ai-and-the-models) and [Section 10](#10-tech-stack) |
-| Video, 20 minutes or longer, unlisted on YouTube | link goes here once uploaded |
+| Video, 20 minutes or longer, unlisted on YouTube | [YouTube, unlisted](https://youtu.be/qEd4srvijhY) |
 | Open-source licence | MIT, see [`LICENSE`](./Monarch_Vellore-Institute-of-Technology/LICENSE) and [Section 13](#13-licence) |
 | Architecture diagram (PDF) | [`deliverables/architecture.pdf`](./Monarch_Vellore-Institute-of-Technology/deliverables/architecture.pdf) (also as [PNG](./Monarch_Vellore-Institute-of-Technology/deliverables/architecture.png)) |
-| Presentation (PDF / PPT) with project details and outcome | [`deliverables/VrikkaTwin_slides.pdf`](./Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_slides.pdf) · [`deliverables/VrikkaTwin_slides.pptx`](./Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_slides.pptx) |
+| Presentation (PDF / PPT) with project details and outcome | [`deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf`](./Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf) · [`.pptx`](./Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx) |
 | Folder named "Team Name_College Name" | [`Monarch_Vellore-Institute-of-Technology/`](./Monarch_Vellore-Institute-of-Technology/.) |
 | Public repository, every link open | This repository is public; the code, reports, diagrams and slides are all in it |
 
@@ -157,6 +157,8 @@ Data comes in from four places (health record, wearables or the ASHA visit, the 
 the safety checks first, then the twin estimates the patient's hidden state and simulates the next 72 hours. The
 models turn that into a risk, a level and reasons. Every read goes through consent and the audit log before it reaches
 a user.
+
+**Presentation** (34 slides: the problem, our approach, the models, results and outcome): [download PDF](https://github.com/Eeshan842004/VrikkaTwin_Monarch/raw/main/Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf) · [download PPTX](https://github.com/Eeshan842004/VrikkaTwin_Monarch/raw/main/Monarch_Vellore-Institute-of-Technology/deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx)
 
 **One day in the life of the twin**
 

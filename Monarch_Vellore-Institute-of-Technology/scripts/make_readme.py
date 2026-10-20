@@ -15,7 +15,7 @@ import sys
 from vrikka.config import PROJECT_ROOT, REPORTS_DIR, load_yaml, param
 from vrikka.fastclock.features import CORE, FULL
 
-VIDEO_URL = ""  # paste the unlisted YouTube link here, then re-run
+VIDEO_URL = "https://youtu.be/qEd4srvijhY"  # paste the unlisted YouTube link here, then re-run
 REPO = "https://github.com/Eeshan842004/VrikkaTwin_Monarch"
 FOLDER = PROJECT_ROOT.name
 RAW = f"{REPO}/raw/main/{FOLDER}/"
@@ -63,6 +63,7 @@ def main() -> int:
     draws = int(param("mc_draws_ui"))
     lo, hi = 100 * param("slow_band_low_q"), 100 * param("slow_band_high_q")
     red_day = k["summary"]["first_red_day"]
+    n_slides = 34
     n_shots = len(list((PROJECT_ROOT / "deliverables" / "screenshots").glob("*.png")))
 
     if VIDEO_URL:
@@ -178,7 +179,7 @@ Everything the submission guidelines ask for, and where to find it.
 | Video, 20 minutes or longer, unlisted on YouTube | {video_cell} |
 | Open-source licence | MIT, see [`LICENSE`](LICENSE) and [Section 13](#13-licence) |
 | Architecture diagram (PDF) | [`deliverables/architecture.pdf`](deliverables/architecture.pdf) (also as [PNG](deliverables/architecture.png)) |
-| Presentation (PDF / PPT) with project details and outcome | [`deliverables/VrikkaTwin_slides.pdf`](deliverables/VrikkaTwin_slides.pdf) · [`deliverables/VrikkaTwin_slides.pptx`](deliverables/VrikkaTwin_slides.pptx) |
+| Presentation (PDF / PPT) with project details and outcome | [`deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf`](deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf) · [`.pptx`](deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx) |
 | Folder named "Team Name_College Name" | [`{FOLDER}/`](.) |
 | Public repository, every link open | This repository is public; the code, reports, diagrams and slides are all in it |
 
@@ -263,6 +264,8 @@ Data comes in from four places (health record, wearables or the ASHA visit, the 
 the safety checks first, then the twin estimates the patient's hidden state and simulates the next 72 hours. The
 models turn that into a risk, a level and reasons. Every read goes through consent and the audit log before it reaches
 a user.
+
+**Presentation** ({n_slides} slides: the problem, our approach, the models, results and outcome): {dl('deliverables/VrikkaTwin_Team_Monarch_Presentation.pdf', 'download PDF')} · {dl('deliverables/VrikkaTwin_Team_Monarch_Presentation.pptx', 'download PPTX')}
 
 **One day in the life of the twin**
 
